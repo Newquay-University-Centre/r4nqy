@@ -23,7 +23,6 @@ sharing-your-book
 publishing
 pages
 metadata-for-sharing
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
 one-way-anova
 load-packages
 remove-observations-with-missing-values
