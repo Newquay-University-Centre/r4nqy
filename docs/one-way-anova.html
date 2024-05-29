@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 One-way ANOVA | A Minimal Book Example</title>
+  <title>Chapter 7 One-way ANOVA | ANOVA: Factorial experiments and model simplification</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 One-way ANOVA | A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 7 One-way ANOVA | ANOVA: Factorial experiments and model simplification" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,25 +19,24 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 One-way ANOVA | A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 7 One-way ANOVA | ANOVA: Factorial experiments and model simplification" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="Michael Hunt" />
 
 
-<meta name="date" content="2024-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sharing-your-book.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="paired-tests-for-difference.html"/>
+<link rel="next" href="simple-linear-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -58,6 +57,8 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -129,29 +130,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -175,55 +153,102 @@ div.csl-indent {
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>2</b> Hello bookdown</a>
+<li class="chapter" data-level="2" data-path="plot-your-data.html"><a href="plot-your-data.html"><i class="fa fa-check"></i><b>2</b> Plot your data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>2.1</b> A section</a>
+<li class="chapter" data-level="2.0.1" data-path="plot-your-data.html"><a href="plot-your-data.html#load-packages"><i class="fa fa-check"></i><b>2.0.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.0.2" data-path="plot-your-data.html"><a href="plot-your-data.html#get-the-template-script"><i class="fa fa-check"></i><b>2.0.2</b> Get the template script</a></li>
+<li class="chapter" data-level="2.0.3" data-path="plot-your-data.html"><a href="plot-your-data.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>2.0.3</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="2.0.4" data-path="plot-your-data.html"><a href="plot-your-data.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>2.0.4</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="2.0.5" data-path="plot-your-data.html"><a href="plot-your-data.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>2.0.5</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="2.0.6" data-path="plot-your-data.html"><a href="plot-your-data.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>2.0.6</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="2.0.7" data-path="plot-your-data.html"><a href="plot-your-data.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>2.0.7</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="2.0.8" data-path="plot-your-data.html"><a href="plot-your-data.html#scatter-plots"><i class="fa fa-check"></i><b>2.0.8</b> Scatter plots</a></li>
+<li class="chapter" data-level="2.0.9" data-path="plot-your-data.html"><a href="plot-your-data.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>2.0.9</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="2.0.10" data-path="plot-your-data.html"><a href="plot-your-data.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>2.0.10</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="2.0.11" data-path="plot-your-data.html"><a href="plot-your-data.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>2.0.11</b> Distribution of penguin flipper lengths</a></li>
+<li class="chapter" data-level="2.0.12" data-path="plot-your-data.html"><a href="plot-your-data.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.0.12</b> Bar chart with error bar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>3</b> Correlation</a></li>
+<li class="chapter" data-level="4" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>4</b> </a>
 <ul>
-<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<li class="chapter" data-level="4.1" data-path="section.html"><a href="section.html#correlation-1"><i class="fa fa-check"></i><b>4.1</b> Correlation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
-<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+<li class="chapter" data-level="4.1.1" data-path="section.html"><a href="section.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>4.1.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="4.1.2" data-path="section.html"><a href="section.html#different-values-of-r."><i class="fa fa-check"></i><b>4.1.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="4.1.3" data-path="section.html"><a href="section.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>4.1.3</b> Using R to find the correlation coefficient.</a></li>
+<li class="chapter" data-level="4.1.4" data-path="section.html"><a href="section.html#correlations-for-real-data"><i class="fa fa-check"></i><b>4.1.4</b> Correlations for real data</a></li>
+<li class="chapter" data-level="4.1.5" data-path="section.html"><a href="section.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>4.1.5</b> The correlation coefficient measures the degree of linear association.</a></li>
+<li class="chapter" data-level="4.1.6" data-path="section.html"><a href="section.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>4.1.6</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+<li class="chapter" data-level="4.1.7" data-path="section.html"><a href="section.html#association-is-not-causation"><i class="fa fa-check"></i><b>4.1.7</b> Association is not causation</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
-<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<li class="chapter" data-level="4.2" data-path="section.html"><a href="section.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
-<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+<li class="chapter" data-level="4.2.1" data-path="section.html"><a href="section.html#lichen-abundance"><i class="fa fa-check"></i><b>4.2.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section.html"><a href="section.html#soil-bacteria"><i class="fa fa-check"></i><b>4.2.2</b> Soil bacteria</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<li class="chapter" data-level="4.3" data-path="section.html"><a href="section.html#exercise-1"><i class="fa fa-check"></i><b>4.3</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.4" data-path="section.html"><a href="section.html#exercise-2"><i class="fa fa-check"></i><b>4.4</b> Exercise 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>5</b> t-test for difference</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
-<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
-<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+<li class="chapter" data-level="5.0.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>5.0.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="5.0.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>5.0.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="5.0.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>5.0.3</b> The two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.0.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>5.0.4</b> The workflow</a></li>
+<li class="chapter" data-level="5.0.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>5.0.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>5.0.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="5.0.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>5.0.7</b> Step Three: Carry out statistical analysis</a></li>
+<li class="chapter" data-level="5.0.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>5.0.8</b> The complete script</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<li class="chapter" data-level="6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>6</b> Paired tests for difference</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
-<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
-<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+<li class="chapter" data-level="6.0.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.0.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example"><i class="fa fa-check"></i><b>6.0.2</b> Example</a></li>
+<li class="chapter" data-level="6.0.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.0.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="6.0.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>6.0.4</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="6.0.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#files-needed"><i class="fa fa-check"></i><b>6.0.5</b> Files needed</a></li>
+<li class="chapter" data-level="6.0.6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#open-your-project-1"><i class="fa fa-check"></i><b>6.0.6</b> Open your Project</a></li>
+<li class="chapter" data-level="6.0.7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-3"><i class="fa fa-check"></i><b>6.0.7</b> Load packages</a></li>
+<li class="chapter" data-level="6.0.8" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#read-in-the-data"><i class="fa fa-check"></i><b>6.0.8</b> Read in the data</a></li>
+<li class="chapter" data-level="6.0.9" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>6.0.9</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="6.0.10" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#summarise-the-data"><i class="fa fa-check"></i><b>6.0.10</b> Summarise the data</a></li>
+<li class="chapter" data-level="6.0.11" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data-1"><i class="fa fa-check"></i><b>6.0.11</b> Plot the data</a></li>
+<li class="chapter" data-level="6.0.12" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#anova"><i class="fa fa-check"></i><b>6.0.12</b> ANOVA</a></li>
+<li class="chapter" data-level="6.0.13" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#model-simplification"><i class="fa fa-check"></i><b>6.0.13</b> Model Simplification</a></li>
+<li class="chapter" data-level="6.0.14" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>6.0.14</b> Check the validity of the linear model</a></li>
+<li class="chapter" data-level="6.0.15" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#reporting-the-results"><i class="fa fa-check"></i><b>6.0.15</b> Reporting the results</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>8</b> One-way ANOVA</a>
+<li class="chapter" data-level="7" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages"><i class="fa fa-check"></i><b>8.1</b> Load packages</a></li>
-<li class="chapter" data-level="8.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>8.2</b> Remove observations with missing values</a></li>
-<li class="chapter" data-level="8.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>8.3</b> Summary - group by species and sex</a></li>
-<li class="chapter" data-level="8.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
-<li class="chapter" data-level="8.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>8.5</b> One-way ANOVA</a>
+<li class="chapter" data-level="7.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>7.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>7.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="7.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>7.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="7.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>7.4</b> Plot the data</a></li>
+<li class="chapter" data-level="7.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>8.5.1</b> Null hypothesis</a></li>
-<li class="chapter" data-level="8.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>8.5.2</b> The actual ANOVA</a></li>
-<li class="chapter" data-level="8.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model"><i class="fa fa-check"></i><b>8.5.3</b> Construct the model</a></li>
-<li class="chapter" data-level="8.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>8.5.4</b> Is the model valid?</a></li>
-<li class="chapter" data-level="8.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>8.5.5</b> The overall picture</a></li>
-<li class="chapter" data-level="8.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>8.5.6</b> The detailed picture</a></li>
-<li class="chapter" data-level="8.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>8.5.7</b> Post hoc tsts.</a></li>
+<li class="chapter" data-level="7.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>7.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="7.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>7.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="7.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>7.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="7.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>7.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="7.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>7.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="7.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>7.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="7.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>7.5.7</b> Post hoc tsts.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>8.6</b> Reporting the Result.</a></li>
+<li class="chapter" data-level="7.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>7.6</b> Reporting the Result.</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>8.0.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="8.0.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.0.2</b> Load packages</a></li>
+<li class="chapter" data-level="8.0.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.0.3</b> Get the data</a></li>
+<li class="chapter" data-level="8.0.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.0.4</b> Plot the data</a></li>
+<li class="chapter" data-level="8.0.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.0.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="8.0.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.0.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="8.0.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.0.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="8.0.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.0.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="8.0.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>8.0.9</b> Conclusion</a></li>
+<li class="chapter" data-level="8.0.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.0.10</b> Sample script</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -236,7 +261,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ANOVA: Factorial experiments and model simplification</a>
           </h1>
         </div>
 
@@ -244,16 +269,16 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="one-way-anova" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> One-way ANOVA<a href="one-way-anova.html#one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="one-way-anova" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> One-way ANOVA<a href="one-way-anova.html#one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this exercise we will carry out a method of analysis known as ANOVA - this is what is commonly used when you have one or more categorical variables, such as species, sex and so on, and a numerical response variable such as body mass and you want to know if there is a difference in the response variable between the categories.</p>
-<div id="load-packages" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Load packages<a href="one-way-anova.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="one-way-anova.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation and plots, and more besides</span></span>
-<span id="cb6-2"><a href="one-way-anova.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># this is useful for diagnostics</span></span>
-<span id="cb6-3"><a href="one-way-anova.html#cb6-3" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for the palmer penguin data</span></span></code></pre></div>
+<div id="load-packages-4" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Load packages<a href="one-way-anova.html#load-packages-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="one-way-anova.html#cb100-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation and plots, and more besides</span></span>
+<span id="cb100-2"><a href="one-way-anova.html#cb100-2" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># this is useful for diagnostics</span></span>
+<span id="cb100-3"><a href="one-way-anova.html#cb100-3" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for the palmer penguin data</span></span></code></pre></div>
 <p>The <code>palmerpenguins</code> package comes with two in-built data sets on penguins. The simplest of them is called <code>penguins</code> and is the one we will use in this exercise:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="one-way-anova.html#cb7-1" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="one-way-anova.html#cb101-1" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
 <pre><code>## Rows: 344
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
@@ -265,12 +290,12 @@ div.csl-indent {
 ## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
 ## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
-<div id="remove-observations-with-missing-values" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Remove observations with missing values<a href="one-way-anova.html#remove-observations-with-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="remove-observations-with-missing-values" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Remove observations with missing values<a href="one-way-anova.html#remove-observations-with-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can see from the first few values of the glimpse table that some rows have missing values (NAs). We need to decide what to do with them. Here we will simply remove them! Here is a way to remove any row that contains missing values in one column or another:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="one-way-anova.html#cb9-1" tabindex="-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="one-way-anova.html#cb9-2" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb9-3"><a href="one-way-anova.html#cb9-3" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_clean)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="one-way-anova.html#cb103-1" tabindex="-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb103-2"><a href="one-way-anova.html#cb103-2" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb103-3"><a href="one-way-anova.html#cb103-3" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_clean)</span></code></pre></div>
 <pre><code>## Rows: 333
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
@@ -283,13 +308,13 @@ div.csl-indent {
 ## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 <p>That has removed 11 rows of data, so we haven’t lost too much information.</p>
 </div>
-<div id="summary---group-by-species-and-sex" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Summary - group by species and sex<a href="one-way-anova.html#summary---group-by-species-and-sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summary---group-by-species-and-sex" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Summary - group by species and sex<a href="one-way-anova.html#summary---group-by-species-and-sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we use the famliar <code>group_by()</code> and <code>summarise()</code> construction to find the mean body mass for each combination of species and sex. We also calculate the standard error of those means and the number of individuals in each group.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="one-way-anova.html#cb11-1" tabindex="-1"></a>penguins_clean <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="one-way-anova.html#cb11-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="one-way-anova.html#cb11-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_bm =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se_bm =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()) ) <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a href="one-way-anova.html#cb11-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="one-way-anova.html#cb105-1" tabindex="-1"></a>penguins_clean <span class="sc">|&gt;</span></span>
+<span id="cb105-2"><a href="one-way-anova.html#cb105-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
+<span id="cb105-3"><a href="one-way-anova.html#cb105-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_bm =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se_bm =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()) ) <span class="sc">|&gt;</span></span>
+<span id="cb105-4"><a href="one-way-anova.html#cb105-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   species   sex        n mean_bm se_bm
 ##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -301,28 +326,28 @@ div.csl-indent {
 ## 6 Gentoo    male      61   5485.  40.1</code></pre>
 <p>Looking at this table, does it look as though females and males have different weights? If so, which is heavier? Is this true for all species? Do the different species weigh the same?</p>
 </div>
-<div id="plot-the-data" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Plot the data<a href="one-way-anova.html#plot-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plot-the-data-2" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Plot the data<a href="one-way-anova.html#plot-the-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To get further insight into these questions, we can plot the data. Here we will do a box plot</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="one-way-anova.html#cb13-1" tabindex="-1"></a>penguins_clean  <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="one-way-anova.html#cb13-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="one-way-anova.html#cb13-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb13-4"><a href="one-way-anova.html#cb13-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb13-5"><a href="one-way-anova.html#cb13-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
-<span id="cb13-6"><a href="one-way-anova.html#cb13-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Sex&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="one-way-anova.html#cb13-7" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="one-way-anova.html#cb13-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb13-9"><a href="one-way-anova.html#cb13-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.8</span>))</span></code></pre></div>
-<p><img src="07-one_way_ANOVA_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="one-way-anova.html#cb107-1" tabindex="-1"></a>penguins_clean  <span class="sc">|&gt;</span></span>
+<span id="cb107-2"><a href="one-way-anova.html#cb107-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb107-3"><a href="one-way-anova.html#cb107-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb107-4"><a href="one-way-anova.html#cb107-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb107-5"><a href="one-way-anova.html#cb107-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb107-6"><a href="one-way-anova.html#cb107-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Sex&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-7"><a href="one-way-anova.html#cb107-7" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb107-8"><a href="one-way-anova.html#cb107-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb107-9"><a href="one-way-anova.html#cb107-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.8</span>))</span></code></pre></div>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>What do you think now about size differences between species and the two sexes?</p>
 <p>There is a lot going on here, so let’s approach this more simply to begin with and concentrate solely on the difference between the females of the species.</p>
 </div>
-<div id="one-way-anova-1" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> One-way ANOVA<a href="one-way-anova.html#one-way-anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="one-way-anova-1" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> One-way ANOVA<a href="one-way-anova.html#one-way-anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s ask the question: do the body weights differ between females of the different species?</p>
 <p>There is just one <strong>factor</strong> here, species, and it has more than two <strong>levels</strong> - the three different species - and the reponse variable is numeric, so it is highly likely that the appropriate test to answer this question is a one-way ANOVA. ‘One way’ because there is one factor, and ‘ANOVA’ (instead of t-test) because there are more than two levels.</p>
-<div id="null-hypothesis" class="section level3 hasAnchor" number="8.5.1">
-<h3><span class="header-section-number">8.5.1</span> Null hypothesis<a href="one-way-anova.html#null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="null-hypothesis" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Null hypothesis<a href="one-way-anova.html#null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pretty much all of the commonly used statistics tests are asking the question: what is the probability that you would have got this data, or more extreme data, if the null hypothesis were true? Their job is to calculate that probability, which is called a p-value. There is a lot more besides, but what this means is that in carrying out any of these tests we at least need to have a hypothesis in mind and its corresponding null hypothesis. The null, remember, is typically the ‘nothing going on’, there is no effect, no difference scenario.</p>
 <p>So in this case, a suitable null hypothesis would be that there is no difference in body mass between the females of the different penguin species.</p>
 <p>To see if there is evidence from the data to reject this null, we will follow a sequence of steps that will be common to many analyses:</p>
@@ -340,13 +365,13 @@ div.csl-indent {
 </ul>
 <p>For the penguin data, getting it was easy as it came with the <code>palmerpenguins</code> package.</p>
 <p>To prepare the data, we start with the full data set and narrow it down to just the females, using the <code>filter()</code> function, and again make sure there are no lines with missing values, using <code>drop_na()</code>. We save this cleaned data set in an object called <code>females</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="one-way-anova.html#cb14-1" tabindex="-1"></a>females <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="one-way-anova.html#cb14-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="one-way-anova.html#cb14-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="one-way-anova.html#cb108-1" tabindex="-1"></a>females <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb108-2"><a href="one-way-anova.html#cb108-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb108-3"><a href="one-way-anova.html#cb108-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
 <p>Then let’s summarise these values to find the number of individuals, the mean body mass for each species, and the standard errors of those means:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="one-way-anova.html#cb15-1" tabindex="-1"></a>females <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="one-way-anova.html#cb15-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="one-way-anova.html#cb15-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean.mass_f =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se.mass_f =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="one-way-anova.html#cb109-1" tabindex="-1"></a>females <span class="sc">|&gt;</span></span>
+<span id="cb109-2"><a href="one-way-anova.html#cb109-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb109-3"><a href="one-way-anova.html#cb109-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean.mass_f =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se.mass_f =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   species       n mean.mass_f se.mass_f
 ##   &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;     &lt;dbl&gt;
@@ -355,32 +380,32 @@ div.csl-indent {
 ## 3 Gentoo       58       4680.      37.0</code></pre>
 <p>We should inspect this summary table and see what we already think about whether the null hypothesis is likely to be rejected, or not.</p>
 <p>Now let’s plot them, using a box plot (but choose your favourite plot type):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="one-way-anova.html#cb17-1" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="one-way-anova.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="one-way-anova.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9ebcda&quot;</span>) <span class="sc">+</span>  <span class="co"># pick your favourise colour from https://colorbrewer2.org/</span></span>
-<span id="cb17-4"><a href="one-way-anova.html#cb17-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb17-5"><a href="one-way-anova.html#cb17-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="one-way-anova.html#cb17-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="07-one_way_ANOVA_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="one-way-anova.html#cb111-1" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
+<span id="cb111-2"><a href="one-way-anova.html#cb111-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb111-3"><a href="one-way-anova.html#cb111-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9ebcda&quot;</span>) <span class="sc">+</span>  <span class="co"># pick your favourise colour from https://colorbrewer2.org/</span></span>
+<span id="cb111-4"><a href="one-way-anova.html#cb111-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb111-5"><a href="one-way-anova.html#cb111-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb111-6"><a href="one-way-anova.html#cb111-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>From the summary table and the plot, what do you think? Do the masses differ between the species?</p>
 </div>
-<div id="the-actual-anova" class="section level3 hasAnchor" number="8.5.2">
-<h3><span class="header-section-number">8.5.2</span> The actual ANOVA<a href="one-way-anova.html#the-actual-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-actual-anova" class="section level3 hasAnchor" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> The actual ANOVA<a href="one-way-anova.html#the-actual-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You probably have a good idea what the answer is, as to our question, but now we will move on to the actual statistics test, in this case a one-way ANOVA.</p>
 <p>An ANOVA is one variant of a range of anlysis techniques known as ‘linear models’. If you were to look under the hood, you would see that mathematics behind it is exactly the same as that behind linear regression, which we use when we have a continuous explanatory variable and where we fit straight lines onto a scatter plot. Thus it is no surprise that the ANOVA is carried out in R in exactly the same way as linear regression would be:</p>
 <p>First, we use the <code>lm()</code> function to construct a linear model of the data:</p>
 </div>
-<div id="construct-the-model" class="section level3 hasAnchor" number="8.5.3">
-<h3><span class="header-section-number">8.5.3</span> Construct the model<a href="one-way-anova.html#construct-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="one-way-anova.html#cb18-1" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code></pre></div>
+<div id="construct-the-model-1" class="section level3 hasAnchor" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Construct the model<a href="one-way-anova.html#construct-the-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="one-way-anova.html#cb112-1" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code></pre></div>
 <p>Here the <code>lm()</code> function has done all the maths of the ANOVA, and we have saved the results of that in an object called <code>females.model</code>. Note the use of the formula <code>body_mass_g ~ species</code> as the first argument of the <code>lm()</code> function, where this means ‘body mass as a function of species’.</p>
 </div>
-<div id="is-the-model-valid" class="section level3 hasAnchor" number="8.5.4">
-<h3><span class="header-section-number">8.5.4</span> Is the model valid?<a href="one-way-anova.html#is-the-model-valid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="is-the-model-valid" class="section level3 hasAnchor" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Is the model valid?<a href="one-way-anova.html#is-the-model-valid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All linear models are only valid if the data meet a number of criteria. Chief among these for an ANOVA is that the spread of the data should be roughly the same in each subset, and that the data within each subset should be normally distributed around their respective mean values. Only if there conditions are met can be just go on and trust the output of the model. If they are not, we need to transform the data in some way until they are, or use a different test.</p>
 <p>There are various ways we can find out whether these consitions are met. A useful one is to do it graphically, and a useful way to do that is to use the <code>autoplot()</code> function from the <code>ggfortify</code> package. Let’s do it:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="one-way-anova.html#cb19-1" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="07-one_way_ANOVA_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="one-way-anova.html#cb113-1" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>All four graphs presented here tell us something about the validity or not of our model. Here we will just focus on the upper two:</p>
 <ul>
 <li><p>top-left: this shows the spread of the residual masses (diference between an individual’s mass and the mean mass for its species) for each species. We see that the spread of these values is aout the same for all three species. Check!</p></li>
@@ -389,10 +414,10 @@ div.csl-indent {
 <p>On both counts, we are good to go: we can reasonably trust the output of the ANOVA.</p>
 <p>So what is this output? We find this in three steps</p>
 </div>
-<div id="the-overall-picture" class="section level3 hasAnchor" number="8.5.5">
-<h3><span class="header-section-number">8.5.5</span> The overall picture<a href="one-way-anova.html#the-overall-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-overall-picture" class="section level3 hasAnchor" number="7.5.5">
+<h3><span class="header-section-number">7.5.5</span> The overall picture<a href="one-way-anova.html#the-overall-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First, we use the <code>anova()</code> function</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="one-way-anova.html#cb20-1" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="one-way-anova.html#cb114-1" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: body_mass_g
@@ -410,10 +435,10 @@ div.csl-indent {
 <p>The F value here is huge and the p-value is tiny, so tiny that it is esentially zero. Thus we can confidently reject the null hypothesis and assert that there is evidence from the data that body mass of females differs between at least one pair of species. Which two, or between all of them, and by how much we don’t yet know. This first step just tells us whether there is some difference somewhere. If there were no evidence of any difference we would stop the analysis right here.</p>
 <p>But there is a differnce in this case, so we continue</p>
 </div>
-<div id="the-detailed-picture" class="section level3 hasAnchor" number="8.5.6">
-<h3><span class="header-section-number">8.5.6</span> The detailed picture<a href="one-way-anova.html#the-detailed-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-detailed-picture" class="section level3 hasAnchor" number="7.5.6">
+<h3><span class="header-section-number">7.5.6</span> The detailed picture<a href="one-way-anova.html#the-detailed-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We use the <code>summary()</code> function for this:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="one-way-anova.html#cb22-1" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="one-way-anova.html#cb116-1" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_mass_g ~ species, data = females)
@@ -442,11 +467,11 @@ div.csl-indent {
 <p>Note that we have only been told, so far, about the magnitude and significance of differences between all the levels and the reference level. We are not told the significance of of any difference between any other pair of levels. So in particular, the ANOVA does not tell us whether there is a significant difference between the masses of Chinstrap and Gentoo females (although we may have a good idea what the answer is, from our initial summary table and plot).</p>
 <p>To find the answer to that, we o post-hoc tests:</p>
 </div>
-<div id="post-hoc-tsts." class="section level3 hasAnchor" number="8.5.7">
-<h3><span class="header-section-number">8.5.7</span> Post hoc tsts.<a href="one-way-anova.html#post-hoc-tsts." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="post-hoc-tsts." class="section level3 hasAnchor" number="7.5.7">
+<h3><span class="header-section-number">7.5.7</span> Post hoc tsts.<a href="one-way-anova.html#post-hoc-tsts." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A final step of most ANOVA analyses is to perform so-called post-hoc (‘after the fact’) tests which make pairwise comparisons between all possible pairs of levels, tell us what the differences are between those pairs and whether the differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done.</p>
 <p>A commonly used function for doing this is Tukey’s Honest Signficant Difference: <code>TukeyHSD()</code></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="one-way-anova.html#cb24-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females))</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="one-way-anova.html#cb118-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females))</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -462,8 +487,8 @@ div.csl-indent {
 <p>The right-hand column ‘p adj’ tells us whtehr these difference are significant. If the p values are less than 0.05 then they are, at the 5% significance level. In this case they all are. The p values are so tiny for the differences between Gentoo and the other two species that that they are reported as zero.</p>
 </div>
 </div>
-<div id="reporting-the-result." class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Reporting the Result.<a href="one-way-anova.html#reporting-the-result." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reporting-the-result." class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Reporting the Result.<a href="one-way-anova.html#reporting-the-result." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We try to use plain English to report our results, while still telling the reader what test was used and the key outputs of the test. Try to report the name of the test, the test statistic, the degrees of freedom, and the p-value. if. the p-value is really small then it is common to report it as p&lt;0.01, or p&lt;0.001. No one cares if it is a billionth or a squillionth. t just matters that is t is <em>really</em> small, if that is the case. If it is onlt just below 0.05, then I would report it isn full, so we might write p = 0.018. If p &gt; 0.05 then conventiallly it is not reported, except to say p &gt; 0.05.</p>
 <p>In this case, we might say something like:</p>
 <p><em>We find evidence that there is a difference between the body masses of females of the penguon species Adelie, Chinstrap and Gentoo (ANOVA, df = 2, 162, F = 393, p &lt; 0.001). In particular Gentoo are more than 1kg heavier than the other two (p&lt; 0.001) while the difference between Chinstrap and Adelie is smaller, at 158g, but still significant (p = 0.018).</em></p>
@@ -475,8 +500,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="sharing-your-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="paired-tests-for-difference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -507,7 +532,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-one_way_ANOVA.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/ANOVA_one_way.Rmd",
 "text": "Edit"
 },
 "history": {

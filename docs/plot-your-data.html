@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Plot your data | ANOVA: Factorial experiments and model simplification</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Plot your data | ANOVA: Factorial experiments and model simplification" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Plot your data | ANOVA: Factorial experiments and model simplification" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Michael Hunt" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="correlation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plot-your-data.html"><a href="plot-your-data.html"><i class="fa fa-check"></i><b>2</b> Plot your data</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="plot-your-data.html"><a href="plot-your-data.html#load-packages"><i class="fa fa-check"></i><b>2.0.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.0.2" data-path="plot-your-data.html"><a href="plot-your-data.html#get-the-template-script"><i class="fa fa-check"></i><b>2.0.2</b> Get the template script</a></li>
+<li class="chapter" data-level="2.0.3" data-path="plot-your-data.html"><a href="plot-your-data.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>2.0.3</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="2.0.4" data-path="plot-your-data.html"><a href="plot-your-data.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>2.0.4</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="2.0.5" data-path="plot-your-data.html"><a href="plot-your-data.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>2.0.5</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="2.0.6" data-path="plot-your-data.html"><a href="plot-your-data.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>2.0.6</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="2.0.7" data-path="plot-your-data.html"><a href="plot-your-data.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>2.0.7</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="2.0.8" data-path="plot-your-data.html"><a href="plot-your-data.html#scatter-plots"><i class="fa fa-check"></i><b>2.0.8</b> Scatter plots</a></li>
+<li class="chapter" data-level="2.0.9" data-path="plot-your-data.html"><a href="plot-your-data.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>2.0.9</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="2.0.10" data-path="plot-your-data.html"><a href="plot-your-data.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>2.0.10</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="2.0.11" data-path="plot-your-data.html"><a href="plot-your-data.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>2.0.11</b> Distribution of penguin flipper lengths</a></li>
+<li class="chapter" data-level="2.0.12" data-path="plot-your-data.html"><a href="plot-your-data.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.0.12</b> Bar chart with error bar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>3</b> Correlation</a></li>
+<li class="chapter" data-level="4" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>4</b> </a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="section.html"><a href="section.html#correlation-1"><i class="fa fa-check"></i><b>4.1</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="section.html"><a href="section.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>4.1.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="4.1.2" data-path="section.html"><a href="section.html#different-values-of-r."><i class="fa fa-check"></i><b>4.1.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="4.1.3" data-path="section.html"><a href="section.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>4.1.3</b> Using R to find the correlation coefficient.</a></li>
+<li class="chapter" data-level="4.1.4" data-path="section.html"><a href="section.html#correlations-for-real-data"><i class="fa fa-check"></i><b>4.1.4</b> Correlations for real data</a></li>
+<li class="chapter" data-level="4.1.5" data-path="section.html"><a href="section.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>4.1.5</b> The correlation coefficient measures the degree of linear association.</a></li>
+<li class="chapter" data-level="4.1.6" data-path="section.html"><a href="section.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>4.1.6</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+<li class="chapter" data-level="4.1.7" data-path="section.html"><a href="section.html#association-is-not-causation"><i class="fa fa-check"></i><b>4.1.7</b> Association is not causation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="section.html"><a href="section.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="section.html"><a href="section.html#lichen-abundance"><i class="fa fa-check"></i><b>4.2.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="4.2.2" data-path="section.html"><a href="section.html#soil-bacteria"><i class="fa fa-check"></i><b>4.2.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="section.html"><a href="section.html#exercise-1"><i class="fa fa-check"></i><b>4.3</b> Exercise 1</a></li>
+<li class="chapter" data-level="4.4" data-path="section.html"><a href="section.html#exercise-2"><i class="fa fa-check"></i><b>4.4</b> Exercise 2</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>5</b> t-test for difference</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>5.0.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="5.0.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>5.0.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="5.0.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>5.0.3</b> The two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.0.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>5.0.4</b> The workflow</a></li>
+<li class="chapter" data-level="5.0.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>5.0.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="5.0.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>5.0.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="5.0.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>5.0.7</b> Step Three: Carry out statistical analysis</a></li>
+<li class="chapter" data-level="5.0.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>5.0.8</b> The complete script</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>6</b> Paired tests for difference</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.0.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a></li>
+<li class="chapter" data-level="6.0.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example"><i class="fa fa-check"></i><b>6.0.2</b> Example</a></li>
+<li class="chapter" data-level="6.0.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.0.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="6.0.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>6.0.4</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="6.0.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#files-needed"><i class="fa fa-check"></i><b>6.0.5</b> Files needed</a></li>
+<li class="chapter" data-level="6.0.6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#open-your-project-1"><i class="fa fa-check"></i><b>6.0.6</b> Open your Project</a></li>
+<li class="chapter" data-level="6.0.7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-3"><i class="fa fa-check"></i><b>6.0.7</b> Load packages</a></li>
+<li class="chapter" data-level="6.0.8" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#read-in-the-data"><i class="fa fa-check"></i><b>6.0.8</b> Read in the data</a></li>
+<li class="chapter" data-level="6.0.9" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>6.0.9</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="6.0.10" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#summarise-the-data"><i class="fa fa-check"></i><b>6.0.10</b> Summarise the data</a></li>
+<li class="chapter" data-level="6.0.11" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data-1"><i class="fa fa-check"></i><b>6.0.11</b> Plot the data</a></li>
+<li class="chapter" data-level="6.0.12" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#anova"><i class="fa fa-check"></i><b>6.0.12</b> ANOVA</a></li>
+<li class="chapter" data-level="6.0.13" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#model-simplification"><i class="fa fa-check"></i><b>6.0.13</b> Model Simplification</a></li>
+<li class="chapter" data-level="6.0.14" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>6.0.14</b> Check the validity of the linear model</a></li>
+<li class="chapter" data-level="6.0.15" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#reporting-the-results"><i class="fa fa-check"></i><b>6.0.15</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>7.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>7.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="7.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>7.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="7.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>7.4</b> Plot the data</a></li>
+<li class="chapter" data-level="7.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>7.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="7.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>7.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="7.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>7.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="7.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>7.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="7.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>7.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="7.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>7.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="7.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>7.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>7.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="8.0.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>8.0.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="8.0.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.0.2</b> Load packages</a></li>
+<li class="chapter" data-level="8.0.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.0.3</b> Get the data</a></li>
+<li class="chapter" data-level="8.0.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.0.4</b> Plot the data</a></li>
+<li class="chapter" data-level="8.0.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.0.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="8.0.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.0.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="8.0.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.0.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="8.0.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.0.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="8.0.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>8.0.9</b> Conclusion</a></li>
+<li class="chapter" data-level="8.0.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.0.10</b> Sample script</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ANOVA: Factorial experiments and model simplification</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plot-your-data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Plot your data<a href="plot-your-data.html#plot-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this exercise we are going to produce and improve a variety of useful and widely used plots using the package <code>ggplot</code> which is part of the larger <code>tidyverse</code> package.</p>
+<p>You will see that the code to do each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.</p>
+<p>You need to read the examples in this worksheet and then fill in the missing code or alter what is provided already in the empty code chunks of the accompanying template script. Instructions for getting that are given below.</p>
+<p>As you complete each code chunk, try it out by pressing the green arrow at the top right of the chunk. Sometimes you might want to try out an individual line. You can do that by placing the cursor anywhere in the line and pressing <code>Controll-Entr</code> (windows) or <code>Command-Enter</code> (Mac)</p>
+<p>Remember that the template is a markdown document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this test, if you wish, according to the very basic markdown rules for doing this. See Help/Markdown Quick Reference. This formatting is only useful if you ‘knit’ the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.</p>
+<div id="load-packages" class="section level3 hasAnchor" number="2.0.1">
+<h3><span class="header-section-number">2.0.1</span> Load packages<a href="plot-your-data.html#load-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="plot-your-data.html#cb3-1" tabindex="-1"></a><span class="co"># install.packages(&quot;name of package&quot;) # run this line once, if you need to, for any of the packages that need to be installed</span></span>
+<span id="cb3-2"><a href="plot-your-data.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="plot-your-data.html#cb3-3" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb3-4"><a href="plot-your-data.html#cb3-4" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb3-5"><a href="plot-your-data.html#cb3-5" tabindex="-1"></a><span class="fu">library</span>(devtools)</span></code></pre></div>
+</div>
+<div id="get-the-template-script" class="section level3 hasAnchor" number="2.0.2">
+<h3><span class="header-section-number">2.0.2</span> Get the template script<a href="plot-your-data.html#get-the-template-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This next chunk will download the template file that you need to fill in as you work through this worksheet, and put it in the scripts subfolder within your project folder. For it to work, you need to be ‘working in your Project’ - in which case the name of the project will appear in the top right of the main RStudio window, and if you have a subfolder within the project folder called ‘scripts’. If any of that is not true, it needs to be sorted now!</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plot-your-data.html#cb4-1" tabindex="-1"></a>file_url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd&quot;</span></span>
+<span id="cb4-2"><a href="plot-your-data.html#cb4-2" tabindex="-1"></a>file_dest <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;scripts&quot;</span>,<span class="st">&quot;my_ggplot_examples.rmd&quot;</span>)</span>
+<span id="cb4-3"><a href="plot-your-data.html#cb4-3" tabindex="-1"></a><span class="fu">download.file</span>(file_url,file_dest)</span></code></pre></div>
+</div>
+<div id="load-the-palmer-penguin-data" class="section level3 hasAnchor" number="2.0.3">
+<h3><span class="header-section-number">2.0.3</span> Load the Palmer penguin data<a href="plot-your-data.html#load-the-palmer-penguin-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For this exercise we use the Palmer penguins data set which comes with the package palmerpenguins</p>
+<p>The <code>palmerpenguin</code> package contains two built-in data sets. One is called <code>penguins</code>:</p>
+<p>Here we load the data into this R session (you will now see it in the Environment pane) and we inspect it using the function <code>glimpse()</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plot-your-data.html#cb5-1" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
+<span id="cb5-2"><a href="plot-your-data.html#cb5-2" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
+<pre><code>## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
+<p>How many rows are there and how many columns?</p>
+<p>For more detailed meta-information on the data we just type the name of the data set with a question mark before it:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="plot-your-data.html#cb7-1" tabindex="-1"></a>?penguins</span></code></pre></div>
+</div>
+<div id="summary-stats-on-all-the-numeric-columns" class="section level3 hasAnchor" number="2.0.4">
+<h3><span class="header-section-number">2.0.4</span> Summary stats on all the numeric columns<a href="plot-your-data.html#summary-stats-on-all-the-numeric-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is in general useful to get, at least for the columns that contain numerical data, since it shows which columns contains NAs,which is R-speak for missing data. They are how R represents what would be empty cells in an Excel spreadsheet.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="plot-your-data.html#cb8-1" tabindex="-1"></a><span class="fu">summary</span>(penguins)</span></code></pre></div>
+<pre><code>##       species          island    bill_length_mm  bill_depth_mm  
+##  Adelie   :152   Biscoe   :168   Min.   :32.10   Min.   :13.10  
+##  Chinstrap: 68   Dream    :124   1st Qu.:39.23   1st Qu.:15.60  
+##  Gentoo   :124   Torgersen: 52   Median :44.45   Median :17.30  
+##                                  Mean   :43.92   Mean   :17.15  
+##                                  3rd Qu.:48.50   3rd Qu.:18.70  
+##                                  Max.   :59.60   Max.   :21.50  
+##                                  NA&#39;s   :2       NA&#39;s   :2      
+##  flipper_length_mm  body_mass_g       sex           year     
+##  Min.   :172.0     Min.   :2700   female:165   Min.   :2007  
+##  1st Qu.:190.0     1st Qu.:3550   male  :168   1st Qu.:2007  
+##  Median :197.0     Median :4050   NA&#39;s  : 11   Median :2008  
+##  Mean   :200.9     Mean   :4202                Mean   :2008  
+##  3rd Qu.:213.0     3rd Qu.:4750                3rd Qu.:2009  
+##  Max.   :231.0     Max.   :6300                Max.   :2009  
+##  NA&#39;s   :2         NA&#39;s   :2</code></pre>
+<p>We see that there are some rows with NAs in for a few of the columns. We need to be aware of this when doing calculations wih the data, such as taking means.</p>
+<p>Here, we will remove those rows:</p>
+</div>
+<div id="remove-the-rows-with-nas" class="section level3 hasAnchor" number="2.0.5">
+<h3><span class="header-section-number">2.0.5</span> Remove the rows with NAs<a href="plot-your-data.html#remove-the-rows-with-nas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="plot-your-data.html#cb10-1" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="plot-your-data.html#cb10-2" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
+</div>
+<div id="how-many-observations-are-there-for-each-species" class="section level3 hasAnchor" number="2.0.6">
+<h3><span class="header-section-number">2.0.6</span> How many observations are there for each species?<a href="plot-your-data.html#how-many-observations-are-there-for-each-species" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Note the use of the pipe operator <code>|&gt;</code>, here and throughout. Think of it as meaning <code>and then</code>. It feeds the output of one line into the function of the next line, where it is used as that function’s first argument.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="plot-your-data.html#cb11-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="plot-your-data.html#cb11-2" tabindex="-1"></a>  <span class="fu">count</span>(species)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   species       n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie      146
+## 2 Chinstrap    68
+## 3 Gentoo      119</code></pre>
+</div>
+<div id="mean-value-for-each-numerical-variable-for-each-species" class="section level3 hasAnchor" number="2.0.7">
+<h3><span class="header-section-number">2.0.7</span> Mean value for each numerical variable, for each species<a href="plot-your-data.html#mean-value-for-each-numerical-variable-for-each-species" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here is an example of the use of the <code>group_by()</code> then <code>summarise()</code> combination, whereby data is first grouped, here by species, then summary statistics (of your choice) are calculated for each group.</p>
+<p>In this example the data are grouped by species, then the mean value of all the columns that contain numerical data are calculated, not just an overall value for the whole column, but for each species</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="plot-your-data.html#cb13-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="plot-your-data.html#cb13-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="plot-your-data.html#cb13-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="plot-your-data.html#cb13-4" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># good practice to include this at the end.</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 6
+##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3706. 2008.
+## 2 Chinstrap           48.8          18.4              196.       3733. 2008.
+## 3 Gentoo              47.6          15.0              217.       5092. 2008.</code></pre>
+</div>
+<div id="scatter-plots" class="section level3 hasAnchor" number="2.0.8">
+<h3><span class="header-section-number">2.0.8</span> Scatter plots<a href="plot-your-data.html#scatter-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Is flipper length correlated with body mass?</p>
+<p>We could a do correlation test to find this out, but let us first plot the data. We will show here how an elegant plot can be built up, starting from a very basic one, so that you see what each line of code for the finished version actually does. In the chunks below, run each one in turn to see the effect of each successive change that you make.</p>
+<p>First we feed the penguin data to the function <code>ggplot()</code>, and use its <code>aes()</code> argument to tell it which variables are to be ‘mapped’ to which aesthetic (which means, roughly speaking, ‘visible’) features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plot-your-data.html#cb15-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="plot-your-data.html#cb15-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g))</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/which%20variables-1.png" width="672" /></p>
+<p>This produces the first layer of the eventual finished plot, an empty plot, ready to display data. Before it can do this, <code>ggplot()</code> needs to be told <em>how</em> you want to do so - what type of plot do you want? For that, we add a <code>geom.....()</code> line, to specify the type of plot.</p>
+<p>There are lots of geom types, but for a scatter plot we use <code>geom_point()</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plot-your-data.html#cb16-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="plot-your-data.html#cb16-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="plot-your-data.html#cb16-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/scatter%20plot-1.png" width="672" /></p>
+<p>This gives us a recognisable scatter plot, but it is deficient in a number of ways. For starters, we know that there are three species of penguin. It would be better if each were plotted using symbols of a different colour, shape or size. We can do this by adding in an extra argument to the aesthetic in the first line. Here we include <code>colour = species</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="plot-your-data.html#cb17-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="plot-your-data.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,<span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="plot-your-data.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/scatter%20plot%20by%20species-1.png" width="672" /></p>
+<p>Can you guess what you should have do if you wanted not the symbol colour, but its shape or size to depend on species? Clue: change one word!</p>
+<p>Now we add labels, titles and so on, using the line <code>labs(...)</code>. Note how we can actually write the arguments of this over several lines on the page, for clarity.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plot-your-data.html#cb18-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="plot-your-data.html#cb18-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="plot-your-data.html#cb18-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="plot-your-data.html#cb18-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb18-5"><a href="plot-your-data.html#cb18-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb18-6"><a href="plot-your-data.html#cb18-6" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>, <span class="co"># this changes the title of the legend.</span></span>
+<span id="cb18-7"><a href="plot-your-data.html#cb18-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb18-8"><a href="plot-your-data.html#cb18-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>,</span>
+<span id="cb18-9"><a href="plot-your-data.html#cb18-9" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Alternative place to put the information in the subtitle&quot;</span>)</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/add%20labels%20and%20titles-1.png" width="672" /></p>
+<p>It can be useful to include some combination of titles, subtitles and captions if the figure is to be used as part of a presentation or poster, but if it is to go in a report, you would normally only include a caption, and let the word-processing software do it, and if just for exploratory analysis, not even that. I normally do include axis labels, however.</p>
+<p>Now we use a <code>theme</code> to alter the overall look of the figure. There are several built-in themes you can choose from, and others from packages that you can use. I usually use <code>theme_cowplot()</code> from the <code>cowplot</code> package. Try typing <code>?theme</code> at the command prompt in the console window to see what is available. Here, we use the built-in <code>theme_bw()</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="plot-your-data.html#cb19-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="plot-your-data.html#cb19-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="plot-your-data.html#cb19-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-4"><a href="plot-your-data.html#cb19-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb19-5"><a href="plot-your-data.html#cb19-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb19-6"><a href="plot-your-data.html#cb19-6" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb19-7"><a href="plot-your-data.html#cb19-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb19-8"><a href="plot-your-data.html#cb19-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="plot-your-data.html#cb19-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/add%20theme-1.png" width="672" /></p>
+<p>Now we reposition the legend. We don’t have to, but we might not like the default position of the legend. If not, we can move or even remove it using another <code>theme()</code> line. The position argument of this can be “none” if you want to remove it, top”, “bottom”, “left”, “right” or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plot-your-data.html#cb20-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="plot-your-data.html#cb20-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="plot-your-data.html#cb20-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="plot-your-data.html#cb20-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb20-5"><a href="plot-your-data.html#cb20-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb20-6"><a href="plot-your-data.html#cb20-6" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb20-7"><a href="plot-your-data.html#cb20-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb20-8"><a href="plot-your-data.html#cb20-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="plot-your-data.html#cb20-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-10"><a href="plot-your-data.html#cb20-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># try &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/place%20the%20legend-1.png" width="672" /></p>
+<p>Nicer colours. If you don’t like the default colours offered by R, there are several other palettes available, for example the <code>Brewer</code> palettes, borrowed from the world of maps. See <a href="https://colorbrewer2.org" class="uri">https://colorbrewer2.org</a> ,and for a list of the available palettes, type &gt;<code>?scale_colour_brewer</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the palettes section. Note that we dont <em>have</em> to alter the colours. But doing so can make your plots not only look nicer, but serve some other purpose, such as to be colour-blind friendly, or have colours that are appropriate for the variables being plotted (eg red points for red things, blue points for blue things). For an assignment or dissertation report, it is a good idea to pick a palette that you like and that works, and stick with it, so that all your plots have the same general look. Here we choose the qualitative palette <code>"Set2"</code> and use it by by adding the line <code>scale_colour_brewer(palette="Set2")</code>. Try a few other palettes.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="plot-your-data.html#cb21-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="plot-your-data.html#cb21-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="plot-your-data.html#cb21-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-4"><a href="plot-your-data.html#cb21-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb21-5"><a href="plot-your-data.html#cb21-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb21-6"><a href="plot-your-data.html#cb21-6" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb21-7"><a href="plot-your-data.html#cb21-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb21-8"><a href="plot-your-data.html#cb21-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="plot-your-data.html#cb21-9" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> <span class="co"># try other palettes eg &quot;Set3&quot;</span></span>
+<span id="cb21-10"><a href="plot-your-data.html#cb21-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb21-11"><a href="plot-your-data.html#cb21-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># try &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/nicer%20colours-1.png" width="672" /></p>
+<p>If we like, we can add best fit lines to each subset of the data, using <code>geom_smooth()</code>. To produce straight line fits, <code>geom_smooth()</code> needs to be told to use a linear model, using the <code>method = "lm"</code> argument. By default, you will get lines with a grey 95% confidence band around them. This can be useful, but if you don’t want it, add the argument <code>se = FALSE</code>, as we have done below. We have also altered the linewidth.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plot-your-data.html#cb22-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="plot-your-data.html#cb22-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="plot-your-data.html#cb22-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a href="plot-your-data.html#cb22-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.5</span>,<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># try leaving out the se argument</span></span>
+<span id="cb22-5"><a href="plot-your-data.html#cb22-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb22-6"><a href="plot-your-data.html#cb22-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb22-7"><a href="plot-your-data.html#cb22-7" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb22-8"><a href="plot-your-data.html#cb22-8" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb22-9"><a href="plot-your-data.html#cb22-9" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="plot-your-data.html#cb22-10" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="plot-your-data.html#cb22-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb22-12"><a href="plot-your-data.html#cb22-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># also try legend.position = &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/add%20best%20fit%20lines-1.png" width="672" /></p>
+</div>
+<div id="repeat-for-bill-length-and-flipper-length" class="section level3 hasAnchor" number="2.0.9">
+<h3><span class="header-section-number">2.0.9</span> Repeat for bill length and flipper length<a href="plot-your-data.html#repeat-for-bill-length-and-flipper-length" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Modify the code of the previous plot so that you now plot bill length vs flipper length. Adjust any labels and titles as necessary. This time, put the legend in the bottom right of the plot.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="plot-your-data.html#cb23-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="plot-your-data.html#cb23-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>bill_length_mm,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="plot-your-data.html#cb23-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="plot-your-data.html#cb23-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">linewidth=</span><span class="fl">0.5</span>,<span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># try leaving out the se argument</span></span>
+<span id="cb23-5"><a href="plot-your-data.html#cb23-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb23-6"><a href="plot-your-data.html#cb23-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb23-7"><a href="plot-your-data.html#cb23-7" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb23-8"><a href="plot-your-data.html#cb23-8" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb23-9"><a href="plot-your-data.html#cb23-9" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and bill length for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="plot-your-data.html#cb23-10" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="plot-your-data.html#cb23-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-12"><a href="plot-your-data.html#cb23-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="fl">0.2</span>)) <span class="co"># play with the values to get it where you want it</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/bill%20length%20vs%20flipper%20length-1.png" width="672" /></p>
+<p>Do you see how straightforwrd it is to adapt the code that produces one plot to get the code you need for another, similar plot?</p>
+</div>
+<div id="add-yet-more-informtion-to-the-plot" class="section level3 hasAnchor" number="2.0.10">
+<h3><span class="header-section-number">2.0.10</span> Add yet more informtion to the plot<a href="plot-your-data.html#add-yet-more-informtion-to-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us include the information of which island the penguins come from by making the shape of the plotted points be dependent on that:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="plot-your-data.html#cb24-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="plot-your-data.html#cb24-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>bill_length_mm,<span class="at">colour=</span>species,<span class="at">shape=</span>island)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="plot-your-data.html#cb24-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="plot-your-data.html#cb24-4" tabindex="-1"></a>  <span class="co">#geom_smooth(method=&quot;lm&quot;, linewidth=0.5,se=FALSE) + # try leaving out the se argument</span></span>
+<span id="cb24-5"><a href="plot-your-data.html#cb24-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb24-6"><a href="plot-your-data.html#cb24-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Bill length (mm)&quot;</span>,</span>
+<span id="cb24-7"><a href="plot-your-data.html#cb24-7" tabindex="-1"></a>       <span class="at">colour=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb24-8"><a href="plot-your-data.html#cb24-8" tabindex="-1"></a>       <span class="at">shape=</span><span class="st">&quot;Island&quot;</span>,</span>
+<span id="cb24-9"><a href="plot-your-data.html#cb24-9" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
+<span id="cb24-10"><a href="plot-your-data.html#cb24-10" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and bill length for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="plot-your-data.html#cb24-11" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="plot-your-data.html#cb24-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb24-13"><a href="plot-your-data.html#cb24-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="co"># play with the position to get it where you want it. Try &quot;top&quot; etc.</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/islands%20and%20species-1.png" width="672" /></p>
+</div>
+<div id="distribution-of-penguin-flipper-lengths" class="section level3 hasAnchor" number="2.0.11">
+<h3><span class="header-section-number">2.0.11</span> Distribution of penguin flipper lengths<a href="plot-your-data.html#distribution-of-penguin-flipper-lengths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The distribution of a data set is often a useful thing to know. Around which value are the data grouped, how widely spread are they and are the values symmetrically or asymmetrically distributed around the central value? A number of plot types can show this for us. Here we illustrate histograms, density plots, box plots, violin plots and ridge plots.</p>
+<div id="histogram" class="section level4 hasAnchor" number="2.0.11.1">
+<h4><span class="header-section-number">2.0.11.1</span> Histogram<a href="plot-your-data.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>First, let’s do a basic histogram. For this we use <code>geom_histogram()</code>. In the <code>ggplot</code> line, in the <code>aes()</code> argument, we need only specify the variable that maps to x, since the software will count how many observations lie within specific narrow ranges of the variable, called bins. Those bin counts will be the y variable of the histogram. To find the distribution of flipper length, we use <code>flipper_length_mmm</code> as the x variable. So we could try</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="plot-your-data.html#cb25-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="plot-your-data.html#cb25-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span>  <span class="co"># why is y not specified?</span></span>
+<span id="cb25-3"><a href="plot-your-data.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/awful%20histogram-1.png" width="672" /></p>
+<p>But this isn’t useful. The histograms for the three species overlap each other, so we need to give each one a different colour, and we need to reduce the opacity of the bars so that the histograms behind are not obscured by the ones in front, where they overlap. Further, we need to stop <code>ggplot</code> from stacking the different histogram bars on top of each other where those for different species are in the same bin. Annoyingly, that is what it does by default, which makes seeing the individual distributions clearly much more difficult.</p>
+<p>Another thing with histograms, something that can make them a fiddle to use, is that their usefulness in revealing a distrivution is affect by how wide the bins are. By default, ggplot chooses the bin width such that you get 30 bins altogether. This may not be optimal. Here, let’s try specifying the bin width to 4 mm (but see what happens when you try other values, especially very large and very small values).</p>
+<p>This we can achieve by:</p>
+<ul>
+<li>incuding <code>fill = species</code> in the aes() argument of ggplot.</li>
+<li>sepcifying <code>position = identity</code> as an argument of <code>geom_histogram()</code>, to stop the stacking.</li>
+<li>specifying the opacity argument <code>alpha</code> to be a value less than 1. Here we try alpha = 0.4` - but try other values in the range 0 (transparent) - 1 (opaque), to reduce the opacity.</li>
+<li>specifying binwidth = 4 - try other values</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plot-your-data.html#cb26-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="plot-your-data.html#cb26-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span>  <span class="co"># why is y not specified?</span></span>
+<span id="cb26-3"><a href="plot-your-data.html#cb26-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/better%20histogram-1.png" width="672" /></p>
+<p>So, a lot going on, but still only three lines of code!</p>
+<p>Now add good axis labels, an overall theme, and choose a colour scheme you like, and the legend position, just as you have done before:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plot-your-data.html#cb27-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="plot-your-data.html#cb27-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="plot-your-data.html#cb27-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position=</span><span class="st">&quot;identity&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="plot-your-data.html#cb27-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb27-5"><a href="plot-your-data.html#cb27-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb27-6"><a href="plot-your-data.html#cb27-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>, <span class="co"># specifies the legend title. See what happens if you omit this line.</span></span>
+<span id="cb27-7"><a href="plot-your-data.html#cb27-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span> <span class="co"># we wouldn&#39;t use this for a figure going in a report.</span></span>
+<span id="cb27-8"><a href="plot-your-data.html#cb27-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-9"><a href="plot-your-data.html#cb27-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb27-10"><a href="plot-your-data.html#cb27-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="fl">0.8</span>)) <span class="co"># play with the position to get it where you want it</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/hist%20for%20each%20species-1.png" width="672" /></p>
+<p>In the scatter plot and the histogram, we have used colour to distinguish the different species. We can do this because our data set is tidy: there is just one column that species the species, and the same for every other variable. That same feature of the data enables to use another way to represent the different species: <code>facet_wrap(~species)</code>. This gives us three separate plots, side by side or one above the other. See it used here:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plot-your-data.html#cb28-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="plot-your-data.html#cb28-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb28-3"><a href="plot-your-data.html#cb28-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position=</span><span class="st">&quot;identity&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="plot-your-data.html#cb28-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb28-5"><a href="plot-your-data.html#cb28-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb28-6"><a href="plot-your-data.html#cb28-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>, </span>
+<span id="cb28-7"><a href="plot-your-data.html#cb28-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb28-8"><a href="plot-your-data.html#cb28-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
+<span id="cb28-9"><a href="plot-your-data.html#cb28-9" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> <span class="co"># try other palettes, eg &quot;Set1&quot;.</span></span>
+<span id="cb28-10"><a href="plot-your-data.html#cb28-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb28-11"><a href="plot-your-data.html#cb28-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20different%20colours-1.png" width="672" /></p>
+<p>Just a thought, but do the colours here serve any useful purpose? What extra information do they convey? If you ever think that a feature of a graph conveys no additional information, consider omitting it. Here is the figue before without colours, but going for white brs with grey outlines:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="plot-your-data.html#cb29-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="plot-your-data.html#cb29-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="plot-your-data.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position=</span><span class="st">&quot;identity&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>, <span class="at">fill=</span><span class="st">&quot;white&quot;</span>,<span class="at">colour=</span><span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="plot-your-data.html#cb29-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb29-5"><a href="plot-your-data.html#cb29-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb29-6"><a href="plot-your-data.html#cb29-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>, <span class="co"># specifies the legend title. See what happens if you omit this line.</span></span>
+<span id="cb29-7"><a href="plot-your-data.html#cb29-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span> <span class="co"># we wouldn&#39;t use this for a figure going in a report.</span></span>
+<span id="cb29-8"><a href="plot-your-data.html#cb29-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
+<span id="cb29-9"><a href="plot-your-data.html#cb29-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb29-10"><a href="plot-your-data.html#cb29-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20no%20colour-1.png" width="672" /></p>
+<p>Arguably, this is a better plot than the previous one because it excludes the potentially confusing redundancy of using different colours each species, when we already know which species is the subject of each plot.</p>
+<p>If you don’t like white as the fill colour, try another one, for exampe this one that I found on Cynthia Brewer’s very useful map colour site: <a href="https://colorbrewer2.org" class="uri">https://colorbrewer2.org</a></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="plot-your-data.html#cb30-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="plot-your-data.html#cb30-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="plot-your-data.html#cb30-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position=</span><span class="st">&quot;identity&quot;</span>,<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>, <span class="at">fill=</span><span class="st">&quot;#a6bddb&quot;</span>,<span class="at">colour=</span><span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="plot-your-data.html#cb30-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb30-5"><a href="plot-your-data.html#cb30-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb30-6"><a href="plot-your-data.html#cb30-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>, <span class="co"># specifies the legend title. See what happens if you omit this line.</span></span>
+<span id="cb30-7"><a href="plot-your-data.html#cb30-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span> <span class="co"># we wouldn&#39;t use this for a figure going in a report.</span></span>
+<span id="cb30-8"><a href="plot-your-data.html#cb30-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(island<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
+<span id="cb30-9"><a href="plot-your-data.html#cb30-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb30-10"><a href="plot-your-data.html#cb30-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20one%20colour-1.png" width="672" /></p>
+<p>Different fill colours <em>would</em> be useful if the different penguin species had distinctive dominant colours, but that isn’t the case!</p>
+</div>
+<div id="density-plot" class="section level4 hasAnchor" number="2.0.11.2">
+<h4><span class="header-section-number">2.0.11.2</span> Density plot<a href="plot-your-data.html#density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>An alternative to a histogram, the density plot, gives us a smoothed version of the histogram. The vertical axis on these is not a count, but a measure of the concentration of the data.</p>
+<p>Here is one with overlapping density plots</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="plot-your-data.html#cb31-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="plot-your-data.html#cb31-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="plot-your-data.html#cb31-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha=</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="plot-your-data.html#cb31-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb31-5"><a href="plot-your-data.html#cb31-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>,</span>
+<span id="cb31-6"><a href="plot-your-data.html#cb31-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb31-7"><a href="plot-your-data.html#cb31-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="plot-your-data.html#cb31-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="plot-your-data.html#cb31-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb31-10"><a href="plot-your-data.html#cb31-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="co"># play with the position to get it where you want it</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/density-1.png" width="672" /></p>
+<p>We can also adapt this and do what was done for the histograms and do a set of three, one for each species, using <code>facet_wrap()</code>:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="plot-your-data.html#cb32-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="plot-your-data.html#cb32-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="plot-your-data.html#cb32-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill=</span><span class="st">&quot;#a6bddb&quot;</span>,<span class="at">colour=</span><span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="plot-your-data.html#cb32-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb32-5"><a href="plot-your-data.html#cb32-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb32-6"><a href="plot-your-data.html#cb32-6" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Species&quot;</span>, <span class="co"># specifies the legend title. See what happens if you omit this line.</span></span>
+<span id="cb32-7"><a href="plot-your-data.html#cb32-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span> <span class="co"># we wouldn&#39;t use this for a figure going in a report.</span></span>
+<span id="cb32-8"><a href="plot-your-data.html#cb32-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
+<span id="cb32-9"><a href="plot-your-data.html#cb32-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb32-10"><a href="plot-your-data.html#cb32-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/density%20with%20facet%20wrap-1.png" width="672" /></p>
+<p>Which is more useful in this case: the overlapping plots on one chart, or the separate charts done using <code>facet_wrap()</code>? Whatever you think here, the answer in other cases will sometimes be one, sometimes the other. Now you have the tools to enable you to try both and make the best choice.</p>
+</div>
+<div id="box-plots" class="section level4 hasAnchor" number="2.0.11.3">
+<h4><span class="header-section-number">2.0.11.3</span> Box plots<a href="plot-your-data.html#box-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Box plots are a really useful way to summarize the distribution of numerical response data such as <code>flipper_length_mm</code> across different categorical variables, such as <code>species</code>. We use <code>geom_boxplot()</code> to produce them.</p>
+<p>Let’s do a basic box plot of flipper lengths for each penguin species:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="plot-your-data.html#cb33-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="plot-your-data.html#cb33-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="plot-your-data.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/box%20plot%20basic-1.png" width="672" /></p>
+<p>Now let’s use what we have done before to add code lines that</p>
+<ul>
+<li>include suitable axis labels and a title</li>
+<li>give the same ‘theme’ ie overall look as the previous graphs</li>
+<li>fill the boxes with the same colour for each species.</li>
+<li>remove the legend that you now have, because you don’t need it (Why?). Use <code>theme(legend.position="none")</code> to do this.</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="plot-your-data.html#cb34-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="plot-your-data.html#cb34-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="plot-your-data.html#cb34-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-4"><a href="plot-your-data.html#cb34-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb34-5"><a href="plot-your-data.html#cb34-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb34-6"><a href="plot-your-data.html#cb34-6" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-7"><a href="plot-your-data.html#cb34-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="plot-your-data.html#cb34-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb34-9"><a href="plot-your-data.html#cb34-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># no legend needed</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/box%20plot%20improved-1.png" width="672" /></p>
+</div>
+<div id="violin-plot-using-geom_violin" class="section level4 hasAnchor" number="2.0.11.4">
+<h4><span class="header-section-number">2.0.11.4</span> Violin Plot using <code>geom_violin()</code><a href="plot-your-data.html#violin-plot-using-geom_violin" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is a variant on the box plot. Each ‘violin’ is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use <code>geom_violin()</code>.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="plot-your-data.html#cb35-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="plot-your-data.html#cb35-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="plot-your-data.html#cb35-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() </span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/violin%20basic-1.png" width="672" /></p>
+<p>Now we write code to improve this, just as you did the box plot. The final code is the same as for that apart from one line!</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plot-your-data.html#cb36-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="plot-your-data.html#cb36-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="plot-your-data.html#cb36-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb36-4"><a href="plot-your-data.html#cb36-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb36-5"><a href="plot-your-data.html#cb36-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb36-6"><a href="plot-your-data.html#cb36-6" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="plot-your-data.html#cb36-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-8"><a href="plot-your-data.html#cb36-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb36-9"><a href="plot-your-data.html#cb36-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># no legend needed</span></span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/violin%20improved-1.png" width="672" /></p>
+</div>
+<div id="ridge-plot" class="section level4 hasAnchor" number="2.0.11.5">
+<h4><span class="header-section-number">2.0.11.5</span> Ridge plot<a href="plot-your-data.html#ridge-plot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is a variant on the density plot, that is most useful when you have lots of categorical variables. We have only three here, the three penguin species, but let’s try it anyway.</p>
+<p>For this, we need the <code>ggridges</code> package. This is one of many packages that extend the power of ggplot, and so work in much the same way:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="plot-your-data.html#cb37-1" tabindex="-1"></a><span class="co"># library</span></span>
+<span id="cb37-2"><a href="plot-your-data.html#cb37-2" tabindex="-1"></a><span class="co">#install.packages(&quot;ggridges&quot;) # use this once, if you have to, then comment it out.</span></span>
+<span id="cb37-3"><a href="plot-your-data.html#cb37-3" tabindex="-1"></a><span class="fu">library</span>(ggridges) </span>
+<span id="cb37-4"><a href="plot-your-data.html#cb37-4" tabindex="-1"></a> </span>
+<span id="cb37-5"><a href="plot-your-data.html#cb37-5" tabindex="-1"></a><span class="co"># basic example</span></span>
+<span id="cb37-6"><a href="plot-your-data.html#cb37-6" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb37-7"><a href="plot-your-data.html#cb37-7" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb37-8"><a href="plot-your-data.html#cb37-8" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb37-9"><a href="plot-your-data.html#cb37-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>,</span>
+<span id="cb37-10"><a href="plot-your-data.html#cb37-10" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb37-11"><a href="plot-your-data.html#cb37-11" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-12"><a href="plot-your-data.html#cb37-12" tabindex="-1"></a>  <span class="fu">theme_ridges</span>() <span class="sc">+</span> </span>
+<span id="cb37-13"><a href="plot-your-data.html#cb37-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Now try producing graphs like the ones above, but for body mass rather than flipper length.</p>
+</div>
+</div>
+<div id="bar-chart-with-error-bar" class="section level3 hasAnchor" number="2.0.12">
+<h3><span class="header-section-number">2.0.12</span> Bar chart with error bar<a href="plot-your-data.html#bar-chart-with-error-bar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are different ways to produce this commonly used way to summarise data. For example we might use one to compare the mean flipper lengths of the different penguin species. For a bar chart of these to be of any use at all, it needs to include error bars that show standard errors of the means, or standard deviations or confidence intervals (Why?). Which you use depends on the story you are trying to tell, but we won’t go into that here.</p>
+<p>Here, we will add error bars that are ± one standard deviation of the samples</p>
+<p>I usually first create a summary of the data, in which we calculate the means and appropriate error for each species for whichever variable I am interested in, then feed this summary table to <code>ggplot</code> and use <code>geom_col()</code> to plot the bars, with <code>geom_errorbar()</code> on top of that to plot the error bars.</p>
+<p>Let’s do that first:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="plot-your-data.html#cb38-1" tabindex="-1"></a>flipper_summary <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="plot-your-data.html#cb38-2" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href="plot-your-data.html#cb38-3" tabindex="-1"></a>  <span class="co"># these two lines produce a summary table</span></span>
+<span id="cb38-4"><a href="plot-your-data.html#cb38-4" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb38-5"><a href="plot-your-data.html#cb38-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">fl.mean =</span> <span class="fu">mean</span>(flipper_length_mm), <span class="at">fl.sd =</span> <span class="fu">sd</span>(flipper_length_mm))</span>
+<span id="cb38-6"><a href="plot-your-data.html#cb38-6" tabindex="-1"></a>flipper_summary</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   species   fl.mean fl.sd
+##   &lt;fct&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie       190.  6.52
+## 2 Chinstrap    196.  7.13
+## 3 Gentoo       217.  6.59</code></pre>
+<p>To calculate error bar lengths we use a formula <span class="math inline">\(\text{SE} = \frac{\text{SD}}{\sqrt{n}}\)</span> where <span class="math inline">\(n\)</span> is the number of observations, SD is the standard deviation of the sample and SE is the standard error of the means of the sample. We can use the summary functions <code>sd()</code> to calculate the standard deviation, and <code>n()</code> to calculate <span class="math inline">\(n\)</span>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="plot-your-data.html#cb40-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="plot-your-data.html#cb40-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> fl.mean)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="plot-your-data.html#cb40-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb40-4"><a href="plot-your-data.html#cb40-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>fl.mean<span class="sc">-</span>fl.sd, <span class="at">ymax =</span> fl.mean <span class="sc">+</span> fl.sd),<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="plot-your-data.html#cb40-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb40-6"><a href="plot-your-data.html#cb40-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="plot-your-data.html#cb40-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Now let’s alter this code so that each bar has a different fill colour, and remove the legend that then appears, since it is unnecessary?</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="plot-your-data.html#cb41-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="plot-your-data.html#cb41-2" tabindex="-1"></a>  <span class="co"># we add an argument to colour each bar according to species</span></span>
+<span id="cb41-3"><a href="plot-your-data.html#cb41-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> fl.mean, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb41-4"><a href="plot-your-data.html#cb41-4" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb41-5"><a href="plot-your-data.html#cb41-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>fl.mean<span class="sc">-</span>fl.sd, <span class="at">ymax =</span> fl.mean <span class="sc">+</span> fl.sd),<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb41-6"><a href="plot-your-data.html#cb41-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb41-7"><a href="plot-your-data.html#cb41-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-8"><a href="plot-your-data.html#cb41-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb41-9"><a href="plot-your-data.html#cb41-9" tabindex="-1"></a>  <span class="co"># include an arument to remove the legend</span></span>
+<span id="cb41-10"><a href="plot-your-data.html#cb41-10" tabindex="-1"></a>  <span class="fu">theme</span>()</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Now let us replace this colour scheme with nicer ones (not just nice, but also colour-blind friendly, perhaps) offered by the Brewer palettes.</p>
+<p>To do this we can add the line <code>scale_fill_brewer(palette = "Set2")</code>. Note: we use <code>scale_colour_brewer()</code> to alter the colours of points, like we did above, or the outline colour of bars, and use <code>scale_fill_brewer()</code> to alter the fill colour of bars. This is what we want to do here.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plot-your-data.html#cb42-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="plot-your-data.html#cb42-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> fl.mean, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="plot-your-data.html#cb42-3" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb42-4"><a href="plot-your-data.html#cb42-4" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>fl.mean<span class="sc">-</span>fl.sd, <span class="at">ymax =</span> fl.mean <span class="sc">+</span> fl.sd),<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="plot-your-data.html#cb42-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb42-6"><a href="plot-your-data.html#cb42-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="plot-your-data.html#cb42-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-8"><a href="plot-your-data.html#cb42-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb42-9"><a href="plot-your-data.html#cb42-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>If you don’t like the colours of the palette “Set2” you can try another one. To find out what palettes are available, remember, you can type <code>?scale_fill_brewer()</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the Palettes section.</p>
+<p>If you agree that having different fill colours for the bars is actually confusing and brings no information to the plot that we do not already know, you can modify the previous plot in the manner that you did for the separate histograms:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="plot-your-data.html#cb43-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="plot-your-data.html#cb43-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> fl.mean)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="plot-your-data.html#cb43-3" tabindex="-1"></a>  <span class="co"># add arguments here that give fill colour &quot;#a6bddb&quot; and outline colour &quot;grey50&quot;.</span></span>
+<span id="cb43-4"><a href="plot-your-data.html#cb43-4" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#a6bddb&quot;</span>,<span class="at">colour =</span> <span class="st">&quot;grey50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-5"><a href="plot-your-data.html#cb43-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>fl.mean<span class="sc">-</span>fl.sd, <span class="at">ymax =</span> fl.mean <span class="sc">+</span> fl.sd),<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="plot-your-data.html#cb43-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb43-7"><a href="plot-your-data.html#cb43-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb43-8"><a href="plot-your-data.html#cb43-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb43-9"><a href="plot-your-data.html#cb43-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/plot_ggplot_examples.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["fake-book.pdf", "fake-book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
