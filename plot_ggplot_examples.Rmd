@@ -18,7 +18,7 @@ knitr::opts_chunk$set(warning=FALSE,message=FALSE)
 
 
 
-### Load packages
+## Load packages
 ```{r}
 # install.packages("name of package") # run this line once, if you need to, for any of the packages that need to be installed
 library(tidyverse)
@@ -27,7 +27,7 @@ library(palmerpenguins)
 library(devtools)
 ```
 
-### Get the template script
+## Get the template script
 
 This next chunk will download the template file that you need to fill in as you work through this worksheet, and put it in the scripts subfolder within your project folder. For it to work, you need to be 'working in your Project' - in which case the name of the project will appear in the top right of the main RStudio window, and if you have a subfolder within the project folder called 'scripts'. If any of that is not true, it needs to be sorted now!
 
@@ -38,7 +38,7 @@ file_dest <- here("scripts","my_ggplot_examples.rmd")
 download.file(file_url,file_dest)
 ```
 
-### Load the Palmer penguin data
+## Load the Palmer penguin data
 
 For this exercise we use the Palmer penguins data set which comes with the package palmerpenguins
 
@@ -58,7 +58,7 @@ For more detailed meta-information on the data we just type the name of the data
 
 
 
-### Summary stats on all the numeric columns
+## Summary stats on all the numeric columns
 
 This is in general useful to get, at least for the columns that contain numerical data, since it shows which columns contains NAs,which is R-speak for missing data. They are how R represents what would be empty cells in an Excel spreadsheet.
 
@@ -69,14 +69,14 @@ We see that there are some rows with NAs in for a few of the columns. We need to
 
 Here, we will remove those rows:
 
-### Remove the rows with NAs
+## Remove the rows with NAs
 ```{r}
 penguins <- penguins |>
   drop_na()
 ```
 
 
-### How many observations are there for each species?
+## How many observations are there for each species?
 
 Note the use of the pipe operator `|>`, here and throughout. Think of it as meaning `and then`. It feeds the output of one line into the function of the next line, where it is used as that function's first argument.
 
@@ -85,7 +85,7 @@ penguins |>
   count(species)
 ```
 
-### Mean value for each numerical variable, for each species
+## Mean value for each numerical variable, for each species
 
 Here is an example of the use of the `group_by()` then `summarise()` combination, whereby data is first grouped, here by species, then summary statistics (of your choice) are calculated for each group.
 
@@ -98,7 +98,7 @@ penguins |>
   ungroup() # good practice to include this at the end.
 ```
 
-### Scatter plots
+## Scatter plots
 
 Is flipper length correlated with body mass?
 
@@ -211,7 +211,7 @@ penguins |>
   theme(legend.position = c(0.2,0.8)) # also try legend.position = "top", "left" etc
 ```
 
-### Repeat for bill length and flipper length
+## Repeat for bill length and flipper length
 
 Modify the code of the previous plot so that you now plot bill length vs flipper length. Adjust any labels and titles as necessary. This time, put the legend in the bottom right of the plot.
 
@@ -232,7 +232,7 @@ penguins |>
 
 Do you see how straightforwrd it is to adapt the code that produces one plot to get the code you need for another, similar plot?
 
-### Add yet more informtion to the plot
+## Add yet more informtion to the plot
 
 Let us include the information of which island the penguins come from by making the shape of the plotted points be dependent on that:
 
@@ -252,11 +252,11 @@ penguins |>
   theme(legend.position = "right") # play with the position to get it where you want it. Try "top" etc.
 ```
 
-### Distribution of penguin flipper lengths
+## Distribution of penguin flipper lengths
 
 The distribution of a data set is often a useful thing to know. Around which value are the data grouped, how widely spread are they and are the values symmetrically or asymmetrically distributed around the central value? A number of plot types can show this for us. Here we illustrate histograms, density plots, box plots, violin plots and ridge plots.
 
-#### Histogram
+### Histogram
 
 First, let's do a basic histogram. For this we use `geom_histogram()`. In the `ggplot` line, in the `aes()` argument, we need only specify the variable that maps to x, since the software will count how many observations lie within specific narrow ranges of the variable, called bins. Those bin counts will be the y variable of the histogram. To find the distribution of flipper length, we use `flipper_length_mmm` as the x variable. So we could try
 
@@ -351,7 +351,7 @@ penguins |>
 
 Different fill colours *would* be useful if the different penguin species had distinctive dominant colours, but that isn't the case!
 
-#### Density plot
+### Density plot
 
 An alternative to a histogram, the density plot, gives us a smoothed version of the histogram. The vertical axis on these is not a count, but a measure of the concentration of the data.
 
@@ -388,7 +388,7 @@ penguins |>
 Which is more useful in this case: the overlapping plots on one chart, or the separate charts done using `facet_wrap()`? Whatever you think here, the answer in other cases will sometimes be one, sometimes the other. Now you have the tools to enable you to try both and make the best choice.
 
 
-#### Box plots
+### Box plots
 
 Box plots are a really useful way to summarize the distribution of numerical response data such as `flipper_length_mm`  across different categorical variables, such as `species`. We use `geom_boxplot()` to produce them.
 
@@ -422,7 +422,7 @@ penguins |>
 ```
 
 
-#### Violin Plot using `geom_violin()`
+### Violin Plot using `geom_violin()`
 
 This is a variant on the box plot. Each 'violin' is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use `geom_violin()`.
 
@@ -446,7 +446,7 @@ penguins |>
   theme(legend.position = "none") # no legend needed
 ```
 
-#### Ridge plot
+### Ridge plot
 
 This is a variant on the density plot, that is most useful when you have lots of categorical variables. We have only three here, the three penguin species, but let's try it anyway.
 
@@ -471,7 +471,7 @@ ggplot(aes(x = flipper_length_mm, y = species, fill = species)) +
 
 Now try producing graphs like the ones above, but for body mass rather than flipper length.
 
-### Bar chart with error bar
+## Bar chart with error bar
 
 There are different ways to produce this commonly used way to summarise data. For example we might use one to compare the mean flipper lengths of the different penguin species. For a bar chart of these to be of any use at all, it needs to include error bars that show standard errors of the means, or standard deviations or confidence intervals (Why?). Which you use depends on the story you are trying to tell, but we won't go into that here.
 
