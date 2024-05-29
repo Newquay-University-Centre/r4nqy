@@ -37,7 +37,7 @@ set in the _output.yml file.</p>" />
   
   
 <link rel="prev" href="t-test-for-difference.html"/>
-<link rel="next" href="one-way-anova.html"/>
+<link rel="next" href="anova-factorial-experiments-and-model-simplification.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -148,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -178,34 +178,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>3</b> Correlation</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="correlation.html"><a href="correlation.html#correlation-1"><i class="fa fa-check"></i><b>3.1</b> Correlation</a>
+<li class="chapter" data-level="3.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>3.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="3.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>3.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="3.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>3.3</b> Using R to find the correlation coefficient.</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>3.1.1</b> The correlation coefficient</a></li>
-<li class="chapter" data-level="3.1.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>3.1.2</b> Different values of <em>r</em>.</a></li>
-<li class="chapter" data-level="3.1.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>3.1.3</b> Using R to find the correlation coefficient.</a></li>
-<li class="chapter" data-level="3.1.4" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>3.1.4</b> Correlations for real data</a></li>
-<li class="chapter" data-level="3.1.5" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>3.1.5</b> The correlation coefficient measures the degree of linear association.</a></li>
-<li class="chapter" data-level="3.1.6" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>3.1.6</b> When is it appropriate to calculate a correlation coefficient?</a></li>
-<li class="chapter" data-level="3.1.7" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>3.1.7</b> Association is not causation</a></li>
+<li class="chapter" data-level="3.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>3.3.1</b> Correlations for real data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>3.2</b> Examples</a>
+<li class="chapter" data-level="3.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>3.4</b> The correlation coefficient measures the degree of linear association.</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>3.2.1</b> Lichen abundance</a></li>
-<li class="chapter" data-level="3.2.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>3.2.2</b> Soil bacteria</a></li>
+<li class="chapter" data-level="3.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>3.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>3.3</b> Exercise 1</a></li>
-<li class="chapter" data-level="3.4" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>3.4</b> Exercise 2</a></li>
+<li class="chapter" data-level="3.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>3.5</b> Association is not causation</a></li>
+<li class="chapter" data-level="3.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>3.6</b> Examples</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>3.6.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="3.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>3.6.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>3.7</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>3.7.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="3.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>3.7.2</b> Exercise 2</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>4</b> t-test for difference</a>
 <ul>
-<li class="chapter" data-level="4.0.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>4.0.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="4.0.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>4.0.2</b> Motivation and example</a></li>
-<li class="chapter" data-level="4.0.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>4.0.3</b> The two-sample <em>t</em>-test</a></li>
-<li class="chapter" data-level="4.0.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>4.0.4</b> The workflow</a></li>
-<li class="chapter" data-level="4.0.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>4.0.5</b> Step One: Summarise the data</a></li>
-<li class="chapter" data-level="4.0.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>4.0.6</b> Step Two: Plot the data</a></li>
-<li class="chapter" data-level="4.0.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>4.0.7</b> Step Three: Carry out statistical analysis</a></li>
-<li class="chapter" data-level="4.0.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>4.0.8</b> The complete script</a></li>
+<li class="chapter" data-level="4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>4.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>4.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>4.3</b> The two-sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>4.3.1</b> Pros of the <em>t</em>-test</a></li>
+<li class="chapter" data-level="4.3.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>4.3.2</b> Cons of the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>4.4</b> The workflow</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#open-your-project"><i class="fa fa-check"></i><b>4.4.1</b> Open your project</a></li>
+<li class="chapter" data-level="4.4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#create-a-new-script"><i class="fa fa-check"></i><b>4.4.2</b> Create a new script</a></li>
+<li class="chapter" data-level="4.4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#load-packages-1"><i class="fa fa-check"></i><b>4.4.3</b> Load packages</a></li>
+<li class="chapter" data-level="4.4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>4.4.4</b> Read in and inspect the data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>4.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="4.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>4.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="4.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>4.7</b> Step Three: Carry out statistical analysis</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>4.7.1</b> Are the data normally distributed?</a></li>
+<li class="chapter" data-level="4.7.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>4.7.2</b> Normality test - analytical method</a></li>
+<li class="chapter" data-level="4.7.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>4.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
+<li class="chapter" data-level="4.7.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>4.7.4</b> The ‘thinking about the data’ normality test</a></li>
+<li class="chapter" data-level="4.7.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="4.7.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>4.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>4.8</b> The complete script</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>5</b> Paired tests for difference</a>
 <ul>
@@ -225,52 +247,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>5.2.5</b> Check for normality of differences</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>5.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
-<li class="chapter" data-level="5.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>5.4</b> Relation to one-sample paired test</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>5.4.1</b> Factorial experiments and model simplification</a></li>
-<li class="chapter" data-level="5.4.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#files-needed"><i class="fa fa-check"></i><b>5.4.2</b> Files needed</a></li>
-<li class="chapter" data-level="5.4.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#open-your-project-1"><i class="fa fa-check"></i><b>5.4.3</b> Open your Project</a></li>
-<li class="chapter" data-level="5.4.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-3"><i class="fa fa-check"></i><b>5.4.4</b> Load packages</a></li>
-<li class="chapter" data-level="5.4.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#read-in-the-data"><i class="fa fa-check"></i><b>5.4.5</b> Read in the data</a></li>
-<li class="chapter" data-level="5.4.6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>5.4.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
-<li class="chapter" data-level="5.4.7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#summarise-the-data"><i class="fa fa-check"></i><b>5.4.7</b> Summarise the data</a></li>
-<li class="chapter" data-level="5.4.8" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data-1"><i class="fa fa-check"></i><b>5.4.8</b> Plot the data</a></li>
-<li class="chapter" data-level="5.4.9" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#anova"><i class="fa fa-check"></i><b>5.4.9</b> ANOVA</a></li>
-<li class="chapter" data-level="5.4.10" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#model-simplification"><i class="fa fa-check"></i><b>5.4.10</b> Model Simplification</a></li>
-<li class="chapter" data-level="5.4.11" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>5.4.11</b> Check the validity of the linear model</a></li>
-<li class="chapter" data-level="5.4.12" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#reporting-the-results"><i class="fa fa-check"></i><b>5.4.12</b> Reporting the results</a></li>
+<li class="chapter" data-level="5.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>5.4</b> Relation to one-sample paired test</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>6</b> One-way ANOVA</a>
+<li class="chapter" data-level="6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html"><i class="fa fa-check"></i><b>6</b> ANOVA: Factorial experiments and model simplification’</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>6.1</b> Load packages</a></li>
-<li class="chapter" data-level="6.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>6.2</b> Remove observations with missing values</a></li>
-<li class="chapter" data-level="6.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>6.3</b> Summary - group by species and sex</a></li>
-<li class="chapter" data-level="6.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>6.4</b> Plot the data</a></li>
-<li class="chapter" data-level="6.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>6.5</b> One-way ANOVA</a>
+<li class="chapter" data-level="6.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>6.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="6.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#files-needed"><i class="fa fa-check"></i><b>6.2</b> Files needed</a></li>
+<li class="chapter" data-level="6.3" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1"><i class="fa fa-check"></i><b>6.3</b> Open your Project</a></li>
+<li class="chapter" data-level="6.4" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3"><i class="fa fa-check"></i><b>6.4</b> Load packages</a></li>
+<li class="chapter" data-level="6.5" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data"><i class="fa fa-check"></i><b>6.5</b> Read in the data</a></li>
+<li class="chapter" data-level="6.6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>6.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="6.7" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data"><i class="fa fa-check"></i><b>6.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="6.8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1"><i class="fa fa-check"></i><b>6.8</b> Plot the data</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>6.5.1</b> Null hypothesis</a></li>
-<li class="chapter" data-level="6.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>6.5.2</b> The actual ANOVA</a></li>
-<li class="chapter" data-level="6.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>6.5.3</b> Construct the model</a></li>
-<li class="chapter" data-level="6.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>6.5.4</b> Is the model valid?</a></li>
-<li class="chapter" data-level="6.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>6.5.5</b> The overall picture</a></li>
-<li class="chapter" data-level="6.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>6.5.6</b> The detailed picture</a></li>
-<li class="chapter" data-level="6.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>6.5.7</b> Post hoc tsts.</a></li>
+<li class="chapter" data-level="6.8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#questions"><i class="fa fa-check"></i><b>6.8.1</b> Questions</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>6.6</b> Reporting the Result.</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Simple linear regression</a>
+<li class="chapter" data-level="6.9" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#anova"><i class="fa fa-check"></i><b>6.9</b> ANOVA</a>
 <ul>
-<li class="chapter" data-level="7.0.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>7.0.1</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="7.0.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>7.0.2</b> Load packages</a></li>
-<li class="chapter" data-level="7.0.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>7.0.3</b> Get the data</a></li>
-<li class="chapter" data-level="7.0.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>7.0.4</b> Plot the data</a></li>
-<li class="chapter" data-level="7.0.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>7.0.5</b> Make a simple model using linear regression</a></li>
-<li class="chapter" data-level="7.0.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>7.0.6</b> Check assumptions</a></li>
-<li class="chapter" data-level="7.0.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>7.0.7</b> Interpretation of the model</a></li>
-<li class="chapter" data-level="7.0.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>7.0.8</b> Back to the figure</a></li>
-<li class="chapter" data-level="7.0.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>7.0.9</b> Conclusion</a></li>
-<li class="chapter" data-level="7.0.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>7.0.10</b> Sample script</a></li>
+<li class="chapter" data-level="6.9.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model"><i class="fa fa-check"></i><b>6.9.1</b> Construct the model</a></li>
+<li class="chapter" data-level="6.9.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>6.9.2</b> Do we reject the null hypothesis?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#model-simplification"><i class="fa fa-check"></i><b>6.10</b> Model Simplification</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>6.10.1</b> Check the validity of the linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results"><i class="fa fa-check"></i><b>6.11</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>7.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>7.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="7.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>7.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="7.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>7.4</b> Plot the data</a></li>
+<li class="chapter" data-level="7.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>7.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="7.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>7.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="7.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>7.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="7.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>7.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="7.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>7.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="7.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>7.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="7.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>7.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>7.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>8.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.2</b> Load packages</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.3</b> Get the data</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
+<li class="chapter" data-level="8.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="8.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="8.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="8.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="8.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>8.9</b> Conclusion</a></li>
+<li class="chapter" data-level="8.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.10</b> Sample script</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -324,35 +356,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Concentrations of aluminum (in micrograms of Al per gram of wood) are shown below.</p>
 <div id="load-packages-2" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Load packages<a href="paired-tests-for-difference.html#load-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="paired-tests-for-difference.html#cb1-1" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span>
-<span id="cb1-2"><a href="paired-tests-for-difference.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-3"><a href="paired-tests-for-difference.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># to make the plots look nice</span></span>
-<span id="cb1-4"><a href="paired-tests-for-difference.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># for making nice tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="paired-tests-for-difference.html#cb63-1" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span>
+<span id="cb63-2"><a href="paired-tests-for-difference.html#cb63-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb63-3"><a href="paired-tests-for-difference.html#cb63-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># to make the plots look nice</span></span>
+<span id="cb63-4"><a href="paired-tests-for-difference.html#cb63-4" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># for making nice tables</span></span></code></pre></div>
 </div>
 <div id="load-data" class="section level3 hasAnchor" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Load data<a href="paired-tests-for-difference.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="paired-tests-for-difference.html#cb2-1" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;poplars-paired_np.csv&quot;</span>)</span>
-<span id="cb2-2"><a href="paired-tests-for-difference.html#cb2-2" tabindex="-1"></a>poplars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="paired-tests-for-difference.html#cb3-1" tabindex="-1"></a><span class="co"># table of the data</span></span>
-<span id="cb3-2"><a href="paired-tests-for-difference.html#cb3-2" tabindex="-1"></a>poplars <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="paired-tests-for-difference.html#cb3-3" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="yxconhfher" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yxconhfher table {
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="paired-tests-for-difference.html#cb64-1" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;poplars-paired_np.csv&quot;</span>)</span>
+<span id="cb64-2"><a href="paired-tests-for-difference.html#cb64-2" tabindex="-1"></a>poplars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="paired-tests-for-difference.html#cb65-1" tabindex="-1"></a><span class="co"># table of the data</span></span>
+<span id="cb65-2"><a href="paired-tests-for-difference.html#cb65-2" tabindex="-1"></a>poplars <span class="sc">|&gt;</span></span>
+<span id="cb65-3"><a href="paired-tests-for-difference.html#cb65-3" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="efmxbbnpgy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#efmxbbnpgy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yxconhfher thead, #yxconhfher tbody, #yxconhfher tfoot, #yxconhfher tr, #yxconhfher td, #yxconhfher th {
+#efmxbbnpgy thead, #efmxbbnpgy tbody, #efmxbbnpgy tfoot, #efmxbbnpgy tr, #efmxbbnpgy td, #efmxbbnpgy th {
   border-style: none;
 }
 
-#yxconhfher p {
+#efmxbbnpgy p {
   margin: 0;
   padding: 0;
 }
 
-#yxconhfher .gt_table {
+#efmxbbnpgy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -378,12 +410,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#yxconhfher .gt_caption {
+#efmxbbnpgy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yxconhfher .gt_title {
+#efmxbbnpgy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -395,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#yxconhfher .gt_subtitle {
+#efmxbbnpgy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -407,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#yxconhfher .gt_heading {
+#efmxbbnpgy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -419,13 +451,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yxconhfher .gt_bottom_border {
+#efmxbbnpgy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yxconhfher .gt_col_headings {
+#efmxbbnpgy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -440,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yxconhfher .gt_col_heading {
+#efmxbbnpgy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -460,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#yxconhfher .gt_column_spanner_outer {
+#efmxbbnpgy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -472,15 +504,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#yxconhfher .gt_column_spanner_outer:first-child {
+#efmxbbnpgy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yxconhfher .gt_column_spanner_outer:last-child {
+#efmxbbnpgy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yxconhfher .gt_column_spanner {
+#efmxbbnpgy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -492,11 +524,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#yxconhfher .gt_spanner_row {
+#efmxbbnpgy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yxconhfher .gt_group_heading {
+#efmxbbnpgy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -522,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#yxconhfher .gt_empty_group_heading {
+#efmxbbnpgy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -537,15 +569,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#yxconhfher .gt_from_md > :first-child {
+#efmxbbnpgy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yxconhfher .gt_from_md > :last-child {
+#efmxbbnpgy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yxconhfher .gt_row {
+#efmxbbnpgy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -564,7 +596,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#yxconhfher .gt_stub {
+#efmxbbnpgy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -577,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yxconhfher .gt_stub_row_group {
+#efmxbbnpgy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -591,15 +623,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#yxconhfher .gt_row_group_first td {
+#efmxbbnpgy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yxconhfher .gt_row_group_first th {
+#efmxbbnpgy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yxconhfher .gt_summary_row {
+#efmxbbnpgy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -609,16 +641,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yxconhfher .gt_first_summary_row {
+#efmxbbnpgy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yxconhfher .gt_first_summary_row.thick {
+#efmxbbnpgy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yxconhfher .gt_last_summary_row {
+#efmxbbnpgy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -628,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yxconhfher .gt_grand_summary_row {
+#efmxbbnpgy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -638,7 +670,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yxconhfher .gt_first_grand_summary_row {
+#efmxbbnpgy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -648,7 +680,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#yxconhfher .gt_last_grand_summary_row_top {
+#efmxbbnpgy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -658,11 +690,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yxconhfher .gt_striped {
+#efmxbbnpgy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yxconhfher .gt_table_body {
+#efmxbbnpgy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -671,7 +703,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yxconhfher .gt_footnotes {
+#efmxbbnpgy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -685,7 +717,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yxconhfher .gt_footnote {
+#efmxbbnpgy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -694,7 +726,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yxconhfher .gt_sourcenotes {
+#efmxbbnpgy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -708,7 +740,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yxconhfher .gt_sourcenote {
+#efmxbbnpgy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -716,63 +748,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yxconhfher .gt_left {
+#efmxbbnpgy .gt_left {
   text-align: left;
 }
 
-#yxconhfher .gt_center {
+#efmxbbnpgy .gt_center {
   text-align: center;
 }
 
-#yxconhfher .gt_right {
+#efmxbbnpgy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yxconhfher .gt_font_normal {
+#efmxbbnpgy .gt_font_normal {
   font-weight: normal;
 }
 
-#yxconhfher .gt_font_bold {
+#efmxbbnpgy .gt_font_bold {
   font-weight: bold;
 }
 
-#yxconhfher .gt_font_italic {
+#efmxbbnpgy .gt_font_italic {
   font-style: italic;
 }
 
-#yxconhfher .gt_super {
+#efmxbbnpgy .gt_super {
   font-size: 65%;
 }
 
-#yxconhfher .gt_footnote_marks {
+#efmxbbnpgy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yxconhfher .gt_asterisk {
+#efmxbbnpgy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yxconhfher .gt_indent_1 {
+#efmxbbnpgy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yxconhfher .gt_indent_2 {
+#efmxbbnpgy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yxconhfher .gt_indent_3 {
+#efmxbbnpgy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yxconhfher .gt_indent_4 {
+#efmxbbnpgy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yxconhfher .gt_indent_5 {
+#efmxbbnpgy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -851,27 +883,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidy-the-data" class="section level3 hasAnchor" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Tidy the data<a href="paired-tests-for-difference.html#tidy-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this case there is work to do before we can plot the data. The problem is that the data is ‘untidy’. The two levels of the factor <code>month</code> are spread across two columns, August and November. For plotting purposes it will be useful to ‘tidy’ the data so that there is only one column containing both levels of <code>month</code> and another containing the aluminium concentrations. The function <code>pivot_longer()</code> can do this for us:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="paired-tests-for-difference.html#cb4-1" tabindex="-1"></a>poplars_tidy <span class="ot">&lt;-</span> poplars <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="paired-tests-for-difference.html#cb4-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span> (August<span class="sc">:</span>November,<span class="at">names_to=</span><span class="st">&quot;month&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;Al_conc&quot;</span>)</span>
-<span id="cb4-3"><a href="paired-tests-for-difference.html#cb4-3" tabindex="-1"></a><span class="fu">head</span>(poplars_tidy,<span class="dv">8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="paired-tests-for-difference.html#cb4-4" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="mxrhhoychg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mxrhhoychg table {
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="paired-tests-for-difference.html#cb66-1" tabindex="-1"></a>poplars_tidy <span class="ot">&lt;-</span> poplars <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="paired-tests-for-difference.html#cb66-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span> (August<span class="sc">:</span>November,<span class="at">names_to=</span><span class="st">&quot;month&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;Al_conc&quot;</span>)</span>
+<span id="cb66-3"><a href="paired-tests-for-difference.html#cb66-3" tabindex="-1"></a><span class="fu">head</span>(poplars_tidy,<span class="dv">8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb66-4"><a href="paired-tests-for-difference.html#cb66-4" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="pjaihdovci" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pjaihdovci table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mxrhhoychg thead, #mxrhhoychg tbody, #mxrhhoychg tfoot, #mxrhhoychg tr, #mxrhhoychg td, #mxrhhoychg th {
+#pjaihdovci thead, #pjaihdovci tbody, #pjaihdovci tfoot, #pjaihdovci tr, #pjaihdovci td, #pjaihdovci th {
   border-style: none;
 }
 
-#mxrhhoychg p {
+#pjaihdovci p {
   margin: 0;
   padding: 0;
 }
 
-#mxrhhoychg .gt_table {
+#pjaihdovci .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -897,12 +929,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_caption {
+#pjaihdovci .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mxrhhoychg .gt_title {
+#pjaihdovci .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -914,7 +946,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#mxrhhoychg .gt_subtitle {
+#pjaihdovci .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -926,7 +958,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#mxrhhoychg .gt_heading {
+#pjaihdovci .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -938,13 +970,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_bottom_border {
+#pjaihdovci .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_col_headings {
+#pjaihdovci .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -959,7 +991,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_col_heading {
+#pjaihdovci .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -979,7 +1011,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#mxrhhoychg .gt_column_spanner_outer {
+#pjaihdovci .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -991,15 +1023,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#mxrhhoychg .gt_column_spanner_outer:first-child {
+#pjaihdovci .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mxrhhoychg .gt_column_spanner_outer:last-child {
+#pjaihdovci .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mxrhhoychg .gt_column_spanner {
+#pjaihdovci .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1011,11 +1043,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#mxrhhoychg .gt_spanner_row {
+#pjaihdovci .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mxrhhoychg .gt_group_heading {
+#pjaihdovci .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1041,7 +1073,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#mxrhhoychg .gt_empty_group_heading {
+#pjaihdovci .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1056,15 +1088,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#mxrhhoychg .gt_from_md > :first-child {
+#pjaihdovci .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mxrhhoychg .gt_from_md > :last-child {
+#pjaihdovci .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mxrhhoychg .gt_row {
+#pjaihdovci .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1083,7 +1115,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#mxrhhoychg .gt_stub {
+#pjaihdovci .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1096,7 +1128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#mxrhhoychg .gt_stub_row_group {
+#pjaihdovci .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1110,15 +1142,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#mxrhhoychg .gt_row_group_first td {
+#pjaihdovci .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mxrhhoychg .gt_row_group_first th {
+#pjaihdovci .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mxrhhoychg .gt_summary_row {
+#pjaihdovci .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1128,16 +1160,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#mxrhhoychg .gt_first_summary_row {
+#pjaihdovci .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_first_summary_row.thick {
+#pjaihdovci .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mxrhhoychg .gt_last_summary_row {
+#pjaihdovci .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1147,7 +1179,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_grand_summary_row {
+#pjaihdovci .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1157,7 +1189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#mxrhhoychg .gt_first_grand_summary_row {
+#pjaihdovci .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1167,7 +1199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_last_grand_summary_row_top {
+#pjaihdovci .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1177,11 +1209,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_striped {
+#pjaihdovci .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mxrhhoychg .gt_table_body {
+#pjaihdovci .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1190,7 +1222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_footnotes {
+#pjaihdovci .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1204,7 +1236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_footnote {
+#pjaihdovci .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1213,7 +1245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#mxrhhoychg .gt_sourcenotes {
+#pjaihdovci .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1227,7 +1259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#mxrhhoychg .gt_sourcenote {
+#pjaihdovci .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1235,63 +1267,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#mxrhhoychg .gt_left {
+#pjaihdovci .gt_left {
   text-align: left;
 }
 
-#mxrhhoychg .gt_center {
+#pjaihdovci .gt_center {
   text-align: center;
 }
 
-#mxrhhoychg .gt_right {
+#pjaihdovci .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mxrhhoychg .gt_font_normal {
+#pjaihdovci .gt_font_normal {
   font-weight: normal;
 }
 
-#mxrhhoychg .gt_font_bold {
+#pjaihdovci .gt_font_bold {
   font-weight: bold;
 }
 
-#mxrhhoychg .gt_font_italic {
+#pjaihdovci .gt_font_italic {
   font-style: italic;
 }
 
-#mxrhhoychg .gt_super {
+#pjaihdovci .gt_super {
   font-size: 65%;
 }
 
-#mxrhhoychg .gt_footnote_marks {
+#pjaihdovci .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mxrhhoychg .gt_asterisk {
+#pjaihdovci .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mxrhhoychg .gt_indent_1 {
+#pjaihdovci .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mxrhhoychg .gt_indent_2 {
+#pjaihdovci .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mxrhhoychg .gt_indent_3 {
+#pjaihdovci .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mxrhhoychg .gt_indent_4 {
+#pjaihdovci .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mxrhhoychg .gt_indent_5 {
+#pjaihdovci .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1343,17 +1375,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Now we can plot the data as a box plot, with one box for August and one for November ie one for each level of the factor <code>month</code>. Had we not first tidied the data, we could not have done this.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="paired-tests-for-difference.html#cb5-1" tabindex="-1"></a>poplars_tidy <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="paired-tests-for-difference.html#cb5-2" tabindex="-1"></a>  <span class="co"># group = ID makes the lines join elements of each pair</span></span>
-<span id="cb5-3"><a href="paired-tests-for-difference.html#cb5-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> Al_conc, <span class="at">fill =</span> month, <span class="at">colour =</span> month)) <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="paired-tests-for-difference.html#cb5-4" tabindex="-1"></a>  <span class="co"># alpa (= opacity) &lt; 1 in case any points are on top of each other</span></span>
-<span id="cb5-5"><a href="paired-tests-for-difference.html#cb5-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.size=</span><span class="dv">0</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="paired-tests-for-difference.html#cb5-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="paired-tests-for-difference.html#cb5-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>ID),<span class="at">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="paired-tests-for-difference.html#cb5-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,</span>
-<span id="cb5-9"><a href="paired-tests-for-difference.html#cb5-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Al conc.(mu g Al / g wood)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="paired-tests-for-difference.html#cb5-10" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb5-11"><a href="paired-tests-for-difference.html#cb5-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="paired-tests-for-difference.html#cb67-1" tabindex="-1"></a>poplars_tidy <span class="sc">|&gt;</span></span>
+<span id="cb67-2"><a href="paired-tests-for-difference.html#cb67-2" tabindex="-1"></a>  <span class="co"># group = ID makes the lines join elements of each pair</span></span>
+<span id="cb67-3"><a href="paired-tests-for-difference.html#cb67-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> Al_conc, <span class="at">fill =</span> month, <span class="at">colour =</span> month)) <span class="sc">+</span> </span>
+<span id="cb67-4"><a href="paired-tests-for-difference.html#cb67-4" tabindex="-1"></a>  <span class="co"># alpa (= opacity) &lt; 1 in case any points are on top of each other</span></span>
+<span id="cb67-5"><a href="paired-tests-for-difference.html#cb67-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.size=</span><span class="dv">0</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb67-6"><a href="paired-tests-for-difference.html#cb67-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb67-7"><a href="paired-tests-for-difference.html#cb67-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>ID),<span class="at">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-8"><a href="paired-tests-for-difference.html#cb67-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb67-9"><a href="paired-tests-for-difference.html#cb67-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Al conc.(mu g Al / g wood)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb67-10"><a href="paired-tests-for-difference.html#cb67-10" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb67-11"><a href="paired-tests-for-difference.html#cb67-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="paired_data_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Does it look as though the difference between the medians could plausibly be zero for the population? Or, put another way, if it was zero, how big a fluke would this sample be? That is what the p value actually tells us.</p>
 </div>
@@ -1361,7 +1393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.5</span> Check for normality of differences<a href="paired-tests-for-difference.html#check-for-normality-of-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we use the t-test, we need to check that it is OK to do so.
 The null hypothesis of the Shapiro-Wilk test is that the data set given to it is drawn from a normally distributed population.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="paired-tests-for-difference.html#cb6-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="paired-tests-for-difference.html#cb68-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -1369,7 +1401,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 ## W = 0.92667, p-value = 0.3081</code></pre>
 <p>The p value is very high. Thus we can reasonably assume that the differences between the August and November aluminium concentrations in the sample could plausibly have been drawn from a normally distributed population, despite the outlier value in the November sample. Thus we can reasonably test for difference using a paired t-test.</p>
 <p>We can do this in R using the function <code>t.test()</code>, where we give to the function both the August and the November data, knowing that each August value has a counterpart November value, and we set the argument <code>paired</code> to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="paired-tests-for-difference.html#cb8-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="paired-tests-for-difference.html#cb70-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -1391,7 +1423,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 <div id="the-non-parametric-alternative-the-wilcoxon-signed-rank-test" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> The non-parametric alternative: The Wilcoxon signed rank test<a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To be safe, because of that outlier, let us test for difference using the Wilcoxon signed rank test. In R this is done using the function <code>wilcox.test()</code>, with the argument <code>paired</code> set to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="paired-tests-for-difference.html#cb10-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="paired-tests-for-difference.html#cb72-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 
@@ -1403,7 +1435,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 <div id="relation-to-one-sample-paired-test" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Relation to one-sample paired test<a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The two-sample paired tests as we have done above are the same as doing a one-sample test to see if the differences between the August and November paired values is different from zero. This is true whether we do a t-test or a Wilcoxon signed rank test.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="paired-tests-for-difference.html#cb12-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="paired-tests-for-difference.html#cb74-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1415,7 +1447,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 ## sample estimates:
 ## mean of x 
 ##      -4.9</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="paired-tests-for-difference.html#cb14-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="paired-tests-for-difference.html#cb76-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 
@@ -1423,52 +1455,6 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 ## V = 16, p-value = 0.03979
 ## alternative hypothesis: true location is not equal to 0</code></pre>
 
-<div id="factorial-experiments-and-model-simplification" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Factorial experiments and model simplification<a href="paired-tests-for-difference.html#factorial-experiments-and-model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="files-needed" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Files needed<a href="paired-tests-for-difference.html#files-needed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="open-your-project-1" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Open your Project<a href="paired-tests-for-difference.html#open-your-project-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="load-packages-3" class="section level3 hasAnchor" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Load packages<a href="paired-tests-for-difference.html#load-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="read-in-the-data" class="section level3 hasAnchor" number="5.4.5">
-<h3><span class="header-section-number">5.4.5</span> Read in the data<a href="paired-tests-for-difference.html#read-in-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="section level3 hasAnchor" number="5.4.6">
-<h3><span class="header-section-number">5.4.6</span> Make R recognise the categorical variables as factors, and order the levels.<a href="paired-tests-for-difference.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="summarise-the-data" class="section level3 hasAnchor" number="5.4.7">
-<h3><span class="header-section-number">5.4.7</span> Summarise the data<a href="paired-tests-for-difference.html#summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="plot-the-data-1" class="section level3 hasAnchor" number="5.4.8">
-<h3><span class="header-section-number">5.4.8</span> Plot the data<a href="paired-tests-for-difference.html#plot-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="questions" class="section level4 hasAnchor" number="5.4.8.1">
-<h4><span class="header-section-number">5.4.8.1</span> Questions<a href="paired-tests-for-difference.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-</div>
-<div id="anova" class="section level3 hasAnchor" number="5.4.9">
-<h3><span class="header-section-number">5.4.9</span> ANOVA<a href="paired-tests-for-difference.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="construct-the-model" class="section level4 hasAnchor" number="5.4.9.1">
-<h4><span class="header-section-number">5.4.9.1</span> Construct the model<a href="paired-tests-for-difference.html#construct-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-<div id="do-we-reject-the-null-hypothesis" class="section level4 hasAnchor" number="5.4.9.2">
-<h4><span class="header-section-number">5.4.9.2</span> Do we reject the null hypothesis?<a href="paired-tests-for-difference.html#do-we-reject-the-null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-</div>
-</div>
-<div id="model-simplification" class="section level3 hasAnchor" number="5.4.10">
-<h3><span class="header-section-number">5.4.10</span> Model Simplification<a href="paired-tests-for-difference.html#model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="check-the-validity-of-the-linear-model" class="section level3 hasAnchor" number="5.4.11">
-<h3><span class="header-section-number">5.4.11</span> Check the validity of the linear model<a href="paired-tests-for-difference.html#check-the-validity-of-the-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-</div>
-<div id="reporting-the-results" class="section level3 hasAnchor" number="5.4.12">
-<h3><span class="header-section-number">5.4.12</span> Reporting the results<a href="paired-tests-for-difference.html#reporting-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-
-</div>
 </div>
 </div>
             </section>
@@ -1477,7 +1463,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
         </div>
       </div>
 <a href="t-test-for-difference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="one-way-anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anova-factorial-experiments-and-model-simplification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1531,6 +1517,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

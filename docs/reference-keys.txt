@@ -21,8 +21,6 @@ violin-plot-using-geom_violin
 ridge-plot
 bar-chart-with-error-bar
 correlation
-section
-correlation-1
 the-correlation-coefficient
 different-values-of-r.
 using-r-to-find-the-correlation-coefficient.
@@ -33,6 +31,7 @@ association-is-not-causation
 examples
 lichen-abundance
 soil-bacteria
+exercises
 exercise-1
 exercise-2
 t-test-for-difference
@@ -70,6 +69,7 @@ tidy-the-data
 check-for-normality-of-differences
 the-non-parametric-alternative-the-wilcoxon-signed-rank-test
 relation-to-one-sample-paired-test
+anova-factorial-experiments-and-model-simplification
 factorial-experiments-and-model-simplification
 files-needed
 open-your-project-1
@@ -110,6 +110,3 @@ interpretation-of-the-model
 back-to-the-figure
 conclusion
 sample-script
-url-your-book-url-like-httpsbookdown.orgyihuibookdown
-exercises
-anova-factorial-experiments-and-model-simplification
