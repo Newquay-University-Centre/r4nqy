@@ -8,7 +8,7 @@ Despite appearances, these models are all fundamentally linear models. They shar
 
 Here, we will go through an example of simple linear regression - suitable for trend data where we wish to predict a continuously varying response, given a value of a continuous explanatory variable. As we go we show code snippets from an R script that does this job, and, at the bottom, an example complete script that you could adapt to your own needs.
 
-### Simple Linear Regression
+## Simple Linear Regression
 
 As an example, we ask the question: does plant growth rate depend on soil moisture content?
 
@@ -17,7 +17,7 @@ We predict that more moisture will probably allow higher growth rates. We note t
 What we want to do in linear regression is be able to predict the value of the dependent variable, knowing the value of the independent variable. In practice, this means drawing a 'best fit' straight line through the data and determining the intercept and gradient of this line.
 
 
-### Load packages
+## Load packages
 
 ```r
 library(tidyverse)
@@ -29,7 +29,7 @@ library(cowplot)
 library(mbhR)
 ```
 
-### Get the data
+## Get the data
 We have a data set to explore our question: The `plants` data set is available through the `mbhR` package which you have already installed and loaded
 
 
@@ -46,7 +46,7 @@ glimpse(plants)
 ```
 We see that the data set contains two continuous variables, as expected.
 
-### Plot the data
+## Plot the data
 
 We can use the package `ggplot2`, which is part of `tidyverse` to do this:
 
@@ -72,7 +72,7 @@ From the plot, we note that:
 
 It is always good practice to examine the data before you go on to do any statistical analysis.
 
-### Make a simple model using linear regression
+## Make a simple model using linear regression
 
 We use the function `lm()` to do this, and we save the results in an object to which we give the name `model_pgr`. This function needs a formula and some data as its arguments:
 
@@ -83,7 +83,7 @@ model_pgr<-lm(plant.growth.rate ~ soil.moisture.content, data = plants)
 
 This reads: 'Fit a linear model, where we hypothesize that plant growth rate is a function of soil moisture content, using the variables from the `plants` data frame.'
 
-### Check assumptions
+## Check assumptions
 
 Before we rush into interpreting the output of the model, we need to check whether it was valid to use a linear model in the first place. Whatever the test within which we are using a linear model, we should do the necessary diagnostic checks at this stage.
 
@@ -113,7 +113,7 @@ So what do these plots mean?
 
 In the case of these data, we are good to go! There is no discernible pattern in either of the left-hand plots, the qq-plot is about as straight as you ever see with real data, and there are no points exerting undue high influence.
 
-### Interpretation of the model
+## Interpretation of the model
 
 Now that we have established that the data meet the criteria required for the model to be valid, we can go ahead and inspect its output. We will do this using two tools that we also use for every other general linear model we implement (t-test, ANOVA etc). These are `anova()` and `summary()`
 
@@ -169,7 +169,7 @@ This gives us estimates of the intercept (19.348) and gradient (12.750) of the b
 
 We also see the *Adjusted R-squared* value of 0.7599. This is the proportion of the variance in the dependent variable that is explained by the explanatory variable. Thus it can vary between 0 and 1. A large value like this indicates that soil moisture content is a good predictor of plant growth rate.
 
-### Back to the figure
+## Back to the figure
 Typically, a final step in our analysis involves including the model we have fitted into the original figure, if that is possible in a straightforward way. In the case of simple linear regression, it is. It  means adding a straight line with the intercept and gradient displayed by the `summary()` function. We do this by adding a line `geom_smooth(method = "lm")` to our plot code:
 
 
@@ -189,10 +189,10 @@ plants |>
 
 This gives both a straight line and the 'standard error' of that line - meaning, roughly speaking, the wiggle room within which the 'true' line , for the population as opposed to this sample drawn from it, probably lies.
 
-### Conclusion
+## Conclusion
 We have carried out a simple linear regression on continuous data. This is an example of a general linear model. We first plotted the data, then we used `lm()` to fit the model. Next we inspected the validity of the model using `autoplot`. We then inspected the model itself using first `anova()` then `summary()`. Finally we included the output of the model on the plot, in this case by adding to it a straight line with the intercept and gradient determined by the regression model. 
 
-### Sample script
+## Sample script
 An example script to do linear regression might look like the following, here written as though a .R script. For this to work you will need to work within a project, with the data in a subfolder of that called "data". Here, the data is taken to be a .csv file called `mydata.csv`, with two columns of data, one called `x_values` and the other called `y_values`. You need to change these to suit your own data.
 
 ````

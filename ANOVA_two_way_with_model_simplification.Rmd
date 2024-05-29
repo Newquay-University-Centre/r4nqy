@@ -1,13 +1,4 @@
----
-title: 'ANOVA: Factorial experiments and model simplification'
-author: 'Michael Hunt'
-date: '15-11-2022'
-output:
-  html_document:
-    df_print: paged
-    toc: true
-    toc_float: true
----
+# ANOVA: Factorial experiments and model simplification'
 
 ```{r set-up, include = FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE)
@@ -16,7 +7,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE)
 This exercise sheet is heavily indebted to Michael Crawley's *Statistics: An introduction using R*, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the `tidyverse` dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey's *Getting Started in R: An introduction for biologists*, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.
 
 
-### Factorial experiments and model simplification
+## Factorial experiments and model simplification
 
 The best model is the one that adequately explains the data with fewest parameters. This means with the smallest possible number of degrees of freedom.
 
@@ -28,7 +19,7 @@ A **factorial** experiment has two or more factors, each with two or more levels
 
 We take an example from a farm-trial of animal diets. There are two factors: `diet` and `supplement`. `diet` is a factor with three levels: `barley`, `oats` and `wheat`, where `barley` is the diet that has always been used and the other two are potential alternatives. The purpose of the trial is to see if their use makes a difference to growth outcomes. `supplement` is a factor with four levels: `control`, `agrimore`, `supergain` and `supersupp`, where `control` could mean the absence of any supplement or the supplement used up to now, whose effects we are hoping to improve upon through use of one of the others included in the trial. The response variable `gain` is weight gain after 6 weeks. There were 48 individual cows in total with 4 for each combination of `diet` and `supplement`. Having the same number of replcates for each combination of levels means that this is a *balanced* design.
 
-### Files needed
+## Files needed
 
 * To be put in the Project/scripts folder:
 
@@ -41,11 +32,11 @@ We take an example from a farm-trial of animal diets. There are two factors: `di
 
 In the following, we present the code you need to analyse this data together with explanatory text. Read the text closely so that you understand what each chunk of code is intended to do. In the accompanying template file, fill in the code as you go in the empty chunks, using this worksheet as a guide.  As you complete each line of code, run it using Ctrl-Enter or Cmd-Enter on a Mac. Alternatively, wait until you have completed the code for a chunk then run the whole chunk in one go by pressing the little green arrow at the top right of the chunk. Whichever way you choose, you are encouraged to view the code presented here as *one* way to do the analysis. Feel free to hack away at it and change things, to try different approaches and see what happens. That way you will learn. You may also wish to add your own text between the chunks.
 
-### Open your Project
+## Open your Project
 
 You should be working within a folder that you have designated as what RStudio calls a 'Project'. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a `scripts` folder for scripts like the one you are working from, and a `data` folder for all the data files. You will also see, at the top level of the Project, the `.RProj` file. You can see all this in the Files pane, bottom-right.
 
-### Load packages
+## Load packages
 
 I normally load all the packages in the chunk below into every script. The most important is the `tidyverse` package which is a goody bag containing several other packages. Loading this saves you from having to load each of those individually. The most often used among these is `readr` for reading and writing data from/to files, `dplyr` for data manipulation, and `ggplot2` for plotting. Others will be used from time to time, and we don't really need to be aware of that when it happens or to worry about it, so long as `tidyverse` has been loaded.
 
@@ -56,7 +47,7 @@ library(cowplot) # gives a nice theme for plots
 library(ggfortify) # for diagnostic plots
 ```
 
-### Read in the data
+## Read in the data
 
 The `growth.csv` data file needs to be in the `data` folder within the Project folder.
 
@@ -70,7 +61,7 @@ glimpse(weights)
 
 You see from the output of the  `glimpse()` function that `weights` has three columns and 48 rows. Two columns are of data type `<chr>` which is R-speak for text, and the other is data type `<dbl>` which is R-speak for numerical data with a decimal point. 
 
-### Make R recognise the categorical variables as factors, and order the levels.
+## Make R recognise the categorical variables as factors, and order the levels.
 
 At the moment, the contents within the variables `supplement` and `diet` are not being recognised as levels of factors. R is just thinking of them as text (or `<chr>` in R-speak), as we can see from the output of the `glimpse()` function in the chunk above. Let us fix that, as it will be useful for them to be recognized for what they are so that we can order the levels in a way that makes sense for our context, our plots and our analysis.
 
@@ -93,7 +84,7 @@ To get `control` to be the reference level of `supplement` we needed to force th
 So, now we have `control` as the reference level for `supplement` and `barley` as the reference level for `diet`. Now we can see  more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a 'business as usual' combination of a `barley`diet and the `control` supplement.
 
 
-### Summarise the data
+## Summarise the data
 
 Our question is a difference question: is there evidence from the data that using this or that diet in combination with this or that supplement makes a difference to growth? For an answer to this we will end up doing a 2-way ANOVA including the possibility of an interaction, then, as we will see, a simpler ANOVA that ignores the possibility of the interaction. All well and good, but before we go to those lengths, we do something more basic: we  calculate the mean and standard error of the mean for each of the twelve combinations of diet and supplement. 
 
@@ -123,7 +114,7 @@ growth_summary |>
 
 Note the ordering of the diet and supplement levels in their respective columns: just what we have imposed! 
 
-### Plot the data
+## Plot the data
 
 The next step, as so often before we launch into actual statistics, is to plot the data in a way that sheds light on the question we have. Here, we can use the use the means and standard errors of the mean that we have just calculated to produce a useful kind of line plot that in this context is often referred to as an interaction plot:
 
@@ -144,7 +135,7 @@ Note that on this plot the error bars are standard errors of the mean. Any capti
 
 This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have *main effects* of both diet and supplement, but little or no *interaction* between them.
 
-#### Questions
+### Questions
 
 What could the line plot look like if:
 
@@ -159,7 +150,7 @@ What could the line plot look like if:
 The plots tell you a great deal about what main effects and/or interactions there may be.
 
 
-### ANOVA
+## ANOVA
 
 Now for the actual statistical test. We will conduct a two-way ANOVA, which will look to see if there is evidence that either diet or supplement or both affect growth rate (the so-called main effects), and if the effect of one depends on the nature of the other (the so-called interaction). The null hypothesis is that neither has any main effect and that there is no interaction.
 
@@ -178,14 +169,14 @@ which can be written more simply using the asterisk notation as:
 `gain ~ diet * supplement`
 
 
-#### Construct the model
+### Construct the model
 First we construct the model using `lm()` and store the outputs of all the maths that ``lm()` does in an object called `model0`:
 
 ```{r make interactive model}
 model0<-lm(gain ~ diet * supplement, data = weights)
 ```
 
-#### Do we reject the null hypothesis?
+### Do we reject the null hypothesis?
 
 To get an overall picture, we first use `anova()` to see if there is evidence to reject the null
 
@@ -251,7 +242,7 @@ summary.table |>
 
 The output of the `summary()` function re-emphasises that none of the interaction terms are significant. It also suggests that a minimum adequate model will contain 5 parameters: an intercept, which just means that there is non-zero growth when the diet and supplement are the reference values, a difference from that growth due to changing the diet to `oats`, a difference due to changing it to`wheat`, a difference due to changing the supplement to `agrimore` while keeping barley as the diet, and a difference due to changing the supplement instead to  `suppersupp`..
 
-### Model Simplification
+## Model Simplification
 
 Given the results of the full interaction model, we begin model simplification by leaving out the interaction terms, to leave us with an additive model:
 
@@ -328,7 +319,7 @@ In this table,
 
 In all cases, p< 0.001, as indicated not only by the number in the Pr(>|t|) column, but also by the '***' in the right-most column of the table.
 
-### Reporting the results
+## Reporting the results
 
 We have now reduced our initial 12 parameter model to a four parameter model that is much more tractable and easier to communicate. Our advice would be that for maximum weight gain a diet of `barley` with a supplement of `agrimore` or `supersupp` would be best. 
 

@@ -6,30 +6,30 @@ Often one has a sample of replicated data where each element has a counterpart i
 
 In order to determine whether there is a difference between the two sets, one should take the paired aspect into account and not simply match the whole before-set against the whole after-set without doing this. That would be to throw away the information whereby there is likely to be a greater degree of correlation between the responses of an individual before and after the event than there is between any randomly chosen pairs of individuals before and after the event.
 
-### Which test: paired t-test or Wilcoxon signed rank test?
+## Which test: paired t-test or Wilcoxon signed rank test?
 
 There is a choice between at least two tests: the parametric paired t-test and the non-parametric Wilcoxon signed rank test. Ideally one would use the t-test since it is more powerful than the Wilcoxon test. This means several things, but in particular it means that, all else being equal, it can detect a small difference with higher probability than the Wilcoxon test can. 
 
 
-#### The paired t-test
+### The paired t-test
 Where the data are numerical (ie not ordinal) and where the before and after data are both normally distributed around their respective mean values one would use the *paired t-test* in this scenario. One can test for normality using either a test such as the Shapiro-Wilk test, or graphically using either a histogram, a box plot, or (best), a quantile-quantile plot. 
 
-#### The Wilcoxon Signed Rank test
+### The Wilcoxon Signed Rank test
 
 The t-test, an example of a so-called parametric test, is actually pretty robust against departures from normality, but where one doubts its validity due to extreme non-normality or for other reasons such as the ordinal nature of the data, the Wilcoxon signed rank test is a useful non-parametric alternative. It is called non-parametric because it does not make any assumption about the distribution of the data values. It only uses their ranks, where the smallest value gets rank 1, the next smallest gets rank 2, and so on.
 
 So, you typically use this test when you would like to use the paired t-test, but you cannot because one or both of the data sets is way off being normally distributed or is ordinal.
 
-#### Null Hypotheses
+### Null Hypotheses
 
 In both the t-test and the Wilcoxon signed rank tests, the null hypothesis is the usual 'nothing going on', 'there is no difference' scenario, but there is a subtle difference between them that reflects the different information that they use. In the Wilcoxon signed rank test the null is that the difference between the *medians* of pairs of observations is zero. This is different from the null hypothesis of the paired t–test, which is that the difference between the *means* of pairs is zero. 
 
 
-#### Test output
+### Test output
 
 Both tests will give a p value. This is the probability that the mean (t-test) or median (Wilcoxon signed rank) paired differences between the corresponding before and after sample elements would be equal to or greater than it actually is for the data  if the null hypothesis were true. If the p value is less than some pre-decided 'significance level', usually taken to be 0.05, then we reject the null hypothesis. If it is not, then we fail to reject the null hypothesis.
 
-### Example
+## Example
 
 We will use as an example a data set from Laureysens et al. (2004) that has measurements of metal content in the wood of 13 poplar clones growing in a polluted area, once in August and once in November. The idea was to investigate the extent to which poplars could absorb metals from the soil and thus be useful in cleaning that up. Under a null hypothesis, there would be no difference between the metal concentrations in the plant tissue between August and November. Under an alternate hypothesis, there would be.
 
@@ -37,7 +37,7 @@ Laureysens, I. et al. (2004) ‘Clonal variation in heavy metal accumulation and
 
 Concentrations of aluminum (in micrograms of Al per gram of wood) are shown below.
 
-#### Load packages
+### Load packages
 
 ```r
 library (tidyverse)
@@ -46,7 +46,7 @@ library(cowplot) # to make the plots look nice
 library(gt) # for making nice tables
 ```
 
-#### Load data
+### Load data
 
 ```r
 filepath <- here("data","poplars-paired_np.csv")
@@ -61,23 +61,23 @@ poplars |>
 ```
 
 ```{=html}
-<div id="zrqgggvczy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zrqgggvczy table {
+<div id="yxconhfher" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yxconhfher table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zrqgggvczy thead, #zrqgggvczy tbody, #zrqgggvczy tfoot, #zrqgggvczy tr, #zrqgggvczy td, #zrqgggvczy th {
+#yxconhfher thead, #yxconhfher tbody, #yxconhfher tfoot, #yxconhfher tr, #yxconhfher td, #yxconhfher th {
   border-style: none;
 }
 
-#zrqgggvczy p {
+#yxconhfher p {
   margin: 0;
   padding: 0;
 }
 
-#zrqgggvczy .gt_table {
+#yxconhfher .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -103,12 +103,12 @@ poplars |>
   border-left-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_caption {
+#yxconhfher .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zrqgggvczy .gt_title {
+#yxconhfher .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -120,7 +120,7 @@ poplars |>
   border-bottom-width: 0;
 }
 
-#zrqgggvczy .gt_subtitle {
+#yxconhfher .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -132,7 +132,7 @@ poplars |>
   border-top-width: 0;
 }
 
-#zrqgggvczy .gt_heading {
+#yxconhfher .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -144,13 +144,13 @@ poplars |>
   border-right-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_bottom_border {
+#yxconhfher .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_col_headings {
+#yxconhfher .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -165,7 +165,7 @@ poplars |>
   border-right-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_col_heading {
+#yxconhfher .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -185,7 +185,7 @@ poplars |>
   overflow-x: hidden;
 }
 
-#zrqgggvczy .gt_column_spanner_outer {
+#yxconhfher .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -197,15 +197,15 @@ poplars |>
   padding-right: 4px;
 }
 
-#zrqgggvczy .gt_column_spanner_outer:first-child {
+#yxconhfher .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zrqgggvczy .gt_column_spanner_outer:last-child {
+#yxconhfher .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zrqgggvczy .gt_column_spanner {
+#yxconhfher .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -217,11 +217,11 @@ poplars |>
   width: 100%;
 }
 
-#zrqgggvczy .gt_spanner_row {
+#yxconhfher .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zrqgggvczy .gt_group_heading {
+#yxconhfher .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -247,7 +247,7 @@ poplars |>
   text-align: left;
 }
 
-#zrqgggvczy .gt_empty_group_heading {
+#yxconhfher .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -262,15 +262,15 @@ poplars |>
   vertical-align: middle;
 }
 
-#zrqgggvczy .gt_from_md > :first-child {
+#yxconhfher .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zrqgggvczy .gt_from_md > :last-child {
+#yxconhfher .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zrqgggvczy .gt_row {
+#yxconhfher .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -289,7 +289,7 @@ poplars |>
   overflow-x: hidden;
 }
 
-#zrqgggvczy .gt_stub {
+#yxconhfher .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -302,7 +302,7 @@ poplars |>
   padding-right: 5px;
 }
 
-#zrqgggvczy .gt_stub_row_group {
+#yxconhfher .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -316,15 +316,15 @@ poplars |>
   vertical-align: top;
 }
 
-#zrqgggvczy .gt_row_group_first td {
+#yxconhfher .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zrqgggvczy .gt_row_group_first th {
+#yxconhfher .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zrqgggvczy .gt_summary_row {
+#yxconhfher .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -334,16 +334,16 @@ poplars |>
   padding-right: 5px;
 }
 
-#zrqgggvczy .gt_first_summary_row {
+#yxconhfher .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_first_summary_row.thick {
+#yxconhfher .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zrqgggvczy .gt_last_summary_row {
+#yxconhfher .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -353,7 +353,7 @@ poplars |>
   border-bottom-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_grand_summary_row {
+#yxconhfher .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -363,7 +363,7 @@ poplars |>
   padding-right: 5px;
 }
 
-#zrqgggvczy .gt_first_grand_summary_row {
+#yxconhfher .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -373,7 +373,7 @@ poplars |>
   border-top-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_last_grand_summary_row_top {
+#yxconhfher .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -383,11 +383,11 @@ poplars |>
   border-bottom-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_striped {
+#yxconhfher .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zrqgggvczy .gt_table_body {
+#yxconhfher .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -396,7 +396,7 @@ poplars |>
   border-bottom-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_footnotes {
+#yxconhfher .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -410,7 +410,7 @@ poplars |>
   border-right-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_footnote {
+#yxconhfher .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -419,7 +419,7 @@ poplars |>
   padding-right: 5px;
 }
 
-#zrqgggvczy .gt_sourcenotes {
+#yxconhfher .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -433,7 +433,7 @@ poplars |>
   border-right-color: #D3D3D3;
 }
 
-#zrqgggvczy .gt_sourcenote {
+#yxconhfher .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -441,63 +441,63 @@ poplars |>
   padding-right: 5px;
 }
 
-#zrqgggvczy .gt_left {
+#yxconhfher .gt_left {
   text-align: left;
 }
 
-#zrqgggvczy .gt_center {
+#yxconhfher .gt_center {
   text-align: center;
 }
 
-#zrqgggvczy .gt_right {
+#yxconhfher .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zrqgggvczy .gt_font_normal {
+#yxconhfher .gt_font_normal {
   font-weight: normal;
 }
 
-#zrqgggvczy .gt_font_bold {
+#yxconhfher .gt_font_bold {
   font-weight: bold;
 }
 
-#zrqgggvczy .gt_font_italic {
+#yxconhfher .gt_font_italic {
   font-style: italic;
 }
 
-#zrqgggvczy .gt_super {
+#yxconhfher .gt_super {
   font-size: 65%;
 }
 
-#zrqgggvczy .gt_footnote_marks {
+#yxconhfher .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zrqgggvczy .gt_asterisk {
+#yxconhfher .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zrqgggvczy .gt_indent_1 {
+#yxconhfher .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zrqgggvczy .gt_indent_2 {
+#yxconhfher .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zrqgggvczy .gt_indent_3 {
+#yxconhfher .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zrqgggvczy .gt_indent_4 {
+#yxconhfher .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zrqgggvczy .gt_indent_5 {
+#yxconhfher .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -570,11 +570,11 @@ poplars |>
 </div>
 ```
 
-#### Plot the  data
+### Plot the  data
 
 Before we do any test on some data to find evidence for a difference or a trend, it is a good idea to plot the data. This will reveal whatever patterns there are in the data and how likely they are to reveal a truth about the population from which they have been drawn.
 
-#### Tidy the data
+### Tidy the data
 
 In this case there is work to do before we can plot the data. The problem is that the data is 'untidy'. The two levels of the factor `month` are spread across two columns, August and November. For plotting purposes it will be useful to 'tidy' the data so that there is only one column containing both levels of `month` and another containing the aluminium concentrations. The function `pivot_longer()` can do this for us:
 
@@ -587,23 +587,23 @@ head(poplars_tidy,8) |>
 ```
 
 ```{=html}
-<div id="kvevrgwrga" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kvevrgwrga table {
+<div id="mxrhhoychg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mxrhhoychg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kvevrgwrga thead, #kvevrgwrga tbody, #kvevrgwrga tfoot, #kvevrgwrga tr, #kvevrgwrga td, #kvevrgwrga th {
+#mxrhhoychg thead, #mxrhhoychg tbody, #mxrhhoychg tfoot, #mxrhhoychg tr, #mxrhhoychg td, #mxrhhoychg th {
   border-style: none;
 }
 
-#kvevrgwrga p {
+#mxrhhoychg p {
   margin: 0;
   padding: 0;
 }
 
-#kvevrgwrga .gt_table {
+#mxrhhoychg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -629,12 +629,12 @@ head(poplars_tidy,8) |>
   border-left-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_caption {
+#mxrhhoychg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kvevrgwrga .gt_title {
+#mxrhhoychg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -646,7 +646,7 @@ head(poplars_tidy,8) |>
   border-bottom-width: 0;
 }
 
-#kvevrgwrga .gt_subtitle {
+#mxrhhoychg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -658,7 +658,7 @@ head(poplars_tidy,8) |>
   border-top-width: 0;
 }
 
-#kvevrgwrga .gt_heading {
+#mxrhhoychg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -670,13 +670,13 @@ head(poplars_tidy,8) |>
   border-right-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_bottom_border {
+#mxrhhoychg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_col_headings {
+#mxrhhoychg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -691,7 +691,7 @@ head(poplars_tidy,8) |>
   border-right-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_col_heading {
+#mxrhhoychg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -711,7 +711,7 @@ head(poplars_tidy,8) |>
   overflow-x: hidden;
 }
 
-#kvevrgwrga .gt_column_spanner_outer {
+#mxrhhoychg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -723,15 +723,15 @@ head(poplars_tidy,8) |>
   padding-right: 4px;
 }
 
-#kvevrgwrga .gt_column_spanner_outer:first-child {
+#mxrhhoychg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kvevrgwrga .gt_column_spanner_outer:last-child {
+#mxrhhoychg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kvevrgwrga .gt_column_spanner {
+#mxrhhoychg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -743,11 +743,11 @@ head(poplars_tidy,8) |>
   width: 100%;
 }
 
-#kvevrgwrga .gt_spanner_row {
+#mxrhhoychg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kvevrgwrga .gt_group_heading {
+#mxrhhoychg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -773,7 +773,7 @@ head(poplars_tidy,8) |>
   text-align: left;
 }
 
-#kvevrgwrga .gt_empty_group_heading {
+#mxrhhoychg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -788,15 +788,15 @@ head(poplars_tidy,8) |>
   vertical-align: middle;
 }
 
-#kvevrgwrga .gt_from_md > :first-child {
+#mxrhhoychg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kvevrgwrga .gt_from_md > :last-child {
+#mxrhhoychg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kvevrgwrga .gt_row {
+#mxrhhoychg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -815,7 +815,7 @@ head(poplars_tidy,8) |>
   overflow-x: hidden;
 }
 
-#kvevrgwrga .gt_stub {
+#mxrhhoychg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -828,7 +828,7 @@ head(poplars_tidy,8) |>
   padding-right: 5px;
 }
 
-#kvevrgwrga .gt_stub_row_group {
+#mxrhhoychg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -842,15 +842,15 @@ head(poplars_tidy,8) |>
   vertical-align: top;
 }
 
-#kvevrgwrga .gt_row_group_first td {
+#mxrhhoychg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kvevrgwrga .gt_row_group_first th {
+#mxrhhoychg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kvevrgwrga .gt_summary_row {
+#mxrhhoychg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -860,16 +860,16 @@ head(poplars_tidy,8) |>
   padding-right: 5px;
 }
 
-#kvevrgwrga .gt_first_summary_row {
+#mxrhhoychg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_first_summary_row.thick {
+#mxrhhoychg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kvevrgwrga .gt_last_summary_row {
+#mxrhhoychg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -879,7 +879,7 @@ head(poplars_tidy,8) |>
   border-bottom-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_grand_summary_row {
+#mxrhhoychg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -889,7 +889,7 @@ head(poplars_tidy,8) |>
   padding-right: 5px;
 }
 
-#kvevrgwrga .gt_first_grand_summary_row {
+#mxrhhoychg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -899,7 +899,7 @@ head(poplars_tidy,8) |>
   border-top-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_last_grand_summary_row_top {
+#mxrhhoychg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -909,11 +909,11 @@ head(poplars_tidy,8) |>
   border-bottom-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_striped {
+#mxrhhoychg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kvevrgwrga .gt_table_body {
+#mxrhhoychg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -922,7 +922,7 @@ head(poplars_tidy,8) |>
   border-bottom-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_footnotes {
+#mxrhhoychg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -936,7 +936,7 @@ head(poplars_tidy,8) |>
   border-right-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_footnote {
+#mxrhhoychg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -945,7 +945,7 @@ head(poplars_tidy,8) |>
   padding-right: 5px;
 }
 
-#kvevrgwrga .gt_sourcenotes {
+#mxrhhoychg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -959,7 +959,7 @@ head(poplars_tidy,8) |>
   border-right-color: #D3D3D3;
 }
 
-#kvevrgwrga .gt_sourcenote {
+#mxrhhoychg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -967,63 +967,63 @@ head(poplars_tidy,8) |>
   padding-right: 5px;
 }
 
-#kvevrgwrga .gt_left {
+#mxrhhoychg .gt_left {
   text-align: left;
 }
 
-#kvevrgwrga .gt_center {
+#mxrhhoychg .gt_center {
   text-align: center;
 }
 
-#kvevrgwrga .gt_right {
+#mxrhhoychg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kvevrgwrga .gt_font_normal {
+#mxrhhoychg .gt_font_normal {
   font-weight: normal;
 }
 
-#kvevrgwrga .gt_font_bold {
+#mxrhhoychg .gt_font_bold {
   font-weight: bold;
 }
 
-#kvevrgwrga .gt_font_italic {
+#mxrhhoychg .gt_font_italic {
   font-style: italic;
 }
 
-#kvevrgwrga .gt_super {
+#mxrhhoychg .gt_super {
   font-size: 65%;
 }
 
-#kvevrgwrga .gt_footnote_marks {
+#mxrhhoychg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kvevrgwrga .gt_asterisk {
+#mxrhhoychg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kvevrgwrga .gt_indent_1 {
+#mxrhhoychg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kvevrgwrga .gt_indent_2 {
+#mxrhhoychg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kvevrgwrga .gt_indent_3 {
+#mxrhhoychg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kvevrgwrga .gt_indent_4 {
+#mxrhhoychg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kvevrgwrga .gt_indent_5 {
+#mxrhhoychg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1098,7 +1098,7 @@ poplars_tidy |>
 Does it look as though the difference between the medians could plausibly be zero for the population? Or, put another way, if it was zero, how big a fluke would this sample be? That is what the p value actually tells us.
 
 
-#### Check for normality of differences
+### Check for normality of differences
 
 Before we use the t-test, we need to check that it is OK to do so.
 The null hypothesis of the Shapiro-Wilk test is that the data set given to it is drawn from a normally distributed population.
@@ -1141,7 +1141,7 @@ All parts of the output have meaning and are useful, but here we will focus on j
 * the p value is equal to 0.040. Hence, if we have chosen the usual significance value of 0.05, we can take this to mean that there is evidence of a significant difference between the August and November values.
 * the lower and upper bounds of the 95\% confidence interval are (-9.52, -0.28). This tells us that if samples such as we have were collected again and again, then the mean difference between the August and the November paired values would be in this range 95\% of the time. The key thing is that this range does not encompass zero. This means that we can be confident at the 95% level that there is a non-zero change on going from August to November, and, in particular, that the August value is lower than the November value.
 
-### The non-parametric alternative: The Wilcoxon signed rank test
+## The non-parametric alternative: The Wilcoxon signed rank test
 
 To be safe, because of that outlier, let us test for difference using the Wilcoxon signed rank test. In R this is done using the function `wilcox.test()`, with the argument `paired` set to `TRUE`.
 
@@ -1160,7 +1160,7 @@ wilcox.test(poplars$August, poplars$November, paired = TRUE)
 ```
 We see that the conclusion (in this case) is the same.
 
-#### Relation to one-sample paired test
+## Relation to one-sample paired test
 
 The two-sample paired tests as we have done above are the same as doing a one-sample test to see if the differences between the August and November paired values is different from zero. This is true whether we do a t-test or a Wilcoxon signed rank test.
 

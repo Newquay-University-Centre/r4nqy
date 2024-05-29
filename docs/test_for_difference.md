@@ -2,7 +2,7 @@
 
 
 
-### Preliminaries
+## Preliminaries
 
 In this exercise we find out how to use R to run a two-sample *t*-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.
 
@@ -11,7 +11,7 @@ The exercise is based on Chapter 5: [Beckerman, Childs and Petchey: Getting Star
 You should have a 
 
 
-### Motivation and example
+## Motivation and example
 
 In our example we will consider concentrations of airborne ozone (O~3~) at ground level, as measured in gardens around a city. This is of interest because ozone levels can affect how well crops grow, and can impact on human health.
 
@@ -32,38 +32,38 @@ and our alternate, two-sided hypothesis is:
 
 
 
-### The two-sample *t*-test
+## The two-sample *t*-test
 
 This can be used when we have two independent sets of numerical data, and our question is whether the data provide evidence that the sets are drawn from different populations.
 
-#### Pros of the *t*-test
+### Pros of the *t*-test
 
 -   It can be used when the data set is small.
 -   It can still be used when the data set is large. So...if in doubt, just use the *t*-test, (Kind of, the data do need to fulfil some criteria, but being few in number is fine. See below).
 
-#### Cons of the *t*-test
+### Cons of the *t*-test
 
 -   It assumes that the data are drawn from a normally distributed population. There are various ways to test if this is true, and you should try at least one of them, but with small samples, just where the *t*-test is most useful, it can be difficult to tell. In the end we can also appeal to reason: is there good reason to suppose that the data would or would not be normally distributed?
 -   When comparing the means of two samples both samples should normally have the same variance, which is a measure of the spread of the data. You need to check that this is the case, or at least have reason to suppose that it should be. (Note: in an actual *t*-test, it is possible to ignore this requirement - see below).
 -   When we have more than two samples and we use the *t*-test to look for a difference between any two of them, it becomes increasingly likely, the more pairs of samples we compare, that we will decide that we have found a difference because we got a *p*-value that was less than some pre-determined threshold (which could be anything, but is most often chosen to be 0.05) even if in reality there is none. This is the problem of high false positive rates arising from multiple pairwise testing and is where ANOVA comes in. *t*-tests are only used to detect evidence for a difference between two groups, not more. ANOVAs (or their non-parametric equivalent) are used when we are looking for differences between more than two groups.
 
 
-### The workflow
+## The workflow
 
-#### Open your project
+### Open your project
 
 Open your RStuff (or whatever you have called it) project using File/Open Project, navigating to the project folder, then clicking on the `... .Rproj` file you will find there.
 
 If your Rstuff folder is not already a Project, then make it one using File/New Project/Existing Directory - then navigate to your Rstuff folder.
 
-#### Create a new script
+### Create a new script
 
 Create a nw notebook script using File/New File/R Notebook
 Delete everything from below the yaml section at the top. This is the bit between the pair of lines with three dashes. In the yaml, amend the title and add lines `author: "<your name>"` and `date: "<the date>"`. Inside the quotes, add your name and the date.
 
 Now add code chunks to carry out the steps listed below. In between the chunks, add as much explanatory text as you want so that next time you come back, you understand what each code chunk is doing. You can format this text using the simple markdown rules to be found in Help/markdown Quick Reference
 
-#### Load packages
+### Load packages
 
 We typically include a chunk at or near the top of a script that loads any packages we are going to use. If we load all of them in this one chunk it is easy to see at a glance which ones have been loaded.
 
@@ -81,7 +81,7 @@ library(rstatix)
 ```
 
 
-#### Read in and inspect the data
+### Read in and inspect the data
 
 
 
@@ -98,7 +98,7 @@ What kind of data have we got?
 You might also wish to inspect the data using `summary()`. If so, include a code chunk to do this.
 
 
-### Step One: Summarise the data
+## Step One: Summarise the data
 With numerical data spread across more than one level of a categorical variable, we often want summary information such as mean values and standard erros of the mean for each level. We can do this by using the `group_by()` and then `summarise()` combination. This first group the data however you want to, then calculates whatever summary you have requested for each group.
 
 Here we will calculate the number of replicates, the mean and the standard error of the mean for both levels of `garden.location` ie east and west, then store the result in a data frame calle `ozone.summary`
@@ -122,7 +122,7 @@ From these data, does it look as though there is evidence for a difference betwe
 
 Bottom line: the difference between the sample means is about six times the size of the standard errors of each. It really does look as thought east of the city has a higher ozone concentration than the west.
 
-### Step Two: Plot the data
+## Step Two: Plot the data
 
 Remember, before we do any statistical analysis, it is almost always a good idea to plot the data in some way. We can often get a very good idea as to the answer to our research question just from the plots we do.
 
@@ -185,13 +185,13 @@ In addition, do the data look as though each group is drawn from a normally dist
 
 Let's now do some stats.
 
-### Step Three: Carry out statistical analysis
+## Step Three: Carry out statistical analysis
 
-#### Are the data normally distributed?
+### Are the data normally distributed?
 
 We can go about establishing this in three ways: using an analytical test of normality, using a graphical method and by thinking about what kind of data we have. Let's consider these in turn.
 
-#### Normality test - analytical method
+### Normality test - analytical method
 
 There are several analytical tests one can run on a set of data to determine if it is normally distributed. One is the Shapiro-Wilk test.
 
@@ -222,13 +222,13 @@ shapiro.test(example1) # 100 samples drawn from a normally distributed populatio
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example1
-## W = 0.97693, p-value = 0.07639
+## W = 0.9943, p-value = 0.9527
 shapiro.test(example2) # 100 samples drawn from a uniformly (ie NOT normally) distributed population
 ## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example2
-## W = 0.93248, p-value = 6.897e-05
+## W = 0.95651, p-value = 0.002286
 ```
 
 For the examples above, we see that Shapiro-Wilk test gave a hig *p*-value for the data that we knew *were* drawn from a normal distribution, an a very low *p*-value for the data that we knew were not.
@@ -255,7 +255,7 @@ ozone %>%
 
 For both groups the *p*-value is more than 0.05, so at the 5% significance level we cannot reject the null hypothesis that the data are normally distributed, so we can go on and use the *t*-test. Yay!
 
-#### Graphical methods - the quantile-quantile or QQ plot.
+### Graphical methods - the quantile-quantile or QQ plot.
 
 Confession: I don't normally bother with numerical tests for normality such as Shapiro-Wilk. I usually use a graphical method instead.
 
@@ -279,12 +279,12 @@ ozone %>%
 
 Nothing outrageously non-linear there, so that also suggests we can safely use the *t*-test.
 
-#### The 'thinking about the data' normality test
+### The 'thinking about the data' normality test
 As you might have guessed, this isn't a test as such, but a suggestion that you think about what kind of data you have: is it likely to be normally distributed within its subgroups or not? If the data are numerical values of some physical quantity that is the result of many independent processes, and if the data are not bounded on either side (say by 0 and 100 as for exam scores) then it is quite likely that that they are. If they are count data, or ordinal data, then it is quite likely that they are not.
 
 This way of thinking may be all you can do when data sets are very small and any of the more robust tests for normality presented here leave you not much the wiser.
 
-#### Now for the actual two-sample *t*-test
+### Now for the actual two-sample *t*-test
 
 So, it looks as though it is plausible that the data are drawn from normal distributions. That means we can go on to use a parametric test such as a *t*-test and have confidence in its output.
 
@@ -317,7 +317,7 @@ ozone %>% t_test(ozone~garden.location)
 
 Note the `~` tilda symbol. This means 'is a function of'. So this line means: do a *t*-test to see if there is a significant difference between the ozone levels in the two garden locations.
 
-#### Interpret the output of the *t*-test.
+### Interpret the output of the *t*-test.
 
 Study the output of the *t*-test.
 
@@ -331,7 +331,7 @@ Study the output of the *t*-test.
 -   Is there sufficient evidence to reject the null hypothesis?
 -   What does the word 'Welch' tell you - look it up in the help for `t.test()`.
 
-### The complete script
+## The complete script
 
 Here is a minimal script you could use to run a *t*-test on the ozone data:
 

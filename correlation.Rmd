@@ -86,9 +86,6 @@ theme_bare_axes <- function () {
 }
 ```
 
-#  {.tabset .tabset-fade .tabset-pills}
-
-## Correlation
 
 The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
@@ -130,7 +127,7 @@ Consider fathers who are about about 67 inches tall, and look at the wide variat
 
 If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.
 
-### The correlation coefficient
+## The correlation coefficient
 
 Suppose we are looking at the relationship between two variables and have already plotted the scatter plot. The graph looks like a cloud of points.
 
@@ -317,7 +314,7 @@ The correlation coefficient is a measure of linear association or clustering aro
 
 ------------------------------------------------------------------------
 
-### Different values of *r*.
+## Different values of *r*.
 
 Let us see how this looks graphically. In the Figure below we show six scatter plots for hypothetical data. In all six pictures the average is 3 and the standard deviation is 1 for both *x* and *y*. The correlation coefficient is printed in each case.
 
@@ -480,7 +477,7 @@ Correlations are always between -1 and 1, but can take any value in between. A p
 
 ------------------------------------------------------------------------
 
-### Using R to find the correlation coefficient.
+## Using R to find the correlation coefficient.
 
 First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the *x* and *y* data used above for which the correlation coefficient was fixed to be 0.8
 
@@ -565,7 +562,7 @@ The table gives the estimated value for the Pearson correlation coefficient in e
 
 Do these output provide evidence for a correlation between petal length and petal width in each case?
 
-### The correlation coefficient measures the degree of linear association.
+## The correlation coefficient measures the degree of linear association.
 
 Sometimes the Pearson correlation coefficient *r* is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.
 
@@ -609,7 +606,7 @@ So, we note that the correlation coefficient is a measure of *linear* associatio
 
 
 
-### Association is not causation
+## Association is not causation
 
 A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation. 
 
@@ -643,7 +640,9 @@ knitr::include_graphics(myimages)
 
 In the Figure above, note that the *r*-values for **C** and **E** are close to zero, and the *p*-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is *any* linear association between soil pH and the relative abundances of *Alphaproteobacteria* or *Beta/Gammaproteobacteria*. From the plots, it looks in **C** as if there no assocation at all, whereas in **E** it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.
 
-## Exercise 1
+## Exercises  
+
+### Exercise 1
 
 ```{r}
 cor_plot <-function(plot_data){
@@ -685,7 +684,7 @@ Plots A to F above show scatter plots of different data sets _Y_ against _X_.
   * Spearman rank *r*~sp~
 
 
-## Exercise 2
+### Exercise 2
 
 Open a new R notebook
 

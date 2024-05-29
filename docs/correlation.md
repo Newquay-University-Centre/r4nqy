@@ -12,9 +12,6 @@ This guide to correlation is heavily based on the very helpful chapter in Statis
 
 
 
-#  {.tabset .tabset-fade .tabset-pills}
-
-## Correlation
 
 The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
@@ -32,7 +29,7 @@ Consider fathers who are about about 67 inches tall, and look at the wide variat
 
 If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.
 
-### The correlation coefficient
+## The correlation coefficient
 
 Suppose we are looking at the relationship between two variables and have already plotted the scatter plot. The graph looks like a cloud of points.
 
@@ -83,7 +80,7 @@ The correlation coefficient is a measure of linear association or clustering aro
 
 ------------------------------------------------------------------------
 
-### Different values of *r*.
+## Different values of *r*.
 
 Let us see how this looks graphically. In the Figure below we show six scatter plots for hypothetical data. In all six pictures the average is 3 and the standard deviation is 1 for both *x* and *y*. The correlation coefficient is printed in each case.
 
@@ -117,7 +114,7 @@ Correlations are always between -1 and 1, but can take any value in between. A p
 
 ------------------------------------------------------------------------
 
-### Using R to find the correlation coefficient.
+## Using R to find the correlation coefficient.
 
 First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the *x* and *y* data used above for which the correlation coefficient was fixed to be 0.8
 
@@ -133,13 +130,13 @@ cor.test(x,y,method="pearson")
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.3626, df = 48, p-value = 2.091e-12
+## t = 9.2104, df = 48, p-value = 3.485e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6769726 0.8843281
+##  0.6697895 0.8814299
 ## sample estimates:
 ##       cor 
-## 0.8038481
+## 0.7991485
 ```
 
 There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship. 
@@ -256,7 +253,7 @@ The table gives the estimated value for the Pearson correlation coefficient in e
 
 Do these output provide evidence for a correlation between petal length and petal width in each case?
 
-### The correlation coefficient measures the degree of linear association.
+## The correlation coefficient measures the degree of linear association.
 
 Sometimes the Pearson correlation coefficient *r* is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.
 
@@ -264,14 +261,14 @@ Consider first a data set where there is a very strong association between varia
 
 <img src="correlation_files/figure-html/unnamed-chunk-23-1.png" width="864" style="display: block; margin: auto;" />
 
-The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.093, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
+The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.401, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
 
 ### When is it appropriate to calculate a correlation coefficient?
 So, we note that the correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.
 
 
 
-### Association is not causation
+## Association is not causation
 
 A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation. 
 
@@ -299,7 +296,9 @@ Lauber, C. L., Hamady, M., Knight, R., & Fierer, N. (2009). Pyrosequencing-based
 
 In the Figure above, note that the *r*-values for **C** and **E** are close to zero, and the *p*-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is *any* linear association between soil pH and the relative abundances of *Alphaproteobacteria* or *Beta/Gammaproteobacteria*. From the plots, it looks in **C** as if there no assocation at all, whereas in **E** it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.
 
-## Exercise 1
+## Exercises  
+
+### Exercise 1
 
 
 
@@ -314,7 +313,7 @@ Plots A to F above show scatter plots of different data sets _Y_ against _X_.
   * Spearman rank *r*~sp~
 
 
-## Exercise 2
+### Exercise 2
 
 Open a new R notebook
 
