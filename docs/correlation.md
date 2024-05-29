@@ -130,13 +130,13 @@ cor.test(x,y,method="pearson")
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.124, df = 48, p-value = 4.663e-12
+## t = 9.3429, df = 48, p-value = 2.234e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6656233 0.8797416
+##  0.6760523 0.8839577
 ## sample estimates:
 ##       cor 
-## 0.7964154
+## 0.8032469
 ```
 
 There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship. 
@@ -261,7 +261,7 @@ Consider first a data set where there is a very strong association between varia
 
 <img src="correlation_files/figure-html/unnamed-chunk-23-1.png" width="864" style="display: block; margin: auto;" />
 
-The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.183, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
+The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.102, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
 
 ### When is it appropriate to calculate a correlation coefficient?
 So, we note that the correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.

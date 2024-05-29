@@ -4,29 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 t-test for difference | A Minimal Book Example</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <title>Chapter 4 t-test for difference | Data nalaysis for Newquay University Centre</title>
+  <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 t-test for difference | A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 4 t-test for difference | Data nalaysis for Newquay University Centre" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 t-test for difference | A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 4 t-test for difference | Data nalaysis for Newquay University Centre" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="Michael Hunt" />
 
 
 <meta name="date" content="2024-05-29" />
@@ -316,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data nalaysis for Newquay University Centre</a>
           </h1>
         </div>
 
@@ -486,13 +483,13 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <span id="cb57-5"><a href="t-test-for-difference.html#cb57-5" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
 <span id="cb57-6"><a href="t-test-for-difference.html#cb57-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb57-7"><a href="t-test-for-difference.html#cb57-7" tabindex="-1"></a><span class="do">## data:  example1</span></span>
-<span id="cb57-8"><a href="t-test-for-difference.html#cb57-8" tabindex="-1"></a><span class="do">## W = 0.99308, p-value = 0.8927</span></span>
+<span id="cb57-8"><a href="t-test-for-difference.html#cb57-8" tabindex="-1"></a><span class="do">## W = 0.99326, p-value = 0.9033</span></span>
 <span id="cb57-9"><a href="t-test-for-difference.html#cb57-9" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span>
 <span id="cb57-10"><a href="t-test-for-difference.html#cb57-10" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb57-11"><a href="t-test-for-difference.html#cb57-11" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
 <span id="cb57-12"><a href="t-test-for-difference.html#cb57-12" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb57-13"><a href="t-test-for-difference.html#cb57-13" tabindex="-1"></a><span class="do">## data:  example2</span></span>
-<span id="cb57-14"><a href="t-test-for-difference.html#cb57-14" tabindex="-1"></a><span class="do">## W = 0.95801, p-value = 0.002909</span></span></code></pre></div>
+<span id="cb57-14"><a href="t-test-for-difference.html#cb57-14" tabindex="-1"></a><span class="do">## W = 0.94047, p-value = 0.000206</span></span></code></pre></div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a hig <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, an a very low <em>p</em>-value for the data that we knew were not.</p>
 <p>The Shapiro-Wilk test tests your data against the null hypothesis that it is drawn from a normally distributed population. It gives a <em>p</em>-value. If the <em>p</em>-value is less than 0.05 then we reject the null hypothesis and cannot suppose our data is normally distributed. In that case we would have to ditch the <em>t</em>-test for a difference, and choose another difference test in its place that could cope with data that was not normally distributed.</p>
 <p>Why don’t we do that in the first place, I hear you ask? Why bother with this finicky <em>t</em>-test that requires that we go through the faff of testing the data for normality before we can use it? The answer is that it is more powerful than other, so-called non-parametric tests that <em>can</em> cope with non-normal data. It is more likely than they are to spot a difference if there really is a difference. So if we can use it, that is what we would rather do.</p>
