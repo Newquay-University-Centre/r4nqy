@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | A Minimal Book Example</title>
+  <title>Page not found | Use of ggplot for plotting</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | A Minimal Book Example" />
+  <meta property="og:title" content="Page not found | Use of ggplot for plotting" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,17 +19,16 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | A Minimal Book Example" />
+  <meta name="twitter:title" content="Page not found | Use of ggplot for plotting" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="Michael Hunt" />
 
 
-<meta name="date" content="2024-05-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -58,6 +57,8 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -169,7 +170,7 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -223,7 +224,33 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>8.6</b> Reporting the Result.</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="references.html"><a href="references.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>8.6.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="8.6.2" data-path="references.html"><a href="references.html#files-needed"><i class="fa fa-check"></i><b>8.6.2</b> Files needed</a></li>
+<li class="chapter" data-level="8.6.3" data-path="references.html"><a href="references.html#open-your-project"><i class="fa fa-check"></i><b>8.6.3</b> Open your Project</a></li>
+<li class="chapter" data-level="8.6.4" data-path="references.html"><a href="references.html#load-packages-1"><i class="fa fa-check"></i><b>8.6.4</b> Load packages</a></li>
+<li class="chapter" data-level="8.6.5" data-path="references.html"><a href="references.html#read-in-the-data"><i class="fa fa-check"></i><b>8.6.5</b> Read in the data</a></li>
+<li class="chapter" data-level="8.6.6" data-path="references.html"><a href="references.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>8.6.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="8.6.7" data-path="references.html"><a href="references.html#summarise-the-data"><i class="fa fa-check"></i><b>8.6.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="8.6.8" data-path="references.html"><a href="references.html#plot-the-data-1"><i class="fa fa-check"></i><b>8.6.8</b> Plot the data</a></li>
+<li class="chapter" data-level="8.6.9" data-path="references.html"><a href="references.html#anova"><i class="fa fa-check"></i><b>8.6.9</b> ANOVA</a></li>
+<li class="chapter" data-level="8.6.10" data-path="references.html"><a href="references.html#model-simplification"><i class="fa fa-check"></i><b>8.6.10</b> Model Simplification</a></li>
+<li class="chapter" data-level="8.6.11" data-path="references.html"><a href="references.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>8.6.11</b> Check the validity of the linear model</a></li>
+<li class="chapter" data-level="8.6.12" data-path="references.html"><a href="references.html#reporting-the-results"><i class="fa fa-check"></i><b>8.6.12</b> Reporting the results</a></li>
+<li class="chapter" data-level="8.6.13" data-path="references.html"><a href="references.html#load-packages-2"><i class="fa fa-check"></i><b>8.6.13</b> Load packages</a></li>
+<li class="chapter" data-level="8.6.14" data-path="references.html"><a href="references.html#get-the-template-script"><i class="fa fa-check"></i><b>8.6.14</b> Get the template script</a></li>
+<li class="chapter" data-level="8.6.15" data-path="references.html"><a href="references.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>8.6.15</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="8.6.16" data-path="references.html"><a href="references.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>8.6.16</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="8.6.17" data-path="references.html"><a href="references.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>8.6.17</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="8.6.18" data-path="references.html"><a href="references.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>8.6.18</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="8.6.19" data-path="references.html"><a href="references.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>8.6.19</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="8.6.20" data-path="references.html"><a href="references.html#scatter-plots"><i class="fa fa-check"></i><b>8.6.20</b> Scatter plots</a></li>
+<li class="chapter" data-level="8.6.21" data-path="references.html"><a href="references.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>8.6.21</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="8.6.22" data-path="references.html"><a href="references.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>8.6.22</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="8.6.23" data-path="references.html"><a href="references.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>8.6.23</b> Distribution of penguin flipper lengths</a></li>
+<li class="chapter" data-level="8.6.24" data-path="references.html"><a href="references.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>8.6.24</b> Bar chart with error bar</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -236,7 +263,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Use of ggplot for plotting</a>
           </h1>
         </div>
 
