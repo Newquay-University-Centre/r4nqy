@@ -134,13 +134,13 @@ cor.test(x,y,method="pearson")
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.3428, df = 48, p-value = 2.234e-12
+## t = 9.3388, df = 48, p-value = 2.264e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6760501 0.8839568
+##  0.6758622 0.8838811
 ## sample estimates:
 ##       cor 
-## 0.8032455
+## 0.8031227
 ```
 
 There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship. 
@@ -265,7 +265,7 @@ Consider first a data set where there is a very strong association between varia
 
 <img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" />
 
-The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.01, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
+The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.017, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
 
 ### When is it appropriate to calculate a correlation coefficient?
 So, we note that the correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.
@@ -286,11 +286,66 @@ See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) fo
 Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <http://gis.nacse.org/lichenair/doc/Jovan2008.pdf>
 :::
 
+<img src="images/lichen_abundance.png" width="629" style="display: block; margin: auto;" />
+
+There is a strong negative correlation (*r*=-0.78) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.
+
+### Soil bacteria
+
+::: csl-entry
+Lauber, C. L., Hamady, M., Knight, R., & Fierer, N. (2009). Pyrosequencing-based assessment of soil pH as a predictor of soil bacterial community structure at the continental scale. <i>Applied and Environmental Microbiology</i>, <i>75</i>(15), 5111--5120. <https://doi.org/10.1128/AEM.00335-09>
+:::
+
+<img src="images/soil_bacteria.png" width="648" style="display: block; margin: auto;" />
+
+In the Figure above, note that the *r*-values for **C** and **E** are close to zero, and the *p*-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is *any* linear association between soil pH and the relative abundances of *Alphaproteobacteria* or *Beta/Gammaproteobacteria*. From the plots, it looks in **C** as if there no assocation at all, whereas in **E** it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.
+
+## Exercises  
+
+### Exercise 1
 
 
 
 
+<img src="correlation_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" />
+Plots A to F above show scatter plots of different data sets _Y_ against _X_. 
+
+* Which of them show linear behaviour?
+* Which of them show monotonic behaviour?
+* For which of them might it be appropriate to calculate the following correlation coefficients between _X_ and _Y_?
+  * Pearson *r*
+  * Spearman rank *r*~sp~
 
 
+### Exercise 2
+
+Open a new R notebook
+
+In the usual way, include to start with code chunks to
 
 
+1.  Load the packages needed `tidyverse` and  `here`.
+3.  Read the data set `iris.csv` (which should be in your data folder already) into an object called `iris`
+
+You can do this with this code chunk:
+
+````
+```{r}     
+filepath<-here("data","iris.csv")
+iris<-read_csv(filepath)
+glimpse(iris)
+```
+````
+
+4.  Create a faceted plot of sepal length against sepal width for each species.
+
+5.  Calculate the Pearson correlation coefficient between sepal length and sepal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the *p*-value for each species in a table.
+
+For (4) and (5) you can adapt code used on the previous tab.
+
+Now:
+
+-   Does it appear that the sepal length and sepal width are correlated for each species?\
+-   Is the correlation positive or negative?\
+-   For which species is the correlation strongest?\
+-   Do the correlation coefficients make sense, given the plots?
