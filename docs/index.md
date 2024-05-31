@@ -1,7 +1,7 @@
 --- 
 title: "Data analysis for Newquay University Centre"
 author: "Michael Hunt"
-date: "2024-05-29"
+date: "2024-05-31"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -14,9 +14,13 @@ link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
-# About
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports; for example, a math equation $a^2 + b^2 = c^2$.
+
+# Welcome
+
+This book is intended to help anyone who wants to analyse their data in a scientific context. It is aimed in particular at those studying CORN276 Research Methods and GIS for Zoology, CORN4004 Action Reserch Project and CORN328 Honours Project at Newquay University Centre, but we hope it will be of interest and use to anyone with similar needs.
+
+We will touch on every stage of your analysis, from designing the spreadsheet where you will first keep your data, to summarising the data, plotting it and subjecting it to whatever statistical test is appropriate. Finally we will learn how to interpet the output of these tests and then report this in language appropriate for a scientific report.
 
 ## Usage 
 

@@ -2,6 +2,9 @@
 
 
 
+
+
+
 ## Preliminaries
 
 In this exercise we find out how to use R to run a two-sample *t*-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.
@@ -142,7 +145,7 @@ ozone %>%
   theme_cowplot()
 ```
 
-<img src="test_for_difference_files/figure-html/histogram-1.png" width="768" />
+<img src="test_for_difference_files/figure-html/histogram-1.png" width="768" style="display: block; margin: auto;" />
 
 
 Instead of histograms, we could have drawn box plots:
@@ -157,7 +160,7 @@ ozone %>%
   theme_cowplot()
 ```
 
-<img src="test_for_difference_files/figure-html/box plot-1.png" width="768" />
+<img src="test_for_difference_files/figure-html/box plot-1.png" width="768" style="display: block; margin: auto;" />
 
 or as a dot plot with standard errors of the mean included:
 
@@ -177,7 +180,7 @@ ozone.summary %>%
   theme_cowplot()
 ```
 
-<img src="test_for_difference_files/figure-html/bar chart-1.png" width="768" />
+<img src="test_for_difference_files/figure-html/bar chart-1.png" width="768" style="display: block; margin: auto;" />
 
 Do the data look as though they support the null hypothesis or not?
 
@@ -212,7 +215,7 @@ ggplot(df,aes(x=data)) +
   theme_cowplot()
 ```
 
-<img src="test_for_difference_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<img src="test_for_difference_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" />
 
 ```r
 
@@ -222,13 +225,13 @@ shapiro.test(example1) # 100 samples drawn from a normally distributed populatio
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example1
-## W = 0.99134, p-value = 0.7717
+## W = 0.98598, p-value = 0.3725
 shapiro.test(example2) # 100 samples drawn from a uniformly (ie NOT normally) distributed population
 ## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example2
-## W = 0.95495, p-value = 0.001783
+## W = 0.92329, p-value = 2.113e-05
 ```
 
 For the examples above, we see that Shapiro-Wilk test gave a hig *p*-value for the data that we knew *were* drawn from a normal distribution, an a very low *p*-value for the data that we knew were not.
@@ -275,7 +278,7 @@ ozone %>%
   theme_cowplot()
 ```
 
-<img src="test_for_difference_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="test_for_difference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" />
 
 Nothing outrageously non-linear there, so that also suggests we can safely use the *t*-test.
 

@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Data analysis for Newquay University Centre</title>
+  <title>Chapter 4 Fisher’s exact test | Data analysis for Newquay University Centre</title>
   <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data analysis for Newquay University Centre" />
+  <meta property="og:title" content="Chapter 4 Fisher’s exact test | Data analysis for Newquay University Centre" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
@@ -17,7 +17,7 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data analysis for Newquay University Centre" />
+  <meta name="twitter:title" content="Chapter 4 Fisher’s exact test | Data analysis for Newquay University Centre" />
   
   <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
@@ -33,8 +33,8 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="plot-your-data.html"/>
+<link rel="prev" href="chi-square-analysis.html"/>
+<link rel="next" href="correlation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -392,36 +392,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Data analysis for Newquay University Centre</h1>
-<p class="author"><em>Michael Hunt</em></p>
-<p class="date"><em>2024-05-31</em></p>
+<div id="fishers-exact-test" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Fisher’s exact test<a href="fishers-exact-test.html#fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Fisher’s Exact Test can be used in place of a chi-square test for independence in cases where counts are too low to make the chi-square approximation appropriate for calculating a <em>p</em>-value. A rule of thumb often used for this is that a chi-square test is no longer reliable when there are fewer than five or so counts in every cell of the contingency table.</p>
+<p>Ronald Fisher devised an exact test now named after him that could be used for this scenario in situations where the marginal totals (ie row totals and column totals) of the table were fixed by the experimenter.</p>
+<p>Say we were devising a phone app that we hoped could distingush between two visually similar species of grass given a photo. In an experiment, we show the app 10 cases of species A and 10 of species B and in each case we record the identification decision of the app. That will give four possibilities.</p>
+<ul>
+<li>species is A, app identifies it as A</li>
+<li>species is A, app identifies it as B</li>
+<li>species is B, app identifies is as B</li>
+<li>species is B, app identifies it as A</li>
+</ul>
+<p>The counts of these decisions can be recorded in a two-way, in this case <span class="math inline">\(2 \times 2\)</span>, table, in which each cell contains the counts recorded for each combination of the levels of each factor. In a test run, suppose the numbers recorded for each case were as follows:</p>
+<p><img src="fishers_exact_test_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Here we see that the row totals are set by the experimenter while the column totals are set by the app. Thus we see that the app is slightly more likely to choose A than B, regardless of the actual identity of the plant, since it went for A 11 times out of 20, and for B only 9 times.</p>
+<p>Our <strong>null hypothesis</strong> might be:</p>
+<p>The app has no ability to correctly distinguish species A from species B.</p>
+<p>We should not use a chi-square test for independence here since the numbers in two of the cells are less than 5.</p>
+<p>In the Fisher’s Exact Test, we accept that the marginal totals are as observed. With this constraint we then determine the probability of getting every possible table of cells, under the null hypothesis that the two factors are independent of each other. The <em>p</em>-value for (lack of) independence of the two variables is then the cumulative sum of the probabilities of getting the table we actually got, plus those of tables that are even less likely. That is just what <em>p</em>-values are - the probabiliy of gettting the data you got, or more extreme data, <em>if</em> the null hypothesis is true.</p>
+<p>To do this, we notice that if the column and row totals have been fixed in advance, then only one of the cell values of the table is independent. We can choose any cell. Once this is known, all the others can be determined, using this first value and the marginal totals. It turns that we can treat this number as a random variable that varies with probabilities governed by the <strong>hypergeometric</strong> distribution. We can thus use this distribution to calculate the probability of getting any possible table, given the row and column totals.</p>
+<p>Let’s see how this works.</p>
+<div id="the-hypergeometric-function" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> The Hypergeometric Function<a href="fishers-exact-test.html#the-hypergeometric-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine an urn with <em>N</em> balls, <em>K</em> of them white, the rest, <em>N</em>-<em>K</em> of them, black.</p>
+<p>Draw a sample of <em>n</em> balls <em>without</em> replacement - that is, don’t put a ball back in the urn once it has been taken out.</p>
+<p>Let <em>x</em> be the number of white balls in the sample.</p>
+<p><img src="fishers_exact_test_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><em>x</em> is a random variable that follows a <em>hypergeometric</em> (<em>N</em>, <em>K</em>, <em>n</em>) distribution:</p>
+<p><span class="math display">\[
+\text{P}(X=x)=\frac{{K \choose x} {{N-K} \choose {N-x}}}{N\choose n}
+\]</span></p>
+<p>Here, terms like <span class="math inline">\(K\choose x\)</span> refer to the number of ways that <em>n</em> objects can be chosen from a collection of <em>N</em> objects. For details, see any book on proability, but the deatils need not concern us here. This tells us the probability that we will get <em>x</em> white balls if we draw <em>n</em> balls without replacement (each ball that is drawn is not put back) from an urn that at first contains <em>N</em> balls, <em>K</em> of them white.</p>
+<p>For example, if we have an urn with <em>N</em> = 20 balls, <em>K</em> = 11 of them white, the remaining <em>N</em> - <em>K</em> = 9 of them black, and draw <em>n</em> = 10 balls without replacement, the probability that <em>x</em> = 7 of these will be white is given by</p>
+<p><span class="math display">\[
+\begin{align*}
+N=20, K&amp;=11, n=10, x=7\\
+\\
+\text{P}(X=7)&amp; =\frac{{K \choose x} {{N-K} \choose {N-x}}}{N\choose n}\\
+&amp;=\frac{{11 \choose 7} {{20-11} \choose {20-7}}}{20\choose 10}\\
+&amp;= 0.014
+\end{align*}
+\]</span>
+Here, we calculated the probability of getting <span class="math inline">\(x\)</span> <em>given</em> the number <span class="math inline">\(K\)</span> of white balls in the urn, which is one column total of the table, the number <span class="math inline">\(n\)</span> of balls that were sampled, which is one row total, and the total number <span class="math inline">\(N\)</span> of balls in the urn. Given these three numbers we know the other column total, which must be <span class="math inline">\(N-K\)</span>, and the other row total which must be <span class="math inline">\(N-n\)</span>. These are the numbers of balls that were not sampled and the number of black balls in the urn, respectively.</p>
+<p>Further, given that these row and column totals are all known, if we get <span class="math inline">\(x\)</span> white balls among the <span class="math inline">\(n\)</span> balls that we take from the urn, we also know the other three values in the table. That is we know the number of black balls that came out, and the numbers of white and black balls that must still be in the urn.</p>
+<p>In other words, when we calculate the probability of getting a particular number <span class="math inline">\(x\)</span> of white balls from the urn, out of <span class="math inline">\(n\)</span> that we drew altogether, given that the urn contains <span class="math inline">\(K\)</span> white balls and <span class="math inline">\(N\)</span> balls altogether, we are calculating the probability of getting a particular set of four values in the <span class="math inline">\(2 \times 2\)</span> table.</p>
+<p>Note too that when balls are sampled from the urn we do not preferentially sample white or black balls: we would expect the ratio of colours sampled to be roughly equal to the ratio of colours actually in the urn.</p>
+<p>This is precisely the scenario for our app data under the null hypothesis of no association between the truth and the app’s decision. We know how many times it decided on Species A (ie we know one column total of our table, let’s call it <span class="math inline">\(K = 11\)</span>), we know how many seedlings of species A we actually had (so that’s one row total, let’s call it <span class="math inline">\(n = 10\)</span>) and we know how many seedlings we had altogether: <span class="math inline">\(N = 20\)</span>. Therefore, just as with the urn, we also know the other row and column totals, which must be 10 and 9 respectively. We find that the app decided on species A just 3 times. Convince yourself that knowing all these numbers means that the other entries in the table (top right, and the bottom row) are now also known.</p>
+<p>Thus if we want to calculate the probability of getting precisely this table, that will be the same as the probability of deciding there were 3 white seedlings since that number fixes the other three entries in the table.</p>
+<p>And finally, and more precisely, if we want to calculate the probability of our app getting this table of results <em>given</em> that its decision for any seedling is independenty of the truth for that seedling, then we have exactly the same set-up asfor the urn, and we can use the hypergeometric function to calculate the probability of getting any particular table of results.</p>
+<p>In case you are worried, <em>we</em> will not normally use the hypergeometric function directly, nor de we even need to know it is being used. We can use the R runction <code>fisher.test()</code>: see below.</p>
 </div>
-<div id="welcome" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Welcome<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This book is intended to help anyone who wants to analyse their data in a scientific context. It is aimed in particular at those studying CORN276 Research Methods and GIS for Zoology, CORN4004 Action Reserch Project and CORN328 Honours Project at Newquay University Centre, but we hope it will be of interest and use to anyone with similar needs.</p>
-<p>We will touch on every stage of your analysis, from designing the spreadsheet where you will first keep your data, to summarising the data, plotting it and subjecting it to whatever statistical test is appropriate. Finally we will learn how to interpet the output of these tests and then report this in language appropriate for a scientific report.</p>
-<div id="usage" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Usage<a href="index.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em> start with a first-level heading: <code># A good chapter</code>, and can contain one (and only one) first-level heading.</p>
-<p>Use second-level and higher headings within chapters like: <code>## A short section</code> or <code>### An even shorter section</code>.</p>
-<p>The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
+<div id="hypergeometric-distribution-in-r" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Hypergeometric Distribution in R<a href="fishers-exact-test.html#hypergeometric-distribution-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>However if you are interested in the hypergeometric function, it is catered for in R like many other distributions by a family of four functions:</p>
+<ul>
+<li><code>dhyper(x, m, n, k)</code>.</li>
+<li><code>phyper(q, m, n, k)</code>.</li>
+<li><code>qhyper(p, m, n, k)</code>.</li>
+<li><code>rhyper(nn, m, n, k)</code>.</li>
+</ul>
+<p>where, in R:</p>
+<ul>
+<li>m = number of white balls in urn<br />
+</li>
+<li>n = number of black balls in urn.</li>
+<li>k = number of balls sampled (without replacement).</li>
+<li>x = number of white balls in sample.</li>
+<li>nn= number of balls in urn = m + n</li>
+</ul>
+<p>For further information on the use of any of these, type the name of the function preceded by a question mark into the console pane, bottom left. Help will then appear in the Help pane, bottom right.</p>
+<p>In our example, to calculate the probability of a given table of results,</p>
+<p>dhyper(r1c1, col1, nn-col1, row1)</p>
 </div>
-<div id="render-book" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Render book<a href="index.html#render-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can render the HTML version of this example book without changing anything:</p>
-<ol style="list-style-type: decimal">
-<li><p>Find the <strong>Build</strong> pane in the RStudio IDE, and</p></li>
-<li><p>Click on <strong>Build Book</strong>, then select your output format, or select “All formats” if you’d like to use multiple formats from the same book source files.</p></li>
-</ol>
-<p>Or build the book from the R console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>()</span></code></pre></div>
-<p>To render this example to PDF as a <code>bookdown::pdf_book</code>, you’ll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
+<div id="back-to-fishers-exact-test" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Back to Fisher’s Exact Test<a href="fishers-exact-test.html#back-to-fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First we will go through all the steps manually just so you can see what is going on under the hood of a Fisher’s Exact Test, then we will do the test in R.</p>
+<p>In this test we</p>
+<ul>
+<li>Assume the null hypothesis (independence) to be true.</li>
+<li>Constrain the marginal counts to be as observed<br />
+</li>
+<li>Calculate the probability of the observed table, given the null hypothesis</li>
+</ul>
+<p>In the case of the example, that means that we should calculate</p>
+<p><span class="math display">\[
+P(\text{observed table}|H_0) = P(X=7|H_0)\\
+X ∼ \text{Hypergeometric} (N=20, K=11, n=10)
+\]</span>
+and then</p>
+<ul>
+<li>In the same way we calculate the probabilities of all possible tables, given the constraints of the marginal totals, then we</li>
+<li>Sum the probabilities of all tables that are as or more ‘extreme’ than the observed table ie whose probability is less than or equal to that of the observed table.</li>
+<li>The resulting sum is the <em>p</em>-value of the observed table, given the marginal totals.<br />
+</li>
+<li>If this <em>p</em>-value is less than a predetermined threshold value (the value chosen is usually 0.05) then we reject the null hypothesis and regard the data as providing evidence for an association between the factors. That is we reject the idea that they are independent of each other. In the case presented above, that means we reject the idea</li>
+</ul>
 </div>
-<div id="preview-book" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Preview book<a href="index.html#preview-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in “Preview book”, or from the R console:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span></code></pre></div>
+<div id="example-1" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Example<a href="fishers-exact-test.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the figure below we show all possible tables, along with their respective <em>p</em>-values, calculate using the hypergeometric function. The table of the actual results obtained is picked out in colour. We see that tables</p>
+<p><img src="fishers_exact_test_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We see that tables a), b), c), h) (the actual results), i) and j) all have <em>p</em>-values equal to or less than that of the actual results. The combined total of these <em>p</em>-values is 0.06978.</p>
+<p>This <em>p</em>-value is bigger than 0.05 so we would normally fail to reject the null hypothesis that there is no association between the two factors. There is no evidence from these data that the app does any better than guessing whether a plant is species A or species B!</p>
+</div>
+<div id="fishers-exact-test-in-r" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Fisher’s Exact Test in R<a href="fishers-exact-test.html#fishers-exact-test-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we already know the four counts for our <span class="math inline">\(2 \times 2\)</span> table we can create a <span class="math inline">\(2 \times 2\)</span> matrix of them like this:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="fishers-exact-test.html#cb55-1" tabindex="-1"></a>app.mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">2</span>),<span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb55-2"><a href="fishers-exact-test.html#cb55-2" tabindex="-1"></a>app.mat</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    3    7
+## [2,]    8    2</code></pre>
+<p>If we had the data in a tidy data frame like we had for the ladybird data we can convert it into a matrix using the <code>xtabs()</code> command in the same way as we did there.</p>
+<p>We use this matrix as the argument of the <code>fisher.test()</code> function:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="fishers-exact-test.html#cb57-1" tabindex="-1"></a><span class="fu">fisher.test</span>(app.mat)</span></code></pre></div>
+<pre><code>## 
+##  Fisher&#39;s Exact Test for Count Data
+## 
+## data:  app.mat
+## p-value = 0.06978
+## alternative hypothesis: true odds ratio is not equal to 1
+## 95 percent confidence interval:
+##  0.007870555 1.133635839
+## sample estimates:
+## odds ratio 
+##  0.1226533</code></pre>
+<p>That’s it! It’s a one liner, just like many statistical tests in R. You will see that this gives the same <em>p</em>-value that we have calculated manually.</p>
+</div>
+<div id="what-if-we-just-use-a-chi-square-test" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> What if we just use a chi-square test?<a href="fishers-exact-test.html#what-if-we-just-use-a-chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we use a chi-square test on this same data, R gives us a warning, because of the low values in the table:</p>
+<pre><code>## Warning in stats::chisq.test(x, y, ...): Chi-squared approximation may be
+## incorrect</code></pre>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  app.mat
+## X-squared = 3.2323, df = 1, p-value = 0.0722</code></pre>
+<p>This is a cautionary tale: you can use R to run this or that test on data even when the data are unsuitable for the test, and you will get an output, but the output may not be reliable. Here, at least, we are given a warning that alerts us to this possibility, and in fact our conclusion would be the same as it was when using the Fisher’s Exact Test, but that is not always the case. You need to think carefully as to whether a given test is the right one <em>before</em> you use it.</p>
+</div>
+<div id="why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Why not always use Fisher’s Exact Test instead of a chi-square test?<a href="fishers-exact-test.html#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Fisher’s Exact Test becomes computationally expensive when the number of tables for which a <em>p</em>-value has to be calculated becomes very large. This happens very quickly when each of the two factors has more than two levels, so that the contingency table is no longer <span class="math inline">\(2 \times 2\)</span> but <span class="math inline">\(3 \times 4\)</span> or <span class="math inline">\(4\times 6\)</span> and so on. However for <span class="math inline">\(2 \times 2\)</span> tables it works well and quickly for table cell values into the 1000s and is a perfectly valid alternative to the chi-squared test. But then, in that case, why not just use a chi-squared test? For large cell values this works well and anyone reading your work is more likely to be familiar with it than with the Fisher’s Exact Test.</p>
+</div>
+<div id="another-cautionary-note" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Another Cautionary Note<a href="fishers-exact-test.html#another-cautionary-note" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This leads us to think that the Fisher’s Exact Test is only really a better alternative to the chi-squared test when sample sizes are very small and the chi-squared approximation becomes invalid. However, think about it. If you have a small sample then it is likely that it is not very representative of the population from which it has been drawn, and that you will fail to detect any association that there may be between the two factors. The solution therefore, when you have a small sample, is likely not to say Hallelujah! and grasp the Fisher’s Test with glee, but, if you can, to get a bigger sample. However, if that is not possible and you are stuck with a small sample size, then a Fisher’s Exact Test of independence is more reliable than a chi-squared test.</p>
 
 </div>
 </div>
@@ -430,8 +546,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="plot-your-data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chi-square-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -462,7 +578,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/fishers_exact_test.Rmd",
 "text": "Edit"
 },
 "history": {
