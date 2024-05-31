@@ -2,11 +2,9 @@
 
 ```{r, include = FALSE}
 source("common.R")
-knitr::opts_chunk$set(fig.align="center")
-```
-
-```{r set-up, include = FALSE}
-knitr::opts_chunk$set(message=FALSE,warning=FALSE)
+knitr::opts_chunk$set(message=FALSE,
+                      warning=FALSE,
+                      fig.align="center")
 ```
 
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot` which is part of the larger `tidyverse` package. 

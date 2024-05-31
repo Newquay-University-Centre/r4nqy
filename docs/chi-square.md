@@ -6,7 +6,6 @@
 
 
 
-
 ## Chi-square goodness of fit test
 
 A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.
@@ -47,11 +46,11 @@ Let's do it: type the above command into the console window (bottom left). You w
 
 
 ```
-
-	Chi-squared test for given probabilities
-
-data:  c(130, 46)
-X-squared = 0.12121, df = 1, p-value = 0.7277
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  c(130, 46)
+## X-squared = 0.12121, df = 1, p-value = 0.7277
 ```
 
 This output is typical of tests done in R. We get the 'test statistic' whose name varies depending on the test. Here it is called `X-squared`, pronounced `chi-squared`. This is a number that the test calculates, based on the data you have given it. For the most part, we don't need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.
@@ -81,11 +80,11 @@ chisq.test(c(45,55),p=c(0.5,0.5)) # we could leave out the second argument here
 ```
 
 ```
-
-	Chi-squared test for given probabilities
-
-data:  c(45, 55)
-X-squared = 1, df = 1, p-value = 0.3173
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  c(45, 55)
+## X-squared = 1, df = 1, p-value = 0.3173
 ```
 
 
@@ -101,11 +100,11 @@ The expectation is that half the outcomes would be heads and half would be tails
 
 
 ```
-
-	Chi-squared test for given probabilities
-
-data:  c(45, 55)
-X-squared = 1, df = 1, p-value = 0.3173
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  c(45, 55)
+## X-squared = 1, df = 1, p-value = 0.3173
 ```
 
 The null hypothesis of this test is that heads and tails are equally likely, ie that the coin is fair. Under this null hypothesis the expected outcome is 50 heads and 50 tails. From the output of the R code we see that the p-value, the probability of getting an outcome as far or further from that, is 0.317. That is pretty high. Would you do anything if you knew that the probability of a bad (or worse) outcome was 0.317? In particular, this p-value is greater than 0.05, so we cannot reject the null hypothesis that the coin is fair. That is, even with a fair coin it is not at all unlikely that you would get head/tail numbers as different from 50/50 as 45/55 if you tossed the coin 100 times. That will happen about 1/3 of the time if you repeatedly do trials where you toss the coin 100 times.
@@ -140,8 +139,22 @@ What do you think a suitable hypothesis should be for  this investigation, and w
 
 
 
+```r
+# Load packages we need
+library(tidyverse)
+library(here)
+library(cowplot) # this makes your plots look nicer
+library(kableExtra)
+theme_set(theme_cowplot()) # this sets the cowplot theme to be the default theme.
+```
 
 
+```r
+# Import the data
+filepath<-here("data","ladybirds_morph_colour.csv")
+lady<-read_csv(filepath)
+#glimpse(lady)
+```
 
 ### Summarise the data. 
 
@@ -150,30 +163,59 @@ The data consist of counts of the number of ladybirds of each colour that were o
 Here is a summary of that data:
 
 
+```r
+lady.mat<-xtabs(number~Habitat + morph_colour, data=lady)
+lady.mat
 ```
-            morph_colour
-Habitat      black red
-  Industrial   115  85
-  Rural         30  70
+
+```
+##             morph_colour
+## Habitat      black red
+##   Industrial   115  85
+##   Rural         30  70
 ```
 
 
 
+```r
+# Calculate the totals of each colour in each habitat.
+totals<- lady |>
+  group_by(Habitat,morph_colour) |>
+  summarise (total.number = sum(number))
+# totals |>
+#   kbl() |>
+#   kable_styling(full_width=FALSE)
+totals
 ```
-# A tibble: 4 × 3
-# Groups:   Habitat [2]
-  Habitat    morph_colour total.number
-  <chr>      <chr>               <dbl>
-1 Industrial black                 115
-2 Industrial red                    85
-3 Rural      black                  30
-4 Rural      red                    70
+
+```
+## # A tibble: 4 × 3
+## # Groups:   Habitat [2]
+##   Habitat    morph_colour total.number
+##   <chr>      <chr>               <dbl>
+## 1 Industrial black                 115
+## 2 Industrial red                    85
+## 3 Rural      black                  30
+## 4 Rural      red                    70
 ```
 
 ### Plot the data. 
 Now that we have these totals we can use them to plot a bar chart of the data:
 
-<img src="chi-square_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" />
+
+```r
+# plot the data, with sensible colours
+totals |>
+  ggplot(aes(x = Habitat,y = total.number,fill=morph_colour))+
+  geom_col(position='dodge') +
+  labs(x="Habitat",
+       y="Count",
+       fill= "Colour") +
+  scale_fill_manual(values=c(black='#312626',red='#da1717')) + # this line manually sets the colours for us
+  theme(legend.position="none")
+```
+
+<img src="chi-square_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
 
 ### Interpret the graph before we do any 'stats'
 
@@ -184,11 +226,16 @@ Look at the plot - does it look as though the proportion of black to red ladybir
 To do a chi square test, it helps to set out these data as a 2 x 2 table:
 
 
+```r
+lady.mat<-xtabs(number~Habitat + morph_colour, data=lady)
+lady.mat
 ```
-            morph_colour
-Habitat      black red
-  Industrial   115  85
-  Rural         30  70
+
+```
+##             morph_colour
+## Habitat      black red
+##   Industrial   115  85
+##   Rural         30  70
 ```
 
 This kind of table is sometimes called a __contingency table__.
@@ -205,12 +252,16 @@ This is generally how statistical tests work. They take your data and use it in 
 When we run a chi-square test in R on the data in the table above it gives us this as output:
 
 
+```r
+chisq.test(lady.mat)
 ```
 
-	Pearson's Chi-squared test with Yates' continuity correction
-
-data:  lady.mat
-X-squared = 19.103, df = 1, p-value = 1.239e-05
+```
+## 
+## 	Pearson's Chi-squared test with Yates' continuity correction
+## 
+## data:  lady.mat
+## X-squared = 19.103, df = 1, p-value = 1.239e-05
 ```
 
 
@@ -234,11 +285,15 @@ You can skip this section if you are not interested in how the chi-square test w
 Let's recall the number of sightings of each colour of ladybird in each habitat:
 
 
+```r
+lady.mat
 ```
-            morph_colour
-Habitat      black red
-  Industrial   115  85
-  Rural         30  70
+
+```
+##             morph_colour
+## Habitat      black red
+##   Industrial   115  85
+##   Rural         30  70
 ```
 
 
@@ -254,9 +309,9 @@ Using this method, these are the four expected numbers for each combination of l
 
 
 ```
-      [,1]   [,2]
-[1,] 96.67 103.33
-[2,] 48.33  51.67
+##       [,1]   [,2]
+## [1,] 96.67 103.33
+## [2,] 48.33  51.67
 ```
 
 
@@ -301,7 +356,19 @@ To answer this we use the fact that the sampling distribution of $X^2$ is a chi-
 
 The p-value given in a chi-square test is the probability of getting a chi-squared statistic $X^2$ as big as or bigger than the one you actually got. This is the area under the chi-squared distribution with the appropriate number of degrees of freedom to the right of the test-statistic value $X^2$.
 
-<img src="chi-square_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" />
+
+```r
+xsquared<-19.1
+ggplot(data.frame(x = c(0,20)), aes(x = x)) + 
+  stat_function(fun = dchisq, args = list(df = 1)) + 
+  stat_function(fun = dchisq, args = list(df = 1), xlim = c(xsquared, 20),
+                  geom = "area", fill = "#84CA72", alpha = .2) +
+  scale_x_continuous(name = "", breaks = seq(0, 20,2)) +
+  geom_vline(xintercept=xsquared,linewidth=0.2,colour="gray80") +
+  theme_cowplot()
+```
+
+<img src="chi-square_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ### Why does the test statistic have this distribution?

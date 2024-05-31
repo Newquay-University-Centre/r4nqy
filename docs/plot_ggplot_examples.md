@@ -2,8 +2,6 @@
 
 
 
-
-
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot` which is part of the larger `tidyverse` package. 
 
 You will see that the code to do each plot is very similar, whatever the type of plot, and that plots can be built up from very basic forms to become really attractive, informative versions with very little additional effort.

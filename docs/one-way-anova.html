@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -384,11 +384,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this exercise we will carry out a method of analysis known as ANOVA - this is what is commonly used when you have one or more categorical variables, such as species, sex and so on, and a numerical response variable such as body mass and you want to know if there is a difference in the response variable between the categories.</p>
 <div id="load-packages-4" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Load packages<a href="one-way-anova.html#load-packages-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="one-way-anova.html#cb117-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation and plots, and more besides</span></span>
-<span id="cb117-2"><a href="one-way-anova.html#cb117-2" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># this is useful for diagnostics</span></span>
-<span id="cb117-3"><a href="one-way-anova.html#cb117-3" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for the palmer penguin data</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="one-way-anova.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data manipulation and plots, and more besides</span></span>
+<span id="cb1-2"><a href="one-way-anova.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># this is useful for diagnostics</span></span>
+<span id="cb1-3"><a href="one-way-anova.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for the palmer penguin data</span></span></code></pre></div>
 <p>The <code>palmerpenguins</code> package comes with two in-built data sets on penguins. The simplest of them is called <code>penguins</code> and is the one we will use in this exercise:</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="one-way-anova.html#cb118-1" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="one-way-anova.html#cb2-1" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
 <pre><code>## Rows: 344
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
@@ -403,9 +403,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="remove-observations-with-missing-values" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Remove observations with missing values<a href="one-way-anova.html#remove-observations-with-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can see from the first few values of the glimpse table that some rows have missing values (NAs). We need to decide what to do with them. Here we will simply remove them! Here is a way to remove any row that contains missing values in one column or another:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="one-way-anova.html#cb120-1" tabindex="-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb120-2"><a href="one-way-anova.html#cb120-2" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
-<span id="cb120-3"><a href="one-way-anova.html#cb120-3" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_clean)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="one-way-anova.html#cb4-1" tabindex="-1"></a>penguins_clean <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="one-way-anova.html#cb4-2" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
+<span id="cb4-3"><a href="one-way-anova.html#cb4-3" tabindex="-1"></a><span class="fu">glimpse</span>(penguins_clean)</span></code></pre></div>
 <pre><code>## Rows: 333
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
@@ -421,10 +421,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summary---group-by-species-and-sex" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Summary - group by species and sex<a href="one-way-anova.html#summary---group-by-species-and-sex" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here we use the famliar <code>group_by()</code> and <code>summarise()</code> construction to find the mean body mass for each combination of species and sex. We also calculate the standard error of those means and the number of individuals in each group.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="one-way-anova.html#cb122-1" tabindex="-1"></a>penguins_clean <span class="sc">|&gt;</span></span>
-<span id="cb122-2"><a href="one-way-anova.html#cb122-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
-<span id="cb122-3"><a href="one-way-anova.html#cb122-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_bm =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se_bm =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()) ) <span class="sc">|&gt;</span></span>
-<span id="cb122-4"><a href="one-way-anova.html#cb122-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="one-way-anova.html#cb6-1" tabindex="-1"></a>penguins_clean <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="one-way-anova.html#cb6-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="one-way-anova.html#cb6-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean_bm =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se_bm =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()) ) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="one-way-anova.html#cb6-4" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
 ##   species   sex        n mean_bm se_bm
 ##   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -439,15 +439,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plot-the-data-2" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Plot the data<a href="one-way-anova.html#plot-the-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To get further insight into these questions, we can plot the data. Here we will do a box plot</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="one-way-anova.html#cb124-1" tabindex="-1"></a>penguins_clean  <span class="sc">|&gt;</span></span>
-<span id="cb124-2"><a href="one-way-anova.html#cb124-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb124-3"><a href="one-way-anova.html#cb124-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb124-4"><a href="one-way-anova.html#cb124-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb124-5"><a href="one-way-anova.html#cb124-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
-<span id="cb124-6"><a href="one-way-anova.html#cb124-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Sex&quot;</span>) <span class="sc">+</span></span>
-<span id="cb124-7"><a href="one-way-anova.html#cb124-7" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
-<span id="cb124-8"><a href="one-way-anova.html#cb124-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb124-9"><a href="one-way-anova.html#cb124-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="one-way-anova.html#cb8-1" tabindex="-1"></a>penguins_clean  <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="one-way-anova.html#cb8-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="one-way-anova.html#cb8-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="one-way-anova.html#cb8-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb8-5"><a href="one-way-anova.html#cb8-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>,</span>
+<span id="cb8-6"><a href="one-way-anova.html#cb8-6" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Sex&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="one-way-anova.html#cb8-7" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="one-way-anova.html#cb8-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb8-9"><a href="one-way-anova.html#cb8-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.8</span>))</span></code></pre></div>
 <p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>What do you think now about size differences between species and the two sexes?</p>
 <p>There is a lot going on here, so let’s approach this more simply to begin with and concentrate solely on the difference between the females of the species.</p>
@@ -475,13 +475,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>For the penguin data, getting it was easy as it came with the <code>palmerpenguins</code> package.</p>
 <p>To prepare the data, we start with the full data set and narrow it down to just the females, using the <code>filter()</code> function, and again make sure there are no lines with missing values, using <code>drop_na()</code>. We save this cleaned data set in an object called <code>females</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="one-way-anova.html#cb125-1" tabindex="-1"></a>females <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb125-2"><a href="one-way-anova.html#cb125-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb125-3"><a href="one-way-anova.html#cb125-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="one-way-anova.html#cb9-1" tabindex="-1"></a>females <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="one-way-anova.html#cb9-2" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="one-way-anova.html#cb9-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code></pre></div>
 <p>Then let’s summarise these values to find the number of individuals, the mean body mass for each species, and the standard errors of those means:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="one-way-anova.html#cb126-1" tabindex="-1"></a>females <span class="sc">|&gt;</span></span>
-<span id="cb126-2"><a href="one-way-anova.html#cb126-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb126-3"><a href="one-way-anova.html#cb126-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean.mass_f =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se.mass_f =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="one-way-anova.html#cb10-1" tabindex="-1"></a>females <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="one-way-anova.html#cb10-2" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="one-way-anova.html#cb10-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">mean.mass_f =</span> <span class="fu">mean</span>(body_mass_g), <span class="at">se.mass_f =</span> <span class="fu">sd</span>(body_mass_g)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   species       n mean.mass_f se.mass_f
 ##   &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;     &lt;dbl&gt;
@@ -490,12 +490,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 Gentoo       58       4680.      37.0</code></pre>
 <p>We should inspect this summary table and see what we already think about whether the null hypothesis is likely to be rejected, or not.</p>
 <p>Now let’s plot them, using a box plot (but choose your favourite plot type):</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="one-way-anova.html#cb128-1" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
-<span id="cb128-2"><a href="one-way-anova.html#cb128-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb128-3"><a href="one-way-anova.html#cb128-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9ebcda&quot;</span>) <span class="sc">+</span>  <span class="co"># pick your favourise colour from https://colorbrewer2.org/</span></span>
-<span id="cb128-4"><a href="one-way-anova.html#cb128-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb128-5"><a href="one-way-anova.html#cb128-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb128-6"><a href="one-way-anova.html#cb128-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="one-way-anova.html#cb12-1" tabindex="-1"></a>females  <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="one-way-anova.html#cb12-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="one-way-anova.html#cb12-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;#9ebcda&quot;</span>) <span class="sc">+</span>  <span class="co"># pick your favourise colour from https://colorbrewer2.org/</span></span>
+<span id="cb12-4"><a href="one-way-anova.html#cb12-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb12-5"><a href="one-way-anova.html#cb12-5" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Body mass (g)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="one-way-anova.html#cb12-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>From the summary table and the plot, what do you think? Do the masses differ between the species?</p>
 </div>
@@ -507,14 +507,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="construct-the-model-1" class="section level3 hasAnchor" number="9.5.3">
 <h3><span class="header-section-number">9.5.3</span> Construct the model<a href="one-way-anova.html#construct-the-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="one-way-anova.html#cb129-1" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="one-way-anova.html#cb13-1" tabindex="-1"></a>females.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females)</span></code></pre></div>
 <p>Here the <code>lm()</code> function has done all the maths of the ANOVA, and we have saved the results of that in an object called <code>females.model</code>. Note the use of the formula <code>body_mass_g ~ species</code> as the first argument of the <code>lm()</code> function, where this means ‘body mass as a function of species’.</p>
 </div>
 <div id="is-the-model-valid" class="section level3 hasAnchor" number="9.5.4">
 <h3><span class="header-section-number">9.5.4</span> Is the model valid?<a href="one-way-anova.html#is-the-model-valid" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All linear models are only valid if the data meet a number of criteria. Chief among these for an ANOVA is that the spread of the data should be roughly the same in each subset, and that the data within each subset should be normally distributed around their respective mean values. Only if there conditions are met can be just go on and trust the output of the model. If they are not, we need to transform the data in some way until they are, or use a different test.</p>
 <p>There are various ways we can find out whether these consitions are met. A useful one is to do it graphically, and a useful way to do that is to use the <code>autoplot()</code> function from the <code>ggfortify</code> package. Let’s do it:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="one-way-anova.html#cb130-1" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="one-way-anova.html#cb14-1" tabindex="-1"></a><span class="fu">autoplot</span>(females.model) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="ANOVA_one_way_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>All four graphs presented here tell us something about the validity or not of our model. Here we will just focus on the upper two:</p>
 <ul>
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-overall-picture" class="section level3 hasAnchor" number="9.5.5">
 <h3><span class="header-section-number">9.5.5</span> The overall picture<a href="one-way-anova.html#the-overall-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First, we use the <code>anova()</code> function</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="one-way-anova.html#cb131-1" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="one-way-anova.html#cb15-1" tabindex="-1"></a><span class="fu">anova</span>(females.model)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: body_mass_g
@@ -548,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-detailed-picture" class="section level3 hasAnchor" number="9.5.6">
 <h3><span class="header-section-number">9.5.6</span> The detailed picture<a href="one-way-anova.html#the-detailed-picture" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We use the <code>summary()</code> function for this:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="one-way-anova.html#cb133-1" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="one-way-anova.html#cb17-1" tabindex="-1"></a><span class="fu">summary</span>(females.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = body_mass_g ~ species, data = females)
@@ -581,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.5.7</span> Post hoc tsts.<a href="one-way-anova.html#post-hoc-tsts." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A final step of most ANOVA analyses is to perform so-called post-hoc (‘after the fact’) tests which make pairwise comparisons between all possible pairs of levels, tell us what the differences are between those pairs and whether the differences are significant. Whatever method is used for this, it needs to take account of the danger of making Type-one errors that arises when multiple pair-wise tests are done.</p>
 <p>A commonly used function for doing this is Tukey’s Honest Signficant Difference: <code>TukeyHSD()</code></p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="one-way-anova.html#cb135-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="one-way-anova.html#cb19-1" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(body_mass_g <span class="sc">~</span> species, <span class="at">data =</span> females))</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 

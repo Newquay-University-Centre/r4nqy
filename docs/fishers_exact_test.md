@@ -3,12 +3,30 @@
 
 
 
+```r
+theme_no_axes<-function(){
+    theme(axis.line=element_blank(),
+        axis.text.x=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks=element_blank(),
+        axis.title.x=element_blank(),
+        axis.title.y=element_blank())
+}
+```
 
 
 
 
-
-
+```r
+library(tidyverse)
+library(here)
+library(readxl)
+library(janitor)
+library(ggfortify)
+library(cowplot)
+library(kableExtra)
+theme_set(theme_cowplot()+theme_no_axes())
+```
 
 Fisher's Exact Test can be used in place of a chi-square test for independence in cases where counts are too low to make the chi-square approximation appropriate for calculating a *p*-value.  A rule of thumb often used for this is that a chi-square test is no longer reliable when there are fewer than five or so counts in every cell of the contingency table.
 
@@ -24,9 +42,67 @@ Say we were devising a phone app that we hoped could  distingush between two vis
 The counts of these decisions can be recorded in a two-way, in this case $2 \times 2$, table, in which each cell contains the counts recorded for each combination of the levels of each factor. In a test run, suppose the numbers recorded for each case were as follows:
 
 
+```r
+# Results plot
+
+fet_table<-function(resultr1c1,nn,row1,col1,r1c1,minimal=FALSE,arrow=FALSE){
+
+  row2=nn-row1
+  col2=nn-col1
+  r1c2=row1-r1c1
+  r2c1=col1-r1c1
+  r2c2=nn-row1-col1+r1c1
+  
+  numbers_size<-ifelse(minimal,5,7)
+
+ct<-ggplot() + 
+  geom_rect(aes(xmin = 0.8, xmax = 5.2, ymin = 0.9, ymax = 3.1),colour="grey50",
+            fill=ifelse(r1c1==resultr1c1,"grey80","white")) +
+  scale_x_continuous(limits=c(ifelse(minimal,0.3,-3),ifelse(minimal,9,9))) +
+  scale_y_continuous(limits=c(ifelse(minimal,0.5,0),ifelse(minimal,3.5,5))) +
+  coord_fixed() +
+  annotate("text",x=c(2,4,2,4),y=c(2.5,2.5,1.5,1.5),label=c(r1c1,r1c2,r2c1,r2c2),
+           size=numbers_size,
+           colour=ifelse(r1c1==resultr1c1,"blue","black"))
 
 
-<img src="fishers_exact_test_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+if(!minimal){
+  ct <- ct +
+  annotate("text",x=c(5.8,5.8),y=c(2.5,1.5),label=c(row1,row2),size=numbers_size) + #row totals
+  annotate("text",x=c(2.0,4.0),y=c(0.5,0.5),label=c(col1,col2),size=numbers_size) + #column totals
+  annotate("text",x=5.8,y=0.5,label=nn,size=numbers_size) + # grand total
+  annotate("text",x=c(-0.0,-0.0),y=c(1.5,2.5),label=c("Sp. B","Sp. A"),size=numbers_size) + # row labels
+  annotate("text",x=c(2,4),y=c(3.5,3.5),label=c("Sp. A","Sp. B"),size=numbers_size) + # column labels
+  annotate("text",x=3,y=4.2,label="App Decision",colour="darkred",size=numbers_size) + # column title
+  annotate("text",x=-1.1,y=2,label="Truth",angle=90,colour="darkred",size=numbers_size)  # row title
+}
+
+#pval<-fisher.test(matrix(c(r1c1,r2c1,r1c2,r2c2),nrow=2))$p.value
+
+pval<-dhyper(r1c1, col1, nn-col1, row1)
+
+if(arrow){
+  ct <- ct +
+  geom_segment(aes(x=5.4,xend=6.5,y=2,yend=2),arrow=arrow(length=unit(2,"mm"),type="closed")) +
+  annotate("text",x=6.7,y=2,label="italic(p)",size=3.5,hjust=0,parse=TRUE)  + # p value
+  annotate("text",x=7.0,y=2,label=paste(" = ",round(pval,5)),size=3.5,hjust=0)  # p value
+}
+
+  
+list(ct,pval)
+
+}
+```
+
+
+
+```r
+resultr1c1=3
+results_obtained_plot<-fet_table(resultr1c1=resultr1c1,nn=20,row1=10,col1=11,r1c1=resultr1c1,minimal=FALSE,arrow=FALSE)
+results_obtained_plot[[1]]
+```
+
+<img src="fishers_exact_test_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" />
 
 
 
@@ -54,7 +130,21 @@ Draw a sample of *n* balls *without* replacement - that is, don't put a ball bac
 
 Let *x* be the number of white balls in the sample.
 
-<img src="fishers_exact_test_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
+# Symbols plot
+ggplot() + 
+  geom_rect(aes(xmin = 0.8, xmax = 5.2, ymin = 0.9, ymax = 3.1),colour="grey50",fill="white") +
+  scale_x_continuous(limits=c(-2,7)) +
+  scale_y_continuous(limits=c(0,5)) +
+  annotate("text",x=c(-0.7,-0.7,2,2,2,2,4,4,4,4,5.8,5.8,5.8,3),
+           y=c(1.5,2.5,0.5,1.5,2.5,3.5,0.5,1.5,2.5,3.5,0.5,1.5,2.5,4.2),
+           label=c("not sampled","sampled","K","","x","white","N-K","","","black","N","N-n","n","In urn"),
+           size=7) +
+  coord_fixed()
+```
+
+<img src="fishers_exact_test_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 
 *x* is a random variable that follows a *hypergeometric* (*N*, *K*, *n*)  distribution:
 
@@ -144,8 +234,26 @@ and then
 In the figure below we show all possible tables, along with their respective *p*-values, calculate using the hypergeometric function. The table of the actual results obtained is picked out in colour. We see that tables 
 
 
+```r
+resultr1c1<-3
+p1<-fet_table(resultr1c1,20,10,11,10,minimal=TRUE,arrow=TRUE)[[1]]
+p2<-fet_table(resultr1c1,20,10,11,9,minimal=TRUE,arrow=TRUE)[[1]]
+p3<-fet_table(resultr1c1,20,10,11,8,minimal=TRUE,arrow=TRUE)[[1]]
+p4<-fet_table(resultr1c1,20,10,11,7,minimal=TRUE,arrow=TRUE)[[1]]
+p5<-fet_table(resultr1c1,20,10,11,6,minimal=TRUE,arrow=TRUE)[[1]]
+p6<-fet_table(resultr1c1,20,10,11,5,minimal=TRUE,arrow=TRUE)[[1]]
+p7<-fet_table(resultr1c1,20,10,11,4,minimal=TRUE,arrow=TRUE)[[1]]
+p8<-fet_table(resultr1c1,20,10,11,3,minimal=TRUE,arrow=TRUE)[[1]]
+p9<-fet_table(resultr1c1,20,10,11,2,minimal=TRUE,arrow=TRUE)[[1]]
+p10<-fet_table(resultr1c1,20,10,11,1,minimal=TRUE,arrow=TRUE)[[1]]
+```
 
-<img src="fishers_exact_test_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
+
+```r
+plot_grid(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,ncol=2,scale=1.5,greedy=TRUE,byrow=FALSE,labels=c("a","f","b","g","c","h","d","i","e","j"))
+```
+
+<img src="fishers_exact_test_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
 
 We see that tables a), b), c), h) (the actual results), i) and j) all have *p*-values equal to or less than that of the actual results. The combined total of these *p*-values is 0.06978.
 
@@ -195,6 +303,10 @@ That's it! It's a one liner, just like many statistical tests in R. You will see
 
 If we use a chi-square test on this same data, R gives us a warning, because of the low values in the table:
 
+
+```r
+chisq.test(app.mat)
+```
 
 ```
 ## Warning in stats::chisq.test(x, y, ...): Chi-squared approximation may be

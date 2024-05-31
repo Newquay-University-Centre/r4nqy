@@ -2,8 +2,6 @@
 
 
 
-
-
 This exercise sheet is heavily indebted to Michael Crawley's *Statistics: An introduction using R*, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the `tidyverse` dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey's *Getting Started in R: An introduction for biologists*, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.
 
 

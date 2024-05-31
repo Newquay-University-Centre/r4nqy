@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -411,35 +411,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Concentrations of aluminum (in micrograms of Al per gram of wood) are shown below.</p>
 <div id="load-packages-2" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Load packages<a href="paired-tests-for-difference.html#load-packages-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="paired-tests-for-difference.html#cb80-1" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span>
-<span id="cb80-2"><a href="paired-tests-for-difference.html#cb80-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb80-3"><a href="paired-tests-for-difference.html#cb80-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># to make the plots look nice</span></span>
-<span id="cb80-4"><a href="paired-tests-for-difference.html#cb80-4" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># for making nice tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="paired-tests-for-difference.html#cb1-1" tabindex="-1"></a><span class="fu">library</span> (tidyverse)</span>
+<span id="cb1-2"><a href="paired-tests-for-difference.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="paired-tests-for-difference.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># to make the plots look nice</span></span>
+<span id="cb1-4"><a href="paired-tests-for-difference.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(gt) <span class="co"># for making nice tables</span></span></code></pre></div>
 </div>
 <div id="load-data" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Load data<a href="paired-tests-for-difference.html#load-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="paired-tests-for-difference.html#cb81-1" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;poplars-paired_np.csv&quot;</span>)</span>
-<span id="cb81-2"><a href="paired-tests-for-difference.html#cb81-2" tabindex="-1"></a>poplars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="paired-tests-for-difference.html#cb82-1" tabindex="-1"></a><span class="co"># table of the data</span></span>
-<span id="cb82-2"><a href="paired-tests-for-difference.html#cb82-2" tabindex="-1"></a>poplars <span class="sc">|&gt;</span></span>
-<span id="cb82-3"><a href="paired-tests-for-difference.html#cb82-3" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="cbiaqpsiij" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cbiaqpsiij table {
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="paired-tests-for-difference.html#cb2-1" tabindex="-1"></a>filepath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;poplars-paired_np.csv&quot;</span>)</span>
+<span id="cb2-2"><a href="paired-tests-for-difference.html#cb2-2" tabindex="-1"></a>poplars <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(filepath,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="paired-tests-for-difference.html#cb3-1" tabindex="-1"></a><span class="co"># table of the data</span></span>
+<span id="cb3-2"><a href="paired-tests-for-difference.html#cb3-2" tabindex="-1"></a>poplars <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="paired-tests-for-difference.html#cb3-3" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="fmtqmgstyd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fmtqmgstyd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cbiaqpsiij thead, #cbiaqpsiij tbody, #cbiaqpsiij tfoot, #cbiaqpsiij tr, #cbiaqpsiij td, #cbiaqpsiij th {
+#fmtqmgstyd thead, #fmtqmgstyd tbody, #fmtqmgstyd tfoot, #fmtqmgstyd tr, #fmtqmgstyd td, #fmtqmgstyd th {
   border-style: none;
 }
 
-#cbiaqpsiij p {
+#fmtqmgstyd p {
   margin: 0;
   padding: 0;
 }
 
-#cbiaqpsiij .gt_table {
+#fmtqmgstyd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -465,12 +465,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_caption {
+#fmtqmgstyd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cbiaqpsiij .gt_title {
+#fmtqmgstyd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#cbiaqpsiij .gt_subtitle {
+#fmtqmgstyd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -494,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#cbiaqpsiij .gt_heading {
+#fmtqmgstyd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -506,13 +506,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_bottom_border {
+#fmtqmgstyd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_col_headings {
+#fmtqmgstyd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_col_heading {
+#fmtqmgstyd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -547,7 +547,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#cbiaqpsiij .gt_column_spanner_outer {
+#fmtqmgstyd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -559,15 +559,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#cbiaqpsiij .gt_column_spanner_outer:first-child {
+#fmtqmgstyd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cbiaqpsiij .gt_column_spanner_outer:last-child {
+#fmtqmgstyd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cbiaqpsiij .gt_column_spanner {
+#fmtqmgstyd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -579,11 +579,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#cbiaqpsiij .gt_spanner_row {
+#fmtqmgstyd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cbiaqpsiij .gt_group_heading {
+#fmtqmgstyd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -609,7 +609,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#cbiaqpsiij .gt_empty_group_heading {
+#fmtqmgstyd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -624,15 +624,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#cbiaqpsiij .gt_from_md > :first-child {
+#fmtqmgstyd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cbiaqpsiij .gt_from_md > :last-child {
+#fmtqmgstyd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cbiaqpsiij .gt_row {
+#fmtqmgstyd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -651,7 +651,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#cbiaqpsiij .gt_stub {
+#fmtqmgstyd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -664,7 +664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#cbiaqpsiij .gt_stub_row_group {
+#fmtqmgstyd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -678,15 +678,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#cbiaqpsiij .gt_row_group_first td {
+#fmtqmgstyd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cbiaqpsiij .gt_row_group_first th {
+#fmtqmgstyd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cbiaqpsiij .gt_summary_row {
+#fmtqmgstyd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -696,16 +696,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#cbiaqpsiij .gt_first_summary_row {
+#fmtqmgstyd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_first_summary_row.thick {
+#fmtqmgstyd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cbiaqpsiij .gt_last_summary_row {
+#fmtqmgstyd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,7 +715,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_grand_summary_row {
+#fmtqmgstyd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -725,7 +725,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#cbiaqpsiij .gt_first_grand_summary_row {
+#fmtqmgstyd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +735,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_last_grand_summary_row_top {
+#fmtqmgstyd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,11 +745,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_striped {
+#fmtqmgstyd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cbiaqpsiij .gt_table_body {
+#fmtqmgstyd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -758,7 +758,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_footnotes {
+#fmtqmgstyd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -772,7 +772,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_footnote {
+#fmtqmgstyd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -781,7 +781,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#cbiaqpsiij .gt_sourcenotes {
+#fmtqmgstyd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -795,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#cbiaqpsiij .gt_sourcenote {
+#fmtqmgstyd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -803,63 +803,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#cbiaqpsiij .gt_left {
+#fmtqmgstyd .gt_left {
   text-align: left;
 }
 
-#cbiaqpsiij .gt_center {
+#fmtqmgstyd .gt_center {
   text-align: center;
 }
 
-#cbiaqpsiij .gt_right {
+#fmtqmgstyd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cbiaqpsiij .gt_font_normal {
+#fmtqmgstyd .gt_font_normal {
   font-weight: normal;
 }
 
-#cbiaqpsiij .gt_font_bold {
+#fmtqmgstyd .gt_font_bold {
   font-weight: bold;
 }
 
-#cbiaqpsiij .gt_font_italic {
+#fmtqmgstyd .gt_font_italic {
   font-style: italic;
 }
 
-#cbiaqpsiij .gt_super {
+#fmtqmgstyd .gt_super {
   font-size: 65%;
 }
 
-#cbiaqpsiij .gt_footnote_marks {
+#fmtqmgstyd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cbiaqpsiij .gt_asterisk {
+#fmtqmgstyd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cbiaqpsiij .gt_indent_1 {
+#fmtqmgstyd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cbiaqpsiij .gt_indent_2 {
+#fmtqmgstyd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cbiaqpsiij .gt_indent_3 {
+#fmtqmgstyd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cbiaqpsiij .gt_indent_4 {
+#fmtqmgstyd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cbiaqpsiij .gt_indent_5 {
+#fmtqmgstyd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -938,27 +938,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidy-the-data" class="section level3 hasAnchor" number="7.2.4">
 <h3><span class="header-section-number">7.2.4</span> Tidy the data<a href="paired-tests-for-difference.html#tidy-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In this case there is work to do before we can plot the data. The problem is that the data is ‘untidy’. The two levels of the factor <code>month</code> are spread across two columns, August and November. For plotting purposes it will be useful to ‘tidy’ the data so that there is only one column containing both levels of <code>month</code> and another containing the aluminium concentrations. The function <code>pivot_longer()</code> can do this for us:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="paired-tests-for-difference.html#cb83-1" tabindex="-1"></a>poplars_tidy <span class="ot">&lt;-</span> poplars <span class="sc">|&gt;</span></span>
-<span id="cb83-2"><a href="paired-tests-for-difference.html#cb83-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span> (August<span class="sc">:</span>November,<span class="at">names_to=</span><span class="st">&quot;month&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;Al_conc&quot;</span>)</span>
-<span id="cb83-3"><a href="paired-tests-for-difference.html#cb83-3" tabindex="-1"></a><span class="fu">head</span>(poplars_tidy,<span class="dv">8</span>) <span class="sc">|&gt;</span></span>
-<span id="cb83-4"><a href="paired-tests-for-difference.html#cb83-4" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
-<div id="yryvpnysui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yryvpnysui table {
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="paired-tests-for-difference.html#cb4-1" tabindex="-1"></a>poplars_tidy <span class="ot">&lt;-</span> poplars <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="paired-tests-for-difference.html#cb4-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span> (August<span class="sc">:</span>November,<span class="at">names_to=</span><span class="st">&quot;month&quot;</span>,<span class="at">values_to=</span><span class="st">&quot;Al_conc&quot;</span>)</span>
+<span id="cb4-3"><a href="paired-tests-for-difference.html#cb4-3" tabindex="-1"></a><span class="fu">head</span>(poplars_tidy,<span class="dv">8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="paired-tests-for-difference.html#cb4-4" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div>
+<div id="txjtqiiowr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#txjtqiiowr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yryvpnysui thead, #yryvpnysui tbody, #yryvpnysui tfoot, #yryvpnysui tr, #yryvpnysui td, #yryvpnysui th {
+#txjtqiiowr thead, #txjtqiiowr tbody, #txjtqiiowr tfoot, #txjtqiiowr tr, #txjtqiiowr td, #txjtqiiowr th {
   border-style: none;
 }
 
-#yryvpnysui p {
+#txjtqiiowr p {
   margin: 0;
   padding: 0;
 }
 
-#yryvpnysui .gt_table {
+#txjtqiiowr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -984,12 +984,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_caption {
+#txjtqiiowr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yryvpnysui .gt_title {
+#txjtqiiowr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1001,7 +1001,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#yryvpnysui .gt_subtitle {
+#txjtqiiowr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1013,7 +1013,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#yryvpnysui .gt_heading {
+#txjtqiiowr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1025,13 +1025,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_bottom_border {
+#txjtqiiowr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_col_headings {
+#txjtqiiowr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1046,7 +1046,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_col_heading {
+#txjtqiiowr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1066,7 +1066,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#yryvpnysui .gt_column_spanner_outer {
+#txjtqiiowr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1078,15 +1078,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#yryvpnysui .gt_column_spanner_outer:first-child {
+#txjtqiiowr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yryvpnysui .gt_column_spanner_outer:last-child {
+#txjtqiiowr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yryvpnysui .gt_column_spanner {
+#txjtqiiowr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1098,11 +1098,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#yryvpnysui .gt_spanner_row {
+#txjtqiiowr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yryvpnysui .gt_group_heading {
+#txjtqiiowr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1128,7 +1128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#yryvpnysui .gt_empty_group_heading {
+#txjtqiiowr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1143,15 +1143,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#yryvpnysui .gt_from_md > :first-child {
+#txjtqiiowr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yryvpnysui .gt_from_md > :last-child {
+#txjtqiiowr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yryvpnysui .gt_row {
+#txjtqiiowr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1170,7 +1170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#yryvpnysui .gt_stub {
+#txjtqiiowr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1183,7 +1183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yryvpnysui .gt_stub_row_group {
+#txjtqiiowr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1197,15 +1197,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#yryvpnysui .gt_row_group_first td {
+#txjtqiiowr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yryvpnysui .gt_row_group_first th {
+#txjtqiiowr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yryvpnysui .gt_summary_row {
+#txjtqiiowr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1215,16 +1215,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yryvpnysui .gt_first_summary_row {
+#txjtqiiowr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_first_summary_row.thick {
+#txjtqiiowr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yryvpnysui .gt_last_summary_row {
+#txjtqiiowr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1234,7 +1234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_grand_summary_row {
+#txjtqiiowr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1244,7 +1244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yryvpnysui .gt_first_grand_summary_row {
+#txjtqiiowr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1254,7 +1254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_last_grand_summary_row_top {
+#txjtqiiowr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1264,11 +1264,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_striped {
+#txjtqiiowr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yryvpnysui .gt_table_body {
+#txjtqiiowr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1277,7 +1277,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_footnotes {
+#txjtqiiowr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1291,7 +1291,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_footnote {
+#txjtqiiowr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1300,7 +1300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yryvpnysui .gt_sourcenotes {
+#txjtqiiowr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1314,7 +1314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#yryvpnysui .gt_sourcenote {
+#txjtqiiowr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1322,63 +1322,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#yryvpnysui .gt_left {
+#txjtqiiowr .gt_left {
   text-align: left;
 }
 
-#yryvpnysui .gt_center {
+#txjtqiiowr .gt_center {
   text-align: center;
 }
 
-#yryvpnysui .gt_right {
+#txjtqiiowr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yryvpnysui .gt_font_normal {
+#txjtqiiowr .gt_font_normal {
   font-weight: normal;
 }
 
-#yryvpnysui .gt_font_bold {
+#txjtqiiowr .gt_font_bold {
   font-weight: bold;
 }
 
-#yryvpnysui .gt_font_italic {
+#txjtqiiowr .gt_font_italic {
   font-style: italic;
 }
 
-#yryvpnysui .gt_super {
+#txjtqiiowr .gt_super {
   font-size: 65%;
 }
 
-#yryvpnysui .gt_footnote_marks {
+#txjtqiiowr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yryvpnysui .gt_asterisk {
+#txjtqiiowr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yryvpnysui .gt_indent_1 {
+#txjtqiiowr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yryvpnysui .gt_indent_2 {
+#txjtqiiowr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yryvpnysui .gt_indent_3 {
+#txjtqiiowr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yryvpnysui .gt_indent_4 {
+#txjtqiiowr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yryvpnysui .gt_indent_5 {
+#txjtqiiowr .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1430,17 +1430,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Now we can plot the data as a box plot, with one box for August and one for November ie one for each level of the factor <code>month</code>. Had we not first tidied the data, we could not have done this.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="paired-tests-for-difference.html#cb84-1" tabindex="-1"></a>poplars_tidy <span class="sc">|&gt;</span></span>
-<span id="cb84-2"><a href="paired-tests-for-difference.html#cb84-2" tabindex="-1"></a>  <span class="co"># group = ID makes the lines join elements of each pair</span></span>
-<span id="cb84-3"><a href="paired-tests-for-difference.html#cb84-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> Al_conc, <span class="at">fill =</span> month, <span class="at">colour =</span> month)) <span class="sc">+</span> </span>
-<span id="cb84-4"><a href="paired-tests-for-difference.html#cb84-4" tabindex="-1"></a>  <span class="co"># alpa (= opacity) &lt; 1 in case any points are on top of each other</span></span>
-<span id="cb84-5"><a href="paired-tests-for-difference.html#cb84-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.size=</span><span class="dv">0</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb84-6"><a href="paired-tests-for-difference.html#cb84-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb84-7"><a href="paired-tests-for-difference.html#cb84-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>ID),<span class="at">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-8"><a href="paired-tests-for-difference.html#cb84-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,</span>
-<span id="cb84-9"><a href="paired-tests-for-difference.html#cb84-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Al conc.(mu g Al / g wood)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-10"><a href="paired-tests-for-difference.html#cb84-10" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb84-11"><a href="paired-tests-for-difference.html#cb84-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="paired-tests-for-difference.html#cb5-1" tabindex="-1"></a>poplars_tidy <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="paired-tests-for-difference.html#cb5-2" tabindex="-1"></a>  <span class="co"># group = ID makes the lines join elements of each pair</span></span>
+<span id="cb5-3"><a href="paired-tests-for-difference.html#cb5-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> Al_conc, <span class="at">fill =</span> month, <span class="at">colour =</span> month)) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="paired-tests-for-difference.html#cb5-4" tabindex="-1"></a>  <span class="co"># alpa (= opacity) &lt; 1 in case any points are on top of each other</span></span>
+<span id="cb5-5"><a href="paired-tests-for-difference.html#cb5-5" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.size=</span><span class="dv">0</span>,<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="paired-tests-for-difference.html#cb5-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="paired-tests-for-difference.html#cb5-7" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>ID),<span class="at">colour =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="paired-tests-for-difference.html#cb5-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Month&quot;</span>,</span>
+<span id="cb5-9"><a href="paired-tests-for-difference.html#cb5-9" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Al conc.(mu g Al / g wood)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="paired-tests-for-difference.html#cb5-10" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb5-11"><a href="paired-tests-for-difference.html#cb5-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="paired_data_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Does it look as though the difference between the medians could plausibly be zero for the population? Or, put another way, if it was zero, how big a fluke would this sample be? That is what the p value actually tells us.</p>
 </div>
@@ -1448,7 +1448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.5</span> Check for normality of differences<a href="paired-tests-for-difference.html#check-for-normality-of-differences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we use the t-test, we need to check that it is OK to do so.
 The null hypothesis of the Shapiro-Wilk test is that the data set given to it is drawn from a normally distributed population.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="paired-tests-for-difference.html#cb85-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="paired-tests-for-difference.html#cb6-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(poplars<span class="sc">$</span>August<span class="sc">-</span>poplars<span class="sc">$</span>November)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -1456,7 +1456,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 ## W = 0.92667, p-value = 0.3081</code></pre>
 <p>The p value is very high. Thus we can reasonably assume that the differences between the August and November aluminium concentrations in the sample could plausibly have been drawn from a normally distributed population, despite the outlier value in the November sample. Thus we can reasonably test for difference using a paired t-test.</p>
 <p>We can do this in R using the function <code>t.test()</code>, where we give to the function both the August and the November data, knowing that each August value has a counterpart November value, and we set the argument <code>paired</code> to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="paired-tests-for-difference.html#cb87-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="paired-tests-for-difference.html#cb8-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -1478,7 +1478,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 <div id="the-non-parametric-alternative-the-wilcoxon-signed-rank-test" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> The non-parametric alternative: The Wilcoxon signed rank test<a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To be safe, because of that outlier, let us test for difference using the Wilcoxon signed rank test. In R this is done using the function <code>wilcox.test()</code>, with the argument <code>paired</code> set to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="paired-tests-for-difference.html#cb89-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="paired-tests-for-difference.html#cb10-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August, poplars<span class="sc">$</span>November, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 
@@ -1490,7 +1490,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 <div id="relation-to-one-sample-paired-test" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Relation to one-sample paired test<a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The two-sample paired tests as we have done above are the same as doing a one-sample test to see if the differences between the August and November paired values is different from zero. This is true whether we do a t-test or a Wilcoxon signed rank test.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="paired-tests-for-difference.html#cb91-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="paired-tests-for-difference.html#cb12-1" tabindex="-1"></a><span class="fu">t.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1502,7 +1502,7 @@ The null hypothesis of the Shapiro-Wilk test is that the data set given to it is
 ## sample estimates:
 ## mean of x 
 ##      -4.9</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="paired-tests-for-difference.html#cb93-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="paired-tests-for-difference.html#cb14-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(poplars<span class="sc">$</span>August <span class="sc">-</span> poplars<span class="sc">$</span>November, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">data =</span> poplars)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 

@@ -2,12 +2,11 @@
 
 ```{r, include = FALSE}
 source("common.R")
-knitr::opts_chunk$set(fig.align="center")
+knitr::opts_chunk$set(message=FALSE,
+                      warning=FALSE,
+                      fig.align="center")
 ```
 
-```{r,include=FALSE}
-knitr::opts_chunk$set(echo=FALSE,message=FALSE,warning=FALSE,comment=NA, fig.width=6, fig.height=6)
-```
 
 ```{r,include=FALSE}
 theme_no_axes<-function(){

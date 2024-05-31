@@ -2,8 +2,6 @@
 
 
 
-
-
 A class of analytical models that you will use this year and next go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
 
 Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. An important stage of any analysis that uses linear models is that these assumptions are checked, as part of the *Plot* -> *Model* -> *Check Assumptions* -> *Interpret* -> *Plot again* workflow.

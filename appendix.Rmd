@@ -18,7 +18,8 @@ source("common.R")
 Based on the very helpful revision chapter in [Modern Statistics for the Life Sciences, Alen Grafen and Rosie Hails, OUP](https://global.oup.com/ukhe/product/modern-statistics-for-the-life-sciences-9780199252312?cc=gb&lang=en&).
 
 
-```{r global-options, include=FALSE, echo=FALSE}
+```{r, include = FALSE}
+source("common.R")
 knitr::opts_chunk$set(fig.width=9,
                       fig.height=5,
                       fig.align='center',
