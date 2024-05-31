@@ -12,6 +12,7 @@ description: |
   The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.
 link-citations: yes
 github-repo: Newquay-University-Centre/r4nqy
+url: 'https\://newquay-university-centre.github.io/r4nqy/'
 ---
 
 
