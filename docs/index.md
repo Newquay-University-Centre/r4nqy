@@ -4,12 +4,11 @@ author: "Michael Hunt"
 date: "2024-05-31"
 site: bookdown::bookdown_site
 documentclass: book
+cover-image: images/logo/newquay_uc.png
 # bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
-  The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.
+description: "A work in progress"
 link-citations: yes
 github-repo: Newquay-University-Centre/r4nqy
 url: 'https\://newquay-university-centre.github.io/r4nqy/'
