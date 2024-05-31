@@ -2,6 +2,8 @@
 
 
 
+
+
 A class of analytical models that you will use this year and next go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
 
 Despite appearances, these models are all fundamentally linear models. They share a common framework for estimation (least squares) and a common set of criteria that the data must satisfy before they can be used. These criteria centre around the idea of normally distributed residuals. An important stage of any analysis that uses linear models is that these assumptions are checked, as part of the *Plot* -> *Model* -> *Check Assumptions* -> *Interpret* -> *Plot again* workflow.
@@ -62,7 +64,7 @@ plants |>
   theme_cowplot()
 ```
 
-<img src="simple_linear_regression_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="simple_linear_regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 
 From the plot, we note that:
 
@@ -96,7 +98,7 @@ Here is how you use it:
 autoplot(model_pgr, smooth.colour=NA) + theme_cowplot()
 ```
 
-<img src="simple_linear_regression_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="simple_linear_regression_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 
 The `theme_cowplot()` part is not necessary, but it gives the plots a nice look, so why not?
 
@@ -185,7 +187,7 @@ plants |>
   theme_cowplot()
 ```
 
-<img src="simple_linear_regression_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="simple_linear_regression_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 This gives both a straight line and the 'standard error' of that line - meaning, roughly speaking, the wiggle room within which the 'true' line , for the population as opposed to this sample drawn from it, probably lies.
 

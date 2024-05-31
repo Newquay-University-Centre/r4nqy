@@ -1,7 +1,12 @@
 # Simple linear regression
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, warning=FALSE)
+```{r, include = FALSE}
+source("common.R")
+knitr::opts_chunk$set(fig.align="center")
+```
+
+```{r set-up, include = FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE)
 ```
 
 A class of analytical models that you will use this year and next go under the name **General Linear Models**. They include linear regression, multiple regression, ANOVA, ANCOVA, Pearson correlation and t-tests.
