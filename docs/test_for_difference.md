@@ -108,8 +108,8 @@ Here we will calculate the number of replicates, the mean and the standard error
 
 
 ```r
-ozone.summary<-ozone %>%
-group_by(garden.location) %>%
+ozone.summary<-ozone |>
+group_by(garden.location) |>
 summarise(n = n(),
           mean.ozone = mean(ozone),
           se.ozone = sd(ozone)/sqrt(n()))
@@ -138,7 +138,7 @@ Here, we will
 
 
 ```r
-ozone %>%
+ozone |>
   ggplot(aes(x=ozone)) +
   geom_histogram(binwidth=10,fill="darkred")+
   facet_wrap(~garden.location,ncol=1) +
@@ -152,7 +152,7 @@ Instead of histograms, we could have drawn box plots:
 
 
 ```r
-ozone %>%
+ozone |>
   ggplot(aes(x=garden.location,y=ozone))+
   geom_boxplot()+
   labs(x="Garden Location",
@@ -169,7 +169,7 @@ or as a dot plot with standard errors of the mean included:
 
 # for this chart we will use the summary table that we created above.
 
-ozone.summary %>% 
+ozone.summary |> 
   ggplot(aes(x=garden.location,y=mean.ozone))+
   geom_point(size=3) +
   geom_errorbar(aes(ymin=mean.ozone-se.ozone,ymax=mean.ozone+se.ozone),width=0.1)+
@@ -225,13 +225,13 @@ shapiro.test(example1) # 100 samples drawn from a normally distributed populatio
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example1
-## W = 0.99102, p-value = 0.7462
+## W = 0.9914, p-value = 0.7761
 shapiro.test(example2) # 100 samples drawn from a uniformly (ie NOT normally) distributed population
 ## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example2
-## W = 0.94326, p-value = 0.0003064
+## W = 0.95359, p-value = 0.001442
 ```
 
 For the examples above, we see that Shapiro-Wilk test gave a hig *p*-value for the data that we knew *were* drawn from a normal distribution, an a very low *p*-value for the data that we knew were not.
@@ -246,8 +246,8 @@ We want to test each garden group for normality, so we group the data by locatio
 
 
 ```r
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise('Shapiro-Wilk p-value'=shapiro.test(ozone)$p.value)
 ## # A tibble: 2 × 2
 ##   garden.location `Shapiro-Wilk p-value`
@@ -270,7 +270,7 @@ A better type of plot for making this judgement call is the quantile-quantile or
 
 
 ```r
-ozone %>%
+ozone |>
   ggplot(aes(sample=ozone)) +
   stat_qq(colour="blue") +
   stat_qq_line() +
@@ -310,7 +310,7 @@ t.test(ozone~garden.location,data=ozone)
 ```
 
 ```r
-ozone %>% t_test(ozone~garden.location)
+ozone |> t_test(ozone~garden.location)
 ## # A tibble: 1 × 8
 ##   .y.   group1 group2    n1    n2 statistic    df        p
 ## * <chr> <chr>  <chr>  <int> <int>     <dbl> <dbl>    <dbl>
@@ -363,18 +363,18 @@ ggplot(ozone,(aes(x=ozone)))+
   theme_bw()
 
 # what are the means and standard deviations of ozone levels for each location?
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise(avg = mean(ozone),st_dev=sd(ozone))
 
 # are the ozone levels in each location normally distributed?
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise(sw=shapiro.test(ozone)$p.value)
 
 # graphical check for normality:
 # quantile-quantile plots for ozone levels in each location
-ozone %>%
+ozone |>
   ggplot(aes(sample=ozone)) +
   stat_qq(colour="blue") +
   stat_qq_line() +

@@ -11,7 +11,7 @@ description: |
   This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
   The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: Newquay-University-Centre/r4nwqy
 ---
 
 

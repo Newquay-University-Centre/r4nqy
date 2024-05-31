@@ -55,8 +55,6 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -144,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -433,22 +431,22 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <div id="load-packages-1" class="section level3 hasAnchor" number="6.4.3">
 <h3><span class="header-section-number">6.4.3</span> Load packages<a href="t-test-for-difference.html#load-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We typically include a chunk at or near the top of a script that loads any packages we are going to use. If we load all of them in this one chunk it is easy to see at a glance which ones have been loaded.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="t-test-for-difference.html#cb84-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb84-2"><a href="t-test-for-difference.html#cb84-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb84-3"><a href="t-test-for-difference.html#cb84-3" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb84-4"><a href="t-test-for-difference.html#cb84-4" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb84-5"><a href="t-test-for-difference.html#cb84-5" tabindex="-1"></a><span class="fu">library</span>(mbhR)</span>
-<span id="cb84-6"><a href="t-test-for-difference.html#cb84-6" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="cb84-7"><a href="t-test-for-difference.html#cb84-7" tabindex="-1"></a><span class="co"># if that last line doesn&#39;t work, uncomment the next line by deleting the # and run it to install the mbhR package. </span></span>
-<span id="cb84-8"><a href="t-test-for-difference.html#cb84-8" tabindex="-1"></a><span class="co"># remotes::install_github(“mbh038/mbhR”)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="t-test-for-difference.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="t-test-for-difference.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="t-test-for-difference.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb1-4"><a href="t-test-for-difference.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb1-5"><a href="t-test-for-difference.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(mbhR)</span>
+<span id="cb1-6"><a href="t-test-for-difference.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb1-7"><a href="t-test-for-difference.html#cb1-7" tabindex="-1"></a><span class="co"># if that last line doesn&#39;t work, uncomment the next line by deleting the # and run it to install the mbhR package. </span></span>
+<span id="cb1-8"><a href="t-test-for-difference.html#cb1-8" tabindex="-1"></a><span class="co"># remotes::install_github(“mbh038/mbhR”)</span></span></code></pre></div>
 </div>
 <div id="read-in-and-inspect-the-data" class="section level3 hasAnchor" number="6.4.4">
 <h3><span class="header-section-number">6.4.4</span> Read in and inspect the data<a href="t-test-for-difference.html#read-in-and-inspect-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="t-test-for-difference.html#cb85-1" tabindex="-1"></a><span class="co"># there should be an &#39;ozone.csv&#39; file in your data folder</span></span>
-<span id="cb85-2"><a href="t-test-for-difference.html#cb85-2" tabindex="-1"></a><span class="co"># if not, you should be able to get it from the data folder on Teams or Moodle</span></span>
-<span id="cb85-3"><a href="t-test-for-difference.html#cb85-3" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>)</span>
-<span id="cb85-4"><a href="t-test-for-difference.html#cb85-4" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
-<span id="cb85-5"><a href="t-test-for-difference.html#cb85-5" tabindex="-1"></a><span class="co">#glimpse(ozone)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="t-test-for-difference.html#cb2-1" tabindex="-1"></a><span class="co"># there should be an &#39;ozone.csv&#39; file in your data folder</span></span>
+<span id="cb2-2"><a href="t-test-for-difference.html#cb2-2" tabindex="-1"></a><span class="co"># if not, you should be able to get it from the data folder on Teams or Moodle</span></span>
+<span id="cb2-3"><a href="t-test-for-difference.html#cb2-3" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>)</span>
+<span id="cb2-4"><a href="t-test-for-difference.html#cb2-4" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
+<span id="cb2-5"><a href="t-test-for-difference.html#cb2-5" tabindex="-1"></a><span class="co">#glimpse(ozone)</span></span></code></pre></div>
 <p>What kind of data have we got?</p>
 <p>You might also wish to inspect the data using <code>summary()</code>. If so, include a code chunk to do this.</p>
 </div>
@@ -457,17 +455,17 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <h2><span class="header-section-number">6.5</span> Step One: Summarise the data<a href="t-test-for-difference.html#step-one-summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>With numerical data spread across more than one level of a categorical variable, we often want summary information such as mean values and standard erros of the mean for each level. We can do this by using the <code>group_by()</code> and then <code>summarise()</code> combination. This first group the data however you want to, then calculates whatever summary you have requested for each group.</p>
 <p>Here we will calculate the number of replicates, the mean and the standard error of the mean for both levels of <code>garden.location</code> ie east and west, then store the result in a data frame calle <code>ozone.summary</code></p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="t-test-for-difference.html#cb86-1" tabindex="-1"></a>ozone.summary<span class="ot">&lt;-</span>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb86-2"><a href="t-test-for-difference.html#cb86-2" tabindex="-1"></a><span class="fu">group_by</span>(garden.location) <span class="sc">%&gt;%</span></span>
-<span id="cb86-3"><a href="t-test-for-difference.html#cb86-3" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb86-4"><a href="t-test-for-difference.html#cb86-4" tabindex="-1"></a>          <span class="at">mean.ozone =</span> <span class="fu">mean</span>(ozone),</span>
-<span id="cb86-5"><a href="t-test-for-difference.html#cb86-5" tabindex="-1"></a>          <span class="at">se.ozone =</span> <span class="fu">sd</span>(ozone)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span>
-<span id="cb86-6"><a href="t-test-for-difference.html#cb86-6" tabindex="-1"></a>ozone.summary</span>
-<span id="cb86-7"><a href="t-test-for-difference.html#cb86-7" tabindex="-1"></a><span class="do">## # A tibble: 2 × 4</span></span>
-<span id="cb86-8"><a href="t-test-for-difference.html#cb86-8" tabindex="-1"></a><span class="do">##   garden.location     n mean.ozone se.ozone</span></span>
-<span id="cb86-9"><a href="t-test-for-difference.html#cb86-9" tabindex="-1"></a><span class="do">##   &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb86-10"><a href="t-test-for-difference.html#cb86-10" tabindex="-1"></a><span class="do">## 1 East               10       77.3     2.49</span></span>
-<span id="cb86-11"><a href="t-test-for-difference.html#cb86-11" tabindex="-1"></a><span class="do">## 2 West               10       61.3     2.87</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="t-test-for-difference.html#cb3-1" tabindex="-1"></a>ozone.summary<span class="ot">&lt;-</span>ozone <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="t-test-for-difference.html#cb3-2" tabindex="-1"></a><span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="t-test-for-difference.html#cb3-3" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a href="t-test-for-difference.html#cb3-4" tabindex="-1"></a>          <span class="at">mean.ozone =</span> <span class="fu">mean</span>(ozone),</span>
+<span id="cb3-5"><a href="t-test-for-difference.html#cb3-5" tabindex="-1"></a>          <span class="at">se.ozone =</span> <span class="fu">sd</span>(ozone)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span>
+<span id="cb3-6"><a href="t-test-for-difference.html#cb3-6" tabindex="-1"></a>ozone.summary</span>
+<span id="cb3-7"><a href="t-test-for-difference.html#cb3-7" tabindex="-1"></a><span class="do">## # A tibble: 2 × 4</span></span>
+<span id="cb3-8"><a href="t-test-for-difference.html#cb3-8" tabindex="-1"></a><span class="do">##   garden.location     n mean.ozone se.ozone</span></span>
+<span id="cb3-9"><a href="t-test-for-difference.html#cb3-9" tabindex="-1"></a><span class="do">##   &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb3-10"><a href="t-test-for-difference.html#cb3-10" tabindex="-1"></a><span class="do">## 1 East               10       77.3     2.49</span></span>
+<span id="cb3-11"><a href="t-test-for-difference.html#cb3-11" tabindex="-1"></a><span class="do">## 2 West               10       61.3     2.87</span></span></code></pre></div>
 <p>From these data, does it look as though there is evidence for a difference between ozone levels in the East and the West? Clearly, the ten gardens in the east had a higher mean ozone concentration than the ten in the west. But is this a fluke? How precisely do we think these sample means reflect the truth about the east and the west of the city? That is what the standard error column tells us. You can think of the standard error as being an estimate of how far from the true ozone concentrations for the whole of the east and the whole of the west our sample means, drawn from just ten locations in each part of the city, are likely to be.</p>
 <p>Bottom line: the difference between the sample means is about six times the size of the standard errors of each. It really does look as thought east of the city has a higher ozone concentration than the west.</p>
 </div>
@@ -480,33 +478,33 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <li>use the <code>facet_wrap()</code> function to give two copies of the histogram, one for east and one for west, and to stack the histograms one above the other.</li>
 <li>make the histogram bins 10 ppm wide.</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="t-test-for-difference.html#cb87-1" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb87-2"><a href="t-test-for-difference.html#cb87-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>ozone)) <span class="sc">+</span></span>
-<span id="cb87-3"><a href="t-test-for-difference.html#cb87-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
-<span id="cb87-4"><a href="t-test-for-difference.html#cb87-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb87-5"><a href="t-test-for-difference.html#cb87-5" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="t-test-for-difference.html#cb4-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="t-test-for-difference.html#cb4-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="t-test-for-difference.html#cb4-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="t-test-for-difference.html#cb4-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="t-test-for-difference.html#cb4-5" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="test_for_difference_files/figure-html/histogram-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Instead of histograms, we could have drawn box plots:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="t-test-for-difference.html#cb88-1" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb88-2"><a href="t-test-for-difference.html#cb88-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>ozone))<span class="sc">+</span></span>
-<span id="cb88-3"><a href="t-test-for-difference.html#cb88-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
-<span id="cb88-4"><a href="t-test-for-difference.html#cb88-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
-<span id="cb88-5"><a href="t-test-for-difference.html#cb88-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb88-6"><a href="t-test-for-difference.html#cb88-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="t-test-for-difference.html#cb5-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="t-test-for-difference.html#cb5-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>ozone))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="t-test-for-difference.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="t-test-for-difference.html#cb5-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
+<span id="cb5-5"><a href="t-test-for-difference.html#cb5-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="t-test-for-difference.html#cb5-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="test_for_difference_files/figure-html/box%20plot-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>or as a dot plot with standard errors of the mean included:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="t-test-for-difference.html#cb89-1" tabindex="-1"></a></span>
-<span id="cb89-2"><a href="t-test-for-difference.html#cb89-2" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
-<span id="cb89-3"><a href="t-test-for-difference.html#cb89-3" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="t-test-for-difference.html#cb89-4" tabindex="-1"></a>ozone.summary <span class="sc">%&gt;%</span> </span>
-<span id="cb89-5"><a href="t-test-for-difference.html#cb89-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>mean.ozone))<span class="sc">+</span></span>
-<span id="cb89-6"><a href="t-test-for-difference.html#cb89-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb89-7"><a href="t-test-for-difference.html#cb89-7" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean.ozone<span class="sc">-</span>se.ozone,<span class="at">ymax=</span>mean.ozone<span class="sc">+</span>se.ozone),<span class="at">width=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
-<span id="cb89-8"><a href="t-test-for-difference.html#cb89-8" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span> <span class="co"># try leaving this line out. What happens? Which is better?</span></span>
-<span id="cb89-9"><a href="t-test-for-difference.html#cb89-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
-<span id="cb89-10"><a href="t-test-for-difference.html#cb89-10" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>,</span>
-<span id="cb89-11"><a href="t-test-for-difference.html#cb89-11" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;The data points show mean values, the error bars show plus or minus one standard error of the mean &quot;</span>) <span class="sc">+</span></span>
-<span id="cb89-12"><a href="t-test-for-difference.html#cb89-12" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="t-test-for-difference.html#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="t-test-for-difference.html#cb6-2" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
+<span id="cb6-3"><a href="t-test-for-difference.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="t-test-for-difference.html#cb6-4" tabindex="-1"></a>ozone.summary <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="t-test-for-difference.html#cb6-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>mean.ozone))<span class="sc">+</span></span>
+<span id="cb6-6"><a href="t-test-for-difference.html#cb6-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="t-test-for-difference.html#cb6-7" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean.ozone<span class="sc">-</span>se.ozone,<span class="at">ymax=</span>mean.ozone<span class="sc">+</span>se.ozone),<span class="at">width=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb6-8"><a href="t-test-for-difference.html#cb6-8" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span> <span class="co"># try leaving this line out. What happens? Which is better?</span></span>
+<span id="cb6-9"><a href="t-test-for-difference.html#cb6-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
+<span id="cb6-10"><a href="t-test-for-difference.html#cb6-10" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>,</span>
+<span id="cb6-11"><a href="t-test-for-difference.html#cb6-11" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;The data points show mean values, the error bars show plus or minus one standard error of the mean &quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="t-test-for-difference.html#cb6-12" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="test_for_difference_files/figure-html/bar%20chart-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Do the data look as though they support the null hypothesis or not?</p>
 <p>In addition, do the data look as though each group is drawn from a normally distributed population? One of the types of graphs gives you no indication of that while the other two do. Which is the odd one out? Even when looking at the other two figures, when there are so few data it’s kind of hard to tell, no?</p>
@@ -522,45 +520,45 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <h3><span class="header-section-number">6.7.2</span> Normality test - analytical method<a href="t-test-for-difference.html#normality-test---analytical-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are several analytical tests one can run on a set of data to determine if it is normally distributed. One is the Shapiro-Wilk test.</p>
 <p>For more information on the Shapiro-Wilk test, type <code>?shapiro.test</code> into the console window. For kicks, try it out on the examples that appear in the help window (which is the bottom right pane, Help tab). One example is testing a sample of data that explicitly <em>is</em> drawn from a normal distribution, the other tests a sample of data that definitely <em>is not</em>. What <em>p</em>-value do you get in each case? How closely do the histograms of each sample resemble a normal distribution?</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="t-test-for-difference.html#cb90-1" tabindex="-1"></a><span class="co">#first we create a data frame containing the two example data sets</span></span>
-<span id="cb90-2"><a href="t-test-for-difference.html#cb90-2" tabindex="-1"></a>example1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># first example from the help pane</span></span>
-<span id="cb90-3"><a href="t-test-for-difference.html#cb90-3" tabindex="-1"></a>example2<span class="ot">&lt;-</span><span class="fu">runif</span>(<span class="dv">100</span>, <span class="at">min =</span> <span class="dv">2</span>, <span class="at">max =</span> <span class="dv">4</span>) <span class="co"># second example from the help pane</span></span>
-<span id="cb90-4"><a href="t-test-for-difference.html#cb90-4" tabindex="-1"></a></span>
-<span id="cb90-5"><a href="t-test-for-difference.html#cb90-5" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">data=</span><span class="fu">c</span>(example1,example2), <span class="at">distribution=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;not at all normal&quot;</span>,<span class="dv">100</span>)))</span>
-<span id="cb90-6"><a href="t-test-for-difference.html#cb90-6" tabindex="-1"></a></span>
-<span id="cb90-7"><a href="t-test-for-difference.html#cb90-7" tabindex="-1"></a><span class="co"># then we plot a histogram of each data set</span></span>
-<span id="cb90-8"><a href="t-test-for-difference.html#cb90-8" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>data)) <span class="sc">+</span></span>
-<span id="cb90-9"><a href="t-test-for-difference.html#cb90-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb90-10"><a href="t-test-for-difference.html#cb90-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distribution) <span class="sc">+</span></span>
-<span id="cb90-11"><a href="t-test-for-difference.html#cb90-11" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="t-test-for-difference.html#cb7-1" tabindex="-1"></a><span class="co">#first we create a data frame containing the two example data sets</span></span>
+<span id="cb7-2"><a href="t-test-for-difference.html#cb7-2" tabindex="-1"></a>example1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># first example from the help pane</span></span>
+<span id="cb7-3"><a href="t-test-for-difference.html#cb7-3" tabindex="-1"></a>example2<span class="ot">&lt;-</span><span class="fu">runif</span>(<span class="dv">100</span>, <span class="at">min =</span> <span class="dv">2</span>, <span class="at">max =</span> <span class="dv">4</span>) <span class="co"># second example from the help pane</span></span>
+<span id="cb7-4"><a href="t-test-for-difference.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="t-test-for-difference.html#cb7-5" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">data=</span><span class="fu">c</span>(example1,example2), <span class="at">distribution=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;not at all normal&quot;</span>,<span class="dv">100</span>)))</span>
+<span id="cb7-6"><a href="t-test-for-difference.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="t-test-for-difference.html#cb7-7" tabindex="-1"></a><span class="co"># then we plot a histogram of each data set</span></span>
+<span id="cb7-8"><a href="t-test-for-difference.html#cb7-8" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>data)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="t-test-for-difference.html#cb7-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="t-test-for-difference.html#cb7-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distribution) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="t-test-for-difference.html#cb7-11" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="test_for_difference_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="t-test-for-difference.html#cb91-1" tabindex="-1"></a></span>
-<span id="cb91-2"><a href="t-test-for-difference.html#cb91-2" tabindex="-1"></a><span class="co"># and finally we run a Shapiro-Wilk normality test on each data set</span></span>
-<span id="cb91-3"><a href="t-test-for-difference.html#cb91-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(example1) <span class="co"># 100 samples drawn from a normally distributed population</span></span>
-<span id="cb91-4"><a href="t-test-for-difference.html#cb91-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb91-5"><a href="t-test-for-difference.html#cb91-5" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
-<span id="cb91-6"><a href="t-test-for-difference.html#cb91-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb91-7"><a href="t-test-for-difference.html#cb91-7" tabindex="-1"></a><span class="do">## data:  example1</span></span>
-<span id="cb91-8"><a href="t-test-for-difference.html#cb91-8" tabindex="-1"></a><span class="do">## W = 0.99102, p-value = 0.7462</span></span>
-<span id="cb91-9"><a href="t-test-for-difference.html#cb91-9" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span>
-<span id="cb91-10"><a href="t-test-for-difference.html#cb91-10" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb91-11"><a href="t-test-for-difference.html#cb91-11" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
-<span id="cb91-12"><a href="t-test-for-difference.html#cb91-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb91-13"><a href="t-test-for-difference.html#cb91-13" tabindex="-1"></a><span class="do">## data:  example2</span></span>
-<span id="cb91-14"><a href="t-test-for-difference.html#cb91-14" tabindex="-1"></a><span class="do">## W = 0.94326, p-value = 0.0003064</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="t-test-for-difference.html#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="t-test-for-difference.html#cb8-2" tabindex="-1"></a><span class="co"># and finally we run a Shapiro-Wilk normality test on each data set</span></span>
+<span id="cb8-3"><a href="t-test-for-difference.html#cb8-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(example1) <span class="co"># 100 samples drawn from a normally distributed population</span></span>
+<span id="cb8-4"><a href="t-test-for-difference.html#cb8-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-5"><a href="t-test-for-difference.html#cb8-5" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
+<span id="cb8-6"><a href="t-test-for-difference.html#cb8-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-7"><a href="t-test-for-difference.html#cb8-7" tabindex="-1"></a><span class="do">## data:  example1</span></span>
+<span id="cb8-8"><a href="t-test-for-difference.html#cb8-8" tabindex="-1"></a><span class="do">## W = 0.98962, p-value = 0.6338</span></span>
+<span id="cb8-9"><a href="t-test-for-difference.html#cb8-9" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span>
+<span id="cb8-10"><a href="t-test-for-difference.html#cb8-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-11"><a href="t-test-for-difference.html#cb8-11" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
+<span id="cb8-12"><a href="t-test-for-difference.html#cb8-12" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-13"><a href="t-test-for-difference.html#cb8-13" tabindex="-1"></a><span class="do">## data:  example2</span></span>
+<span id="cb8-14"><a href="t-test-for-difference.html#cb8-14" tabindex="-1"></a><span class="do">## W = 0.95138, p-value = 0.001025</span></span></code></pre></div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a hig <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, an a very low <em>p</em>-value for the data that we knew were not.</p>
 <p>The Shapiro-Wilk test tests your data against the null hypothesis that it is drawn from a normally distributed population. It gives a <em>p</em>-value. If the <em>p</em>-value is less than 0.05 then we reject the null hypothesis and cannot suppose our data is normally distributed. In that case we would have to ditch the <em>t</em>-test for a difference, and choose another difference test in its place that could cope with data that was not normally distributed.</p>
 <p>Why don’t we do that in the first place, I hear you ask? Why bother with this finicky <em>t</em>-test that requires that we go through the faff of testing the data for normality before we can use it? The answer is that it is more powerful than other, so-called non-parametric tests that <em>can</em> cope with non-normal data. It is more likely than they are to spot a difference if there really is a difference. So if we can use it, that is what we would rather do.</p>
 <p>So, onwards, let’s do the Shapiro-Wilk test on our data</p>
 <p>We want to test each garden group for normality, so we group the data by location as before and and then summarise, this time asking for the <em>p</em>-value returned by the Shapiro-Wilk test of normality.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="t-test-for-difference.html#cb92-1" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb92-2"><a href="t-test-for-difference.html#cb92-2" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">%&gt;%</span></span>
-<span id="cb92-3"><a href="t-test-for-difference.html#cb92-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&#39;Shapiro-Wilk p-value&#39;</span><span class="ot">=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
-<span id="cb92-4"><a href="t-test-for-difference.html#cb92-4" tabindex="-1"></a><span class="do">## # A tibble: 2 × 2</span></span>
-<span id="cb92-5"><a href="t-test-for-difference.html#cb92-5" tabindex="-1"></a><span class="do">##   garden.location `Shapiro-Wilk p-value`</span></span>
-<span id="cb92-6"><a href="t-test-for-difference.html#cb92-6" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                            &lt;dbl&gt;</span></span>
-<span id="cb92-7"><a href="t-test-for-difference.html#cb92-7" tabindex="-1"></a><span class="do">## 1 East                            0.0953</span></span>
-<span id="cb92-8"><a href="t-test-for-difference.html#cb92-8" tabindex="-1"></a><span class="do">## 2 West                            0.599</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="t-test-for-difference.html#cb9-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="t-test-for-difference.html#cb9-2" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="t-test-for-difference.html#cb9-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&#39;Shapiro-Wilk p-value&#39;</span><span class="ot">=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
+<span id="cb9-4"><a href="t-test-for-difference.html#cb9-4" tabindex="-1"></a><span class="do">## # A tibble: 2 × 2</span></span>
+<span id="cb9-5"><a href="t-test-for-difference.html#cb9-5" tabindex="-1"></a><span class="do">##   garden.location `Shapiro-Wilk p-value`</span></span>
+<span id="cb9-6"><a href="t-test-for-difference.html#cb9-6" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                            &lt;dbl&gt;</span></span>
+<span id="cb9-7"><a href="t-test-for-difference.html#cb9-7" tabindex="-1"></a><span class="do">## 1 East                            0.0953</span></span>
+<span id="cb9-8"><a href="t-test-for-difference.html#cb9-8" tabindex="-1"></a><span class="do">## 2 West                            0.599</span></span></code></pre></div>
 <p>For both groups the <em>p</em>-value is more than 0.05, so at the 5% significance level we cannot reject the null hypothesis that the data are normally distributed, so we can go on and use the <em>t</em>-test. Yay!</p>
 </div>
 <div id="graphical-methods---the-quantile-quantile-or-qq-plot." class="section level3 hasAnchor" number="6.7.3">
@@ -569,12 +567,12 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <p>For an overview of how normally distributed and non-normally distributed data looks when plotted in histograms, box plots and quantile-quntile plots, see <a href="https://rpubs.com/mbh038/725314">this review</a></p>
 <p>We have already seen two ways of plotting the data that might help suggest whether it is plausible that the data are drawn from normally distributed populations. Histograms and box plots both indicate how data is distributed, and for normally distributed data both would be symmetrical. Well, they would be, more or less, if the data set was large enough but for small data sets it can be quite hard to tell from either type of plot whether the data are drawn from a normally distributed population.</p>
 <p>A better type of plot for making this judgement call is the quantile-quantile or ‘QQ’ plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="t-test-for-difference.html#cb93-1" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb93-2"><a href="t-test-for-difference.html#cb93-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
-<span id="cb93-3"><a href="t-test-for-difference.html#cb93-3" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb93-4"><a href="t-test-for-difference.html#cb93-4" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb93-5"><a href="t-test-for-difference.html#cb93-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
-<span id="cb93-6"><a href="t-test-for-difference.html#cb93-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="t-test-for-difference.html#cb10-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="t-test-for-difference.html#cb10-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="t-test-for-difference.html#cb10-3" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="t-test-for-difference.html#cb10-4" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="t-test-for-difference.html#cb10-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="t-test-for-difference.html#cb10-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="test_for_difference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>Nothing outrageously non-linear there, so that also suggests we can safely use the <em>t</em>-test.</p>
 </div>
@@ -587,23 +585,23 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <h3><span class="header-section-number">6.7.5</span> Now for the actual two-sample <em>t</em>-test<a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So, it looks as though it is plausible that the data are drawn from normal distributions. That means we can go on to use a parametric test such as a <em>t</em>-test and have confidence in its output.</p>
 <p>We can use the <code>t.test()</code> function for this. This needs to be given a formula and a data set as arguments. Look up <code>t.test()</code> in R’s help documentation, and see if you can get the <em>t</em>-test to tell you whether there is a significant difference between ozone levels in the east and in the west of the city.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="t-test-for-difference.html#cb94-1" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span>
-<span id="cb94-2"><a href="t-test-for-difference.html#cb94-2" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb94-3"><a href="t-test-for-difference.html#cb94-3" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
-<span id="cb94-4"><a href="t-test-for-difference.html#cb94-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb94-5"><a href="t-test-for-difference.html#cb94-5" tabindex="-1"></a><span class="do">## data:  ozone by garden.location</span></span>
-<span id="cb94-6"><a href="t-test-for-difference.html#cb94-6" tabindex="-1"></a><span class="do">## t = 4.2363, df = 17.656, p-value = 0.0005159</span></span>
-<span id="cb94-7"><a href="t-test-for-difference.html#cb94-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group East and group West is not equal to 0</span></span>
-<span id="cb94-8"><a href="t-test-for-difference.html#cb94-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb94-9"><a href="t-test-for-difference.html#cb94-9" tabindex="-1"></a><span class="do">##   8.094171 24.065829</span></span>
-<span id="cb94-10"><a href="t-test-for-difference.html#cb94-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb94-11"><a href="t-test-for-difference.html#cb94-11" tabindex="-1"></a><span class="do">## mean in group East mean in group West </span></span>
-<span id="cb94-12"><a href="t-test-for-difference.html#cb94-12" tabindex="-1"></a><span class="do">##              77.34              61.26</span></span></code></pre></div>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="t-test-for-difference.html#cb95-1" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span> <span class="fu">t_test</span>(ozone<span class="sc">~</span>garden.location)</span>
-<span id="cb95-2"><a href="t-test-for-difference.html#cb95-2" tabindex="-1"></a><span class="do">## # A tibble: 1 × 8</span></span>
-<span id="cb95-3"><a href="t-test-for-difference.html#cb95-3" tabindex="-1"></a><span class="do">##   .y.   group1 group2    n1    n2 statistic    df        p</span></span>
-<span id="cb95-4"><a href="t-test-for-difference.html#cb95-4" tabindex="-1"></a><span class="do">## * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span></span>
-<span id="cb95-5"><a href="t-test-for-difference.html#cb95-5" tabindex="-1"></a><span class="do">## 1 ozone East   West      10    10      4.24  17.7 0.000516</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="t-test-for-difference.html#cb11-1" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span>
+<span id="cb11-2"><a href="t-test-for-difference.html#cb11-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-3"><a href="t-test-for-difference.html#cb11-3" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
+<span id="cb11-4"><a href="t-test-for-difference.html#cb11-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-5"><a href="t-test-for-difference.html#cb11-5" tabindex="-1"></a><span class="do">## data:  ozone by garden.location</span></span>
+<span id="cb11-6"><a href="t-test-for-difference.html#cb11-6" tabindex="-1"></a><span class="do">## t = 4.2363, df = 17.656, p-value = 0.0005159</span></span>
+<span id="cb11-7"><a href="t-test-for-difference.html#cb11-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group East and group West is not equal to 0</span></span>
+<span id="cb11-8"><a href="t-test-for-difference.html#cb11-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb11-9"><a href="t-test-for-difference.html#cb11-9" tabindex="-1"></a><span class="do">##   8.094171 24.065829</span></span>
+<span id="cb11-10"><a href="t-test-for-difference.html#cb11-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb11-11"><a href="t-test-for-difference.html#cb11-11" tabindex="-1"></a><span class="do">## mean in group East mean in group West </span></span>
+<span id="cb11-12"><a href="t-test-for-difference.html#cb11-12" tabindex="-1"></a><span class="do">##              77.34              61.26</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="t-test-for-difference.html#cb12-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span> <span class="fu">t_test</span>(ozone<span class="sc">~</span>garden.location)</span>
+<span id="cb12-2"><a href="t-test-for-difference.html#cb12-2" tabindex="-1"></a><span class="do">## # A tibble: 1 × 8</span></span>
+<span id="cb12-3"><a href="t-test-for-difference.html#cb12-3" tabindex="-1"></a><span class="do">##   .y.   group1 group2    n1    n2 statistic    df        p</span></span>
+<span id="cb12-4"><a href="t-test-for-difference.html#cb12-4" tabindex="-1"></a><span class="do">## * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb12-5"><a href="t-test-for-difference.html#cb12-5" tabindex="-1"></a><span class="do">## 1 ozone East   West      10    10      4.24  17.7 0.000516</span></span></code></pre></div>
 <p>Note the <code>~</code> tilda symbol. This means ‘is a function of’. So this line means: do a <em>t</em>-test to see if there is a significant difference between the ozone levels in the two garden locations.</p>
 </div>
 <div id="interpret-the-output-of-the-t-test." class="section level3 hasAnchor" number="6.7.6">
@@ -626,46 +624,46 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <h2><span class="header-section-number">6.8</span> The complete script<a href="t-test-for-difference.html#the-complete-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here is a minimal script you could use to run a <em>t</em>-test on the ozone data:</p>
 <p>Capy this and save it as a <filename>.R file</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="t-test-for-difference.html#cb96-1" tabindex="-1"></a><span class="co"># my name</span></span>
-<span id="cb96-2"><a href="t-test-for-difference.html#cb96-2" tabindex="-1"></a><span class="co"># the date</span></span>
-<span id="cb96-3"><a href="t-test-for-difference.html#cb96-3" tabindex="-1"></a><span class="co"># Brief description of what the script is for</span></span>
-<span id="cb96-4"><a href="t-test-for-difference.html#cb96-4" tabindex="-1"></a></span>
-<span id="cb96-5"><a href="t-test-for-difference.html#cb96-5" tabindex="-1"></a><span class="co"># load the packages we need</span></span>
-<span id="cb96-6"><a href="t-test-for-difference.html#cb96-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb96-7"><a href="t-test-for-difference.html#cb96-7" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb96-8"><a href="t-test-for-difference.html#cb96-8" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb96-9"><a href="t-test-for-difference.html#cb96-9" tabindex="-1"></a></span>
-<span id="cb96-10"><a href="t-test-for-difference.html#cb96-10" tabindex="-1"></a><span class="co"># load the data</span></span>
-<span id="cb96-11"><a href="t-test-for-difference.html#cb96-11" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>))</span>
-<span id="cb96-12"><a href="t-test-for-difference.html#cb96-12" tabindex="-1"></a><span class="fu">glimpse</span>(ozone)</span>
-<span id="cb96-13"><a href="t-test-for-difference.html#cb96-13" tabindex="-1"></a></span>
-<span id="cb96-14"><a href="t-test-for-difference.html#cb96-14" tabindex="-1"></a><span class="co"># plot histograms for each location</span></span>
-<span id="cb96-15"><a href="t-test-for-difference.html#cb96-15" tabindex="-1"></a><span class="fu">ggplot</span>(ozone,(<span class="fu">aes</span>(<span class="at">x=</span>ozone)))<span class="sc">+</span></span>
-<span id="cb96-16"><a href="t-test-for-difference.html#cb96-16" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
-<span id="cb96-17"><a href="t-test-for-difference.html#cb96-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb96-18"><a href="t-test-for-difference.html#cb96-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb96-19"><a href="t-test-for-difference.html#cb96-19" tabindex="-1"></a></span>
-<span id="cb96-20"><a href="t-test-for-difference.html#cb96-20" tabindex="-1"></a><span class="co"># what are the means and standard deviations of ozone levels for each location?</span></span>
-<span id="cb96-21"><a href="t-test-for-difference.html#cb96-21" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb96-22"><a href="t-test-for-difference.html#cb96-22" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">%&gt;%</span></span>
-<span id="cb96-23"><a href="t-test-for-difference.html#cb96-23" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(ozone),<span class="at">st_dev=</span><span class="fu">sd</span>(ozone))</span>
-<span id="cb96-24"><a href="t-test-for-difference.html#cb96-24" tabindex="-1"></a></span>
-<span id="cb96-25"><a href="t-test-for-difference.html#cb96-25" tabindex="-1"></a><span class="co"># are the ozone levels in each location normally distributed?</span></span>
-<span id="cb96-26"><a href="t-test-for-difference.html#cb96-26" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb96-27"><a href="t-test-for-difference.html#cb96-27" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">%&gt;%</span></span>
-<span id="cb96-28"><a href="t-test-for-difference.html#cb96-28" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sw=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
-<span id="cb96-29"><a href="t-test-for-difference.html#cb96-29" tabindex="-1"></a></span>
-<span id="cb96-30"><a href="t-test-for-difference.html#cb96-30" tabindex="-1"></a><span class="co"># graphical check for normality:</span></span>
-<span id="cb96-31"><a href="t-test-for-difference.html#cb96-31" tabindex="-1"></a><span class="co"># quantile-quantile plots for ozone levels in each location</span></span>
-<span id="cb96-32"><a href="t-test-for-difference.html#cb96-32" tabindex="-1"></a>ozone <span class="sc">%&gt;%</span></span>
-<span id="cb96-33"><a href="t-test-for-difference.html#cb96-33" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
-<span id="cb96-34"><a href="t-test-for-difference.html#cb96-34" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb96-35"><a href="t-test-for-difference.html#cb96-35" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb96-36"><a href="t-test-for-difference.html#cb96-36" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
-<span id="cb96-37"><a href="t-test-for-difference.html#cb96-37" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb96-38"><a href="t-test-for-difference.html#cb96-38" tabindex="-1"></a></span>
-<span id="cb96-39"><a href="t-test-for-difference.html#cb96-39" tabindex="-1"></a><span class="co"># and finally, the actual _t_-test</span></span>
-<span id="cb96-40"><a href="t-test-for-difference.html#cb96-40" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="t-test-for-difference.html#cb13-1" tabindex="-1"></a><span class="co"># my name</span></span>
+<span id="cb13-2"><a href="t-test-for-difference.html#cb13-2" tabindex="-1"></a><span class="co"># the date</span></span>
+<span id="cb13-3"><a href="t-test-for-difference.html#cb13-3" tabindex="-1"></a><span class="co"># Brief description of what the script is for</span></span>
+<span id="cb13-4"><a href="t-test-for-difference.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="t-test-for-difference.html#cb13-5" tabindex="-1"></a><span class="co"># load the packages we need</span></span>
+<span id="cb13-6"><a href="t-test-for-difference.html#cb13-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-7"><a href="t-test-for-difference.html#cb13-7" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb13-8"><a href="t-test-for-difference.html#cb13-8" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb13-9"><a href="t-test-for-difference.html#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="t-test-for-difference.html#cb13-10" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb13-11"><a href="t-test-for-difference.html#cb13-11" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>))</span>
+<span id="cb13-12"><a href="t-test-for-difference.html#cb13-12" tabindex="-1"></a><span class="fu">glimpse</span>(ozone)</span>
+<span id="cb13-13"><a href="t-test-for-difference.html#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="t-test-for-difference.html#cb13-14" tabindex="-1"></a><span class="co"># plot histograms for each location</span></span>
+<span id="cb13-15"><a href="t-test-for-difference.html#cb13-15" tabindex="-1"></a><span class="fu">ggplot</span>(ozone,(<span class="fu">aes</span>(<span class="at">x=</span>ozone)))<span class="sc">+</span></span>
+<span id="cb13-16"><a href="t-test-for-difference.html#cb13-16" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb13-17"><a href="t-test-for-difference.html#cb13-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="t-test-for-difference.html#cb13-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb13-19"><a href="t-test-for-difference.html#cb13-19" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="t-test-for-difference.html#cb13-20" tabindex="-1"></a><span class="co"># what are the means and standard deviations of ozone levels for each location?</span></span>
+<span id="cb13-21"><a href="t-test-for-difference.html#cb13-21" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-22"><a href="t-test-for-difference.html#cb13-22" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb13-23"><a href="t-test-for-difference.html#cb13-23" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(ozone),<span class="at">st_dev=</span><span class="fu">sd</span>(ozone))</span>
+<span id="cb13-24"><a href="t-test-for-difference.html#cb13-24" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="t-test-for-difference.html#cb13-25" tabindex="-1"></a><span class="co"># are the ozone levels in each location normally distributed?</span></span>
+<span id="cb13-26"><a href="t-test-for-difference.html#cb13-26" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-27"><a href="t-test-for-difference.html#cb13-27" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb13-28"><a href="t-test-for-difference.html#cb13-28" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sw=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
+<span id="cb13-29"><a href="t-test-for-difference.html#cb13-29" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="t-test-for-difference.html#cb13-30" tabindex="-1"></a><span class="co"># graphical check for normality:</span></span>
+<span id="cb13-31"><a href="t-test-for-difference.html#cb13-31" tabindex="-1"></a><span class="co"># quantile-quantile plots for ozone levels in each location</span></span>
+<span id="cb13-32"><a href="t-test-for-difference.html#cb13-32" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-33"><a href="t-test-for-difference.html#cb13-33" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb13-34"><a href="t-test-for-difference.html#cb13-34" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-35"><a href="t-test-for-difference.html#cb13-35" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb13-36"><a href="t-test-for-difference.html#cb13-36" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
+<span id="cb13-37"><a href="t-test-for-difference.html#cb13-37" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb13-38"><a href="t-test-for-difference.html#cb13-38" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="t-test-for-difference.html#cb13-39" tabindex="-1"></a><span class="co"># and finally, the actual _t_-test</span></span>
+<span id="cb13-40"><a href="t-test-for-difference.html#cb13-40" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span></code></pre></div>
 
 </div>
 </div>
@@ -717,7 +715,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["fake-book.pdf", "fake-book.epub"],
+"download": ["r4nqy-book.pdf", "r4nqy-book.epub"],
 "search": {
 "engine": "fuse",
 "options": null

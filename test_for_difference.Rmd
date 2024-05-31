@@ -110,8 +110,8 @@ With numerical data spread across more than one level of a categorical variable,
 Here we will calculate the number of replicates, the mean and the standard error of the mean for both levels of `garden.location` ie east and west, then store the result in a data frame calle `ozone.summary`
 
 ```{r} 
-ozone.summary<-ozone %>%
-group_by(garden.location) %>%
+ozone.summary<-ozone |>
+group_by(garden.location) |>
 summarise(n = n(),
           mean.ozone = mean(ozone),
           se.ozone = sd(ozone)/sqrt(n()))
@@ -134,7 +134,7 @@ Here, we will
 
 
 ```{r, histogram}
-ozone %>%
+ozone |>
   ggplot(aes(x=ozone)) +
   geom_histogram(binwidth=10,fill="darkred")+
   facet_wrap(~garden.location,ncol=1) +
@@ -145,7 +145,7 @@ ozone %>%
 Instead of histograms, we could have drawn box plots:
 
 ```{r, box plot}
-ozone %>%
+ozone |>
   ggplot(aes(x=garden.location,y=ozone))+
   geom_boxplot()+
   labs(x="Garden Location",
@@ -159,7 +159,7 @@ or as a dot plot with standard errors of the mean included:
 
 # for this chart we will use the summary table that we created above.
 
-ozone.summary %>% 
+ozone.summary |> 
   ggplot(aes(x=garden.location,y=mean.ozone))+
   geom_point(size=3) +
   geom_errorbar(aes(ymin=mean.ozone-se.ozone,ymax=mean.ozone+se.ozone),width=0.1)+
@@ -217,8 +217,8 @@ So, onwards, let's do the Shapiro-Wilk test on our data
 We want to test each garden group for normality, so we group the data by location as before and and then summarise, this time asking for the *p*-value returned by the Shapiro-Wilk test of normality.
 
 ```{r}
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise('Shapiro-Wilk p-value'=shapiro.test(ozone)$p.value)
 ```
 
@@ -235,7 +235,7 @@ We have already seen two ways of plotting the data that might help suggest wheth
 A better type of plot for making this judgement call is the quantile-quantile or 'QQ' plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.
 
 ```{r}
-ozone %>%
+ozone |>
   ggplot(aes(sample=ozone)) +
   stat_qq(colour="blue") +
   stat_qq_line() +
@@ -260,7 +260,7 @@ We can use the `t.test()` function for this. This needs to be given a formula an
 t.test(ozone~garden.location,data=ozone)
 ```
 ```{r}
-ozone %>% t_test(ozone~garden.location)
+ozone |> t_test(ozone~garden.location)
 ```
 
 
@@ -308,18 +308,18 @@ ggplot(ozone,(aes(x=ozone)))+
   theme_bw()
 
 # what are the means and standard deviations of ozone levels for each location?
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise(avg = mean(ozone),st_dev=sd(ozone))
 
 # are the ozone levels in each location normally distributed?
-ozone %>%
-  group_by(garden.location) %>%
+ozone |>
+  group_by(garden.location) |>
   summarise(sw=shapiro.test(ozone)$p.value)
 
 # graphical check for normality:
 # quantile-quantile plots for ozone levels in each location
-ozone %>%
+ozone |>
   ggplot(aes(sample=ozone)) +
   stat_qq(colour="blue") +
   stat_qq_line() +
