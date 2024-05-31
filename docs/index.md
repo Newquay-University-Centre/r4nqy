@@ -4,7 +4,7 @@ author: "Michael Hunt"
 date: "2024-05-31"
 site: bookdown::bookdown_site
 documentclass: book
-cover-image: images/logo/newquay_uc.png
+cover-image: "images/logo/newquay_uc.png"
 # bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
