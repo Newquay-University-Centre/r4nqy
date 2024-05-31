@@ -136,3 +136,4 @@ interpretation-of-the-model
 back-to-the-figure
 conclusion-1
 sample-script
+bibliography-book.bib-packages.bib

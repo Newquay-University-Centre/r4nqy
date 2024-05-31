@@ -105,7 +105,7 @@ penguins_clean  |>
   theme(legend.position= c(0.1,0.8))
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+<img src="ANOVA_one_way_files/figure-html/penguin_plot_1-1.png" width="672" style="display: block; margin: auto;" />
 
 What do you think now about size differences between species and the two sexes?
 
@@ -179,7 +179,7 @@ females  |>
   theme_bw()
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
+<img src="ANOVA_one_way_files/figure-html/penguin_plot_2-1.png" width="672" style="display: block; margin: auto;" />
 
 From the summary table and the plot, what do you think? Do the masses differ between the species? 
 
@@ -211,7 +211,7 @@ There are various ways we can find out whether these consitions are met. A usefu
 autoplot(females.model) + theme_bw()
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
+<img src="ANOVA_one_way_files/figure-html/penguin_plot_3-1.png" width="672" style="display: block; margin: auto;" />
 
 All four graphs presented here tell us something about the validity or not of our model. Here we will just focus on the upper two:
 

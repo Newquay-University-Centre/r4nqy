@@ -56,7 +56,7 @@ Looking at this table, does it look as though females and males have different w
 To get further insight into these questions, we can plot the data. Here we will do a box plot
 
 
-```{r}
+```{r penguin_plot_1}
 penguins_clean  |>
   ggplot(aes(x=species, y = body_mass_g, fill = sex)) +
   geom_boxplot() +
@@ -120,7 +120,7 @@ We should inspect this summary table and see what we already think about whether
 
 Now let's plot them, using a box plot (but choose your favourite plot type):
 
-```{r}
+```{r penguin_plot_2}
 females  |>
   ggplot(aes(x=species, y = body_mass_g)) +
   geom_boxplot(fill = "#9ebcda") +  # pick your favourise colour from https://colorbrewer2.org/
@@ -153,7 +153,7 @@ All linear models are only valid if the data meet a number of criteria. Chief am
 
 There are various ways we can find out whether these consitions are met. A useful one is to do it graphically, and a useful way to do that is to use the `autoplot()` function from the `ggfortify` package. Let's do it:
 
-```{r}
+```{r penguin_plot_3}
 autoplot(females.model) + theme_bw()
 ```
 
