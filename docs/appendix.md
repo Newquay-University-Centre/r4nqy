@@ -249,3 +249,67 @@ Theme options include the following. Click through the tabs to see what they eac
 
 
 
+
+
+
+
+<div class='col2'>
+
+1. [Make a data package](#data-pkg)
+1. [Make an R Markdown template](#make-rmdtemplate)
+1. [Make an R Studio project template](#proj-templates)
+1. [Make an interactive tutorial](#learnr)
+1. [Make an R Markdown site](#make-rmd)
+1. [Make a Distill site](#make-distill)
+1. [Make a book](#make-book)
+1. [Make a Blogdown site](#make-blogdown)
+
+\
+
+</div>
+
+\
+
+
+I think that quite early on in this book, we should try to answer the question "I'm an educator...what should/can I make here?".  
+I'm not sure whether this should happen here or in the preface, but one way we can do this is with the flowchart. Below is just a *very rough* conceptual sketch of how a flowchart here might be a fun way to give users a visual map of where they could end up after using the rstudio4edu resource. [This is the idea I'm riffing off of.](https://www.beckysimpson.co/flowcharts) 
+
+Needless to say, right now the example below is yucky, too small, and incomplete. And it's also just kind of acting as funny eye-candy. But if we make it nicer (and perhaps summarize it more efficiently with a table beneath it), would this be the spot for it? (Could alternatively place this in the introductory section for the Cookbooks Section--and only include tools that we have cookbooks for (ie. leave out stuff like Connect)).
+
+![](images/flowchart.jpg)
+
+# Teaching learners {#teach-learners}
+
++ teaching to make reprexes
+
++ teaching about community/SO/etc
+
+# What to do on day 1 {#teach-day1}
+
+See: https://github.com/rstudio-education/datascience-box/issues/47
+
+- Link to mine's eat cake first stuff.
+- start with a data package (if you can); caveat: you are teaching importing data.
+- link to mine's dsinabox, perhaps garrett's latest repro research stuff
+- orient to IDE (great tip by kierisi: play with RStudio IDE themes?)
+- start with Rmd (if you can)- you can teach minimal markdown etc.
+
+# Licensing your content
+
+Some opinionated guidance.
+
+Does it make sense to move the Licensing section closer to the end of the book-- after they've created new content (or remixed ours or others') with the cookbooks?
+
+# Remixing licensed content
+
+Recommended ways to offer attribution
+
+If you are reusing others' content in say a workshop with slides, add your attributions on the last slide, and include an "Attributions" section in the repository's READ ME file.
+
+So if it’s a workshop, once on the last slide + in the repo readme. 
+
+If it’s a semester long course, just somewhere on the course website
+
+# Community
+
+https://community.rstudio.com/c/teaching

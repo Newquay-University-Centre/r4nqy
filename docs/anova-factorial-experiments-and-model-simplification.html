@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 ANOVA: Factorial experiments and model simplification’ | Data nalaysis for Newquay University Centre</title>
+  <title>Chapter 8 ANOVA: Factorial experiments and model simplification’ | Data analysis for Newquay University Centre</title>
   <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 ANOVA: Factorial experiments and model simplification’ | Data nalaysis for Newquay University Centre" />
+  <meta property="og:title" content="Chapter 8 ANOVA: Factorial experiments and model simplification’ | Data analysis for Newquay University Centre" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
@@ -17,7 +17,7 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 ANOVA: Factorial experiments and model simplification’ | Data nalaysis for Newquay University Centre" />
+  <meta name="twitter:title" content="Chapter 8 ANOVA: Factorial experiments and model simplification’ | Data analysis for Newquay University Centre" />
   
   <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
@@ -26,7 +26,7 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
 <meta name="author" content="Michael Hunt" />
 
 
-<meta name="date" content="2024-05-29" />
+<meta name="date" content="2024-05-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -173,134 +173,205 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.12" data-path="plot-your-data.html"><a href="plot-your-data.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.12</b> Bar chart with error bar</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>3</b> Correlation</a>
+<li class="chapter" data-level="3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html"><i class="fa fa-check"></i><b>3</b> Chi-square analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>3.1</b> The correlation coefficient</a></li>
-<li class="chapter" data-level="3.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>3.2</b> Different values of <em>r</em>.</a></li>
-<li class="chapter" data-level="3.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>3.3</b> Using R to find the correlation coefficient.</a>
+<li class="chapter" data-level="3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#chi-square-goodness-of-fit-test"><i class="fa fa-check"></i><b>3.1</b> Chi-square goodness of fit test</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>3.3.1</b> Correlations for real data</a></li>
+<li class="chapter" data-level="3.1.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#example"><i class="fa fa-check"></i><b>3.1.1</b> Example</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#doing-the-chi-square-test-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Doing the chi-square test in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#reporting-the-result-in-english"><i class="fa fa-check"></i><b>3.1.3</b> Reporting the result in English</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>3.4</b> The correlation coefficient measures the degree of linear association.</a>
+<li class="chapter" data-level="3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#exercise-1."><i class="fa fa-check"></i><b>3.2</b> Exercise 1.</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>3.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+<li class="chapter" data-level="3.2.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#solution.-1"><i class="fa fa-check"></i><b>3.2.1</b> Solution. 1</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>3.5</b> Association is not causation</a></li>
-<li class="chapter" data-level="3.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>3.6</b> Examples</a>
+<li class="chapter" data-level="3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#way-chi-square-analysis-test-of-independence"><i class="fa fa-check"></i><b>3.3</b> 2-way chi square analysis: test of independence</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>3.6.1</b> Lichen abundance</a></li>
-<li class="chapter" data-level="3.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>3.6.2</b> Soil bacteria</a></li>
+<li class="chapter" data-level="3.3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#hypotheses"><i class="fa fa-check"></i><b>3.3.1</b> Hypotheses</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#summarise-the-data."><i class="fa fa-check"></i><b>3.3.2</b> Summarise the data.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#plot-the-data."><i class="fa fa-check"></i><b>3.3.3</b> Plot the data.</a></li>
+<li class="chapter" data-level="3.3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#interpret-the-graph-before-we-do-any-stats"><i class="fa fa-check"></i><b>3.3.4</b> Interpret the graph before we do any ‘stats’</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test"><i class="fa fa-check"></i><b>3.3.5</b> The Chi-square test</a></li>
+<li class="chapter" data-level="3.3.6" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#yates-continuity-correction"><i class="fa fa-check"></i><b>3.3.6</b> Yates continuity correction</a></li>
+<li class="chapter" data-level="3.3.7" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#conclusion"><i class="fa fa-check"></i><b>3.3.7</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>3.7</b> Exercises</a>
+<li class="chapter" data-level="3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test-explained-advanced"><i class="fa fa-check"></i><b>3.4</b> The Chi-Square Test explained (advanced)</a>
 <ul>
-<li class="chapter" data-level="3.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>3.7.1</b> Exercise 1</a></li>
-<li class="chapter" data-level="3.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>3.7.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="3.4.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#why-does-the-test-statistic-have-this-distribution"><i class="fa fa-check"></i><b>3.4.1</b> Why does the test statistic have this distribution?</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>4</b> t-test for difference</a>
+<li class="chapter" data-level="4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html"><i class="fa fa-check"></i><b>4</b> Fisher’s exact test</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>4.1</b> Preliminaries</a></li>
-<li class="chapter" data-level="4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>4.2</b> Motivation and example</a></li>
-<li class="chapter" data-level="4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>4.3</b> The two-sample <em>t</em>-test</a>
+<li class="chapter" data-level="4.1" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#the-hypergeometric-function"><i class="fa fa-check"></i><b>4.1</b> The Hypergeometric Function</a></li>
+<li class="chapter" data-level="4.2" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#hypergeometric-distribution-in-r"><i class="fa fa-check"></i><b>4.2</b> Hypergeometric Distribution in R</a></li>
+<li class="chapter" data-level="4.3" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#back-to-fishers-exact-test"><i class="fa fa-check"></i><b>4.3</b> Back to Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="4.4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#example-1"><i class="fa fa-check"></i><b>4.4</b> Example</a></li>
+<li class="chapter" data-level="4.5" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#fishers-exact-test-in-r"><i class="fa fa-check"></i><b>4.5</b> Fisher’s Exact Test in R</a></li>
+<li class="chapter" data-level="4.6" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#what-if-we-just-use-a-chi-square-test"><i class="fa fa-check"></i><b>4.6</b> What if we just use a chi-square test?</a></li>
+<li class="chapter" data-level="4.7" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><i class="fa fa-check"></i><b>4.7</b> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
+<li class="chapter" data-level="4.8" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#another-cautionary-note"><i class="fa fa-check"></i><b>4.8</b> Another Cautionary Note</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5</b> Correlation</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>4.3.1</b> Pros of the <em>t</em>-test</a></li>
-<li class="chapter" data-level="4.3.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>4.3.2</b> Cons of the <em>t</em>-test</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>4.4</b> The workflow</a>
+<li class="chapter" data-level="5.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>5.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>5.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="5.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>5.3</b> Using R to find the correlation coefficient.</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#open-your-project"><i class="fa fa-check"></i><b>4.4.1</b> Open your project</a></li>
-<li class="chapter" data-level="4.4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#create-a-new-script"><i class="fa fa-check"></i><b>4.4.2</b> Create a new script</a></li>
-<li class="chapter" data-level="4.4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#load-packages-1"><i class="fa fa-check"></i><b>4.4.3</b> Load packages</a></li>
-<li class="chapter" data-level="4.4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>4.4.4</b> Read in and inspect the data</a></li>
+<li class="chapter" data-level="5.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>5.3.1</b> Correlations for real data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>4.5</b> Step One: Summarise the data</a></li>
-<li class="chapter" data-level="4.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>4.6</b> Step Two: Plot the data</a></li>
-<li class="chapter" data-level="4.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>4.7</b> Step Three: Carry out statistical analysis</a>
+<li class="chapter" data-level="5.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>5.4</b> The correlation coefficient measures the degree of linear association.</a>
 <ul>
-<li class="chapter" data-level="4.7.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>4.7.1</b> Are the data normally distributed?</a></li>
-<li class="chapter" data-level="4.7.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>4.7.2</b> Normality test - analytical method</a></li>
-<li class="chapter" data-level="4.7.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>4.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
-<li class="chapter" data-level="4.7.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>4.7.4</b> The ‘thinking about the data’ normality test</a></li>
-<li class="chapter" data-level="4.7.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>4.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
-<li class="chapter" data-level="4.7.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>4.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
+<li class="chapter" data-level="5.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>5.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>4.8</b> The complete script</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>5</b> Paired tests for difference</a>
+<li class="chapter" data-level="5.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>5.5</b> Association is not causation</a></li>
+<li class="chapter" data-level="5.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>5.6</b> Examples</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>5.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a>
+<li class="chapter" data-level="5.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>5.6.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="5.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>5.6.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-paired-t-test"><i class="fa fa-check"></i><b>5.1.1</b> The paired t-test</a></li>
-<li class="chapter" data-level="5.1.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>5.1.2</b> The Wilcoxon Signed Rank test</a></li>
-<li class="chapter" data-level="5.1.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#null-hypotheses"><i class="fa fa-check"></i><b>5.1.3</b> Null Hypotheses</a></li>
-<li class="chapter" data-level="5.1.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#test-output"><i class="fa fa-check"></i><b>5.1.4</b> Test output</a></li>
+<li class="chapter" data-level="5.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>5.7.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="5.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>5.7.2</b> Exercise 2</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example"><i class="fa fa-check"></i><b>5.2</b> Example</a>
+</ul></li>
+<li class="chapter" data-level="6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>6</b> t-test for difference</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-2"><i class="fa fa-check"></i><b>5.2.1</b> Load packages</a></li>
-<li class="chapter" data-level="5.2.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-data"><i class="fa fa-check"></i><b>5.2.2</b> Load data</a></li>
-<li class="chapter" data-level="5.2.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data"><i class="fa fa-check"></i><b>5.2.3</b> Plot the data</a></li>
-<li class="chapter" data-level="5.2.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#tidy-the-data"><i class="fa fa-check"></i><b>5.2.4</b> Tidy the data</a></li>
-<li class="chapter" data-level="5.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>5.2.5</b> Check for normality of differences</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>5.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
-<li class="chapter" data-level="5.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>5.4</b> Relation to one-sample paired test</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html"><i class="fa fa-check"></i><b>6</b> ANOVA: Factorial experiments and model simplification’</a>
+<li class="chapter" data-level="6.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>6.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="6.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>6.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="6.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.3</b> The two-sample <em>t</em>-test</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>6.1</b> Factorial experiments and model simplification</a></li>
-<li class="chapter" data-level="6.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#files-needed"><i class="fa fa-check"></i><b>6.2</b> Files needed</a></li>
-<li class="chapter" data-level="6.3" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1"><i class="fa fa-check"></i><b>6.3</b> Open your Project</a></li>
-<li class="chapter" data-level="6.4" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3"><i class="fa fa-check"></i><b>6.4</b> Load packages</a></li>
-<li class="chapter" data-level="6.5" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data"><i class="fa fa-check"></i><b>6.5</b> Read in the data</a></li>
-<li class="chapter" data-level="6.6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>6.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
-<li class="chapter" data-level="6.7" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data"><i class="fa fa-check"></i><b>6.7</b> Summarise the data</a></li>
-<li class="chapter" data-level="6.8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1"><i class="fa fa-check"></i><b>6.8</b> Plot the data</a>
+<li class="chapter" data-level="6.3.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>6.3.1</b> Pros of the <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.3.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>6.3.2</b> Cons of the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>6.4</b> The workflow</a>
 <ul>
-<li class="chapter" data-level="6.8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#questions"><i class="fa fa-check"></i><b>6.8.1</b> Questions</a></li>
+<li class="chapter" data-level="6.4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#open-your-project"><i class="fa fa-check"></i><b>6.4.1</b> Open your project</a></li>
+<li class="chapter" data-level="6.4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#create-a-new-script"><i class="fa fa-check"></i><b>6.4.2</b> Create a new script</a></li>
+<li class="chapter" data-level="6.4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#load-packages-1"><i class="fa fa-check"></i><b>6.4.3</b> Load packages</a></li>
+<li class="chapter" data-level="6.4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>6.4.4</b> Read in and inspect the data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#anova"><i class="fa fa-check"></i><b>6.9</b> ANOVA</a>
+<li class="chapter" data-level="6.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>6.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="6.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>6.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="6.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>6.7</b> Step Three: Carry out statistical analysis</a>
 <ul>
-<li class="chapter" data-level="6.9.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model"><i class="fa fa-check"></i><b>6.9.1</b> Construct the model</a></li>
-<li class="chapter" data-level="6.9.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>6.9.2</b> Do we reject the null hypothesis?</a></li>
+<li class="chapter" data-level="6.7.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>6.7.1</b> Are the data normally distributed?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>6.7.2</b> Normality test - analytical method</a></li>
+<li class="chapter" data-level="6.7.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>6.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
+<li class="chapter" data-level="6.7.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>6.7.4</b> The ‘thinking about the data’ normality test</a></li>
+<li class="chapter" data-level="6.7.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>6.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.7.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>6.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#model-simplification"><i class="fa fa-check"></i><b>6.10</b> Model Simplification</a>
+<li class="chapter" data-level="6.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>6.8</b> The complete script</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>7</b> Paired tests for difference</a>
 <ul>
-<li class="chapter" data-level="6.10.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>6.10.1</b> Check the validity of the linear model</a></li>
-</ul></li>
-<li class="chapter" data-level="6.11" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results"><i class="fa fa-check"></i><b>6.11</b> Reporting the results</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>7</b> One-way ANOVA</a>
+<li class="chapter" data-level="7.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>7.1</b> Load packages</a></li>
-<li class="chapter" data-level="7.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>7.2</b> Remove observations with missing values</a></li>
-<li class="chapter" data-level="7.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>7.3</b> Summary - group by species and sex</a></li>
-<li class="chapter" data-level="7.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>7.4</b> Plot the data</a></li>
-<li class="chapter" data-level="7.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>7.5</b> One-way ANOVA</a>
+<li class="chapter" data-level="7.1.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-paired-t-test"><i class="fa fa-check"></i><b>7.1.1</b> The paired t-test</a></li>
+<li class="chapter" data-level="7.1.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1.2</b> The Wilcoxon Signed Rank test</a></li>
+<li class="chapter" data-level="7.1.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#null-hypotheses"><i class="fa fa-check"></i><b>7.1.3</b> Null Hypotheses</a></li>
+<li class="chapter" data-level="7.1.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#test-output"><i class="fa fa-check"></i><b>7.1.4</b> Test output</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example-2"><i class="fa fa-check"></i><b>7.2</b> Example</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>7.5.1</b> Null hypothesis</a></li>
-<li class="chapter" data-level="7.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>7.5.2</b> The actual ANOVA</a></li>
-<li class="chapter" data-level="7.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>7.5.3</b> Construct the model</a></li>
-<li class="chapter" data-level="7.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>7.5.4</b> Is the model valid?</a></li>
-<li class="chapter" data-level="7.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>7.5.5</b> The overall picture</a></li>
-<li class="chapter" data-level="7.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>7.5.6</b> The detailed picture</a></li>
-<li class="chapter" data-level="7.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>7.5.7</b> Post hoc tsts.</a></li>
+<li class="chapter" data-level="7.2.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-2"><i class="fa fa-check"></i><b>7.2.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-data"><i class="fa fa-check"></i><b>7.2.2</b> Load data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data"><i class="fa fa-check"></i><b>7.2.3</b> Plot the data</a></li>
+<li class="chapter" data-level="7.2.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#tidy-the-data"><i class="fa fa-check"></i><b>7.2.4</b> Tidy the data</a></li>
+<li class="chapter" data-level="7.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>7.2.5</b> Check for normality of differences</a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>7.6</b> Reporting the Result.</a></li>
+<li class="chapter" data-level="7.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="7.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>7.4</b> Relation to one-sample paired test</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression</a>
+<li class="chapter" data-level="8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html"><i class="fa fa-check"></i><b>8</b> ANOVA: Factorial experiments and model simplification’</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>8.1</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="8.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.2</b> Load packages</a></li>
-<li class="chapter" data-level="8.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.3</b> Get the data</a></li>
-<li class="chapter" data-level="8.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
-<li class="chapter" data-level="8.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.5</b> Make a simple model using linear regression</a></li>
-<li class="chapter" data-level="8.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.6</b> Check assumptions</a></li>
-<li class="chapter" data-level="8.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.7</b> Interpretation of the model</a></li>
-<li class="chapter" data-level="8.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.8</b> Back to the figure</a></li>
-<li class="chapter" data-level="8.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion"><i class="fa fa-check"></i><b>8.9</b> Conclusion</a></li>
-<li class="chapter" data-level="8.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.10</b> Sample script</a></li>
+<li class="chapter" data-level="8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>8.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#files-needed"><i class="fa fa-check"></i><b>8.2</b> Files needed</a></li>
+<li class="chapter" data-level="8.3" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1"><i class="fa fa-check"></i><b>8.3</b> Open your Project</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3"><i class="fa fa-check"></i><b>8.4</b> Load packages</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data"><i class="fa fa-check"></i><b>8.5</b> Read in the data</a></li>
+<li class="chapter" data-level="8.6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>8.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="8.7" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data"><i class="fa fa-check"></i><b>8.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="8.8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1"><i class="fa fa-check"></i><b>8.8</b> Plot the data</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#questions"><i class="fa fa-check"></i><b>8.8.1</b> Questions</a></li>
 </ul></li>
+<li class="chapter" data-level="8.9" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#anova"><i class="fa fa-check"></i><b>8.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model"><i class="fa fa-check"></i><b>8.9.1</b> Construct the model</a></li>
+<li class="chapter" data-level="8.9.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>8.9.2</b> Do we reject the null hypothesis?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#model-simplification"><i class="fa fa-check"></i><b>8.10</b> Model Simplification</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>8.10.1</b> Check the validity of the linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results"><i class="fa fa-check"></i><b>8.11</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>9</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>9.1</b> Load packages</a></li>
+<li class="chapter" data-level="9.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>9.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="9.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>9.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="9.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>9.4</b> Plot the data</a></li>
+<li class="chapter" data-level="9.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>9.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>9.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="9.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>9.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="9.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>9.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="9.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>9.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="9.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>9.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="9.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>9.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="9.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>9.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>9.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>10.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="10.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>10.2</b> Load packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>10.3</b> Get the data</a></li>
+<li class="chapter" data-level="10.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>10.4</b> Plot the data</a></li>
+<li class="chapter" data-level="10.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>10.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="10.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>10.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="10.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>10.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="10.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>10.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="10.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>10.9</b> Conclusion</a></li>
+<li class="chapter" data-level="10.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>10.10</b> Sample script</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="css-crash.html"><a href="css-crash.html"><i class="fa fa-check"></i><b>A</b> CSS Crash Course</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="css-crash.html"><a href="css-crash.html#whats-in-a-name"><i class="fa fa-check"></i><b>A.1</b> What’s in a name?</a></li>
+<li class="chapter" data-level="A.2" data-path="css-crash.html"><a href="css-crash.html#how-do-i-change-the-color-of."><i class="fa fa-check"></i><b>A.2</b> How do I change the color of….?</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="backlog.html"><a href="backlog.html"><i class="fa fa-check"></i><b>B</b> Backlog</a></li>
+<li class="chapter" data-level="C" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>C</b> Miscellaneous</a></li>
+<li class="chapter" data-level="D" data-path="spillover-from-distill.html"><a href="spillover-from-distill.html"><i class="fa fa-check"></i><b>D</b> Spillover from distill</a></li>
+<li class="chapter" data-level="E" data-path="teaching-and-learning-with-jupyter-book-review.html"><a href="teaching-and-learning-with-jupyter-book-review.html"><i class="fa fa-check"></i><b>E</b> Teaching and Learning with Jupyter Book Review</a></li>
+<li class="chapter" data-level="F" data-path="rmd-themes.html"><a href="rmd-themes.html"><i class="fa fa-check"></i><b>F</b> R Markdown Themes</a>
+<ul>
+<li class="chapter" data-level="F.0.1" data-path="rmd-themes.html"><a href="rmd-themes.html#default"><i class="fa fa-check"></i><b>F.0.1</b> <code>default</code></a></li>
+<li class="chapter" data-level="F.0.2" data-path="rmd-themes.html"><a href="rmd-themes.html#cerulean"><i class="fa fa-check"></i><b>F.0.2</b> <code>cerulean</code></a></li>
+<li class="chapter" data-level="F.0.3" data-path="rmd-themes.html"><a href="rmd-themes.html#journal"><i class="fa fa-check"></i><b>F.0.3</b> <code>journal</code></a></li>
+<li class="chapter" data-level="F.0.4" data-path="rmd-themes.html"><a href="rmd-themes.html#flatly"><i class="fa fa-check"></i><b>F.0.4</b> <code>flatly</code></a></li>
+<li class="chapter" data-level="F.0.5" data-path="rmd-themes.html"><a href="rmd-themes.html#darkly"><i class="fa fa-check"></i><b>F.0.5</b> <code>darkly</code></a></li>
+<li class="chapter" data-level="F.0.6" data-path="rmd-themes.html"><a href="rmd-themes.html#readable"><i class="fa fa-check"></i><b>F.0.6</b> <code>readable</code></a></li>
+<li class="chapter" data-level="F.0.7" data-path="rmd-themes.html"><a href="rmd-themes.html#spacelab"><i class="fa fa-check"></i><b>F.0.7</b> <code>spacelab</code></a></li>
+<li class="chapter" data-level="F.0.8" data-path="rmd-themes.html"><a href="rmd-themes.html#united"><i class="fa fa-check"></i><b>F.0.8</b> <code>united</code></a></li>
+<li class="chapter" data-level="F.0.9" data-path="rmd-themes.html"><a href="rmd-themes.html#cosmo"><i class="fa fa-check"></i><b>F.0.9</b> <code>cosmo</code></a></li>
+<li class="chapter" data-level="F.0.10" data-path="rmd-themes.html"><a href="rmd-themes.html#lumen"><i class="fa fa-check"></i><b>F.0.10</b> <code>lumen</code></a></li>
+<li class="chapter" data-level="F.0.11" data-path="rmd-themes.html"><a href="rmd-themes.html#paper"><i class="fa fa-check"></i><b>F.0.11</b> <code>paper</code></a></li>
+<li class="chapter" data-level="F.0.12" data-path="rmd-themes.html"><a href="rmd-themes.html#sandstone"><i class="fa fa-check"></i><b>F.0.12</b> <code>sandstone</code></a></li>
+<li class="chapter" data-level="F.0.13" data-path="rmd-themes.html"><a href="rmd-themes.html#simplex"><i class="fa fa-check"></i><b>F.0.13</b> <code>simplex</code></a></li>
+<li class="chapter" data-level="F.0.14" data-path="rmd-themes.html"><a href="rmd-themes.html#yeti"><i class="fa fa-check"></i><b>F.0.14</b> <code>yeti</code></a></li>
+</ul></li>
+<li class="chapter" data-level="G" data-path="teach-offer.html"><a href="teach-offer.html"><i class="fa fa-check"></i><b>G</b> What should I make</a></li>
+<li class="chapter" data-level="H" data-path="teach-learners.html"><a href="teach-learners.html"><i class="fa fa-check"></i><b>H</b> Teaching learners</a></li>
+<li class="chapter" data-level="I" data-path="teach-day1.html"><a href="teach-day1.html"><i class="fa fa-check"></i><b>I</b> What to do on day 1</a></li>
+<li class="chapter" data-level="J" data-path="licensing-your-content.html"><a href="licensing-your-content.html"><i class="fa fa-check"></i><b>J</b> Licensing your content</a></li>
+<li class="chapter" data-level="K" data-path="remixing-licensed-content.html"><a href="remixing-licensed-content.html"><i class="fa fa-check"></i><b>K</b> Remixing licensed content</a></li>
+<li class="chapter" data-level="L" data-path="community.html"><a href="community.html"><i class="fa fa-check"></i><b>L</b> Community</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -313,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data nalaysis for Newquay University Centre</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis for Newquay University Centre</a>
           </h1>
         </div>
 
@@ -321,19 +392,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="anova-factorial-experiments-and-model-simplification" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> ANOVA: Factorial experiments and model simplification’<a href="anova-factorial-experiments-and-model-simplification.html#anova-factorial-experiments-and-model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="anova-factorial-experiments-and-model-simplification" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> ANOVA: Factorial experiments and model simplification’<a href="anova-factorial-experiments-and-model-simplification.html#anova-factorial-experiments-and-model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This exercise sheet is heavily indebted to Michael Crawley’s <em>Statistics: An introduction using R</em>, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the <code>tidyverse</code> dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey’s <em>Getting Started in R: An introduction for biologists</em>, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.</p>
-<div id="factorial-experiments-and-model-simplification" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Factorial experiments and model simplification<a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="factorial-experiments-and-model-simplification" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Factorial experiments and model simplification<a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The best model is the one that adequately explains the data with fewest parameters. This means with the smallest possible number of degrees of freedom.</p>
 <p>If we have a very large number of parameters, a model can fit any data set but be of limited use in generalising beyond it (we will have overfitted the data). If we have too few we will not explain much of the variance of the data. A balance must be struck. Hence we want the <em>minimal</em> <em>adequate</em> model.</p>
 <p>As Einstein almost said, a model should be as simple as possible, but no simpler.</p>
 <p>A <strong>factorial</strong> experiment has two or more factors, each with two or more levels, plus replication for each combination of factor levels. This means that we can investigate whether statistical interactions occur in which the effect of one factor depends on the value of another factor.</p>
 <p>We take an example from a farm-trial of animal diets. There are two factors: <code>diet</code> and <code>supplement</code>. <code>diet</code> is a factor with three levels: <code>barley</code>, <code>oats</code> and <code>wheat</code>, where <code>barley</code> is the diet that has always been used and the other two are potential alternatives. The purpose of the trial is to see if their use makes a difference to growth outcomes. <code>supplement</code> is a factor with four levels: <code>control</code>, <code>agrimore</code>, <code>supergain</code> and <code>supersupp</code>, where <code>control</code> could mean the absence of any supplement or the supplement used up to now, whose effects we are hoping to improve upon through use of one of the others included in the trial. The response variable <code>gain</code> is weight gain after 6 weeks. There were 48 individual cows in total with 4 for each combination of <code>diet</code> and <code>supplement</code>. Having the same number of replcates for each combination of levels means that this is a <em>balanced</em> design.</p>
 </div>
-<div id="files-needed" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Files needed<a href="anova-factorial-experiments-and-model-simplification.html#files-needed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="files-needed" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Files needed<a href="anova-factorial-experiments-and-model-simplification.html#files-needed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>To be put in the Project/scripts folder:</p>
 <ul>
@@ -347,25 +418,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>In the following, we present the code you need to analyse this data together with explanatory text. Read the text closely so that you understand what each chunk of code is intended to do. In the accompanying template file, fill in the code as you go in the empty chunks, using this worksheet as a guide. As you complete each line of code, run it using Ctrl-Enter or Cmd-Enter on a Mac. Alternatively, wait until you have completed the code for a chunk then run the whole chunk in one go by pressing the little green arrow at the top right of the chunk. Whichever way you choose, you are encouraged to view the code presented here as <em>one</em> way to do the analysis. Feel free to hack away at it and change things, to try different approaches and see what happens. That way you will learn. You may also wish to add your own text between the chunks.</p>
 </div>
-<div id="open-your-project-1" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Open your Project<a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="open-your-project-1" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Open your Project<a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You should be working within a folder that you have designated as what RStudio calls a ‘Project’. If you are, the name of your Project will appear at the top right of the RStudio window. Inside your Project folder you should have a <code>scripts</code> folder for scripts like the one you are working from, and a <code>data</code> folder for all the data files. You will also see, at the top level of the Project, the <code>.RProj</code> file. You can see all this in the Files pane, bottom-right.</p>
 </div>
-<div id="load-packages-3" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Load packages<a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="load-packages-3" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Load packages<a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I normally load all the packages in the chunk below into every script. The most important is the <code>tidyverse</code> package which is a goody bag containing several other packages. Loading this saves you from having to load each of those individually. The most often used among these is <code>readr</code> for reading and writing data from/to files, <code>dplyr</code> for data manipulation, and <code>ggplot2</code> for plotting. Others will be used from time to time, and we don’t really need to be aware of that when it happens or to worry about it, so long as <code>tidyverse</code> has been loaded.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb78-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data manipulation and plotting, and much else besides</span></span>
-<span id="cb78-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb78-2" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># for finding our data easily</span></span>
-<span id="cb78-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb78-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># gives a nice theme for plots</span></span>
-<span id="cb78-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb78-4" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># for diagnostic plots</span></span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># for data manipulation and plotting, and much else besides</span></span>
+<span id="cb95-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-2" tabindex="-1"></a><span class="fu">library</span>(here) <span class="co"># for finding our data easily</span></span>
+<span id="cb95-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-3" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># gives a nice theme for plots</span></span>
+<span id="cb95-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-4" tabindex="-1"></a><span class="fu">library</span>(ggfortify) <span class="co"># for diagnostic plots</span></span></code></pre></div>
 </div>
-<div id="read-in-the-data" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> Read in the data<a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="read-in-the-data" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Read in the data<a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>growth.csv</code> data file needs to be in the <code>data</code> folder within the Project folder.</p>
 <p>In this chunk we read the <code>growth.csv</code> data into an R object to which we give the name <code>weights</code>.</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb79-1" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;growth.csv&quot;</span>)</span>
-<span id="cb79-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb79-2" tabindex="-1"></a>weights<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath) <span class="co"># this function is from the readr package, part of tidyverse</span></span>
-<span id="cb79-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb79-3" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb96-1" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;growth.csv&quot;</span>)</span>
+<span id="cb96-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb96-2" tabindex="-1"></a>weights<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath) <span class="co"># this function is from the readr package, part of tidyverse</span></span>
+<span id="cb96-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb96-3" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code></pre></div>
 <pre><code>## Rows: 48
 ## Columns: 3
 ## $ supplement &lt;chr&gt; &quot;supergain&quot;, &quot;supergain&quot;, &quot;supergain&quot;, &quot;supergain&quot;, &quot;contro…
@@ -373,16 +444,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ gain       &lt;dbl&gt; 17.37125, 16.81489, 18.08184, 15.78175, 17.70656, 18.22717,…</code></pre>
 <p>You see from the output of the <code>glimpse()</code> function that <code>weights</code> has three columns and 48 rows. Two columns are of data type <code>&lt;chr&gt;</code> which is R-speak for text, and the other is data type <code>&lt;dbl&gt;</code> which is R-speak for numerical data with a decimal point.</p>
 </div>
-<div id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="section level2 hasAnchor" number="6.6">
-<h2><span class="header-section-number">6.6</span> Make R recognise the categorical variables as factors, and order the levels.<a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Make R recognise the categorical variables as factors, and order the levels.<a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>At the moment, the contents within the variables <code>supplement</code> and <code>diet</code> are not being recognised as levels of factors. R is just thinking of them as text (or <code>&lt;chr&gt;</code> in R-speak), as we can see from the output of the <code>glimpse()</code> function in the chunk above. Let us fix that, as it will be useful for them to be recognized for what they are so that we can order the levels in a way that makes sense for our context, our plots and our analysis.</p>
 <p>Sometimes levels of a factor have a natural order, such as <em>Low</em>, <em>Mid</em> and <em>High</em> as the levels of the factor <em>Tidal Zone</em> and sometimes they do not, for example <em>Apples</em>, <em>Oranges</em> and <em>Pears</em> as levels of the factor <em>Fruit</em>. Here, in the case of both our factors, we only wish to impose order among the levels in so far as we would like what we regard as the control or reference level to be first. By default, R puts the levels of a factor in alphabetical order. This is the order in which the boxes of a box plot would be displayed, reading left to right. In an ANOVA setting it means that differences of outcome (in this case, weight gain of the cows) are later calculated for each combination of levels with respect to the outcome for the combination of levels that are alphabetically first, in this case <code>barley</code> for <code>diet</code> and <code>agrimore</code> for <code>supplement</code>. In both the box-plot and the ANOVA output case this default ordering is not necessarily what we want. Normally, we want what we regard as the control levels to be the reference level and in this case that means <code>barley</code> for <code>diet</code> and <code>control</code> for <code>supplement</code>.</p>
 <p>To ensure that a variable is regarded as a factor, and then to get its levels in the order we would like, we use the <code>factor()</code> function.</p>
 <p>In the following chunk, <code>factor()</code> is used to designate both the <code>supplement</code> and <code>diet</code> columns of the data set as factors, and the level order of each is specified, with <code>control</code> coming first for <code>supplement</code> and <code>barley</code> coming first for <code>diet</code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb81-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
-<span id="cb81-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb81-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supplement =</span> <span class="fu">factor</span>(supplement, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;agrimore&quot;</span>, <span class="st">&quot;supergain&quot;</span>, <span class="st">&quot;supersupp&quot;</span>)),</span>
-<span id="cb81-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb81-3" tabindex="-1"></a>         <span class="at">diet =</span> <span class="fu">factor</span>(diet, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;barley&quot;</span>,<span class="st">&quot;oats&quot;</span>, <span class="st">&quot;wheat&quot;</span>)))</span>
-<span id="cb81-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb81-4" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb98-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
+<span id="cb98-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb98-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supplement =</span> <span class="fu">factor</span>(supplement, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;control&quot;</span>,<span class="st">&quot;agrimore&quot;</span>, <span class="st">&quot;supergain&quot;</span>, <span class="st">&quot;supersupp&quot;</span>)),</span>
+<span id="cb98-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb98-3" tabindex="-1"></a>         <span class="at">diet =</span> <span class="fu">factor</span>(diet, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;barley&quot;</span>,<span class="st">&quot;oats&quot;</span>, <span class="st">&quot;wheat&quot;</span>)))</span>
+<span id="cb98-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb98-4" tabindex="-1"></a><span class="fu">glimpse</span>(weights)</span></code></pre></div>
 <pre><code>## Rows: 48
 ## Columns: 3
 ## $ supplement &lt;fct&gt; supergain, supergain, supergain, supergain, control, contro…
@@ -392,17 +463,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To get <code>control</code> to be the reference level of <code>supplement</code> we needed to force the issue in this way. If we hadn’t then <code>agrimore</code> would have been regarded as such, since it is alphabetically the first among the levels of <code>supplement</code>. We didn’t need to do this for <code>diet</code>, since the stipulated ordering of the levels is just the alphabetical order and so we would have had that by default anyway. Sometimes, though, it doesn’t hurt to throw in a little redundancy for the sake of clarity.</p>
 <p>So, now we have <code>control</code> as the reference level for <code>supplement</code> and <code>barley</code> as the reference level for <code>diet</code>. Now we can see more easily in our analysis what difference is made to weight gain when we change diet or supplement or both from a ‘business as usual’ combination of a <code>barley</code>diet and the <code>control</code> supplement.</p>
 </div>
-<div id="summarise-the-data" class="section level2 hasAnchor" number="6.7">
-<h2><span class="header-section-number">6.7</span> Summarise the data<a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summarise-the-data" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Summarise the data<a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our question is a difference question: is there evidence from the data that using this or that diet in combination with this or that supplement makes a difference to growth? For an answer to this we will end up doing a 2-way ANOVA including the possibility of an interaction, then, as we will see, a simpler ANOVA that ignores the possibility of the interaction. All well and good, but before we go to those lengths, we do something more basic: we calculate the mean and standard error of the mean for each of the twelve combinations of diet and supplement.</p>
 <p>There isn’t a function in base R with which we can calculate standard error of the mean directly, but we can do so knowing the standard deviation of the sample <span class="math inline">\(\text{SD}\)</span> (using <code>sd()</code>) and the sample size <span class="math inline">\(n\)</span> (using <code>n()</code>) using this formula:</p>
 <p><span class="math display">\[ \text{SE}=\frac{SD}{\sqrt{n}}\]</span></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-1" tabindex="-1"></a><span class="co"># we use the group_by() and summarise() functions from dplyr (the package within tidyverse for data manipulation)</span></span>
-<span id="cb83-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-2" tabindex="-1"></a>growth_summary<span class="ot">&lt;-</span>weights <span class="sc">|&gt;</span></span>
-<span id="cb83-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-3" tabindex="-1"></a>  <span class="fu">group_by</span>(diet,supplement) <span class="sc">|&gt;</span></span>
-<span id="cb83-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain),<span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb83-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb83-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb83-6" tabindex="-1"></a>growth_summary</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-1" tabindex="-1"></a><span class="co"># we use the group_by() and summarise() functions from dplyr (the package within tidyverse for data manipulation)</span></span>
+<span id="cb100-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-2" tabindex="-1"></a>growth_summary<span class="ot">&lt;-</span>weights <span class="sc">|&gt;</span></span>
+<span id="cb100-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-3" tabindex="-1"></a>  <span class="fu">group_by</span>(diet,supplement) <span class="sc">|&gt;</span></span>
+<span id="cb100-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain),<span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb100-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb100-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb100-6" tabindex="-1"></a>growth_summary</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -593,23 +664,23 @@ supersupp
 </table>
 <p>Note the ordering of the diet and supplement levels in their respective columns: just what we have imposed!</p>
 </div>
-<div id="plot-the-data-1" class="section level2 hasAnchor" number="6.8">
-<h2><span class="header-section-number">6.8</span> Plot the data<a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plot-the-data-1" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Plot the data<a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The next step, as so often before we launch into actual statistics, is to plot the data in a way that sheds light on the question we have. Here, we can use the use the means and standard errors of the mean that we have just calculated to produce a useful kind of line plot that in this context is often referred to as an interaction plot:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-1" tabindex="-1"></a>growth_summary <span class="sc">|&gt;</span></span>
-<span id="cb84-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>supplement,<span class="at">y=</span>mean_gain, <span class="at">colour =</span> diet, <span class="at">group =</span> diet)) <span class="sc">+</span></span>
-<span id="cb84-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb84-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb84-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain <span class="sc">-</span> se_gain, <span class="at">ymax =</span> mean_gain <span class="sc">+</span> se_gain), <span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb84-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Supplement&quot;</span>,</span>
-<span id="cb84-7"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-7" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Mean weight gain&quot;</span>) <span class="sc">+</span></span>
-<span id="cb84-8"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
-<span id="cb84-9"><a href="anova-factorial-experiments-and-model-simplification.html#cb84-9" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
-<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/interaction%20plot%20one-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-1" tabindex="-1"></a>growth_summary <span class="sc">|&gt;</span></span>
+<span id="cb101-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>supplement,<span class="at">y=</span>mean_gain, <span class="at">colour =</span> diet, <span class="at">group =</span> diet)) <span class="sc">+</span></span>
+<span id="cb101-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb101-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-4" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb101-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-5" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain <span class="sc">-</span> se_gain, <span class="at">ymax =</span> mean_gain <span class="sc">+</span> se_gain), <span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb101-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Supplement&quot;</span>,</span>
+<span id="cb101-7"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-7" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Mean weight gain&quot;</span>) <span class="sc">+</span></span>
+<span id="cb101-8"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb101-9"><a href="anova-factorial-experiments-and-model-simplification.html#cb101-9" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/interaction%20plot%20one-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by [Cummings et al][1]. (2007).</p>
 <p>This interaction plot is useful in that we see that both diet and supplement have an effect on growth and that the effect of one is altered little by the value of the other, the result of which is that the lines are more or less parallel. This suggests that we have <em>main effects</em> of both diet and supplement, but little or no <em>interaction</em> between them.</p>
-<div id="questions" class="section level3 hasAnchor" number="6.8.1">
-<h3><span class="header-section-number">6.8.1</span> Questions<a href="anova-factorial-experiments-and-model-simplification.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="questions" class="section level3 hasAnchor" number="8.8.1">
+<h3><span class="header-section-number">8.8.1</span> Questions<a href="anova-factorial-experiments-and-model-simplification.html#questions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>What could the line plot look like if:</p>
 <ul>
 <li><p>There were no main effect of both diet and supplement, and no interaction</p></li>
@@ -620,8 +691,8 @@ supersupp
 <p>The plots tell you a great deal about what main effects and/or interactions there may be.</p>
 </div>
 </div>
-<div id="anova" class="section level2 hasAnchor" number="6.9">
-<h2><span class="header-section-number">6.9</span> ANOVA<a href="anova-factorial-experiments-and-model-simplification.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="anova" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> ANOVA<a href="anova-factorial-experiments-and-model-simplification.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now for the actual statistical test. We will conduct a two-way ANOVA, which will look to see if there is evidence that either diet or supplement or both affect growth rate (the so-called main effects), and if the effect of one depends on the nature of the other (the so-called interaction). The null hypothesis is that neither has any main effect and that there is no interaction.</p>
 <p>Now we can use either of the functions <code>aov()</code> or <code>lm()</code> to fit a factorial ANOVA (the choice affects only whether we get an ANOVA table or a list of parameter estimates as the default output from <code>summary()</code>.). Here, we will use <code>lm()</code>.</p>
 <p>We estimate parameters for the main effects of each level of diet and each level of supplement, plus terms for the interaction between diet and supplement.</p>
@@ -630,15 +701,15 @@ supersupp
 <p><code>gain ~ diet + supplement + diet:supplement</code></p>
 <p>which can be written more simply using the asterisk notation as:</p>
 <p><code>gain ~ diet * supplement</code></p>
-<div id="construct-the-model" class="section level3 hasAnchor" number="6.9.1">
-<h3><span class="header-section-number">6.9.1</span> Construct the model<a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="construct-the-model" class="section level3 hasAnchor" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Construct the model<a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First we construct the model using <code>lm()</code> and store the outputs of all the maths that `<code>lm()</code> does in an object called <code>model0</code>:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb85-1" tabindex="-1"></a>model0<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">*</span> supplement, <span class="at">data =</span> weights)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb102-1" tabindex="-1"></a>model0<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">*</span> supplement, <span class="at">data =</span> weights)</span></code></pre></div>
 </div>
-<div id="do-we-reject-the-null-hypothesis" class="section level3 hasAnchor" number="6.9.2">
-<h3><span class="header-section-number">6.9.2</span> Do we reject the null hypothesis?<a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="do-we-reject-the-null-hypothesis" class="section level3 hasAnchor" number="8.9.2">
+<h3><span class="header-section-number">8.9.2</span> Do we reject the null hypothesis?<a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To get an overall picture, we first use <code>anova()</code> to see if there is evidence to reject the null</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb86-1" tabindex="-1"></a><span class="fu">anova</span>(model0)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb103-1" tabindex="-1"></a><span class="fu">anova</span>(model0)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: gain
@@ -651,7 +722,7 @@ supersupp
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>The ANOVA table shows that there a main effect of both <code>diet</code> and <code>supplement</code> (<em>p</em>&lt;0.001 in both cases), but that there is no hint of an interaction between <code>diet</code> and <code>supplement</code> (<em>p</em> = 0.917). Does that tally with what you see in the interaction plot? Clearly therefore, the effects of <code>diet</code> and <code>supplement</code> are merely additive (ie whichever level of one you have it does not affect the impact on growth of whichever level of the other you choose).</p>
 <p>The ANOVA table does not show us effect sizes or allow us to work out which if any of the levels of the two factors are significantly different. For this, <code>summary()</code> is more useful:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb88-1" tabindex="-1"></a><span class="fu">summary</span>(model0)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb105-1" tabindex="-1"></a><span class="fu">summary</span>(model0)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = gain ~ diet * supplement, data = weights)
@@ -988,11 +1059,11 @@ Interaction
 <p>The output of the <code>summary()</code> function re-emphasises that none of the interaction terms are significant. It also suggests that a minimum adequate model will contain 5 parameters: an intercept, which just means that there is non-zero growth when the diet and supplement are the reference values, a difference from that growth due to changing the diet to <code>oats</code>, a difference due to changing it to<code>wheat</code>, a difference due to changing the supplement to <code>agrimore</code> while keeping barley as the diet, and a difference due to changing the supplement instead to <code>suppersupp</code>..</p>
 </div>
 </div>
-<div id="model-simplification" class="section level2 hasAnchor" number="6.10">
-<h2><span class="header-section-number">6.10</span> Model Simplification<a href="anova-factorial-experiments-and-model-simplification.html#model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model-simplification" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Model Simplification<a href="anova-factorial-experiments-and-model-simplification.html#model-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Given the results of the full interaction model, we begin model simplification by leaving out the interaction terms, to leave us with an additive model:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb90-1" tabindex="-1"></a>model_1<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supplement, <span class="at">data =</span> weights)</span>
-<span id="cb90-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb90-2" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb107-1" tabindex="-1"></a>model_1<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supplement, <span class="at">data =</span> weights)</span>
+<span id="cb107-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb107-2" tabindex="-1"></a><span class="fu">summary</span>(model_1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = gain ~ diet + supplement, data = weights)
@@ -1015,37 +1086,37 @@ Interaction
 ## Residual standard error: 1.247 on 42 degrees of freedom
 ## Multiple R-squared:  0.8531, Adjusted R-squared:  0.8356 
 ## F-statistic: 48.76 on 5 and 42 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div id="check-the-validity-of-the-linear-model" class="section level3 hasAnchor" number="6.10.1">
-<h3><span class="header-section-number">6.10.1</span> Check the validity of the linear model<a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="check-the-validity-of-the-linear-model" class="section level3 hasAnchor" number="8.10.1">
+<h3><span class="header-section-number">8.10.1</span> Check the validity of the linear model<a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We ought to pause here for a moment and just check that we are OK to go ahead and analyse our data using a general linear model (of which ANOVA is an example, linear regression and t-tests being others). We will use <code>autoplot()</code> from the <code>ggfortify</code> package, which gives us the standard four diagnostic plots.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb92-1" tabindex="-1"></a><span class="fu">autoplot</span>(model_1) <span class="sc">+</span> <span class="fu">theme_cowplot</span>() <span class="co"># autoplot() is from the ggfortify package.</span></span></code></pre></div>
-<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/diagnostic%20plots-1.png" width="672" /></p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb109-1" tabindex="-1"></a><span class="fu">autoplot</span>(model_1) <span class="sc">+</span> <span class="fu">theme_cowplot</span>() <span class="co"># autoplot() is from the ggfortify package.</span></span></code></pre></div>
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/diagnostic%20plots-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Well, that all looks fine. In particular, from the top-left figure we see that the variance of the residuals is more or less constant and from the top-right figure, the quantile-quantile plot, we get a pretty good approximation of a straight line which tells us that the residuals are more or less normally distributed. These are two key assumptions that must be at least approximately satisfied by data if it is going to make any sense to use a linear model to analyse it. We won’t discuss here the other two diagnostic plots, but they look fine too. So we are good to go using ANOVA with this data.</p>
 <p>Back to interpreting the output of the ANOVA:</p>
 <p>It is clear that we need to retain all three levels of diet since the effect values of each differ from each other by an amount that is several times the standand errors, so that <em>t</em> &gt;&gt; 1. It is not clear that we need all the levels of supplement, however. <code>supersupp</code> is not obviously different from <code>agrimore</code> (difference = -0.727 with standard error = 0.509), yet both are clearly different from <code>control</code>. However <code>supergrain</code> is not obviously different from <code>control</code> (difference = -0.68, error = 0.509). Hence we are tempted to try a new model with just two levels of the factor supplement which we might sensibly call “best”, by which we mean <code>agrimore</code> or <code>supersupp</code>, and “worst” by which we mean <code>control</code> or <code>supergrain</code>. We’ll name this new factor <code>supp2</code>.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb93-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
-<span id="cb93-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb93-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supp2 =</span> <span class="fu">ifelse</span>(supplement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;agrimore&quot;</span>,<span class="st">&quot;supersupp&quot;</span>),<span class="st">&quot;best&quot;</span>,<span class="st">&quot;worst&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb110-1" tabindex="-1"></a>weights <span class="ot">&lt;-</span> weights <span class="sc">|&gt;</span></span>
+<span id="cb110-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb110-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">supp2 =</span> <span class="fu">ifelse</span>(supplement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;agrimore&quot;</span>,<span class="st">&quot;supersupp&quot;</span>),<span class="st">&quot;best&quot;</span>,<span class="st">&quot;worst&quot;</span>))</span></code></pre></div>
 <p>If we calculate the means and standard errors for weight gain under each diet for each of the two new classifications of supplement, and then plot them, we get this new interaction plot:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-1" tabindex="-1"></a>weights <span class="sc">|&gt;</span></span>
-<span id="cb94-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-2" tabindex="-1"></a>  <span class="fu">group_by</span>(diet,supp2) <span class="sc">|&gt;</span></span>
-<span id="cb94-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain), <span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
-<span id="cb94-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-4" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb94-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-5" tabindex="-1"></a></span>
-<span id="cb94-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> supp2,<span class="at">y =</span> mean_gain,<span class="at">colour =</span> diet,<span class="at">group=</span>diet)) <span class="sc">+</span></span>
-<span id="cb94-7"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb94-8"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-8" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb94-9"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-9" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain<span class="sc">-</span>se_gain, <span class="at">ymax =</span> mean_gain<span class="sc">+</span>se_gain), <span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb94-10"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Supplement&quot;</span>,</span>
-<span id="cb94-11"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Mean weight gain&quot;</span>) <span class="sc">+</span></span>
-<span id="cb94-12"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-12" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
-<span id="cb94-13"><a href="anova-factorial-experiments-and-model-simplification.html#cb94-13" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
-<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/simplified%20additive%20model%20plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-1" tabindex="-1"></a>weights <span class="sc">|&gt;</span></span>
+<span id="cb111-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-2" tabindex="-1"></a>  <span class="fu">group_by</span>(diet,supp2) <span class="sc">|&gt;</span></span>
+<span id="cb111-3"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_gain =</span> <span class="fu">mean</span>(gain), <span class="at">se_gain =</span> <span class="fu">sd</span>(gain)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>())) <span class="sc">|&gt;</span></span>
+<span id="cb111-4"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-4" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb111-5"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-5" tabindex="-1"></a></span>
+<span id="cb111-6"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> supp2,<span class="at">y =</span> mean_gain,<span class="at">colour =</span> diet,<span class="at">group=</span>diet)) <span class="sc">+</span></span>
+<span id="cb111-7"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-7" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb111-8"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-8" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb111-9"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-9" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_gain<span class="sc">-</span>se_gain, <span class="at">ymax =</span> mean_gain<span class="sc">+</span>se_gain), <span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb111-10"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Supplement&quot;</span>,</span>
+<span id="cb111-11"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-11" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Mean weight gain&quot;</span>) <span class="sc">+</span></span>
+<span id="cb111-12"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-12" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb111-13"><a href="anova-factorial-experiments-and-model-simplification.html#cb111-13" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="ANOVA_two_way_with_model_simplification_files/figure-html/simplified%20additive%20model%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>From this we can see that diet clearly makes a difference to weight gain, since the three lines are separated by a distance much larger than the standard errors, the best supplement clearly makes a difference since there is a consistent drop on going from ‘best’ to ‘worst’, again by an amount that is much larger than the error bars, and there is clearly no interaction between diet and supplement, since the lines are parallel within the wiggle room allowed by the error bars, which means that the effect of diet does not depend on supplement, and the effect of supplement does not depend on diet.</p>
 <p>Now we will make the simpler model, calling it model_2 (for comparison with the first additive model, model_1)</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-1" tabindex="-1"></a><span class="co"># additive model whee the supplements have been condensed from four to two: best and worst</span></span>
-<span id="cb95-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb95-2" tabindex="-1"></a>model_2<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supp2, <span class="at">data =</span> weights)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb112-1" tabindex="-1"></a><span class="co"># additive model whee the supplements have been condensed from four to two: best and worst</span></span>
+<span id="cb112-2"><a href="anova-factorial-experiments-and-model-simplification.html#cb112-2" tabindex="-1"></a>model_2<span class="ot">&lt;-</span><span class="fu">lm</span>(gain <span class="sc">~</span> diet <span class="sc">+</span> supp2, <span class="at">data =</span> weights)</span></code></pre></div>
 <p>and them compare the two additive models:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb96-1" tabindex="-1"></a><span class="fu">anova</span>(model_1,model_2)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb113-1" tabindex="-1"></a><span class="fu">anova</span>(model_1,model_2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: gain ~ diet + supplement
@@ -1055,7 +1126,7 @@ Interaction
 ## 2     44 71.284 -2   -5.9876 1.9257 0.1584</code></pre>
 <p>When we use <code>anova()</code> in this way it is testing the explanatory power of the second model against that of the first ie how much of the variance in the data does each explain. Its null hypothesis is that both models explain just as much of the variance as the other.</p>
 <p>The simpler model has saved two degrees of freedom and is not significantly different in explanatory power than the more complex model (<em>p</em> = 0.158). Hence this is a better candidate as a minimal adequate model. All the parameters are significantly different from zero and from each other.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb98-1" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="anova-factorial-experiments-and-model-simplification.html#cb115-1" tabindex="-1"></a><span class="fu">summary</span>(model_2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = gain ~ diet + supp2, data = weights)
@@ -1086,8 +1157,8 @@ Interaction
 <p>In all cases, p&lt; 0.001, as indicated not only by the number in the Pr(&gt;|t|) column, but also by the ’***’ in the right-most column of the table.</p>
 </div>
 </div>
-<div id="reporting-the-results" class="section level2 hasAnchor" number="6.11">
-<h2><span class="header-section-number">6.11</span> Reporting the results<a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="reporting-the-results" class="section level2 hasAnchor" number="8.11">
+<h2><span class="header-section-number">8.11</span> Reporting the results<a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have now reduced our initial 12 parameter model to a four parameter model that is much more tractable and easier to communicate. Our advice would be that for maximum weight gain a diet of <code>barley</code> with a supplement of <code>agrimore</code> or <code>supersupp</code> would be best.</p>
 <p>If we were reporting this as a statistical test, we might say something like: A diet of barley with a supplement of agrimore or supersupp was to offer significant improvements over alternatives. There was no evidence of any interaction between diet and supplement. (ANOVA 2-way, F<sub>3,44</sub> = 76.76, p &lt; 0.001)</p>
 <p>[1]: Cumming, G., Fidler, F., &amp; Vaux, D. L. (2007). Error bars in experimental biology. Journal of Cell Biology, 177(1), 7–11. <a href="https://doi.org/10.1083/jcb.200611141" class="uri">https://doi.org/10.1083/jcb.200611141</a></p>

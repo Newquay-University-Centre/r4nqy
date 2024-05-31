@@ -2,6 +2,8 @@
 
 
 
+
+
 This exercise sheet is heavily indebted to Michael Crawley's *Statistics: An introduction using R*, 2nd Ed, Wiley. Published in 2015 this emphasises statistics over R (in fact, much of the R he presents is written prior to the advent of the `tidyverse` dialect which we use here, and so may seem terse if that is what you are used to). It is very useful and is at a higher level than Beckerman, Childs and Petchey's *Getting Started in R: An introduction for biologists*, 2nd Ed. OUP published in 2017. Their book also includes a simpler version of the example explored here.
 
 
@@ -223,7 +225,7 @@ growth_summary |>
   theme_cowplot()
 ```
 
-<img src="ANOVA_two_way_with_model_simplification_files/figure-html/interaction plot one-1.png" width="672" />
+<img src="ANOVA_two_way_with_model_simplification_files/figure-html/interaction plot one-1.png" width="672" style="display: block; margin: auto;" />
 
 
 Note that on this plot the error bars are standard errors of the mean. Any caption to a figure that contains error bars should explain what those error bars mean. In particular, it should say whether they are standard deviations of the sample, standard errors of the mean or confidence intervals. These are all different from each other. A good explanation of the difference is given by [Cummings et al][1]. (2007). 
@@ -519,7 +521,7 @@ We ought to pause here for a moment and just check that we are OK to go ahead an
 autoplot(model_1) + theme_cowplot() # autoplot() is from the ggfortify package.
 ```
 
-<img src="ANOVA_two_way_with_model_simplification_files/figure-html/diagnostic plots-1.png" width="672" />
+<img src="ANOVA_two_way_with_model_simplification_files/figure-html/diagnostic plots-1.png" width="672" style="display: block; margin: auto;" />
 
 Well, that all looks fine. In particular, from the top-left figure we see that the variance of the residuals is more or less constant and from the top-right figure, the quantile-quantile plot, we get a pretty good approximation of a straight line which tells us that the residuals are more or less normally distributed. These are two key assumptions that must be at least approximately satisfied by data if it is going to make any sense to use a linear model to analyse it. We won't discuss here the other two diagnostic plots, but they look fine too. So we are good to go using ANOVA with this data.
 
@@ -552,7 +554,7 @@ weights |>
   theme_cowplot()
 ```
 
-<img src="ANOVA_two_way_with_model_simplification_files/figure-html/simplified additive model plot-1.png" width="672" />
+<img src="ANOVA_two_way_with_model_simplification_files/figure-html/simplified additive model plot-1.png" width="672" style="display: block; margin: auto;" />
 
 From this we can see that diet clearly makes a difference to weight gain, since the three lines are separated by a distance much larger than the standard errors, the best supplement clearly makes a difference since there is a consistent drop on going from 'best' to 'worst', again by an amount that is much larger than the error bars, and there is clearly no interaction between diet and supplement, since the lines are parallel within the wiggle room allowed by the error bars, which means that the effect of diet does not depend on supplement, and the effect of supplement does not depend on diet.
 

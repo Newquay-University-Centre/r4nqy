@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 This guide to correlation is heavily based on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.
 
 
@@ -15,7 +19,7 @@ This guide to correlation is heavily based on the very helpful chapter in Statis
 
 The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.
 
-<img src="correlation_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" />
 
 The taller a father, the taller his sons tend to be. It is the same with mothers and daughters.
 
@@ -51,7 +55,7 @@ The next step is to measure the width of the cloud from side to side, in both th
 
 
 
-<img src="correlation_files/figure-html/unnamed-chunk-10-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-11-1.png" width="864" style="display: block; margin: auto;" />
 
 So far, our summary statistics are:
 
@@ -64,7 +68,7 @@ Consider the following two sets of data plotted below. Both have the same centre
 
 
 
-<img src="correlation_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" />
 
 However the points in the first cloud are tightly clustered around a line - there is a strong linear association between the two variables. In the second cloud, the clustering is much looser. The strength of the association is different in the two diagrams. To measure the association, one more summary statistic is needed - the *correlation coefficient*.
 
@@ -86,7 +90,7 @@ Let us see how this looks graphically. In the Figure below we show six scatter p
 
 
 
-<img src="correlation_files/figure-html/unnamed-chunk-14-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-15-1.png" width="864" style="display: block; margin: auto;" />
 
 The one top left shows a correlation of 0 and the cloud is completely formless. As *x* increases, *y* shows no tendency to increase or decrease. It just straggles around.
 
@@ -106,7 +110,7 @@ Below we show six examples of negative correlation. As in the previous figure, a
 
 
 
-<img src="correlation_files/figure-html/unnamed-chunk-17-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-18-1.png" width="864" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 
@@ -130,13 +134,13 @@ cor.test(x,y,method="pearson")
 ## 	Pearson's product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.0855, df = 48, p-value = 5.311e-12
+## t = 9.0985, df = 48, p-value = 5.082e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6637449 0.8789787
+##  0.6643828 0.8792379
 ## sample estimates:
 ##       cor 
-## 0.7951814
+## 0.7956005
 ```
 
 There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman's Rank method and write *method="spearman"* instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship. 
@@ -194,7 +198,7 @@ iris |>
   theme(strip.background=element_blank())
 ```
 
-<img src="correlation_files/figure-html/unnamed-chunk-21-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-22-1.png" width="864" style="display: block; margin: auto;" />
 
 Having seen the plots, do you think that petal width and length are correlated in these samples, and roughly what value for *r* do you expect in each case?
 
@@ -259,9 +263,9 @@ Sometimes the Pearson correlation coefficient *r* is a poor measure of the degre
 
 Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by 'strong' that knowing the value of one variable gives you a very good idea of the value of the other.
 
-<img src="correlation_files/figure-html/unnamed-chunk-23-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" />
 
-The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.046, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
+The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.105, despite that there is a strong association between the *x* and *y* data. The reason is that the association is non linear.
 
 ### When is it appropriate to calculate a correlation coefficient?
 So, we note that the correlation coefficient is a measure of *linear* association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman's Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer *needs* to be a linear relationship between the two variables, but there must be a *monotonic* one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.
@@ -282,7 +286,7 @@ See [Spurious Correlations](https://www.tylervigen.com/spurious-correlations) fo
 Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <http://gis.nacse.org/lichenair/doc/Jovan2008.pdf>
 :::
 
-<img src="figures/lichen_abundance.png" width="629" style="display: block; margin: auto;" />
+<img src="images/lichen_abundance.png" width="629" style="display: block; margin: auto;" />
 
 There is a strong negative correlation (*r*=-0.78) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.
 
@@ -292,7 +296,7 @@ There is a strong negative correlation (*r*=-0.78) between air quality score and
 Lauber, C. L., Hamady, M., Knight, R., & Fierer, N. (2009). Pyrosequencing-based assessment of soil pH as a predictor of soil bacterial community structure at the continental scale. <i>Applied and Environmental Microbiology</i>, <i>75</i>(15), 5111--5120. <https://doi.org/10.1128/AEM.00335-09>
 :::
 
-<img src="figures/soil_bacteria.png" width="648" style="display: block; margin: auto;" />
+<img src="images/soil_bacteria.png" width="648" style="display: block; margin: auto;" />
 
 In the Figure above, note that the *r*-values for **C** and **E** are close to zero, and the *p*-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is *any* linear association between soil pH and the relative abundances of *Alphaproteobacteria* or *Beta/Gammaproteobacteria*. From the plots, it looks in **C** as if there no assocation at all, whereas in **E** it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.
 
@@ -303,7 +307,7 @@ In the Figure above, note that the *r*-values for **C** and **E** are close to z
 
 
 
-<img src="correlation_files/figure-html/unnamed-chunk-27-1.png" width="864" style="display: block; margin: auto;" />
+<img src="correlation_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" />
 Plots A to F above show scatter plots of different data sets _Y_ against _X_. 
 
 * Which of them show linear behaviour?

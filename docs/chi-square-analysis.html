@@ -4,12 +4,12 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Correlation | Data analysis for Newquay University Centre</title>
+  <title>Chapter 3 Chi-square analysis | Data analysis for Newquay University Centre</title>
   <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Correlation | Data analysis for Newquay University Centre" />
+  <meta property="og:title" content="Chapter 3 Chi-square analysis | Data analysis for Newquay University Centre" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
@@ -17,7 +17,7 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Correlation | Data analysis for Newquay University Centre" />
+  <meta name="twitter:title" content="Chapter 3 Chi-square analysis | Data analysis for Newquay University Centre" />
   
   <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
 The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
@@ -33,8 +33,8 @@ The HTML output format for this example is bookdown::gitbook, set in the _output
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="fishers-exact-test.html"/>
-<link rel="next" href="t-test-for-difference.html"/>
+<link rel="prev" href="plot-your-data.html"/>
+<link rel="next" href="fishers-exact-test.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -392,278 +392,203 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="correlation" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Correlation<a href="correlation.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This guide to correlation is heavily based on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.</p>
-<p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>The taller a father, the taller his sons tend to be. It is the same with mothers and daughters.</p>
-<p>There is a positive association between a father’s height and the height of his sons.</p>
-<p>But there is a lot variation - the association is weak.</p>
-<p>If you know the height of a father, how much does that tell you about the height of his sons?</p>
-<p>Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of mother who are about 63 inches tall.</p>
-<p>If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.</p>
-<div id="the-correlation-coefficient" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> The correlation coefficient<a href="correlation.html#the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Suppose we are looking at the relationship between two variables and have already plotted the scatter plot. The graph looks like a cloud of points.</p>
-<p>How can we summarise it numerically?</p>
-<p>The first thing we can do is to mark a point that shows the average of the <em>x</em>-values and the average of the <em>y</em>-values. This is the <em>point of averages</em>. It marks the centre of the cloud.</p>
-<p>The next step is to measure the width of the cloud from side to side, in both the <em>x</em> and the <em>y</em> directions. This can be done using the standard deviations (SD) of the <em>x</em> and <em>y</em> values. Remember that if both <em>x</em> and <em>y</em> are normally distributed, then 95% of the data will lie within about 2 (1.96 if we want to be pernickety) standard deviations of the mean, in each direction.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-11-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>So far, our summary statistics are:</p>
+<div id="chi-square-analysis" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Chi-square analysis<a href="chi-square-analysis.html#chi-square-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="chi-square-goodness-of-fit-test" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Chi-square goodness of fit test<a href="chi-square-analysis.html#chi-square-goodness-of-fit-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chi-square analysis is used when our data are in the form of raw counts for two or more categorical groups eg pea plants with either yellow peas or green peas, survival rate of mice if they took drug A or took drug B, etc. Each independent observation must definitely belong to either one group or the other, and there are no replicates. That is, for each category we just have one count.</p>
+<p>What we do is compare the counts we got to some <em>expected</em> value according either to chance or to some prior theory.</p>
+<p>For example:</p>
 <ul>
-<li>mean of the <em>x</em> values, SD of the <em>x</em> values.</li>
-<li>mean of the <em>y</em> values, SD of the <em>y</em> values.</li>
+<li><p>If we were tossing a fair coin 1000 times we would <em>expect</em> 500 heads and 500 tails, ie heads and tails in the proportion 1:1. In reality, if the coin were fair, we would probably get roughly the same number of heads and tails, but probably not exactly 500 of each. How far from 50:50 would the proportion of heads and tails have to be before we would be justified in rejecting the idea that the coin is fair?</p></li>
+<li><p>If we threw a fair dice a large number of times we would <em>expect</em> each possible score, from 1 to 6, to occur the same number of times. ie each score would occur 1/6th of the time. In reality we would probably get each score <em>roughly</em> 1/6 of the time, but not exactly 1/6. How far from the expected proportions could the numbers of each score get before we would be justified in thinking that the dice was not fair?</p></li>
+<li><p>If the basic idea of Mendelian inheritance with independent assortment involving a single gene is correct, then we would expect that if we crossed a large number of pea plants that were heterozygous for yellow and green pea colour, with yellow being dominant, then the offspring would have yellow:green peas in the ratio 3:1 (plants with genotypes YY, Yy, yY would all have yellow seeds and only those with yy would have green seeds). In practice, if the inheritance <em>were</em> according to the simplest type of Mendelian inheritance (ie involving just one gene, amongst other things) we would probably get yellow:green offspring in a ratio that was approximately but not exactly 3:1. How far from 3:1 would the ratio need to be before we would justified in claiming that the outcome was inconsistent with the Mendelian prediction?</p></li>
 </ul>
-<p>These statistics tell us where the centre of the cloud is and how far spread out it is both vertically and horizontally, but they do not tell the whole story.</p>
-<p>Consider the following two sets of data plotted below. Both have the same centre and the same spread.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>However the points in the first cloud are tightly clustered around a line - there is a strong linear association between the two variables. In the second cloud, the clustering is much looser. The strength of the association is different in the two diagrams. To measure the association, one more summary statistic is needed - the <em>correlation coefficient</em>.</p>
-<p>This coefficient is usually abbreviated as <em>r</em>, for no good reason.</p>
-<hr />
-<p>The correlation coefficient is a measure of linear association or clustering around a line. The relationship between two variables can be summarized by:</p>
+<p>In a chi-square ‘goodness of fit’ test, we are testing data where we have a number of counts for each of two or more possible outcomes of some procedure (heads/tails, dice scores etc). We have an idea of how these counts should be distributed under some null hypothesis (the coin is fair, the dice is fair, genetic inheritance works in this or that way etc). The chi-square goodness of fit test tests how likely it is we would have got the counts we actually got if that null hypothesis were correct. We are testing how well our actual counts ‘fit’ the expected values.</p>
+<p>In a typical software implementation of the test, such as in R, we give it the counts we actually got for each possible outcome and also the expected proportion for each outcome. The test then gives us a p-value, a probability, for how likely it is that we would have got the counts we actually got, or counts even furthe from the null hypothesis, if that null hypothesis were correct. If this p-value is too small, and usually, by that we mean less than 0.05, then we reject the null hypothesis.</p>
+<div id="example" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Example<a href="chi-square-analysis.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose we have crossed pea plants that were all heterozygous for yellow/green pea colour. In the F1 generation we get 176 offspring , of which 130 were yellow and 46 were green.</p>
+<p>The data here are raw counts, and an individual pea plant offspring contributes either to the yellow count or to the green count, but not to both.</p>
+<p>Our expected counts of yellow and green are found by simply dividing the total count of offspring, 176, in the ratio 3:1, giving us an expected 132 yellow pea plants and an expected 44 green pea plants in the offspring F1 generation.</p>
+</div>
+<div id="doing-the-chi-square-test-in-r" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Doing the chi-square test in R<a href="chi-square-analysis.html#doing-the-chi-square-test-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What we do in R is use the <code>chisq.test()</code> command to see how likely it is we would have got counts of 130 and 46 if the null hypothesis, with its expected counts in the ratio 3:1, were true.</p>
+<p>We do it like this:</p>
+<pre><code>chisq.test(c(130,46),p=c(0.75,0.25))</code></pre>
+<p>There are two arguments. The first is the counts we got, which we enter as a ‘vector’ <code>c(z,y,....)</code>, so we write <code>c(130,46)</code>. The second is a vector of the proportions we expect for the two counts, where these proportions should add up to one. So for our expected 3:1 ratio we enter <code>c(0.75,0.25)</code>.</p>
+<p>Let’s do it: type the above command into the console window (bottom left). You will get an output something like this:</p>
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  c(130, 46)
+X-squared = 0.12121, df = 1, p-value = 0.7277</code></pre>
+<p>This output is typical of tests done in R. We get the ‘test statistic’ whose name varies depending on the test. Here it is called <code>X-squared</code>, pronounced <code>chi-squared</code>. This is a number that the test calculates, based on the data you have given it. For the most part, we don’t need to worry about how it does that. Then there is the p-value, which is the probability of getting this test statistic if the null hypothesis were true.</p>
+<p>In this case, we see that the p-value is 0.73, which is large. We could very plausibly have got yellow:green numbers of 130 and 46 if the null hypothesis were true, so we cannot reject that null hypothesis. In other words, our data are consistent with the predictions of simple Mendelian inheritance.</p>
+</div>
+<div id="reporting-the-result-in-english" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Reporting the result in English<a href="chi-square-analysis.html#reporting-the-result-in-english" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In English, we might report this result as:</p>
+<p><em>We found counts of 130 yellow plants and 46 green plants, which are consistent with the predictions of Mendelian inheritance (chi-squared test, X-squared = 0.12, p=0.73).</em></p>
+<p>Note that we do not say we have proved Mendelian inheritance to be correct. We haven’t. We never prove things in science. We haven’t said anything about the truth of the null hypothesis. All we can say is whether our data are or are not consistent with the null hypothesis. In this case they are. We then report the test we used and the values of the test statistic and p-value. Other tests might give you other details to report too.</p>
+</div>
+</div>
+<div id="exercise-1." class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Exercise 1.<a href="chi-square-analysis.html#exercise-1." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose you tossed a fair coin 100 times and got 45 heads and 55 tails.</p>
 <ul>
-<li>the average of the <em>x</em>-values, the SD of the <em>x</em>-values.</li>
-<li>the average of the <em>y</em>-values, the SD of the <em>y</em>-values.</li>
-<li>the correlation coefficient <em>r</em></li>
+<li>Under a null hypothesis that the coin is fair, what would the expected numbers of heads and tails be?</li>
 </ul>
-<hr />
-</div>
-<div id="different-values-of-r." class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Different values of <em>r</em>.<a href="correlation.html#different-values-of-r." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let us see how this looks graphically. In the Figure below we show six scatter plots for hypothetical data. In all six pictures the average is 3 and the standard deviation is 1 for both <em>x</em> and <em>y</em>. The correlation coefficient is printed in each case.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-15-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>The one top left shows a correlation of 0 and the cloud is completely formless. As <em>x</em> increases, <em>y</em> shows no tendency to increase or decrease. It just straggles around.</p>
-<p>The next diagram has <em>r</em> = 0.4 and a linear pattern is just starting to emerge. The next has <em>r</em> = 0.6 with a stronger linear pattern, and so on. The closer <em>r</em> is to 1 the stronger is the linear association and the more tightly clustered are the points around a line.</p>
-<p>A correlation of 1, which does not appear in the Figure is often referred to as a <em>perfect correlation</em>. It means that all the points lie exactly on a line so there is a perfect linear correlation between the two variables. Correlation coefficients are always between -1 and 1.</p>
-<p>The correlation between the heights of identical twins is around 0.95. A scatter diagram for the heights of twins would thus look like the bottom right diagram in the Figure. We see that even with a coefficient this big there is a still a fair degree of scatter. The heights of identical twins are far from being equal all the time.</p>
-<p>Real data in the life sciences never shows perfect correlation and rarely does it even show strong correlation. It is more common for it to look like Pearson’s father-son data, with weak associations and <em>r</em> values in the range 0.3 to 0.7. This is even more true for data from the social sciences which concern human behaviour.</p>
-<p>We can also have negative associations between variables. For example women with more education tend to have fewer children. Animals with higher body weight tend to have lower metabolic rates. As one variable increases, the other decreases. When there is negative association, the correlation coefficient has a negative sign.</p>
-<p>Below we show six examples of negative correlation. As in the previous figure, all the data sets have a mean of 3 and a standard deviation of 1.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-18-1.png" width="864" style="display: block; margin: auto;" /></p>
-<hr />
-<p>Correlations are always between -1 and 1, but can take any value in between. A positive correlation means that the cloud slopes up: as one variable increases, so does the other. A negative correlation means that the cloud slopes down. As one variable increases, the other decreases.</p>
-<hr />
-</div>
-<div id="using-r-to-find-the-correlation-coefficient." class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Using R to find the correlation coefficient.<a href="correlation.html#using-r-to-find-the-correlation-coefficient." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the <em>x</em> and <em>y</em> data used above for which the correlation coefficient was fixed to be 0.8</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="correlation.html#cb61-1" tabindex="-1"></a><span class="fu">cor.test</span>(x,y,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  x and y
-## t = 9.0985, df = 48, p-value = 5.082e-12
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.6643828 0.8792379
-## sample estimates:
-##       cor 
-## 0.7956005</code></pre>
-<p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
-<p>It is important to be able to interpret and report the output.</p>
-<p>First, understand that R is carrying out a test, the null hypothesis of which is that there is no correlation between the values of <em>x</em> and the values of <em>y</em> among the populations from which the <em>x</em> and <em>y</em> data were drawn, so that the correlation coefficient between <em>x</em> and <em>y</em> within those populations is zero. It then reports a <em>p</em>-value: how likely it is that you would have got the data you got for this sample of data if that null hypothesis were true. As with most tests, to do this it uses the data to calculate a so-called <em>test-statistic</em>. How it does this need not concern us here. The details will differ from test to test, and the name given will differ. Here it is called <em>t</em>. It also reports the number of independent pieces of information used to calculate that statistic. This is called the <em>degrees of freedom</em>, here denoted <em>df</em>. This usually (but not necessarily) has a value that is 1,2 or 3 less than the number of data points.</p>
-<p>Then it reports the <em>p</em>-value. A tiny (close to zero) value here means that it thinks it very unlikely that the samples would be as they are if the <em>x</em> and <em>y</em> variables were not correlated in the populations from which the samples were drawn. A high (by which we usually mean greater than 0.05) value means that there is a reasonable chance that the actual non-zero correlation coefficient could have been found between <em>x</em> and <em>y</em> in the samples, even though those values were not correlated in the wider populations from which the samples were drawn. In that case we would have found no evidence that the <em>x</em> and <em>y</em> data within the population were correlated. This doesn’t mean that they aren’t, just that we have insufficient evidence to reject the null hypothesis that they are not.</p>
-<p>The <em>p</em>-value reported here is 4.3e-12. That is R’s way of saying what in standard form would be written 4.3 x 10<sup>-12</sup>. This is a really tiny value. It is 0.0000000000043, which is a very inconvenient way to write such a small number. Hence R’s way of doing it or the standard form way of doing it. In the context of a statistical test and when <em>p</em> is is that small we don’t care about its exact value, we simply note that it is very, very small. We thus can confidently reject the null hypothesis and assert that the data provide evidence that <em>x</em> and <em>y</em> are correlated, in this case positively.</p>
-<p>Further, it reports the actual correlation coefficient. Here it finds <em>r</em>=0.797, which we happen to know to be correct because we created this data set ourselves, and a 95% confidence interval for the coefficient. The precise meaning of the confidence interval is subtle, but it is a kind of error bar for the correlation coefficient <em>r</em>. It means that if we drew sample after sample from the population and calculated the confidence interval for <em>r</em> for each sample, then 95% of the time that interval would capture the true value of <em>r</em>.</p>
-<p>If the <em>p</em>-value is small enough that we reject the null-hypothesis, then this confidence interval should not encompass zero. If the <em>p</em>-value is large enough that we do not reject the null hypothesis then this confidence interval <em>will</em> encompass zero.</p>
-<p>Here, the confidence interval is from 0.67 to 0.88. This does not encompass zero. In fact it is far from zero, so is consistent with our finding a really small <em>p</em>-value.</p>
-<p>To report the result of this test we would say something like:</p>
-<blockquote>
-<p>We find evidence for a strong positive correlation between <em>x</em> and <em>y</em> (Pearson <em>r</em> =0.80, <em>t</em>=9.1, <em>df</em>=48, <em>p</em>&lt;0.001)</p>
-</blockquote>
-<p>Note that when the <em>p</em>-value is much less than 0.05 as it is here we do not normally report its exact value, but simply write <em>p</em>&lt;0.01, or <em>p</em>&lt;0.001, and so on. The point is that these ways of reporting it tell the reader that <em>p</em> is <em>way</em> less than 0.05. This is all they need to know to see that we can confidently reject the null hypothesis.</p>
-<div id="correlations-for-real-data" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Correlations for real data<a href="correlation.html#correlations-for-real-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let us look at the Iris data set that is built into R. It contains values for the Sepal Width, Sepal Length, Petal Width and Petal Length for samples of 50 plants from each of three species of Iris, <em>setosa</em>, <em>versicolor</em> and <em>virginica</em>. Here are the first few rows:</p>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>We will look to see if the data allow us to reject the idea that petal width and petal length are not correlated within the wider populations of each of these species:</p>
-<p>First, let’s plot the data</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="correlation.html#cb64-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb64-2"><a href="correlation.html#cb64-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Petal.Width,<span class="at">y=</span>Petal.Length,<span class="at">colour=</span>Species)) <span class="sc">+</span></span>
-<span id="cb64-3"><a href="correlation.html#cb64-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb64-4"><a href="correlation.html#cb64-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Petal Width (mm)&quot;</span>,</span>
-<span id="cb64-5"><a href="correlation.html#cb64-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Petal Length (mm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb64-6"><a href="correlation.html#cb64-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb64-7"><a href="correlation.html#cb64-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb64-8"><a href="correlation.html#cb64-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb64-9"><a href="correlation.html#cb64-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background=</span><span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="correlation_files/figure-html/unnamed-chunk-22-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>Having seen the plots, do you think that petal width and length are correlated in these samples, and roughly what value for <em>r</em> do you expect in each case?</p>
-<p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>setosa</em> and <em>virginica</em> than it is for <em>versicolor</em>. Knowing the petal width for that species gives you a much better idea of the petal length, and vice-versa, than is true for the other two species.</p>
-<p>Let us find out:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="correlation.html#cb65-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb65-2"><a href="correlation.html#cb65-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb65-3"><a href="correlation.html#cb65-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>estimate,</span>
-<span id="cb65-4"><a href="correlation.html#cb65-4" tabindex="-1"></a>            <span class="at">lower.boundb=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
-<span id="cb65-5"><a href="correlation.html#cb65-5" tabindex="-1"></a>            <span class="at">upper.bound=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
-<span id="cb65-6"><a href="correlation.html#cb65-6" tabindex="-1"></a>            <span class="st">&quot;p value&quot;</span><span class="ot">=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>p.value) <span class="sc">|&gt;</span></span>
-<span id="cb65-7"><a href="correlation.html#cb65-7" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb65-8"><a href="correlation.html#cb65-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="fl">0.7</span>)</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Species
-</th>
-<th style="text-align:right;">
-r
-</th>
-<th style="text-align:right;">
-lower.boundb
-</th>
-<th style="text-align:right;">
-upper.bound
-</th>
-<th style="text-align:right;">
-p value
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-setosa
-</td>
-<td style="text-align:right;">
-0.332
-</td>
-<td style="text-align:right;">
-0.059
-</td>
-<td style="text-align:right;">
-0.558
-</td>
-<td style="text-align:right;">
-0.019
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-versicolor
-</td>
-<td style="text-align:right;">
-0.787
-</td>
-<td style="text-align:right;">
-0.651
-</td>
-<td style="text-align:right;">
-0.874
-</td>
-<td style="text-align:right;">
-0.000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-virginica
-</td>
-<td style="text-align:right;">
-0.322
-</td>
-<td style="text-align:right;">
-0.048
-</td>
-<td style="text-align:right;">
-0.551
-</td>
-<td style="text-align:right;">
-0.023
-</td>
-</tr>
-</tbody>
-</table>
-<p>The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the confidence interval for that coefficient and the <em>p</em>-value.</p>
-<p>Do these output provide evidence for a correlation between petal length and petal width in each case?</p>
-</div>
-</div>
-<div id="the-correlation-coefficient-measures-the-degree-of-linear-association." class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> The correlation coefficient measures the degree of linear association.<a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
-<p>Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by ‘strong’ that knowing the value of one variable gives you a very good idea of the value of the other.</p>
-<p><img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.105, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
-<div id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> When is it appropriate to calculate a correlation coefficient?<a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So, we note that the correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.</p>
-</div>
-</div>
-<div id="association-is-not-causation" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Association is not causation<a href="correlation.html#association-is-not-causation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation.</p>
-<p>See <a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for some amusing examples.</p>
-</div>
-<div id="examples" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Examples<a href="correlation.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="lichen-abundance" class="section level3 hasAnchor" number="5.6.1">
-<h3><span class="header-section-number">5.6.1</span> Lichen abundance<a href="correlation.html#lichen-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="csl-entry">
-Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf" class="uri">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>
-</div>
-<p><img src="images/lichen_abundance.png" width="629" style="display: block; margin: auto;" /></p>
-<p>There is a strong negative correlation (<em>r</em>=-0.78) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.</p>
-</div>
-<div id="soil-bacteria" class="section level3 hasAnchor" number="5.6.2">
-<h3><span class="header-section-number">5.6.2</span> Soil bacteria<a href="correlation.html#soil-bacteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="csl-entry">
-Lauber, C. L., Hamady, M., Knight, R., &amp; Fierer, N. (2009). Pyrosequencing-based assessment of soil pH as a predictor of soil bacterial community structure at the continental scale. <i>Applied and Environmental Microbiology</i>, <i>75</i>(15), 5111–5120. <a href="https://doi.org/10.1128/AEM.00335-09" class="uri">https://doi.org/10.1128/AEM.00335-09</a>
-</div>
-<p><img src="images/soil_bacteria.png" width="648" style="display: block; margin: auto;" /></p>
-<p>In the Figure above, note that the <em>r</em>-values for <strong>C</strong> and <strong>E</strong> are close to zero, and the <em>p</em>-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is <em>any</em> linear association between soil pH and the relative abundances of <em>Alphaproteobacteria</em> or <em>Beta/Gammaproteobacteria</em>. From the plots, it looks in <strong>C</strong> as if there no assocation at all, whereas in <strong>E</strong> it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.</p>
-</div>
-</div>
-<div id="exercises" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Exercises<a href="correlation.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1" class="section level3 hasAnchor" number="5.7.1">
-<h3><span class="header-section-number">5.7.1</span> Exercise 1<a href="correlation.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="correlation_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" />
-Plots A to F above show scatter plots of different data sets <em>Y</em> against <em>X</em>.</p>
+<p>You use R to do a chi-square test of that null hypothesis. Here is the code to do that and the output it would give:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="chi-square-analysis.html#cb46-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code></pre></div>
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  c(45, 55)
+X-squared = 1, df = 1, p-value = 0.3173</code></pre>
 <ul>
-<li>Which of them show linear behaviour?</li>
-<li>Which of them show monotonic behaviour?</li>
-<li>For which of them might it be appropriate to calculate the following correlation coefficients between <em>X</em> and <em>Y</em>?
-<ul>
-<li>Pearson <em>r</em></li>
-<li>Spearman rank <em>r</em><sub>sp</sub></li>
-</ul></li>
+<li><p>What do you conclude?</p></li>
+<li><p>How would you report the result?</p></li>
 </ul>
+<div id="solution.-1" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Solution. 1<a href="chi-square-analysis.html#solution.-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The expectation is that half the outcomes would be heads and half would be tails.</p>
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  c(45, 55)
+X-squared = 1, df = 1, p-value = 0.3173</code></pre>
+<p>The null hypothesis of this test is that heads and tails are equally likely, ie that the coin is fair. Under this null hypothesis the expected outcome is 50 heads and 50 tails. From the output of the R code we see that the p-value, the probability of getting an outcome as far or further from that, is 0.317. That is pretty high. Would you do anything if you knew that the probability of a bad (or worse) outcome was 0.317? In particular, this p-value is greater than 0.05, so we cannot reject the null hypothesis that the coin is fair. That is, even with a fair coin it is not at all unlikely that you would get head/tail numbers as different from 50/50 as 45/55 if you tossed the coin 100 times. That will happen about 1/3 of the time if you repeatedly do trials where you toss the coin 100 times.</p>
+<p>To report this result, you might say something like</p>
+<p><em>From 100 coin tosses we got 45 heads and 55 tails. These counts are consistent with the coin being fair (chi-squared test, X-squared = 1, p=0.317).</em></p>
 </div>
-<div id="exercise-2" class="section level3 hasAnchor" number="5.7.2">
-<h3><span class="header-section-number">5.7.2</span> Exercise 2<a href="correlation.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Open a new R notebook</p>
-<p>In the usual way, include to start with code chunks to</p>
-<ol style="list-style-type: decimal">
-<li>Load the packages needed <code>tidyverse</code> and <code>here</code>.</li>
-<li>Read the data set <code>iris.csv</code> (which should be in your data folder already) into an object called <code>iris</code></li>
-</ol>
-<p>You can do this with this code chunk:</p>
-<pre><code>```{r}     
-filepath&lt;-here(&quot;data&quot;,&quot;iris.csv&quot;)
-iris&lt;-read_csv(filepath)
-glimpse(iris)
-```</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><p>Create a faceted plot of sepal length against sepal width for each species.</p></li>
-<li><p>Calculate the Pearson correlation coefficient between sepal length and sepal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
-</ol>
-<p>For (4) and (5) you can adapt code used on the previous tab.</p>
-<p>Now:</p>
+</div>
+<div id="way-chi-square-analysis-test-of-independence" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 2-way chi square analysis: test of independence<a href="chi-square-analysis.html#way-chi-square-analysis-test-of-independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>Taken from Chapter 5: Beckerman, Childs and Petchey: Getting Started with R</em></p>
+<p>A common scenario where we have count data is that there are two explanatory factors each with two or more levels that enable us to classify the data. This can happen when something is either true or not true, and a test for for this truth gives either a positive or a negative result. We might want to know if the test to determine truth was any better than flippig a coin: is there some association between what the truth is (eg I do or do not have a disease) and what the test says about that (testing positive or negative for the disease). Our data would be counts of people in each of four categories: have the disease / test positive, have the disease / test negative, do not have the disease / test positive and do not have the disease / test negative.</p>
+<p>We are going to analyse another scenario to see if there is evidence for an association between two factors. We have some count data of ladybirds found in an industrial and in a rural location. Some of the ladybirds are red and some are black. We would like to test for whether there is an association between the ladybird colour and its location. If there isn’t then we would expect the proportion of black to red ladybirds to be roughly the same in both habitats. If there is, then we would expect the proportions to be different, meaning that knowing the habitat would tell us something about the likelihood of a ladybird found there being black or red.</p>
+<p>Behind this the research purpose might be to investigate whether matching of morphological colour of the ladybirds to the prevalent colour of the environment confers an evolutionary advantage. If it does then we would expect there to be an association between morphological colour and environment so that the proportion of black to red ladybirds would be higher in a grimy industrial setting than in it would be in a rural setting.</p>
+<p>We will use a <strong>Chi-Square contingency analysis</strong> to investigate this. This type of analysis is used when you have</p>
 <ul>
-<li>Does it appear that the sepal length and sepal width are correlated for each species?<br />
+<li>Count data - how many red ladybirds in a rural setting, how many in an industrial setting, how many black ladydbirds in each of the settings?</li>
+<li>Enough count data - typically at least 5 individuals for each combination of the levels in question, which would be rural/red, rural/black, industrial/red and industrial/black in this case.</li>
+<li>Independent counts - each ladybird contributes to only one total. For example, if it is red and found in a rural location, then it contributes to the count of red ladybirds found in a rural location, and not to any other sub-total, such as black ladybirds found in a rural location.</li>
+</ul>
+<div id="hypotheses" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Hypotheses<a href="chi-square-analysis.html#hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What do you think a suitable hypothesis should be for this investigation, and what would the corresponding null hypothesis be?</p>
+<ul>
+<li>The null hypotheses could be: <strong>H<sub>0</sub></strong>: There is no association between habitat and ladybird colour. This means that whatever the proportion is of black to red ladybirds, it is the same in both habitats.<br />
 </li>
-<li>Is the correlation positive or negative?<br />
-</li>
-<li>For which species is the correlation strongest?<br />
-</li>
-<li>Do the correlation coefficients make sense, given the plots?</li>
+<li>The alternate hypothesis could be: <strong>H1</strong>: There is an association between habitat and ladybird colour.</li>
 </ul>
+</div>
+<div id="summarise-the-data." class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Summarise the data.<a href="chi-square-analysis.html#summarise-the-data." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The data consist of counts of the number of ladybirds of each colour that were observed in 10 rural locations and 10 industrial locations.</p>
+<p>Here is a summary of that data:</p>
+<pre><code>            morph_colour
+Habitat      black red
+  Industrial   115  85
+  Rural         30  70</code></pre>
+<pre><code># A tibble: 4 × 3
+# Groups:   Habitat [2]
+  Habitat    morph_colour total.number
+  &lt;chr&gt;      &lt;chr&gt;               &lt;dbl&gt;
+1 Industrial black                 115
+2 Industrial red                    85
+3 Rural      black                  30
+4 Rural      red                    70</code></pre>
+</div>
+<div id="plot-the-data." class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Plot the data.<a href="chi-square-analysis.html#plot-the-data." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now that we have these totals we can use them to plot a bar chart of the data:</p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="interpret-the-graph-before-we-do-any-stats" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Interpret the graph before we do any ‘stats’<a href="chi-square-analysis.html#interpret-the-graph-before-we-do-any-stats" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Look at the plot - does it look as though the proportion of black to red ladybirds is the same in the two habitats? Do you expect to retain or to reject the null hypothesis, which says that there is no association between habitat and ladybird colour, and hence that the proportions are the same?</p>
+</div>
+<div id="the-chi-square-test" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> The Chi-square test<a href="chi-square-analysis.html#the-chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To do a chi square test, it helps to set out these data as a 2 x 2 table:</p>
+<pre><code>            morph_colour
+Habitat      black red
+  Industrial   115  85
+  Rural         30  70</code></pre>
+<p>This kind of table is sometimes called a <strong>contingency table</strong>.</p>
+<p>When we give these numbers to some statistical software such as R and ask it to carry out a ‘chi-square test’ it will use the data to calculate a ‘test statistic’ <span class="math inline">\(X^2\)</span> by comparing the actual counts of the ladybirds in the table above with their expected counts under the null hypothesis. The further the actual counts are from their expected values, on the whole, the bigger this test statistic will be. For the gory (they are not that gory!) details on how this done, see the section below but do note that, while these are interesting, if you find that kind of thing interesting, as I do, you do not need to be familiar with them to be able to apply a chi-square test. What you do need to know is when it is OK to use one, and when it is not, as is true for any statistical test.</p>
+<p>We’ll turn to that issue now:</p>
+<p>Providing a number of conditions are met by the data (principally, that they are count data, that all the cell values are greater than or equal to about five and that they are all independent ie any ladybird contributes to the count of only one cell), this test statistic <span class="math inline">\(X^2\)</span> has a so-called ‘chi-squared’ distribution. This is a known mathematical distribution, which makes it possible to calculate the probability that the statistic would be as big as it is, or bigger, if the null hypothesis were true. We call this probability the <em>p</em>-value.</p>
+<p>This is generally how statistical tests work. They take your data and use it in a carefully chosen way to calculate some number that in general is called a <em>test statistic</em> but which is referred to by different names when calculated for particular tests. How it is calculated depends on the test and these days we never have to do the calculations. That’s taken care of by software like R. Providing the data meet certain criteria, the statistic will typically have a probability distribution. This means that the probability that it will exceed a given value if the null hypothesis is true can be calculated. This probability is the <em>p</em>-value. If the <em>p</em>-value is very small, and by that we typically mean less than 0.05 or 0.01, then we can reject the null hypothesis.</p>
+<p>When we run a chi-square test in R on the data in the table above it gives us this as output:</p>
+<pre><code>
+    Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  lady.mat
+X-squared = 19.103, df = 1, p-value = 1.239e-05</code></pre>
+</div>
+<div id="yates-continuity-correction" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Yates continuity correction<a href="chi-square-analysis.html#yates-continuity-correction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This adjusts for the fact that our data are discrete and the chi-square distribution that we are using to calculate the <em>p</em>-values is continuous. That’s it.</p>
+</div>
+<div id="conclusion" class="section level3 hasAnchor" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Conclusion<a href="chi-square-analysis.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Study the output of the chi-square test. Note that you are given a test-statistic (here called Chi-squared/X-squared) and a number of degrees of freedom (<em>df</em>) (in some tests you are given more than one of these). This is the number of independent pieces of information used to calculate the test statistic. Lastly, you are a given a <em>p</em>-value. This is the probability that you would have got a chi-squared value as big or bigger than the one you got <em>if</em> the null hypothesis were true. Here the null hypothesis is that there is no association between ladybird colour and location. Put another way, it is, roughly speaking the probability of getting the data you actually got if the null hypothesis were true.</p>
+<p>An appropriate way to report these data would be:</p>
+<p>‘Ladybird colour morphs are not equally common in the two habitats (Chi-sq =19.3, df = 1, p&lt;0.001)’</p>
+</div>
+</div>
+<div id="the-chi-square-test-explained-advanced" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> The Chi-Square Test explained (advanced)<a href="chi-square-analysis.html#the-chi-square-test-explained-advanced" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can skip this section if you are not interested in how the chi-square test works. If you are, read on.</p>
+<p>Let’s recall the number of sightings of each colour of ladybird in each habitat:</p>
+<pre><code>            morph_colour
+Habitat      black red
+  Industrial   115  85
+  Rural         30  70</code></pre>
+<p>If there were no association between colour and habitat, then we would expect the relative proportions of colour to be independent of habitat. That is they should be the same in both rural and industrial habitats. Looking at the table above we see that two thirds (200 out of 300) of all sightings, regardless of colour, were in an industrial habitat. Hence we would expect that two thirds of all 145 black sightings would be in an industrial habitat. We thus arrive at an ‘expected’ number for sightings of black butterflies in an industrial habitat to be <span class="math inline">\((200/300) \times 145 = 96.7\)</span>. Similarly, we would expect one third (100 out of 300) of all 155 red sightings to be in a rural habitat, giving an ‘expected’ number for this combination of levels to be <span class="math inline">\((100/300)\times 155 = 51.7\)</span>. More generally, the expected number in an any cell of the table, under the null hypothesis of no association between the two factors is given by</p>
+<p><span class="math display">\[\text{expected number}=\frac{\text{row total}\times\text{column total}}{\text{grand total}}\]</span>
+Using this method, these are the four expected numbers for each combination of levels of the two factors we have:</p>
+<pre><code>      [,1]   [,2]
+[1,] 96.67 103.33
+[2,] 48.33  51.67</code></pre>
+<p>To get a measurement of how far the actual table numbers are from their expected values we can, for each cell, square the difference between the expected and actual values, then divide the result by the actual value, and finally sum the four results that we get. This has the effect of giving equal weight to positive or negative deviations of the observed values from the expected values, and scales each squared deviation so that all four have equal weight in the final sum. The result is the chi-squared test statistic:</p>
+<p><span class="math display">\[
+\begin{align*}
+X^2&amp;=\sum_{i=1}^4\frac{(O_i-E_i)^2}{E_i}\\
+&amp;=\frac{(115-96.67)^2}{96.67} + \frac{(85-103.33)^2}{103.33} + \frac{(30-48.33)^2}{48.33} + \frac{(70-51.67)^2}{51.67}\\
+&amp;=20.189
+\end{align*}
+\]</span></p>
+<p><strong>Yates continuity correction</strong> (digression)</p>
+<p>You may have noticed that the <span class="math inline">\(X^2 = 20.189\)</span> value calculated above is slightly larger than the value calculated by the <code>chisq.test()</code> function, which found <span class="math inline">\(X^2 = 19.096\)</span>. This is because the function uses Yates continuity correction. This was suggested by Yates in 1934 to correct for the fact that the <span class="math inline">\(X^2\)</span> statistic we calculate is actually discrete (becuase we have categorical data) whereas the chi-square distribution is continuous. This means that the value we calculate tends to be too big so that our <em>p</em>-values are too small. The problem is most apparent where we have small numbers and one degree of freedom, which is what you have in a <span class="math inline">\(2 \times 2\)</span> contigency table such s in the example above. Yates’ fix is quite simple: just amend the <span class="math inline">\(X^2\)</span> statistic to the following:</p>
+<p><span class="math display">\[
+X^2=\sum_{i=1}^4\frac{(\lvert O_i-E_i \rvert - 0.5)^2}{E_i}
+\]</span></p>
+<p>where the vertical lines mean ‘take the absolute value of’, so that |85-103.33| = |-18.33| = 18.33</p>
+<p>This gives us</p>
+<p><span class="math display">\[
+\begin{align*}
+X^2&amp;=\sum_{i=1}^4\frac{(\lvert O_i-E_i \rvert - 0.5)^2}{E_i}\\
+&amp;=\frac{(|115-96.67|-0.5)^2}{96.67} + \frac{(|85-103.33|-0.5)^2}{103.33} + \frac{(|30-48.33|-0.5)^2}{48.33} + \frac{(|70-51.67|-0.5)^2}{51.67}\\
+&amp;=19.096
+\end{align*}
+\]</span>
+which is exactly what the <code>chisq.test()</code> function gives.</p>
+<p>Under a null hypothesis of no association between habitat and colour all the counts would be the ‘expected’ values, and <span class="math inline">\(X^2\)</span> would be zero. The further away from these values the actual results are, the bigger <span class="math inline">\(X^2\)</span> will be and the more likely it is that we can reject the null. For a sufficiently large value of <span class="math inline">\(X^2\)</span> we <em>will</em> reject the null. To sum up, in general we will reject the null when <span class="math inline">\(X^2\)</span> is large, and fail to reject it when it is small.</p>
+<p>But how large is large enough to reject the null?</p>
+<p>To answer this we use the fact that the sampling distribution of <span class="math inline">\(X^2\)</span> is a chi-squared distribution with (in this case) <span class="math inline">\((2-1) \times (2-1) = 1\)</span> degrees of freedom.</p>
+<p>The p-value given in a chi-square test is the probability of getting a chi-squared statistic <span class="math inline">\(X^2\)</span> as big as or bigger than the one you actually got. This is the area under the chi-squared distribution with the appropriate number of degrees of freedom to the right of the test-statistic value <span class="math inline">\(X^2\)</span>.</p>
+<p><img src="chi-square_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="why-does-the-test-statistic-have-this-distribution" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Why does the test statistic have this distribution?<a href="chi-square-analysis.html#why-does-the-test-statistic-have-this-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To answer this, let us recognise that in our observed contingency table, where we have <em>N</em> observations altogether, we can think of their being a probability <span class="math inline">\(P_i\)</span> that any individual observation will end up in cell <em>i</em>, with the actual observed frequency in that cell, <span class="math inline">\(O_i\)</span> being the product of this probability and the total number of observations: <span class="math inline">\(O_i = P_i\times N\)</span>. If we repeated the study again and again we would get slightly different numbers in each cell each time. The distribution of the numbers in a particular cell would follow similar rules as that of the number of heads we might get each time if we tossed a coin <em>N</em> times, then did the same again and again. This distribution is called a <em>binomial distribution</em>.</p>
+<p>In other words, our observed frequencies have been obtained by sampling from a binomial distribution, where <span class="math inline">\(O_i \sim \text{Binomial}(P_i,N)\)</span>. Now, providing <em>N</em> is large enough and providing too that the probabilities <span class="math inline">\(P_i\)</span> are not too close to 0 or 1, then the binomial distribution resembles a normal distribution. Thus, providing <span class="math inline">\(P_i\times N\)</span>, that is providing the observed frequencies <span class="math inline">\(O_i=P_i\times N\)</span> are large enough, then the <span class="math inline">\(O_i\)</span> will be approximately normally distributed.If this is the case, then so too is <span class="math inline">\(\frac{(O_i-E_i)}{\sqrt{E_i}}\)</span> since the expected values <span class="math inline">\(E_i\)</span> are fixed quantities and all this transformation does is turn our normal distribution into a <em>standard</em> normal distribution, with mean = 0 and standard deviation = 1. ie it shifts and squishes the distribution.</p>
+<p>Hence in our expression for our test statistic <span class="math inline">\(X^2\)</span> what we are doing is adding up <em>k</em> (= 4 in this case) squared standard normal distributions. This is the definition of a chi-squared distribution with four degrees of freedom. Thus we see that the sampling distribution of our test statistic is a chi-squared distribution.</p>
+<p>The one final slightly odd detail is that when we run a chi-square test for a 2 x 2 contingency table we are told that there is one degree of freedom. In general, for <span class="math inline">\(m \times  n\)</span> table, there will be <span class="math inline">\((m-1)\times(n-1)\)</span> degrees of freedom. This is because the test presumes that the row and column total are already known. If that is the case then if one value of a 2x2 table is known, the other 3 values can be found by deduction. Hence there only one value (it doesn’t matter which one) can be chosen freely.</p>
 
 </div>
 </div>
@@ -673,8 +598,8 @@ glimpse(iris)
           </div>
         </div>
       </div>
-<a href="fishers-exact-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="t-test-for-difference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plot-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fishers-exact-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -705,7 +630,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/correlation.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/chi-square.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -1,8 +1,10 @@
 # One-way ANOVA
 
+
+
+
+
 In this exercise we will carry out a method of analysis known as ANOVA - this is what is commonly used when you have one or more categorical variables, such as species, sex and so on, and a numerical response variable such as body mass and you want to know if there is a difference in the response variable between the categories.
-
-
 
 
 ## Load packages
@@ -104,7 +106,7 @@ penguins_clean  |>
   theme(legend.position= c(0.1,0.8))
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 
 What do you think now about size differences between species and the two sexes?
 
@@ -178,7 +180,7 @@ females  |>
   theme_bw()
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 From the summary table and the plot, what do you think? Do the masses differ between the species? 
 
@@ -210,7 +212,7 @@ There are various ways we can find out whether these consitions are met. A usefu
 autoplot(females.model) + theme_bw()
 ```
 
-<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="ANOVA_one_way_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
 All four graphs presented here tell us something about the validity or not of our model. Here we will just focus on the upper two:
 
