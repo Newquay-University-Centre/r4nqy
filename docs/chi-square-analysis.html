@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -428,7 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Under a null hypothesis that the coin is fair, what would the expected numbers of heads and tails be?</li>
 </ul>
 <p>You use R to do a chi-square test of that null hypothesis. Here is the code to do that and the output it would give:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="chi-square-analysis.html#cb3-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="chi-square-analysis.html#cb46-1" tabindex="-1"></a><span class="fu">chisq.test</span>(<span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">55</span>),<span class="at">p=</span><span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.5</span>)) <span class="co"># we could leave out the second argument here</span></span></code></pre></div>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
@@ -471,35 +471,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
 <li>The alternate hypothesis could be: <strong>H1</strong>: There is an association between habitat and ladybird colour.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chi-square-analysis.html#cb6-1" tabindex="-1"></a><span class="co"># Load packages we need</span></span>
-<span id="cb6-2"><a href="chi-square-analysis.html#cb6-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb6-3"><a href="chi-square-analysis.html#cb6-3" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb6-4"><a href="chi-square-analysis.html#cb6-4" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># this makes your plots look nicer</span></span>
-<span id="cb6-5"><a href="chi-square-analysis.html#cb6-5" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb6-6"><a href="chi-square-analysis.html#cb6-6" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_cowplot</span>()) <span class="co"># this sets the cowplot theme to be the default theme.</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chi-square-analysis.html#cb7-1" tabindex="-1"></a><span class="co"># Import the data</span></span>
-<span id="cb7-2"><a href="chi-square-analysis.html#cb7-2" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ladybirds_morph_colour.csv&quot;</span>)</span>
-<span id="cb7-3"><a href="chi-square-analysis.html#cb7-3" tabindex="-1"></a>lady<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
-<span id="cb7-4"><a href="chi-square-analysis.html#cb7-4" tabindex="-1"></a><span class="co">#glimpse(lady)</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chi-square-analysis.html#cb49-1" tabindex="-1"></a><span class="co"># Load packages we need</span></span>
+<span id="cb49-2"><a href="chi-square-analysis.html#cb49-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-3"><a href="chi-square-analysis.html#cb49-3" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb49-4"><a href="chi-square-analysis.html#cb49-4" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># this makes your plots look nicer</span></span>
+<span id="cb49-5"><a href="chi-square-analysis.html#cb49-5" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb49-6"><a href="chi-square-analysis.html#cb49-6" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_cowplot</span>()) <span class="co"># this sets the cowplot theme to be the default theme.</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="chi-square-analysis.html#cb50-1" tabindex="-1"></a><span class="co"># Import the data</span></span>
+<span id="cb50-2"><a href="chi-square-analysis.html#cb50-2" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ladybirds_morph_colour.csv&quot;</span>)</span>
+<span id="cb50-3"><a href="chi-square-analysis.html#cb50-3" tabindex="-1"></a>lady<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
+<span id="cb50-4"><a href="chi-square-analysis.html#cb50-4" tabindex="-1"></a><span class="co">#glimpse(lady)</span></span></code></pre></div>
 </div>
 <div id="summarise-the-data." class="section level3 hasAnchor" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Summarise the data.<a href="chi-square-analysis.html#summarise-the-data." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The data consist of counts of the number of ladybirds of each colour that were observed in 10 rural locations and 10 industrial locations.</p>
 <p>Here is a summary of that data:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chi-square-analysis.html#cb8-1" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
-<span id="cb8-2"><a href="chi-square-analysis.html#cb8-2" tabindex="-1"></a>lady.mat</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chi-square-analysis.html#cb51-1" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
+<span id="cb51-2"><a href="chi-square-analysis.html#cb51-2" tabindex="-1"></a>lady.mat</span></code></pre></div>
 <pre><code>##             morph_colour
 ## Habitat      black red
 ##   Industrial   115  85
 ##   Rural         30  70</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="chi-square-analysis.html#cb10-1" tabindex="-1"></a><span class="co"># Calculate the totals of each colour in each habitat.</span></span>
-<span id="cb10-2"><a href="chi-square-analysis.html#cb10-2" tabindex="-1"></a>totals<span class="ot">&lt;-</span> lady <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="chi-square-analysis.html#cb10-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Habitat,morph_colour) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="chi-square-analysis.html#cb10-4" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">total.number =</span> <span class="fu">sum</span>(number))</span>
-<span id="cb10-5"><a href="chi-square-analysis.html#cb10-5" tabindex="-1"></a><span class="co"># totals |&gt;</span></span>
-<span id="cb10-6"><a href="chi-square-analysis.html#cb10-6" tabindex="-1"></a><span class="co">#   kbl() |&gt;</span></span>
-<span id="cb10-7"><a href="chi-square-analysis.html#cb10-7" tabindex="-1"></a><span class="co">#   kable_styling(full_width=FALSE)</span></span>
-<span id="cb10-8"><a href="chi-square-analysis.html#cb10-8" tabindex="-1"></a>totals</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="chi-square-analysis.html#cb53-1" tabindex="-1"></a><span class="co"># Calculate the totals of each colour in each habitat.</span></span>
+<span id="cb53-2"><a href="chi-square-analysis.html#cb53-2" tabindex="-1"></a>totals<span class="ot">&lt;-</span> lady <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="chi-square-analysis.html#cb53-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Habitat,morph_colour) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="chi-square-analysis.html#cb53-4" tabindex="-1"></a>  <span class="fu">summarise</span> (<span class="at">total.number =</span> <span class="fu">sum</span>(number))</span>
+<span id="cb53-5"><a href="chi-square-analysis.html#cb53-5" tabindex="-1"></a><span class="co"># totals |&gt;</span></span>
+<span id="cb53-6"><a href="chi-square-analysis.html#cb53-6" tabindex="-1"></a><span class="co">#   kbl() |&gt;</span></span>
+<span id="cb53-7"><a href="chi-square-analysis.html#cb53-7" tabindex="-1"></a><span class="co">#   kable_styling(full_width=FALSE)</span></span>
+<span id="cb53-8"><a href="chi-square-analysis.html#cb53-8" tabindex="-1"></a>totals</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ## # Groups:   Habitat [2]
 ##   Habitat    morph_colour total.number
@@ -512,15 +512,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plot-the-data." class="section level3 hasAnchor" number="3.3.3">
 <h3><span class="header-section-number">3.3.3</span> Plot the data.<a href="chi-square-analysis.html#plot-the-data." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that we have these totals we can use them to plot a bar chart of the data:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chi-square-analysis.html#cb12-1" tabindex="-1"></a><span class="co"># plot the data, with sensible colours</span></span>
-<span id="cb12-2"><a href="chi-square-analysis.html#cb12-2" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="chi-square-analysis.html#cb12-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
-<span id="cb12-4"><a href="chi-square-analysis.html#cb12-4" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="chi-square-analysis.html#cb12-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Habitat&quot;</span>,</span>
-<span id="cb12-6"><a href="chi-square-analysis.html#cb12-6" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Count&quot;</span>,</span>
-<span id="cb12-7"><a href="chi-square-analysis.html#cb12-7" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Colour&quot;</span>) <span class="sc">+</span></span>
-<span id="cb12-8"><a href="chi-square-analysis.html#cb12-8" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">black=</span><span class="st">&#39;#312626&#39;</span>,<span class="at">red=</span><span class="st">&#39;#da1717&#39;</span>)) <span class="sc">+</span> <span class="co"># this line manually sets the colours for us</span></span>
-<span id="cb12-9"><a href="chi-square-analysis.html#cb12-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="chi-square-analysis.html#cb55-1" tabindex="-1"></a><span class="co"># plot the data, with sensible colours</span></span>
+<span id="cb55-2"><a href="chi-square-analysis.html#cb55-2" tabindex="-1"></a>totals <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href="chi-square-analysis.html#cb55-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Habitat,<span class="at">y =</span> total.number,<span class="at">fill=</span>morph_colour))<span class="sc">+</span></span>
+<span id="cb55-4"><a href="chi-square-analysis.html#cb55-4" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position=</span><span class="st">&#39;dodge&#39;</span>) <span class="sc">+</span></span>
+<span id="cb55-5"><a href="chi-square-analysis.html#cb55-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Habitat&quot;</span>,</span>
+<span id="cb55-6"><a href="chi-square-analysis.html#cb55-6" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Count&quot;</span>,</span>
+<span id="cb55-7"><a href="chi-square-analysis.html#cb55-7" tabindex="-1"></a>       <span class="at">fill=</span> <span class="st">&quot;Colour&quot;</span>) <span class="sc">+</span></span>
+<span id="cb55-8"><a href="chi-square-analysis.html#cb55-8" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">black=</span><span class="st">&#39;#312626&#39;</span>,<span class="at">red=</span><span class="st">&#39;#da1717&#39;</span>)) <span class="sc">+</span> <span class="co"># this line manually sets the colours for us</span></span>
+<span id="cb55-9"><a href="chi-square-analysis.html#cb55-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="chi-square_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interpret-the-graph-before-we-do-any-stats" class="section level3 hasAnchor" number="3.3.4">
@@ -530,8 +530,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-chi-square-test" class="section level3 hasAnchor" number="3.3.5">
 <h3><span class="header-section-number">3.3.5</span> The Chi-square test<a href="chi-square-analysis.html#the-chi-square-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To do a chi square test, it helps to set out these data as a 2 x 2 table:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="chi-square-analysis.html#cb13-1" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
-<span id="cb13-2"><a href="chi-square-analysis.html#cb13-2" tabindex="-1"></a>lady.mat</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="chi-square-analysis.html#cb56-1" tabindex="-1"></a>lady.mat<span class="ot">&lt;-</span><span class="fu">xtabs</span>(number<span class="sc">~</span>Habitat <span class="sc">+</span> morph_colour, <span class="at">data=</span>lady)</span>
+<span id="cb56-2"><a href="chi-square-analysis.html#cb56-2" tabindex="-1"></a>lady.mat</span></code></pre></div>
 <pre><code>##             morph_colour
 ## Habitat      black red
 ##   Industrial   115  85
@@ -542,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Providing a number of conditions are met by the data (principally, that they are count data, that all the cell values are greater than or equal to about five and that they are all independent ie any ladybird contributes to the count of only one cell), this test statistic <span class="math inline">\(X^2\)</span> has a so-called ‘chi-squared’ distribution. This is a known mathematical distribution, which makes it possible to calculate the probability that the statistic would be as big as it is, or bigger, if the null hypothesis were true. We call this probability the <em>p</em>-value.</p>
 <p>This is generally how statistical tests work. They take your data and use it in a carefully chosen way to calculate some number that in general is called a <em>test statistic</em> but which is referred to by different names when calculated for particular tests. How it is calculated depends on the test and these days we never have to do the calculations. That’s taken care of by software like R. Providing the data meet certain criteria, the statistic will typically have a probability distribution. This means that the probability that it will exceed a given value if the null hypothesis is true can be calculated. This probability is the <em>p</em>-value. If the <em>p</em>-value is very small, and by that we typically mean less than 0.05 or 0.01, then we can reject the null hypothesis.</p>
 <p>When we run a chi-square test in R on the data in the table above it gives us this as output:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chi-square-analysis.html#cb15-1" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="chi-square-analysis.html#cb58-1" tabindex="-1"></a><span class="fu">chisq.test</span>(lady.mat)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 ## 
@@ -564,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> The Chi-Square Test explained (advanced)<a href="chi-square-analysis.html#the-chi-square-test-explained-advanced" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You can skip this section if you are not interested in how the chi-square test works. If you are, read on.</p>
 <p>Let’s recall the number of sightings of each colour of ladybird in each habitat:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chi-square-analysis.html#cb17-1" tabindex="-1"></a>lady.mat</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="chi-square-analysis.html#cb60-1" tabindex="-1"></a>lady.mat</span></code></pre></div>
 <pre><code>##             morph_colour
 ## Habitat      black red
 ##   Industrial   115  85
@@ -602,14 +602,14 @@ which is exactly what the <code>chisq.test()</code> function gives.</p>
 <p>But how large is large enough to reject the null?</p>
 <p>To answer this we use the fact that the sampling distribution of <span class="math inline">\(X^2\)</span> is a chi-squared distribution with (in this case) <span class="math inline">\((2-1) \times (2-1) = 1\)</span> degrees of freedom.</p>
 <p>The p-value given in a chi-square test is the probability of getting a chi-squared statistic <span class="math inline">\(X^2\)</span> as big as or bigger than the one you actually got. This is the area under the chi-squared distribution with the appropriate number of degrees of freedom to the right of the test-statistic value <span class="math inline">\(X^2\)</span>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chi-square-analysis.html#cb20-1" tabindex="-1"></a>xsquared<span class="ot">&lt;-</span><span class="fl">19.1</span></span>
-<span id="cb20-2"><a href="chi-square-analysis.html#cb20-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
-<span id="cb20-3"><a href="chi-square-analysis.html#cb20-3" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb20-4"><a href="chi-square-analysis.html#cb20-4" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(xsquared, <span class="dv">20</span>),</span>
-<span id="cb20-5"><a href="chi-square-analysis.html#cb20-5" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#84CA72&quot;</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="chi-square-analysis.html#cb20-6" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="chi-square-analysis.html#cb20-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>xsquared,<span class="at">linewidth=</span><span class="fl">0.2</span>,<span class="at">colour=</span><span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="chi-square-analysis.html#cb20-8" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chi-square-analysis.html#cb63-1" tabindex="-1"></a>xsquared<span class="ot">&lt;-</span><span class="fl">19.1</span></span>
+<span id="cb63-2"><a href="chi-square-analysis.html#cb63-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>)), <span class="fu">aes</span>(<span class="at">x =</span> x)) <span class="sc">+</span> </span>
+<span id="cb63-3"><a href="chi-square-analysis.html#cb63-3" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb63-4"><a href="chi-square-analysis.html#cb63-4" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dchisq, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">df =</span> <span class="dv">1</span>), <span class="at">xlim =</span> <span class="fu">c</span>(xsquared, <span class="dv">20</span>),</span>
+<span id="cb63-5"><a href="chi-square-analysis.html#cb63-5" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">&quot;area&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#84CA72&quot;</span>, <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb63-6"><a href="chi-square-analysis.html#cb63-6" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">20</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb63-7"><a href="chi-square-analysis.html#cb63-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>xsquared,<span class="at">linewidth=</span><span class="fl">0.2</span>,<span class="at">colour=</span><span class="st">&quot;gray80&quot;</span>) <span class="sc">+</span></span>
+<span id="cb63-8"><a href="chi-square-analysis.html#cb63-8" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
 <p><img src="chi-square_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="why-does-the-test-statistic-have-this-distribution" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Why does the test statistic have this distribution?<a href="chi-square-analysis.html#why-does-the-test-statistic-have-this-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>

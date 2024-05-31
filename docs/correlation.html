@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -435,18 +435,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="using-r-to-find-the-correlation-coefficient." class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Using R to find the correlation coefficient.<a href="correlation.html#using-r-to-find-the-correlation-coefficient." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the <em>x</em> and <em>y</em> data used above for which the correlation coefficient was fixed to be 0.8</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="correlation.html#cb1-1" tabindex="-1"></a><span class="fu">cor.test</span>(x,y,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="correlation.html#cb78-1" tabindex="-1"></a><span class="fu">cor.test</span>(x,y,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.3134, df = 48, p-value = 2.466e-12
+## t = 9.2231, df = 48, p-value = 3.339e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6746702 0.8834009
+##  0.6704002 0.8816769
 ## sample estimates:
 ##       cor 
-## 0.8023435</code></pre>
+## 0.7995486</code></pre>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
 <p>It is important to be able to interpret and report the output.</p>
 <p>First, understand that R is carrying out a test, the null hypothesis of which is that there is no correlation between the values of <em>x</em> and the values of <em>y</em> among the populations from which the <em>x</em> and <em>y</em> data were drawn, so that the correlation coefficient between <em>x</em> and <em>y</em> within those populations is zero. It then reports a <em>p</em>-value: how likely it is that you would have got the data you got for this sample of data if that null hypothesis were true. As with most tests, to do this it uses the data to calculate a so-called <em>test-statistic</em>. How it does this need not concern us here. The details will differ from test to test, and the name given will differ. Here it is called <em>t</em>. It also reports the number of independent pieces of information used to calculate that statistic. This is called the <em>degrees of freedom</em>, here denoted <em>df</em>. This usually (but not necessarily) has a value that is 1,2 or 3 less than the number of data points.</p>
@@ -472,27 +472,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 <p>We will look to see if the data allow us to reject the idea that petal width and petal length are not correlated within the wider populations of each of these species:</p>
 <p>First, let’s plot the data</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="correlation.html#cb4-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="correlation.html#cb4-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Petal.Width,<span class="at">y=</span>Petal.Length,<span class="at">colour=</span>Species)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="correlation.html#cb4-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-4"><a href="correlation.html#cb4-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Petal Width (mm)&quot;</span>,</span>
-<span id="cb4-5"><a href="correlation.html#cb4-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Petal Length (mm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="correlation.html#cb4-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a href="correlation.html#cb4-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb4-8"><a href="correlation.html#cb4-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="correlation.html#cb4-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="correlation.html#cb81-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb81-2"><a href="correlation.html#cb81-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Petal.Width,<span class="at">y=</span>Petal.Length,<span class="at">colour=</span>Species)) <span class="sc">+</span></span>
+<span id="cb81-3"><a href="correlation.html#cb81-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb81-4"><a href="correlation.html#cb81-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Petal Width (mm)&quot;</span>,</span>
+<span id="cb81-5"><a href="correlation.html#cb81-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Petal Length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb81-6"><a href="correlation.html#cb81-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb81-7"><a href="correlation.html#cb81-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb81-8"><a href="correlation.html#cb81-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb81-9"><a href="correlation.html#cb81-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="correlation_files/figure-html/unnamed-chunk-22-1.png" width="864" style="display: block; margin: auto;" /></p>
 <p>Having seen the plots, do you think that petal width and length are correlated in these samples, and roughly what value for <em>r</em> do you expect in each case?</p>
 <p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>setosa</em> and <em>virginica</em> than it is for <em>versicolor</em>. Knowing the petal width for that species gives you a much better idea of the petal length, and vice-versa, than is true for the other two species.</p>
 <p>Let us find out:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="correlation.html#cb5-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="correlation.html#cb5-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="correlation.html#cb5-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>estimate,</span>
-<span id="cb5-4"><a href="correlation.html#cb5-4" tabindex="-1"></a>            <span class="at">lower.boundb=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
-<span id="cb5-5"><a href="correlation.html#cb5-5" tabindex="-1"></a>            <span class="at">upper.bound=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
-<span id="cb5-6"><a href="correlation.html#cb5-6" tabindex="-1"></a>            <span class="st">&quot;p value&quot;</span><span class="ot">=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>p.value) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="correlation.html#cb5-7" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="correlation.html#cb5-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="correlation.html#cb82-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb82-2"><a href="correlation.html#cb82-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb82-3"><a href="correlation.html#cb82-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>estimate,</span>
+<span id="cb82-4"><a href="correlation.html#cb82-4" tabindex="-1"></a>            <span class="at">lower.boundb=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb82-5"><a href="correlation.html#cb82-5" tabindex="-1"></a>            <span class="at">upper.bound=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
+<span id="cb82-6"><a href="correlation.html#cb82-6" tabindex="-1"></a>            <span class="st">&quot;p value&quot;</span><span class="ot">=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>p.value) <span class="sc">|&gt;</span></span>
+<span id="cb82-7"><a href="correlation.html#cb82-7" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb82-8"><a href="correlation.html#cb82-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="fl">0.7</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -576,7 +576,7 @@ virginica
 <p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
 <p>Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by ‘strong’ that knowing the value of one variable gives you a very good idea of the value of the other.</p>
 <p><img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.298, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.028, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
 <div id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> When is it appropriate to calculate a correlation coefficient?<a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So, we note that the correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.</p>
