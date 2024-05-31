@@ -4,296 +4,1236 @@
 source("common.R")
 ```
 
-# CSS Crash Course {#css-crash}
+
+# A primer in statistics
+
+```{r, include=FALSE}
+#options(tinytex.verbose = TRUE)
+
+# output:
+#   bookdown::html_document2
+
+```
+
+Based on the very helpful revision chapter in [Modern Statistics for the Life Sciences, Alen Grafen and Rosie Hails, OUP](https://global.oup.com/ukhe/product/modern-statistics-for-the-life-sciences-9780199252312?cc=gb&lang=en&).
 
 
-Every element of a website that you see, from links to pictures to paragraphs, has a category label. These labels can be tags (for example, all links on websites have `a` tags, all big headers have `h1` tags), or they can be IDs or classes (described later).  If you know the label for something on a website, then you can style its appearance by using a `.css` file. In a CSS file, you write style rules that will apply to all elements of the same category. This is a very useful thing to be able to do because it allows you to break free from the limitations of built-in templates and themes that come with R Markdown.
+```{r global-options, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(fig.width=9,
+                      fig.height=5,
+                      fig.align='center',
+                      warning=FALSE,
+                      message=FALSE,
+                      echo=FALSE)
+```
 
-Below is a quick example of some CSS that would change all link colors to the color "orchid" and all link text from being uppercase:
+```{r load packages, message=FALSE, warning=FALSE}
+#remotes::install_github("mbh038/mbhR")
+library(mbhR)
+library(tidyverse)
+library(here)
+library(kableExtra)
+library(cowplot)
+library(gridExtra)
 
-```{r, eval=FALSE}
-a {
-  color: orchid;
-  text-transform: uppercase;
+set.seed=232342
+```
+
+```{r}
+# we use the fabulous openintro here only for its colour scheme
+library(openintro)
+data(COL)
+fill_colour1<-COL['blue','f3']
+fill_colour2<-COL['red','f6']
+fill_colour3<-COL['blue','f1']
+line_colour<-COL['blue','full']
+func_colour<-"darkblue"
+point_colour<-COL['blue','full']
+error_colour<-COL['red','full']
+```
+
+```{r}
+# bespoke themes to set axis styles.
+theme_no_x <- function () { 
+    theme_cowplot() %+replace% 
+  theme(
+    axis.ticks.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.title.x=element_blank(),
+    axis.line.x=element_blank()
+        )
+}
+
+theme_no_y <- function () { 
+    theme_cowplot() %+replace% 
+  theme(
+    axis.ticks.y=element_blank(),
+    axis.text.y=element_blank(),
+    axis.title.y=element_blank(),
+    axis.line.y=element_blank()
+        )
+}
+
+theme_no_axes <- function () { 
+    theme_cowplot() %+replace% 
+  theme(
+    axis.ticks=element_blank(),
+    axis.text=element_blank(),
+    axis.title=element_blank(),
+    axis.line=element_blank()
+        )
 }
 ```
 
-You begin with the element's "label" (technically called a *selector*). Within curly braces, `{ }`, you can include as many different style properties as you'd like for that element. Each new property must end with a `;`.  What are your options for properties to style? [There are many](https://www.w3schools.com/cssref/), but don't feel overwhelmed-- just pick one or two things to change as you start out.
+## Populations and samples
 
-## What's in a name?
+It is rarely possible to get an exact answer to a question. Normally we have to make do with an estimate, and this may vary from a rough estimate to a more precise one.
 
-How could you have known that the selector for links was an `a`? The answer is by opening up your existing website, and right-clicking anywhere on the page and clicking on *Inspect* (in Chrome browsers) or *Inspect Element* (in Firefox).
+One of the first tasks of statistics is to state this in more precise terms.
 
-<center> ![](images/r4edu/inspect.png){width=300px} </center>
+Suppose, for example, we wanted to know the average height of adult women between the ages of 25 and 35 in the United Kingdom. It is quite impossible to measure the height of every single woman of that age. Instead we must content ourselves with taking a sample, finding the average height of women within that and hoping that it is representative of the whole population.
 
-Clicking on this will open a small set of windows inside of your browser called the Developer Tools (a.k.a "devtools") or the inspector. These give you an inside peek into all the CSS styles that are being applied to every element in the site. (The examples that follow use the Chrome developer tools.)
+A **sample** is a **random** selection from within a **population of interest**. For this to be the case the population of interest needs to be precisely defined, since our sampling strategy will depend on this. In the case above, our population of interest is not people, or women, or adult women, or adult women between the ages of 25 and 35, but adult women between the ages of 25 and 35 in the United Kingdom. We would thus choose our sample randomly from among just these women, and ignore all other people on the planet.
 
-In the lower left pane of the subwindow, click on the icon of a rectangle with an arrow. Now as you hover and then click on anything in your website, you will see the contents of the developer tools change. The pane on the right shows the CSS styles that are applied. 
+Having taken our sample we can compute the sample mean $\bar{y}$ (pronounced y-bar) by summing over the $y_i$ and dividing by the number of values:
 
-<br>
+$$
+\bar{y}=\frac{y_1+y_2+\dots + y_n}{n}=\frac{\Sigma y_i}{n}
+$$
 
-![](images/r4edu/inspect2.png)
-<br>
+In this equation, we suppose that we have a sample of size $n$ women, with each individual woman denoted by $y_1, y_2\dots y_n$ or in general for any individual by $y_i$ where the subscript $i$ runs from $1$ to $n$. To find the mean value we first sum the $y_i$ from $i=1$ to $i=n$ and then divide the result by $n$. A compact way to denote the sum is to use the summation sign $\Sigma$ (sigma), as we do in the righ*t*-hand term of the equation
 
-Taking a closer look at the CSS pane on the right, we can see that the link we are hovering over does indeed have an `a` as its selector. 
+This is our estimate of the true population mean, $\mu$. It is similar when we do an experiment. Measurements in an experiment inevitably involve error, and so we can think of the data readings we actually take as being a sample from the population of all the readings that could have occurred. The mean value that we get at the end from our data is thus an estimate of the true mean $\mu_\text{A}$, which we would only have obtained if there was no error involved in the experiment.
 
-<br>
+## Three types of variability: of the sample, of the population and of the estimate.
 
-![](images/r4edu/closer.png)
+### Variability of the sample
 
-<br>
+As well as its mean, we would like to know how variable our sample is. This gives us an idea as to how variable the population is and as to what the variability of the next sample will be. The sample variability will fluctuate from one sample to the next drawn from the same population, but will not systematically increase or decrease as the sample size changes. The size of the fluctuations will however reduce as the sample size increases, so that the sample variability more and more closely resembles the variability of the population. 
+
+Two samples can have the same mean but very different variability. For example if the results for a class of *n* = 30 students for a test in maths ranged from 40 to 70 while those for a test in English ranged from 50 to 60, then both might have a mean of 55, but, clearly, results in maths would be more variable than those in English, as we see in Figure \@ref(fig:test-scores)
+
+```{r test-scores,echo=FALSE,out.width="80%"}
+#| fig.cap = "Scores in Maths and English tests. Both sets of scores have the same mean value of 55, but the maths scores have greater variance than the English scores"
+maths_scores<-c(rep(40,1),rep(44,3),rep(48,7),rep(52,3),rep(55,3),rep(56,3),rep(60,2),rep(64,3),rep(68,4),rep(72,1))
+english_scores<-c(rep(46,2),rep(49,2),rep(52,9),rep(55,0),rep(56,7),rep(57,5),rep(60,0),rep(62,4),rep(64,0),rep(65,1))
+
+scores<-tibble(score=c(maths_scores,english_scores),subject=c(rep("maths",30),rep("english",30)))
+
+scores |>
+  ggplot(aes(x=score)) +
+  geom_histogram(binwidth=4,fill=fill_colour1,colour=line_colour) +
+  scale_x_continuous(breaks=seq(40,72,4),labels=seq(40,72,4)) +
+  scale_y_continuous(limits=c(0,12),breaks=seq(0,12,2)) +
+  labs(x="Scores",
+       y="Frequency",
+       title="Two distributions with the same mean of 55") +
+  facet_wrap(~subject,ncol=2,labeller = labeller(subject=c("english"="English","maths"="maths"))) +
+  theme_cowplot() +
+  theme(strip.background = element_blank())
+```
+
+For any individual score in either test, we can calculate its **deviation** from the mean of the score for that test, where
+
+$$
+\text{deviation} = \text{datapoint} - \text{mean}
+$$
+
+If we sum the deviations of the scores from each test from their respective means, we would find that the absolute value of these deviations tend to be bigger for the maths test than for the English test. For both tests, however, the sum of the deviations would be zero, because of the definition of the mean as the central point, but if the deviations are squared and summed, we then get a measure of the variability of each data set around its mean.
+
+```{r,echo=FALSE,fig.height=3}
+ss_english=sum((english_scores-mean(english_scores))^2)
+ss_maths=sum((maths_scores-mean(maths_scores))^2)
+
+caption="Two data sets of size $n=30$ with the same mean but different variability"
+col_names<-c("","$\\bar{y}$","","","$s^2$","$s=\\sqrt{s^2}$")
+
+var_tbl<-tibble(
+  Scores=c("English scores","maths scores"),
+  Mean=c("$\\frac{1}{n}\\Sigma y_i=55$","$\\frac{1}{n}\\Sigma y_i=55$"),
+  sumdev=c("$\\Sigma \\left(y_i-\\bar{y}\\right)=0$","$\\Sigma \\left(y_i-\\bar{y}\\right)=0$"),
+  Variability=c("$\\Sigma (y_i-\\bar{y})^2=638$","$\\Sigma (y_i-\\bar{y})^2=2219$"),
+  variance=c("$\\frac{1}{n-1}\\Sigma (y_i-\\bar{y})^2=\\frac{638}{29}=22.0$","$\\frac{1}{n-1}\\Sigma (y_i-\\bar{y})^2=\\frac{2219}{29}=76.5$"),
+  st_dev=c("$\\sqrt{22.0}=4.7$","$\\sqrt{76.5}=8.75$")
+) |>
+  kbl(align="c",booktabs=TRUE, escape= FALSE,col.names=col_names) |>
+  add_header_above(c("Scores","Mean","Sum of deviations","Sum of squared deviations","Variance","Standard deviation"),align="c") |>
+  kable_styling()
+var_tbl
+```
+
+In this case, a comparison of the sums of squares is valid, since the two data sets have the same size. In general though, a larger data set will have a larger sum of squares, so for a valid comparison between unequally sized data sets, a measure that is independent of the size of the data set is required.
+
+To get this, all we need to do is take account of the sample size. We used *n* data points to define the mean, then the same *n* data points, plus the mean itself, to define the variability around the mean. But from the way in which the mean is calculated, the deviations must sum to zero. This means that we have only *n*-1 independent pieces of information about how the sample varies around the mean. Hence, our final measure of the variability of a data set, which we call the **variance** and denote as $s^2$, is found by dividing the sum of squared deviations by *n*-1, not by *n*. 
+
+$$
+s^2=\frac{\Sigma{\left(y_i-\bar{y}\right)^2}}{n-1}
+$$
+
+The number of independent pieces of information that contribute to the calculation of a statistic is called the **degrees of freedom**. Often, we would like a measure of variability that has the same units as the data itself. The variance does not, but we remedy that by taking its square root to find the **standard deviation** $s$ of the data set.
+
+### Variability of the population
+
+Just as we cannot know the true mean $\mu$ of a population, but can only estimate it from the mean $\bar{y}$ of a sample that we draw from that population, so we cannot know the true variance of a population. Nevertheless, it is useful to define it, and it is frequently referred to as $\sigma^2$ ("sigma squared"). Our best estimate of it is our sample variance $s^2$.
+
+A definition of it is that it is the expected squared deviation around the true mean for all individuals in the population.
+
+In general, the variance of a sample will be approximately equal to that of the population, which is why we can use it as an estimate of the population variance. If we took sample after sample we would find that we got a different sample variance each time, all of them dotting randomly around the true value for the population. What we would *not* find is that the sample variance would systematically change if the sample size changed. In particular, it would not get systematically smaller as the sample size increased.
+
+### Variability of the estimate
+
+Having obtained our estimate $\bar{y}$ of the true mean $\mu$ of a population, we would like to know how accurate it is. To answer this we will briefly discuss **Normal distributions**.
+
+#### The Standard Normal Distribution
+
+Many continuous attributes (eg weight, height, width) of a population are scattered around a mean value in such way that, if you plotted a histogram of the values, it would have a shape that is approximately bell-shaped and symmetric and well described by a 'normal' distribution (the reasons for this are interesting, but beyond the scope of this document). Such a distribution is described by two parameters - its mean (middle value) and its variance (spread). A **standard normal** distribution is simply a normal distribution with a mean of 0 and a variance (and therefore a standard deviation, which is the square root of the variance) of 1. Such a distribution is sometimes referred to as a $Z$ distribution.
+
+Any normal distribution can be converted to a standard normal distribution by doing two things, as illustrated in the following example:
+
+Suppose a variable $Y$ follows a normal distribution, with mean 5 and standard deviation 2. First we subtract the mean from every value. This will have the effect of moving the whole distribution leftwards on the *x*-axis by 5 units, the mean value of *Y*, so that it is centred on 0. Then, we divide each value by 2, the standard deviation of *Y*. This will have the effect of squishing the distribution inwards, giving it a new standard deviation of 1. The result will be a standard normal, centred at 0, with standard deviation 1. The process of carrying out these two operations is known as **standardising**, and is illustrated in Figure \@ref(fig:standardising).
+
+```{r standardising,echo=FALSE}
+#| fig.cap="Standardising a normal distribution"
 
 
-One neat thing about the developer tools is that you can click and temporarily edit the CSS properties in this very window and  simlutaneously see the changes take effect on the page. These edits only happen in your browser, so nothing in your R Markdown document will change (in fact, your edits will be lost as soon as you refresh the page in your browser), but editing here is a fast way to test out any CSS ideas.
+## Plots to illustrate the standardisation of a normal distribution
+xvals<-seq(-13,13,0.1)
+y0<-dnorm(xvals,mean=5,sd=2)
+y1<-dnorm(xvals,mean=0,sd=2)
+y2<-dnorm(xvals,mean=0,sd=1)
 
-[ALSO ADD TEXTTRANSFORM IN SCREENSHOT TO MATCH ABOVE EXAMPLE]
-
-<br>
-
-![](images/r4edu/orchid.png)
-<br>
-
-There's a lot more we could say about CSS here. But it's faster and more rewarding to learn via real examples. Let's start tinkering!
-
-[OTHER TOPICS TO MENTION:]
-[1. EXAMPLES OF CLASSES AS CSS SELECTORS. (WHY DO SOME SELECTORS BEGIN WITH . AND OTHERS DON'T?)]
-[2. MULTIPLE ATTRIBUTES. COMBINING THEM WITH `.` vs separated by spaces ]
-
-## How do I change the color of....?
-
-I'm going to model how I would go about changing the color of the navbar of an RMD site. We'll use the developer tools to try out different options in real time.
-
-1. Pull up your site and right click to open the developer tools. 
-1. When we click on the navigation bar, we see that it highlights a certain line of HTML in the left pane of the developer tools. Look for anything that says `class = `. The values that follow `class` are the CSS selectors that are currently styling our navigation bar. 
-
-In this case, our navbar has three classes `navbar`, `navbar-default`, and `navbar-fixed-top`. 
-
-    ![](images/r4edu/navbar.png)
-
-
-
-In the righthand pane of the developer tools. we see these classes being used in the CSS (notice that a class needs to have a `.` before it in when it's a selector--but a tag, like the link example above, does not). 
-
-[SAY SOMETHING ABOUT THE ORDER EACH ARE LISTED?]
+g1<-data.frame(x=xvals,y=y0) |>
+  filter(x>-3 & x<13) |>
+  ggplot(aes(x=x,y=y)) +
+  geom_line(colour=func_colour) +
+  #labs(title="Example of standardising a normal distribution") +
+  scale_x_continuous(limits=c(-8,13),breaks=seq(1,9,2),labels=c("1","3","5","7","9")) +
+  ylim(0,0.2) +
+  geom_segment(x=1,y=0,xend=1,yend=dnorm(1,5,2),linetype="dashed",colour="darkred") +
+  geom_segment(x=5,y=0,xend=5,yend=dnorm(5,5,2),linetype="dashed",colour="darkred") +
+  geom_segment(x=9,y=0,xend=9,yend=dnorm(9,5,2),linetype="dashed",colour="darkred") +
+  annotate("text", x=-2., y = 0.8*dnorm(5,5,2), label = "The original distribution...") +
+  annotate("text", x=-2., y = 0.6*dnorm(5,5,2), label = "Mean = 5") +
+  annotate("text", x=-2., y = 0.45*dnorm(5,5,2), label = "Standard deviation = 2") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(axis.title.x=element_blank())
+  # theme(axis.line.y = element_blank(),
+  #       axis.title = element_blank(),
+  #       axis.text.y = element_blank(),
+  #       axis.ticks.y = element_blank())
 
 
+g2<-data.frame(x=xvals,y=y1) |>
+  filter(x>-8 & x<8) |>
+  ggplot(aes(x=x,y=y)) +
+  geom_line(colour=func_colour) +
+  scale_x_continuous(limits=c(-8,13),breaks=seq(-4,4,2),labels=c("-4","-2","0","2","4")) +
+  ylim(0,0.2) +
+  geom_segment(x=-4,y=0,xend=-4,yend=dnorm(-4,0,2),linetype="dashed",colour="darkred") +
+  geom_segment(x=0,y=0,xend=0,yend=dnorm(0,0,2),linetype="dashed",colour="darkred") +
+  geom_segment(x=4,y=0,xend=4,yend=dnorm(4,0,2),linetype="dashed",colour="darkred") +
+  annotate("text", x= 7.3, y = 0.8*dnorm(0,0,2), label = "Subtract the mean value (5) from every value...") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(axis.title.x=element_blank())
 
-1. Let's choose the first CSS selector `.navbar` and play around with it in this pane to decide what color we'd like.
-1. Type `background-color:` followed by any [HEX code or rgb code](https://www.google.com/search?q=color+picker) and press `Enter`. You can also click on the small color square to use sliders to set the color and transparency of your navigation bar. I'm selecting _________ color.  
 
-    <center>![](images/r4edu/color_picker.png){width=200px}</center>
+g3<-data.frame(x=xvals,y=y2) |>
+  filter(x>-4 & x<4) |>
+  ggplot(aes(x=x,y=y)) +
+  geom_line(colour=func_colour) +
+  scale_x_continuous(limits=c(-8,13),breaks=seq(-2,2,1),labels=c("-2","-1","0","1","2")) +
+  geom_segment(x=-2,y=0,xend=-2,yend=dnorm(-2,0,1),linetype="dashed",colour="darkred") +
+  geom_segment(x=0,y=0,xend=0,yend=dnorm(0,0,1),linetype="dashed",colour="darkred") +
+  geom_segment(x=2,y=0,xend=2,yend=dnorm(2,0,1),linetype="dashed",colour="darkred") +
+  annotate("text", x= 7.3, y = 0.8*dnorm(0,0,1), label = "...then divide every value by the standard deviation (2).") +
+  annotate("text", x= 7.3, y = 0.55*dnorm(0,0,1), label = "This gives us a Standard Normal N(0,1)\n ie normal distribution with mean = 0, sd = 1.") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(axis.title.x=element_blank())
 
-<br>
+grid.arrange(g1,g2,g3)
+```
 
-1. When you change the color in the developer tools, you should see the element on your site also changing in real-time. Cool, huh? If you don't see the color changing on your site, then it means you either have the wrong selector OR it means that something else is overriding your color choice (do you see a strikethrough line through what you just wrote?). You can force it to go with your choice by adding `!important` to the end of line you added, right before the `;`.
+In summary, in order to convert a variable *Y* that is normally distributed with mean $\mu$ and standard deviation $\sigma$, to a standard normal *z*, we subtract the mean then divide by the standard deviation:
+
+$$
+z=\frac{Y-\mu}{\sigma}
+$$
+
+Why would we want to do this? The answer is that the standard normal is an example of a **probability density function** (or *pdf* for short). Such functions have particular properties that are useful to us as scientists. In particular, it is straightforward to calculate what proportion of any set of observations described by a pdf fall within or beyond a certain number of standard deviations from the mean.
+
+The main thing to understand is that the area under a pdf between any two values of the *x*-axis tells us the probability that the random variable falls between those values.
+
+In particular, the total area under a standard normal, as for any pdf, is 1, since it is a certainty that the random variable it describes takes some value or other.
+
+The area under it to the right of zero and the area under it to the left of zero are both 0.5, since the distribution is symmetric about zero. This tells you that if you had a random variable that was described by a standard normal, then there would be a 50% chance that it was positive, and a 50% chance that it was negative. In general, if you take a random individual from a population and measure the value of some attribute (such as its height) that is well described by a normal distribution, then there would be a 50% chance that the value for this individual is less than the population mean, and a 50% chance that it is greater.
+
+The area under the distribution beyond a distance roughly two standard deviations (actually, 1.96) either side of the mean totals 0.05, or 5% of the total area under the curve. This means that if, again, we have a population for which some attribute is well described by a normal distribution, then roughly 95% of individuals will have a value of that attribute that falls within two standard deviations of the mean, and roughly 5% of them will fall beyond that. Or, put another way, if you took a random individual from the population, there is a 95% chance that its value for this attribute would be within about 2 standard deviations of the mean, and a 5% chance that it would be more than about 2 standard deviations greater or less than the mean. This is illustrated in Figure \@ref(fig:standard-normals)
+
+```{r standard-normals,fig.height=3,fig.width=10}
+#| fig.cap="Aspects of a standard normal"
+# graphics to illustrate some standard normals
+
+z_critical_95 <- qnorm(0.975)
+#z_critical_df_25 <- qt(0.95, df = 25)
+
+nd_base<-ggplot(NULL, ) +
+  stat_function(fun = dnorm,
+                geom = "line",
+                xlim = c(-4, 4),
+                colour=line_colour) +
+  labs(x="x") +
+  theme_cowplot() +
+  theme_no_y()
+
+p_all<-nd_base + 
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(-4, 4)) +
+  annotate("text", x= 0, y = 0.2*dnorm(0,0,1), label = "Total area = 1")
+
+p50<- nd_base +
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour2,
+                xlim = c(-4, 0)) +
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(0, 4)) +
+  geom_segment(aes(x=0,y=0,xend=0,yend=dnorm(0)),
+               linetype="dashed",colour=line_colour) +
+  annotate("text", x= -1, y = 0.11*dnorm(0,0,1), label = "Area =\n 0.5",size=3.) +
+  annotate("text", x= 1, y = 0.11*dnorm(0,0,1), label = "Area =\n 0.5",size=3.)
+  
+p95<-nd_base +  
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(z_critical_95, 4)) +
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(-4,-z_critical_95)) +
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = fill_colour2,
+                xlim = c(-z_critical_95,z_critical_95)) +
+  geom_segment(aes(x=0,y=0,xend=0,yend=1.0*dnorm(0)),
+               linetype="dashed",colour=line_colour) +
+  geom_segment(aes(x=-z_critical_95,y=0,xend=-z_critical_95,yend=1.0*dnorm(0)),
+               linetype="dashed",colour=line_colour) +
+  geom_segment(aes(x=z_critical_95,y=0,xend=z_critical_95,yend=1.0*dnorm(0)),
+               linetype="dashed",colour=line_colour) +
+  annotate("text", x= 0, y = 0.1*dnorm(0), label = "95% of area",size=3.) +
+  annotate("text", x= -3.2, y = 0.11*dnorm(0), label = "2.5% of\n area",size=3) +
+  annotate("text", x= 3.2, y = 0.11*dnorm(0), label = "2.5% of\n area",size=3) +
+  
+  
+  
+  geom_text(aes(label = "mu-1.96*sigma", x = -z_critical_95, y = 1.05*dnorm(0)), size = 3, colour = "darkred",parse=TRUE) +
+  geom_text(aes(label = "mu+1.96*sigma", x = z_critical_95, y = 1.05*dnorm(0)), size = 3, colour = "darkred",parse=TRUE) +
+  geom_text(aes(label = "mu", x = 0, y = 1.05*dnorm(0)), size = 3, colour = "darkred",parse=TRUE)
 
 
-1. Now we need to immortalize your color choice by putting your selector and your color choice in a CSS file. 
 
-1. Make a CSS file (file > new file > text file > save as style.css) and paste something like this into it.
+grid.arrange(p_all,p50,p95,nrow=1)
 
-```style.css
+```
 
-.navbar {
-  background-color: #fcfcfc;
+Of particular practical importance, if a data set is normally distributed, then about 68% of the observations fall with one standard deviation of the mean, 95% fall within 1.96 standard deviations, about 96% fall with two standard deviations, and about 99.7% (ie practically all of them) fall within three standard deviations. Figure \@ref(fig:n-standard-deviations) illustrates this.
+
+```{r n-standard-deviations,fig.height=3,fig.width=10}
+#| fig.cap="Proportion of normally distributed observations within one,
+#| two or three standard deviations of the mean"
+
+# Plot to illustrate general properties of a normal distribution
+set.seed(12345)
+N=100
+mu=8
+st.dev=2
+binwidth=1
+x_breaks<-c(mu)
+x_labels<-c("\u00b5")
+
+p_base<-ggplot(data.frame(x = rnorm(N,mean=mu,sd=st.dev)), aes(x)) +
+  scale_x_continuous(limits=c(mu-4*st.dev,mu+4*st.dev),breaks=x_breaks,labels=x_labels) +
+  geom_function(fun = dnorm, args = list(mean = mu, sd = st.dev),colour=line_colour) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(axis.title.x=element_blank())
+ 
+
+pplot<-function(base_plot,mu,sigma,n_sigma){
+  if(n_sigma==1){
+    mult=""
+  } else {
+    mult=paste0(n_sigma,"*")
+  }
+  
+  gap=pnorm(n_sigma)-pnorm(-n_sigma)
+  digits=ifelse(gap>0.99,3,2)
+  gap=paste0(100*round(gap,digits),"%")
+  
+  p_out<-base_plot +
+  annotate("text",label=paste0("mu %+-%",mult,"sigma"),x=mu,y=0.25,parse=TRUE) +
+  geom_segment(x=mu-n_sigma*st.dev,y=0,xend=mu-n_sigma*st.dev,yend=0.2,linetype="dashed",colour="grey60") +
+  geom_segment(x=mu+n_sigma*st.dev,y=0,xend=mu+n_sigma*st.dev,yend=0.2,linetype="dashed",colour="grey60") +
+  geom_segment(aes(x = mu+n_sigma*st.dev, y = 0.05, xend = mu-n_sigma*st.dev, yend = 0.05),
+                  arrow = arrow(length = unit(0.2, "cm"),end="both",type="closed"),colour="grey60") +
+  geom_text(aes(label = gap, x = mu, y = 0.057), size = 4, colour = "darkred",nudge_y = 0.0025,parse=FALSE) + 
+  annotate("text",label=paste0("mu-",mult,"sigma"),x=mu-n_sigma*st.dev,y = 0.21,size = 4, colour = "darkred",parse=TRUE) +
+  annotate("text",label=paste0("mu+",mult,"sigma"),x=mu+n_sigma*st.dev,y = 0.21,size = 4, colour = "darkred",parse=TRUE) +
+  stat_function(fun = dnorm, args=list(mean=mu,sd=st.dev),
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(mu-n_sigma*st.dev,mu+n_sigma*st.dev)) +
+  theme(plot.subtitle = element_text(hjust = 0.5))
+  p_out
 }
 
+p1<-pplot(p_base,mu,st.dev,1)
+p2<-pplot(p_base,mu,st.dev,1.96)
+p3<-pplot(p_base,mu,st.dev,3)
+grid.arrange(p1,p2,p3,nrow=1)
+  
 ```
 
-1. Link your CSS file to your R Markdown site/blog/tool...see the specific cookbook for how to do this for your particular tool.
+So much for an ideal normal distribution. A real data set drawn from a population that is approximately normally distributed would have some scatter, the more so the smaller the size of the sample. For such a sample we would find that *approximately* two thirds of the data set is within one standard deviation of the mean, *approximately* 95% of it is within two standard deviations and pretty much all of it is within three standard deviations.
 
-1. Build your site--do you see your CSS style taking effect?
+#### Accuracy of the estimate
 
+We are interested in the population. We want to know its true mean $\mu$, but what we have as our best estimate of this is the mean $\bar{y}$ of a sample of size *n* that we drew from the population. If we took another sample from the population of the same size, we would get a different sample mean, and so on again and again, if we had the time and resources to repeatedly take sample after sample. So our sample mean is itself a random variable $\bar{Y}$, drawn from a population of all possible sample means. If we drew samples of the same size *n* many times from our population of interest, the means $\bar{y}$ of these samples would themselves form a distribution, the so-called **sampling distribution**, and the mean of *this* we would hope, would be the true mean $\mu$ of the population.
 
+The bigger the variance $\sigma^2$ of the population, the more we would expect our estimate to differ from the true mean, and the less variable the population was, the closer we would expect our estimate to be to the true mean. Similarly, if we took a large sample then our estimate is likely to be closer to the true mean than if we took a small sample.
 
+If we take these observations together, what we find is that the variance of the distribution of our estimates is $\sigma^2/n$, and so the standard deviation of our estimate is the square root of this ie $\frac{\sigma}{\sqrt{n}}$. This is sometimes called the **standard error of the mean**. This gives us an idea of how precise our sample mean is as an estimate of the true mean. 
 
-    
-# Backlog
+In most figures that you come across in published papers where error bars are used, these error bars will be ± one standard error of the mean. You may also come across error bars that are ± one standard deviation of the sample and yet others that show the (typically) 95% confidence interval for an estimate.
 
-Here is a list of items that would be cool to include, but are lower priority. 
+Whether you show ± one standard deviation or ± one standard error of the mean depends on the story you are trying to tell. If you want to be descriptive and give the reader an idea as to the variability of a population, you would use error bars that are ± one standard deviation, but if you want the reader to be able to infer how close one population is to another then you are more likely to want to use error bars that are ± one standard error of the mean.
 
-\
 
-\
 
-* [timer function for workshops]
+#### Example
 
-* Continuous integration? https://github.com/chris-prener/travis-test
-
-* pandoc/ knitr/ addressing a letter version of R Markdown and YAML
-
-# Miscellaneous
-
-* Consistent use of pronouns in the book: our site, your site, we suggest, I suggest....?
-* Rmd, R Markdown doc, `.Rmd` -- which to use?
-* A growing yaml----show each feature getting added on? Or just focus on the one at hand?
-
-
-Other pursuits:
-* PR to Hugo Academic Themes
-* rmd4edu: Template package
-* writing function and doing a PR for the roxygen comment stuff for package
-* word doc template
-
-# Spillover from distill
-
-**Unique to R Markdown** [ Probably remove]
-
-* `rmarkdown:::site_skeleton(getwd())`
-* What happens to Rmd's placed in subdirectories?
-    ** They're still knit...but not compiled in an automatic and *smart* way (?)
-* A logo can only be added with HTML/CSS-- unless you create your own pandoc template (Ahh!)
-* Footer must be constructed using HTML/CSS manually with `includes....` in YAML. And it doesn't go all the way across the page easily. 
-* Google analytics need to be inserted manually within HTML file and `includes.. before body` in YAML
-* Appendix not an option unless manually built into footer.
-* Favicon: can you not do this in r Markdown within the YAML?
-* `output: html_document`....or whatever else you want.
-
-
-
-
-# Teaching and Learning with Jupyter Book Review
-
-Desiree's thoughts: 
-
-
-__Good stuff__
-
-* Description of the use cases
-* Screenshots of examples of activities/questions in notebooks (e.g. in Section [2](https://jupyter4edu.github.io/jupyter-edu-book/why-we-use-jupyter-notebooks.html#why-do-we-use-jupyter).3.22.
-* Inclusion of 'pro-tips content' throughout content
-* I do like the pedagogical patterns section, though I see how including something like this greatly increases the scope of our project. I think what I like most about it, is that they're concrete examples of creative use-cases.
-* The [tips and tricks section](https://jupyter4edu.github.io/jupyter-edu-book/jupyter.html#tips-and-tricks) I find to be useful, practical advice. In thinking of how this applies toour own project, I think a lot of this could be condensed into little "tips" boxes.
-* Different ways of running Jupyter w/ pros and cons. Useful for educators to know ahead of time
-
-
-__Stuff I don't like as much__
-
-* Needs way more color, pictures, graphics. I think there is too much text for this to be an effective way of "selling" the notebooks. You have to read a lot of prefaces before you get to the practical implementations and concrete examples.
-* Tone is kinda dry
-* Not sure if it's the layout, but I think just by nature of it being a book, it doesn't feel like as a user that I can or should skip around to only the sections I need. It's hard to know which sections will be most useful to me when I "arrive" to this resource.
-
-
-# R Markdown Themes {#rmd-themes}
-
-Theme options include the following. Click through the tabs to see what they each look like on our [basic course demo site](https://rstudio4edu.github.io/basic-course-website/).
-
-### `default` 
-
-![](images/r4edu/rmd_custom/themes/default.png){width=100%}
-
-### `cerulean`
-
-![](images/r4edu/rmd_custom/themes/cerulean.png){width=100%}
-
-### `journal`
-
-![](images/r4edu/rmd_custom/themes/journal.png){width=100%}
-
-
-### `flatly`
-
-![](images/r4edu/rmd_custom/themes/yeti.png){width=100%}
-
-### `darkly`
-
-![](images/r4edu/rmd_custom/themes/darkly.png){width=100%}
-
-
-### `readable`
-
-![](images/r4edu/rmd_custom/themes/readable.png){width=100%}
-
-
-### `spacelab`
-
-![](images/r4edu/rmd_custom/themes/spacelab.png){width=100%}
-
-
-### `united`
-
-![](images/r4edu/rmd_custom/themes/united.png){width=100%}
-
-
-### `cosmo`
-
-![](images/r4edu/rmd_custom/themes/cosmo.png){width=100%}
-
-
-### `lumen`
-
-![](images/r4edu/rmd_custom/themes/lumen.png){width=100%}
-
-
-### `paper`
-
-![](images/r4edu/rmd_custom/themes/paper.png){width=100%}
-
-
-### `sandstone`
-
-![](images/r4edu/rmd_custom/themes/sandstone.png){width=100%}
-
-
-### `simplex`
-
-![](images/r4edu/rmd_custom/themes/simplex.png){width=100%}
-
-
-
-### `yeti`
-
-![](images/r4edu/rmd_custom/themes/yeti.png){width=100%}
-
-
-# What should I make {#teach-offer}
-
-```{r child = "modules/clickable-toc.Rmd"}
-
+```{r}
+population_size<-10000
+sample_size<-100
+n_samples<-200
+mu<-145
+sigma<-15
+lower_xlim<-mu-4*sigma
+upper_xlim<-mu+4*sigma
+seal.population<-tibble(mass=rnorm(population_size,mu,sigma)) |>
+  filter(mass<=upper_xlim & mass>lower_xlim)
 ```
 
-\
+Suppose the population of grey seals around the coast of south west England includes 10,000 adult females, whose weights are normally distributed and in the range 100 - 190 kg. Let this be our 'population of interest'. The weights of individuals in this population are approximately normally distributed with a mean value of 145 kg, and a standard deviation of 15 kg.
+
+*Note that in reality we would not know the mean or standard deviation of this population, or how many seals there were in total or whether the weights of adult females within it were normally distributed (or distributed any other way).*
+
+A histogram of the weights of the entire population would look something like Figure \@ref(fig:pop-distribution):
+
+```{r}
+myfun<-function(x,mean,sd,N,binwidth){
+  N*binwidth*dnorm(x,mean=mean,sd=sd)
+}
+```
+
+```{r pop-distribution,out.width="50%"}
+#| fig.cap="Histogram of the weights of the entire population of adult grey seals in South West England. #| In reality, we would never be able to measure this, but if we could, it would very likely closely
+#| approximate a normal distribution, as shown here."
+population_dist<-
+  seal.population |>
+  ggplot(aes(x=mass)) +
+  geom_histogram(binwidth=5,fill=fill_colour1,colour=line_colour) +
+  geom_function(fun=myfun,args=list(mean=mu,sd=sigma,N=population_size,binwidth=5),colour=func_colour) +
+  scale_x_continuous(limits=c(lower_xlim,upper_xlim)) +
+  labs(x='Weight(kg)',
+       y='Frequency',
+       subtitle="Population distribution") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(plot.subtitle = element_text(hjust=0.5))
+population_dist +
+  geom_vline(xintercept=mu,colour="darkred",linetype="dashed")
+```
+
+Suppose we wanted to know the mean and standard deviation of the weights of adult female grey seals in this population. Clearly, we could not find the true value since that would require weighing every seal in the population, which is impossible, but we could estimate the values by weighing all seals in a manageable sample that we hope is representative of the whole population. Suppose our sample were 100 randomly chosen adult female seals.
+
+In reality, that would probably be the only sample we could get, and so our estimates $\bar{y}$ and *s* of the true mean $\mu$ and true standard deviation $\sigma$ respectively would be based entirely on that one sample.
+
+To get an idea of how accurate our estimate is, imagine we could measure such samples of 100 seals randomly selected from the population many, many times over. Each sample would have a slightly different mean. In Figure \@ref(fig:selected-samples) below, let us plot the distribution of some of those samples and superpose on top of them the 'normal distribution' curve that we know is a good representation of the weights of adult females in the whole population. (We know this because this is a simulation. In truth, we wouldn't.) For each sample, we display its mean $\bar{y}$ and standard deviation *s*.
+
+```{r}
+set.seed(2323)
+samples <-  as_tibble(
+  replicate(n=n_samples,expr=sample(seal.population$mass,size=sample_size,replace=TRUE))
+  )
+
+sample_names<-rep("",n_samples)
+for(i in 1:n_samples){
+  sample_names[i]<-str_c("Sample",i,sep="_")
+}
+colnames(samples)<-sample_names
+sample_means<-tibble(means=colMeans(samples))
+```
+
+```{r}
+single_sample<-tibble(mass=sample(seal.population$mass,size=sample_size,replace=TRUE))
+single_sample_dist<-
+  single_sample |>
+  ggplot(aes(x=mass)) +
+  geom_histogram(binwidth=5,fill=fill_colour1,colour=line_colour) +
+  geom_function(fun=myfun,args=list(mean=mu,sd=sigma,N=sample_size,binwidth=5),colour=func_colour) +
+  scale_x_continuous(limits=c(lower_xlim,upper_xlim)) +
+  labs(x='Weight(kg)',
+       y='Frequency',
+       subtitle="Single sample distribution") +
+  annotate("text",
+           x=87,y=16,
+           hjust=0,
+           vjust=1,
+           label="This is about the same\nwidth as the population\ndistribution ",
+           size=2.5,
+           colour="darkred") +
+  annotate("text",
+           x=170,y=16,
+           hjust=0,
+           vjust=1,
+           label="...but is typically\nmuch less smooth ",
+           size=2.5,
+           colour="darkred") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(plot.subtitle = element_text(hjust=0.5))
+```
+
+```{r selected-samples,fig.width=10}
+#| fig.cap="Histograms of a selection of samples of 100 seals, each drawn from the same population. Superposed on each one is a normal distribution"
+
+selected_samples<-sort(sample(n_samples,9))
+
+ybars<-samples |>
+  select(all_of(selected_samples)) |>
+  pivot_longer(1:9,names_to="sample",values_to="mass") |>
+  group_by(sample) |>
+  summarise(ybar=mean(mass),s=sd(mass))
+  
+ 
+  samples |>
+  select(all_of(selected_samples)) |>
+  pivot_longer(1:9,names_to="sample",values_to="mass") |>
+  ggplot(aes(x=mass)) +
+  geom_histogram(binwidth=5,fill=fill_colour1,colour=line_colour) +
+  geom_function(fun=myfun,args=list(mean=mu,sd=sigma,N=sample_size,binwidth=5),colour=func_colour) +
+  scale_x_continuous(limits=c(lower_xlim,upper_xlim)) +
+  scale_y_continuous(breaks=c(0,10,20)) +
+  labs(x='Weight(kg)', y='Frequency') +
+  geom_segment(data=ybars,aes(x=ybar,y=0,xend=ybar,yend=17),colour="darkred",linetype="dashed")  +
+  annotate("text", x = 95, y = 15, label = "italic(bar(y))", parse=TRUE,size=4) +
+  geom_text(x = 100, y = 15, aes(label = paste(" = ",round(ybar,1))), data = ybars,size=4,hjust=0) +
+  annotate("text", x = 95, y = 11, label = "italic(s)", parse=TRUE,size=4) +
+  geom_text(x = 100, y = 11, aes(label = paste(" = ",round(s,1))), data = ybars,size=4,hjust=0) +
+  facet_wrap(~sample,nrow=3) +
+  theme_cowplot() +
+  theme(axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()
+        ) +
+  theme(strip.background = element_blank())
+```
+
+Notice how all these sample distributions have *roughly* the form of a normal distribution but that each one is in detail different from the others. This is the reality of sampling from a population - every sample will be different - but not, usually, *unrecognisably* different. All those shown have roughly the same mean, shown by the dashed line, roughly the same standard deviation and roughly the same shape.
+
+Note too that these samples are drawn from a population (we happen to know, because we created it!) whose mean value $\mu$ is 145 and for which the standard devation $\sigma$ is 15. In an actual study, we would have taken, most likely, just one sample, which could have been any of those you see above. The mean $\bar{y}$ and standard deviation $s$ of that sample would have been our best estimate of $\mu$ and $\sigma$.
+
+```{r}
+# sampling distribution - the distribution of the means of many samples drawn from a population.
+sampling_dist<-
+  sample_means |>
+  ggplot(aes(x=means)) +
+  geom_histogram(binwidth=0.5,fill=fill_colour1,colour=line_colour,alpha=0.2) +
+  geom_function(fun=myfun,args=list(mean=mu,sd=sigma/sqrt(sample_size),N=n_samples,binwidth=0.5),colour=func_colour) +
+  scale_x_continuous(limits=c(lower_xlim,upper_xlim)) +
+  labs(x='Weight(kg)',
+       y='Frequency',
+       subtitle="Sampling distribution") +
+  annotate("text",
+           x=89,y=29.2,
+           hjust=0,
+           vjust=0,
+           label="This is much narrower\nthan the single sample\ndistribution ",
+           size=2.5,
+           colour="darkred") +
+  annotate("text",
+           x=152,y=29.2,
+           hjust=0,
+           vjust=0,
+           label="The true mean and the\nmean of our one sample\nare somewhere in there ",
+           size=2.5,
+           colour="darkred") +
+  theme_cowplot() +
+  theme_no_y() +
+  theme( plot.subtitle = element_text(hjust=0.5))
+#sampling_dist
+```
+
+Below in Figure \@ref(fig:pop-sampling) we contrast histograms of the population, a single sample of size 100 drawn from the population, and the so-called sampling distribution. That is, the distribution of the means of many samples of size 100 drawn from the population. Of these, the middle one, that of a single sample, is the only one we could get in practice.
+
+```{r pop-sampling}
+#| fig.cap = "The distribution of seal weights across the whole population, a sample drawn from that 
+#|  population, and the sampling distribution of sample means."
+
+# relation between the population distribution, the distribution of a single sample from that population, and the sampling
+# distribution ie what you would get if you plotted the distribution of the means of many such samples.
+grid.arrange(population_dist,single_sample_dist,sampling_dist,nrow=1)
+```
+
+In this case, the weights of the population are very close to being normally distributed. The mean is 145 kg and the standard deviation is 15 kg. You can see that the whole population has a weight within two or three standard deviations of the mean. In practice, we do not usually know either that the parameter of interest, in this case weight, definitely is normally distributed, or the mean and standard deviation of that distribution.
+
+The weights of one sample of size 100 drawn from the population are also approximately normally distributed with a mean and standard deviation approximately equal to the that of the population. In practice, we might often only have only this one sample, so these would be our best estimates of the population mean and standard deviation and our judgement as to whether the population was normally distributed would be based on this one sample distribution alone. With small samples, it can often be hard to tell, just by looking at this histogram, whether the data have been drawn from a population that is normally distributed.
+
+(In practice, we might also use other considerations - such as whether the data were a simple random sample and whether there were no outliers, and so on.)
+
+The **sampling distribution** is in practice a hypothetical distribution, since we cannot normally take many samples, each here of size 100, find the mean of each and plot the distribution of these. But if we could, this is what we would get. The mean of the one sample that we actually got is somewhere within this distribution and the true mean of the population is at the centre of it. A very interesting and useful thing about this distribution is that it will very likely be normally distributed, even if the population distribution was not, provided the sample size is large enough, and it is narrower than the population distribution. The larger the sample size, the narrower it is. These are handy facts, since they together mean that its width gives us an idea of the precision of our sample mean as an estimate of the the true mean.
+
+Some facts of interest about the sampling distribution are:
+
+a)  it is normally distributed (and, if the sample sizes are large enough and the samples independent of each other, it probably would be normally distributed even if the underlying distribution of the population were not a normal distribution.) This is a remarkable fact.
+
+b)  its mean is the true mean $\mu$ of the population.
+
+c)  its standard deviation is narrower than that of the population as a whole or of one sample. If the standard deviation of the population is $\sigma$, where $\sigma = 15$kg in this case, and the samples each had size *n*, where *n*=100 in this case, then the standard deviation of this sampling distribution is $\frac{\sigma}{\sqrt{n}}$. So in this case, the standard deviation of this distribution is 1/10th that of the underlying population.
+
+d)  if our sample size had been bigger, the sampling distribution would have been even narrower and so our estimate of the true mean would have been more precise. That is the benefit of having a bigger sample size.
+
+Now, here is the really interesting thing about this distribution. It tells us about the precision of our estimate $\bar{y}$ that we got from our one sample of 100 seals of the true population mean $\mu$. Look at that sampling distribution. The true mean is somewhere in there, as is our sample mean. So whatever this value $\bar{y}$ is that we got from our sample, we know it is within the width of this distribution of the true mean. And how wide is this distribution? Well, since it reliably has the shape of a normal distribution, we know the answer to that. Roughly 95% of the values on this distribution are within two of its standard errors of the middle value $\mu$. This standard error, remember, is $\frac{\sigma}{\sqrt{n}}$, where $\sigma$ is the population standard deviation, our best estimate of which is the standard deviation $s$ of our sample. Our sample mean $\bar{y}$ is our best estimate of this middle value, so we end up being able to say something like the following:
+
+$$
+\text{...the true mean = }\bar{y}{\text{ (our sample mean)}}\pm 2\times \frac{s{\text{ (our sample standard deviation)}}}{\sqrt{n}}
+$$
+
+We would call this range the **95% confidence interval** for the thing we wanted to measure - in this case, the mean weight of adult female grey seals in the population of them around the south west of England.
+
+What we mean by this is that if we repeatedly took a sample of 100 seals from the population and constructed the confidence interval for the mean in this way, then the true value would be within the interval 95% of the time.
+
+Let us explore confidence intervals in more detail...
+
+## Confidence intervals: a way of precisely representing uncertainty
+
+We know that our estimate $\bar{y}$ of the population mean $\mu$ comes from the distribution of all possible $\bar{y}$ that are distributed around $\mu$ with a variance of $\frac{\sigma^2}{n}$, and thus a standard deviation of $\frac{\sigma}{\sqrt{n}}$. Let us now find the **confidence interval** from our data. This is the range of possible values for the true population mean (which we don't know, remember) that cannot be rejected at the 5% significance level.
+
+Parameters that have been estimated with great precision will have a narrow confidence interval associated with them, while parameters about which we have less information will have a wide confidence interval.
+
+From the properties of the standard normal distribution, we know that 95% of all such $\bar{y}$ will lie within 1.96 standard deviations of $\mu$, where the relevant standard deviation is that of the sampling distribution - the distribution of $\bar{y}$. That means that 5% will not!
+
+This is illustrated below in Figure \@ref(fig:conf-int), where, for example, we show the true mean weight $\mu$ of adult female grey seals in south west England as a dotted line and either side of that, estimates of that obtained as the means from 20 samples, each of 100 seals, with their corresponding 95% confidence intervals. Note how nearly all of these confidence intervals do capture the true mean, but that one (in this case) does not.
+
+```{r conf-int,out.width="70%",fig.cap="If many samples were taken from the same population, and a 95% confidence interval for the mean calculated from each one, about 95% of these would capture the true mean"}
+# Graphic to show how often the CI captures the true value of a quantity
+# re-coded from a great plot in OpenIntro. Theirs was in base R, this uses ggplot.
+# there is another like this in Gelman et al
+
+set.seed(876543212)
+alpha<-0.05
+trials<-20
+
+estimators<-tibble(xs=rnorm(trials),ys=1:trials) |>
+  mutate(lowers=xs-abs(qnorm(alpha/2)),
+         uppers=xs+abs(qnorm(alpha/2)),
+         colours=ifelse((lowers>0 | uppers<0),"outside","inside"),
+         linewidths=ifelse((lowers>0 | uppers<0),"thick","thin"))
+
+estimators |>
+  ggplot(aes(x=xs,y=ys,colour=colours,size=linewidths)) +
+  geom_point(size=5) +
+  geom_linerange(aes(xmin = lowers, xmax = uppers)) +    
+  scale_colour_manual(values=c(inside=point_colour,outside=error_colour)) +
+  scale_size_manual(values=c(thick=2,thin=1)) +
+  geom_vline(xintercept=0,linetype="dashed") +
+  scale_x_continuous(limits=c(-6,6),
+                     breaks=seq(-3,3),
+                     labels=expression(mu-3*sigma,mu-2*sigma,mu-sigma,mu,mu+sigma,mu+2*sigma,mu+3*sigma)) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(legend.position="none") +
+  theme(axis.title.x=element_blank())
+```
+
+Hence we can say that, for 96% of the time:
+
+$$
+\mu-2\frac{\sigma}{\sqrt{n}} \lt \bar{y} \lt \mu+2\frac{\sigma}{\sqrt{n}}
+$$
+
+In practice, by convention, we are interested in a confidence level of 95% rather than 96%. This changes the 2 in the above formula to 1.96 - the confidence level is slightly lower, so the confidence interval is slightly less wide. Further, we would rather instead state a confidence interval for $\mu$ in terms of $\bar{y}$, rather than as above, so we rejig the last equation to give:
+
+$$
+\bar{y}-1.96\frac{\sigma}{\sqrt{n}} \lt \mu \lt \bar{y}+1.96\frac{\sigma}{\sqrt{n}}
+$$
+
+This is now our 95% confidence interval for data drawn from a normally distributed population: the range of values that the true mean $\mu$ could take and be consistent with the data at the 95% level.
+
+But there is a hitch...
+
+## The $t$-distribution 
+
+The trouble with the final expression in the previous section, as a way of stating the confidence interval for a parameter such as the mean of some measure of a population, is that it requires that we know $\sigma$, the true standard deviation of of the population, and we don't know it exactly. All we have is an estimate of it, ie $s$, the standard deviation of the sample. So there is some uncertainty in our knowledge of $\sigma$, just as there is in our knowledge of $\mu$ and this results in our 95% confidence interval for $\mu$ being somewhat wider than the value given above.
+
+The way this extra uncertainty can be accommodated is by modelling our data not by a normal distribution, but by a ***t***-**distribution**. This is similar to a normal distribution in that it is symmetrical, but it is lower and wider, with heavier tails on either side - which means that extreme values are more likely than for a normal. It is characterised by a centre, a scale and a *degrees of freedom* parameter *df* that can range from 1 to $\infty$ and which is one less than the number of data points in the sample: *df* =*n*-1. The precise shape of the *t*-distribution depends on *df*. For small *df* *t* distributions have very heavy tails, but as the sample size increases and *df* rises, so the *t*-distribution becomes taller and narrower and more and more like a normal distribution, until, for *df* greater than 30 or so, the two are more or less indistinguishable. This reflects the fact that, the more data points we have, the more precise our estimate *s* becomes of the population standard deviation $\sigma$.
+
+This is illustrated below in Figure \@ref(fig:t-dists), where we see drawn in red *t*-distributions for *df* = 1, 3, 10 and 30 (ie sample sizes of 2, 4, 11 and 31) against a standard normal distribution drawn in dark blue.
+
+```{r t-dists,fig.cap="For low sample sizes (and therefore low degrees of freedom) the _t_ distribution has fatter tails than a normal distribution, but as the sample size increases, it increasingly resembles the normal. For _df_ greater than 30 or so, they are indistinguishable."}
+# how a  *t*-distribution relates to a normal, and how it changes with degrees of freedom
+
+xvals<-seq(-4,4,0.01)
+xs<-rep(seq(-4,4,0.01),4)
+nreps<-length(xs)/4
+ys<-c(dt(xvals,1),dt(xvals,3),dt(xvals,10),dt(xvals,30))
+dfs<-c(rep(1,nreps),rep(3,nreps),rep(10,nreps),rep(30,nreps))
+
+t_colour=COL["red","full"]
+
+p<-tibble(x=xs,y=ys,df=as.factor(dfs)) |>
+  ggplot(aes(x=x,y=y,colour=df)) +
+  geom_line() +
+  geom_line(data=tibble(x=xvals,y=dnorm(xvals),df=rep("1",nreps)),aes(x=x,y=y),colour=func_colour) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(legend.position="none")
 
 
-I think that quite early on in this book, we should try to answer the question "I'm an educator...what should/can I make here?".  
-I'm not sure whether this should happen here or in the preface, but one way we can do this is with the flowchart. Below is just a *very rough* conceptual sketch of how a flowchart here might be a fun way to give users a visual map of where they could end up after using the rstudio4edu resource. [This is the idea I'm riffing off of.](https://www.beckysimpson.co/flowcharts) 
+p1<- p + scale_colour_manual(values=c("1"=t_colour,"3"="gray60","10"="gray40","30"="gray20")) +
+  annotate("text",x=-0.9,y=0.4,hjust=1,label="Normal",colour=func_colour) +
+  annotate("text",x=2,y=0.3,label="italic(df) == 1",colour= t_colour, parse=TRUE) +
+  geom_segment(x=-0.9,y=0.39,xend=-0.4,yend=dnorm(-0.4),colour=func_colour, arrow=arrow(length = unit(0.2, "cm"),type="closed"))
+p2<- p + scale_colour_manual(values=c("1"="gray80","3"=t_colour,"10"="gray40","30"="gray20")) +
+  annotate("text",x=2,y=0.3,label="italic(df) == 3",colour= t_colour,parse=TRUE)
+p3<- p + scale_colour_manual(values=c("1"="gray80","3"="gray60","10"=t_colour,"30"="gray20")) +
+  annotate("text",x=2,y=0.3,label="italic(df) == 10",colour= t_colour, parse=TRUE)
+p4<- p + scale_colour_manual(values=c("1"="gray80","3"="gray60","10"="gray40","30"=t_colour)) +
+  annotate("text",x=2,y=0.3,label="italic(df) == 30",colour= t_colour,parse=TRUE)
 
-Needless to say, right now the example below is yucky, too small, and incomplete. And it's also just kind of acting as funny eye-candy. But if we make it nicer (and perhaps summarize it more efficiently with a table beneath it), would this be the spot for it? (Could alternatively place this in the introductory section for the Cookbooks Section--and only include tools that we have cookbooks for (ie. leave out stuff like Connect)).
+grid.arrange(p1,p2,p3,p4,nrow=2)
+```
 
-![](images/r4edu/flowchart.jpg)
+To calculate the 95% confidence interval now we need to know how many standard deviations of the *t*-distribution we need to go either side of the mean in order to encompass 95% of the population. We call this the **critical *t*-value** $t_\text{crit}$. For a normal distribution, remember, we had to go 1.96 standard deviations either side in order to do this. For a *t*-distribution, how far we need to go will depend on the degrees of freedom *df*. For a low value of *df* the distribution has fatter tails so we need to go further out, but we need go less far as *df* increases and the *t*-distribution becomes narrower until, when *df* = 30 or so, we need only go as far as we would for a normal distribution, ie 1.96 standard deviations.
 
-# Teaching learners {#teach-learners}
+This is the effect of having a small sample: for such a sample our estimate of the true mean is less precise than if we had a larger sample, so the confidence interval, the range of values in which we are (say) 95% confident that the true value lies, is correspondingly wider.
 
-+ teaching to make reprexes
+For *df* = 10, we find that $t_\text{crit}$ = 2.228
 
-+ teaching about community/SO/etc
+So, now, for small samples, we would write our confidence interval as
 
-# What to do on day 1 {#teach-day1}
+$$
+\bar{y}-t_\text{crit}\frac{s}{\sqrt{n}} \lt \mu \lt \bar{y}+t_\text{crit}\frac{s}{\sqrt{n}}
+$$
 
-See: https://github.com/rstudio-education/datascience-box/issues/47
+or, put another way,
 
-- Link to mine's eat cake first stuff.
-- start with a data package (if you can); caveat: you are teaching importing data.
-- link to mine's dsinabox, perhaps garrett's latest repro research stuff
-- orient to IDE (great tip by kierisi: play with RStudio IDE themes?)
-- start with Rmd (if you can)- you can teach minimal markdown etc.
+$$
+\mu= \text{estimate}\pm t_\text{crit}\times\text{standard error of the estimate}
+$$ 
 
-# Licensing your content
 
-Some opinionated guidance.
+where the estimate is the mean of our sample, *s* is the standard deviation of the sample, *n* is the sample size and, for a 95% confidence interval and *df* = 10, $t_\text{crit}$ = 2.228. For other confidence levels or other values of *df*, $t_\text{crit}$ would have a different value.
 
-Does it make sense to move the Licensing section closer to the end of the book-- after they've created new content (or remixed ours or others') with the cookbooks?
+#### Pros and cons of using the *t*-distribution.
 
-# Remixing licensed content
+The *t*-distribution is widely used as a way of calculating confidence intervals for population parameters from sample estimates. It can be used when the sample size is small, whereas the normal distribution cannot, but it can also be used when the sample size is large, which is really handy. However, it is only valid to use it when the sample comprises independent observations that have been drawn from a population that is normally distributed, and this is not always easy to tell for small samples, just when we would really like to use it.
 
-Recommended ways to offer attribution
+For example the panels in Figure \@ref(fig:small-sample-hists) below show histograms of four samples, each of size 10, all drawn from the same normally distributed population. Would you be able to tell, from looking at these histograms, that this was the case?
 
-If you are reusing others' content in say a workshop with slides, add your attributions on the last slide, and include an "Attributions" section in the repository's READ ME file.
+```{r small-sample-hists,fig.height=2}
+#| fig.cap = "Histograms of small samples, drawn from a normally distributed population"
+# histograms of small samples, drawn from a normally distributed population
 
-So if it’s a workshop, once on the last slide + in the repo readme. 
+set.seed(6756)
+df_small_samples<-tibble(dataset=c(rep("A",10),rep("B",10),rep("C",10),rep("D",10)),data=c(rnorm(10,10,2),rnorm(10,10,2),rnorm(10,10,2),rnorm(10,10,2)))
 
-If it’s a semester long course, just somewhere on the course website
+df_small_samples |>
+  ggplot(aes(x=data)) +
+  geom_histogram(binwidth=1,fill=fill_colour1,colour=line_colour) +
+  scale_x_continuous(limits=c(7,13),
+                     breaks=seq(7,13),
+                     labels=c("","","",expression(mu),"","","")) +
+  facet_wrap(~dataset,nrow=1) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(axis.title.x=element_blank()) +
+  theme(strip.background = element_blank())
+```
 
-# Community
+For such small samples, quantile-quantile plots, or qq-plots as they are often called, are a better visual way to assess normality. In Figure \@ref(fig:qq-plots) we show qq-plots for the same four samples.
 
-https://community.rstudio.com/c/teaching
+```{r qq-plots,fig.height=2}
+#| fig.cap="qq plots of the same small samples. Note that it is easier to tell whether these are close to being straght lines than it is to tell whether the histograms approximate the shape of a normal distribution"
+
+# qqplots of small samples
+
+df_small_samples |>
+  ggplot(aes(sample=data)) +
+  geom_qq(colour=point_colour) +
+  geom_qq_line(colour=line_colour) +
+  facet_wrap(~dataset,nrow=1) +
+  theme_cowplot() +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank()
+        ) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank()
+        ) +
+  theme(strip.background = element_blank()) 
+```
+
+If the samples are drawn from a normally distributed population, then we expect the data to lie more or less along a straight line in a qq-plot and in each case shown above, they do. 
+
+Classic cases of samples that are not drawn from a normally distributed population are where the populaton distribution is lef*t*- or righ*t*-skewed, under-dispersed or over-dispersed. Histograms of these, box-plots and the qq-plots that you getare shown in Figure \@ref(fig:distribution-examples) below:
+
+
+```{r,echo=FALSE}
+#  create a histogram
+histogram<-function(distribution){
+p1<-ggplot(distribution,aes(x=y)) +
+  geom_histogram(bins=20,fill=fill_colour3)+
+  labs(x='Variable',
+       y='Count',
+       title='Histogram') +
+  theme_classic() +
+  theme(text = element_text(size=10))+
+  theme(plot.title = element_text(size=10))
+p1
+}
+```
+
+```{r,echo=FALSE}
+# create a q-q plot
+qq_plot<-function(distribution){
+p2 <-  ggplot(distribution,aes(sample=y)) +
+  stat_qq(colour=point_colour) +
+  stat_qq_line() +
+  labs(x='Theoretical Quantiles',
+       y='Sample Quantiles',
+       title='Q-Q plot') +
+  theme_classic() +
+  theme(text = element_text(size=10))+
+  theme(plot.title = element_text(size=10))
+p2
+}
+```
+
+```{r, echo=FALSE}
+box_plot<-function(distribution){
+p3<-ggplot(distribution,aes(x="",y=y)) +
+  geom_boxplot(fill="grey90",outlier.shape=NA)+
+  geom_jitter(colour=point_colour,width=0.2,alpha=0.35) +
+  labs(x="",
+       y='Variable',
+       title='Box Plot') +
+  theme_classic() +
+  theme(text = element_text(size=10))+
+  theme(plot.title = element_text(size=10))
+p3
+}
+```
+
+```{r normal, fig.align = 'center',echo=FALSE,message=FALSE}
+nd<-tibble(x=rep("A",150),y=rnorm(150))
+p1<-histogram(nd)
+p2<-qq_plot(nd)
+p3<-box_plot(nd)
+a<-plot_grid(p1, p3, p2, labels = "",nrow=1)
+```
+
+```{r lef*t*-skew, fig.align = 'center',echo=FALSE,message=FALSE}
+ls<-tibble(y=-rexp(150)) 
+p1<-histogram(ls)
+p2<-qq_plot(ls)
+p3<-box_plot(ls)
+b<-plot_grid(p1, p3, p2, labels = "",nrow=1)
+```
+```{r righ*t*-skew, fig.align = 'center',echo=FALSE,message=FALSE}
+rs<-tibble(y=rexp(150)) 
+p1<-histogram(rs)
+p2<-qq_plot(rs)
+p3<-box_plot(rs)
+c<-plot_grid(p1, p3, p2, labels = "",nrow=1)
+```
+
+```{r under dispersed, fig.align = 'center',echo=FALSE,message=FALSE}
+ud<-tibble(y=runif(150,0,20)) 
+p1<-histogram(ud)
+p2<-qq_plot(ud)
+p3<-box_plot(ud)
+d<-plot_grid(p1, p3, p2, labels = "", nrow=1)
+```
+
+```{r over-dispersed, fig.align = 'center',echo=FALSE,message=FALSE}
+library(extraDistr)
+od<-tibble(y=rlaplace(150)) 
+p1<-histogram(od)
+p2<-qq_plot(od)
+p3<-box_plot(od)
+e<-plot_grid(p1, p3, p2, labels = "", nrow=1)
+```
+
+  
+
+```{r distribution-examples,fig.height=10}
+#| fig.cap = "Examples of histograms, box plots and qq plots for samples drawn from populations that are a) Normally distributed, b) lef*t*-skewed, c) righ*t*-skewed, d) under-dispresed and e) over dispersed."
+plot_grid(a,b,c,d,e,nrow=5,
+          labels=c("Normally distributed",
+                   "Lef*t*-skewed - tail is to the left",
+                   "Righ*t*-skewed - tail is to the right",
+                   "Under-dispersed",
+                   "Over-dispersed"),
+          label_x = 0.1,
+          hjust = 0,
+          label_size=11,
+          vjust = 0.9,
+          scale=0.8)
+```
+
+
+
+## Hypothesis testing
+
+Here we lay out the concept of a null hypothesis and the method of testing such a hypothesis. We suppose that a sample mean and variance have been calculated, and that this information has been used to calculate a confidence interval. We can use this same information to test a hypothesis.
+
+Suppose our sample was a set of 30 differences between two groups, for example the difference in test scores of a group before and after taking a statistics course. If there was no improvement over the duration of the course, then the mean difference should be zero. If the difference is defined as *score after* - *score before* then it is to be hoped that the mean difference is positive. However if the course actually confused the students then the difference could be negative.
+
+To start with, we construct a **null hypothesis**. This usually expresses the conservative, 'nothing going on' scenario and states that no effect is expected, but it would be equally valid to state that the true mean takes some non-zero value.
+
+In this case:
+
+$$
+\text{H}_0\text{: There is no difference between the scores, }\mu=0
+$$ 
+
+The alternative is that there is a difference. Normally, we would not state the direction of this difference, so the alternative hypothesis is phrased as:
+
+$$
+\text{H}_\text{A}\text{: }\mu\neq0
+$$ 
+
+The main principle of a hypothesis test is that we assume the null hypothesis is true and do not reject it unless there is convincing evidence that it is not true. In that sense it is like a classic court process, in which a defendant is assumed innocent and will be acquitted unless we compile a portfolio of evidence that we would be very unlikely to have if that were true.
+
+Note that both the null and alternate hypotheses are phrased in terms of population parameters, since it is the population that we want to know about. The sample that we have drawn from it is just our window onto that. The sample mean $\bar{y}$ will almost certainly not be zero, and even if it were it would not mean that the true mean $\mu$, the mean of the population, is zero.
+
+So what we do is assume that the null hypothesis is true and calculate the probability that we would have got the data we got, or more extreme data, if that were true. By convention, if this probability falls below 0.05 we reject our assumption of $\text{H}_0$ being correct. This means that if the null hypothesis is true, there is a probability of 0.05 that we will reject it when we should not. We call this a **Type 1** error.
+
+```{r hypothesis-testing,fig.height=3}
+#| fig.cap = "Key values for hypothesis testing, showing the rejection regions for the null hypothesis in blue."
+df<-29
+t_crit<-qt(0.975,df)
+
+p_base<-ggplot(NULL, ) +
+  geom_segment(aes(x=-6,y =0,xend=6,yend=0)) +
+  stat_function(fun = dt,
+                args=list(df=df),
+                geom = "line",
+                xlim = c(-6, 6),
+                linewidth=0.5) +
+  theme_cowplot() +
+  theme_no_axes()
+
+p<-p_base +
+  annotate("text",label="0",x=0,y = -.013, size = 5, vjust=1) +
+  annotate("text",label=bquote(bar(italic(y))~"?"),x=0.8,y =-0.08,size = 4, vjust=1, colour = "darkred") +
+  annotate("text",label=bquote(bar(italic(y))~"?"),x=3,y =-0.08,size = 4, vjust=1,colour = "darkred") +
+  annotate("text",label=bquote(-italic(t)[crit]~frac(italic(s),sqrt(italic(n)))),x=-t_crit,y =-0.013,size = 4, vjust=1) +
+  annotate("text",label=bquote(+italic(t)[crit]~frac(italic(s),sqrt(italic(n)))),x=+t_crit,y =-0.013,size = 4, vjust=1) +
+  geom_segment(aes(x=0.8,y =-0.07,xend=0.8,yend=0),
+               arrow = arrow(length = unit(0.2, "cm")),colour="darkred",type="closed") +
+  geom_segment(aes(x=3,y =-0.07,xend=3,yend=0),
+               arrow = arrow(length = unit(0.2, "cm")),colour="darkred",type="closed") +
+  geom_segment(aes(x=-t_crit,y =0,xend=-t_crit,yend=dnorm(-t_crit)),linetype="dashed") +
+  geom_segment(aes(x=t_crit,y =0,xend=t_crit,yend=dnorm(t_crit)),linetype="dashed") +
+  coord_cartesian(clip='off')
+
+
+
+# now add ticks to the x-axis
+ticks_data = data.frame(
+    x = seq(-6,6,2),
+    xend = seq(-6,6,2), 
+    y = rep(0,7),
+    yend = rep(-0.01,7)
+)
+p <- p + geom_segment(data=ticks_data, aes(x = x, y = y, xend = xend, yend = yend))
+
+p <- p +
+    stat_function(fun = dt,
+                args=list(df=df),
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(-6, -t_crit)) +
+    stat_function(fun = dt,
+                args=list(df=df),
+                geom = "area",
+                fill = fill_colour1,
+                xlim = c(t_crit, 6)) 
+p
+```
+
+Figure \@ref(fig:hypothesis-testing) above shows the distribution of our random variable (the mean difference between individual students' scores before and after a course of study) under the null hypothesis. It is centred at zero, in this case. Our value of $\bar{y}$, we suppose, is one data point from this distribution. In a hypothesis test we ask how likely it is that this could really be the case.
+
+The answer depends on how far from the centre of the distribution our value of $\bar{y}$ lies. If it is close to 0 then it may well have come from this distribution, but if it is far from it, then we conclude that it is unlikely to have done so.
+
+When measuring the distance from 0, it is not the absolute distance that matters, but the number of standard errors of the sampling distribution, which we find by dividing the absolute distance by this standard error. In terms of this unit, this distance is known as the ***t*****-statistic**:
+
+$$
+t_\text{s}=\frac{\bar{y}-0}{\frac{s}{\sqrt{n}}}
+$$ 
+
+Let us remember that the area between two values under a probability distribution curve is the probability that the random variable described by that pdf takes a value in that range. The probability that the mean of our sample could have been as far or further from 0 than it actually is is equal to the area under the distribution curve beyond that distance from 0, including both sides. We compare this with a critical probability, called the **significance level** of the test, *which we choose* but which is conventionally set at 0.05 ie 5% of the total area under the curve. The number of standard errors from 0 at which this happens is a critical value of the *t*-statistic known as $t_\text{crit}$. Its value depends on the significance level we choose and on the degrees of freedom ie the sample size.
+
+In the end, if our *t*-statistic is greater than the critical *t*-value then the probability that we could have got such a value of $\bar{y}$ from a distribution centered on 0 is less than 0.05. We call this probability a ***p*****-value**, and so, if $p<0.05$ we decide that the strength of the evidence is such as to allow us to *reject the null hypothesis*.
+
+In summary, the *p*-value is the probability of obtaining the the data you got, or more extreme data, and thus the *t*-statistic you got, or an even bigger *t*-statistic, if the null hypothesis were true.
+
+### General procedure for a hypothesis test
+
+The procedure outlined above can be generalised to include a population mean of any value, not just zero, and to testing other parameters estimated from samples against hypothesised values of those parameters for the population.
+
+The procedure can be broken down into these steps:
+
+1.  Define the null and alternate hypotheses in terms of population parameters.
+2.  Plot the data, most likely using a box plot or a histogram.
+3.  Calculate the sample estimate $\bar{y}$ of the population parameter.
+4.  Calculate the standard error $s/\sqrt{n}$ of this estimate.
+5.  Determine whether it is appropriate to use a *t*-test
+6.  Calculate the *t*-statistic
+7.  Calculate the *p*-value for this *t*-statistic.
+8.  Based on the *p*-value, reject or fail to reject the null hypothesis.
+
+### Comparing one mean with a threshold - one sample *t*-test
+
+Let us return to our class of students. Figure \@ref(fig:test-score-change) shows a histogram of the changes in their test scores following their course of study. We shall call this change DIFF:
+
+```{r test-score-change,out.width="50%"}
+#| fig.cap = "Changes in exam scores following a course of study. Do these provide evidence that the course has improved scores, or not?"
+
+# note to self: must put this in mbhR package
+# This data set is basics_DIFF from Grafen and Hails
+df <-tibble(DIFF =c(0.73037,0.56187,0.53982,1.19698,2.73584,1.50035,1.91098,1.89367,2.57054,0.65063,
+0.63133,0.9086,1.22869,0.33311,0.73032,-0.42538,-0.35518,0.2398,1.75743,0.88923,
+0.83244,-0.08622,0.02649,0.13844,1.89609,-0.26868,1.8784,0.58147,0.34533,0.29316))
+
+
+df |>
+  ggplot(aes(x=DIFF)) +
+  geom_histogram(binwidth=0.5,colour=line_colour,fill=fill_colour1) +
+  scale_x_continuous(breaks=seq(-0.5,2.5,0.5)) +
+  scale_y_continuous(breaks=seq(0,12,2)) +
+  labs(x = "DIFF = Score after - Score before",
+       y = "Frequency") +
+  theme_cowplot()
+```
+
+We see that some students *did* score worse in the test following the course than in the test preceding it, but a majority have improved their score. It seems from this chart that the course of study has helped the students, on the whole, but to check that this improvement is significant we carry out a test.
+
+The test we will use is called a "one sample" t-test. One sample, because we have just one sample of data, in this case the differences in the students scores, and we compare these with a null, or reference value, which in this case is zero. In other words, the test will tell us whether there is evidence from the data to reject the null value, which is that the course made no difference to the students' scores.
+
+The mean value $\bar{y}$ of DIFF is 0.862 and the standard deviation *s* of DIFF is 0.838. The number of students is *n* is 30, so the degrees of freedom *df* is 29. The standard error in the mean is $\frac{s}{\sqrt{n}} = 0.153$. Hence the *t*-statistic, the number of standard errors of the mean from the null prediction of 0 (in this case) is 0.862 / 0.153 = 5.64.
+
+Look at the plot of a *t*-distribution for 30 degrees of the freedom (that for 29 degrees of freedom will be very similar to that) in Figure \@ref(fig:t-dists) above. What proportion of the area under the curve, do you think, is more than 5.64 standard errors away from 0? Most of it, some of it, or practically none of it?
+
+You can see that this distance is so far away from zero that the area under the curve that is that far or further from zero is effectively zero. We interpret this as meaning there is almost zero probability that we would have got this data if the null hypothesis were true. This probability is what we call a *p*-value. In particular, the *p*-value for this one sample *t*-test is well below 0.05, in fact *p* \< 0.001 so we can confidently reject the null hypothesis and conclude that in general, students' score did improve following their course of study. (We infer the direction of change from the fact that the mean difference is positive, and also from the range of values contained within the confidence interval.)
+
+If we were to do this test in R, this is the output we would get:
+
+```{r}
+t.test(df$DIFF)
+```
+
+### Comparing two means - two-sample test
+
+#### A two-sample test for a difference
+
+Suppose we hypothesise that male and female squirrels differ in body mass. 50 squirrels of each sex are measured, and the body masses of each are recorded.
+
+Histograms and qq-plots of the data are shown in Figure \@ref(fig:untransformed-data) below:
+
+```{r}
+# path<-here("data","basics_SQUIRREL.csv")
+# squirrels<-read_csv(path) |>
+#   pivot_longer(1:2,names_to="sex",values_to="mass") |>
+#   mutate(log_mass=log(mass))
+
+squirrels<-squirrels |> mutate(log_mass=log(mass))
+```
+
+```{r}
+sq_histograms<-
+  squirrels |>
+  ggplot(aes(x=mass)) +
+  geom_histogram(bins=14,fill=fill_colour1,colour=line_colour) +
+  scale_x_continuous(breaks=seq(0.3,1.1,0.2)) +
+  labs(x="Mass (kg)",y="Frequency") +
+  facet_wrap(~sex,nrow=1) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(strip.background = element_blank())
+```
+
+```{r}
+sq_qqplots<-
+  squirrels |>
+  ggplot(aes(sample=mass)) +
+  geom_qq(colour=point_colour) +
+  geom_qq_line(colour=line_colour) +
+  facet_wrap(~sex,nrow=1,scales="free") +
+  theme_cowplot() +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank()
+        ) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank()
+        ) +
+theme(strip.background = element_blank(),
+      strip.text=element_blank())
+```
+
+```{r untransformed-data, fig.width=6}
+#| fig.cap = "Histograms and qq-plots for small data sets that are not normally distributed, but are in fact skewed to the right, with a tail of points going out to high values. Note the characteristic curvature in the qq-plots for data that does this."
+grid.arrange(sq_histograms,sq_qqplots)
+```
+
+These histograms, especially for males, do not look very symmetrical. Both distributions are skewed to the right. The effect of this is that the few squirrels with particularly large body masses will greatly increase the means of the samples and in doing so suggest that the whole body mass distribution is greater than it is in reality. This is reflected in the qqplots for both sexes, which are distinctly curved. The data are clearly not normally distributed.
+
+As it stands, we should not use a *t*-test to decide whether the data are drawn from the same distribution. We could instead either use a *non-parametric* test for a difference, such as a Wilcoxon-Mann-Whitney test that does not demand that the data follow a particular distribution, or we could attempt one of a number of possible *transformations* of the data, such as taking the natural log of the body mass, in the hope that this would rein in the long tail towards high values and achieve a more symmetric distribution.
+
+(We could also attempt some version of a generalised linear model, but that is a topic we will not explore here.)
+
+We show the result of doing this in Figure \@ref(fig:transformed-data) below
+
+```{r}
+sq_log_histograms<-
+  squirrels |>
+  ggplot(aes(x=log_mass)) +
+  geom_histogram(bins=14,fill=fill_colour1,colour=line_colour) +
+  scale_x_continuous(breaks=seq(0.3,1.1,0.2)) +
+  labs(x="log (mass)",y="Frequency") +
+  facet_wrap(~sex,nrow=1) +
+  theme_cowplot() +
+  theme_no_y() +
+  theme(strip.background = element_blank())
+
+sq_log_qqplots<-
+  squirrels |>
+  ggplot(aes(sample=log_mass)) +
+  geom_qq(colour=point_colour) +
+  geom_qq_line(colour=line_colour) +
+  facet_wrap(~sex,nrow=1, scales = "free") +
+  theme_cowplot() +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank()
+        ) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank()
+        ) +
+  theme(strip.background = element_blank(),
+        strip.text=element_blank())
+```
+
+```{r transformed-data, fig.width=6}
+#| fig.cap="Histograms and qq-plots for the same data, but after it has been log transformed."
+grid.arrange(sq_log_histograms,sq_log_qqplots)
+```
+
+That's much better. 
+
+Here is a summary of the log(mass) values for each sample:
+
+```{r}
+squirrels |>
+  group_by(sex) |>
+  summarise ('Mean log (mass)'=mean(log_mass), 'SD log (mass)' = sd(log_mass) ) |>
+  kbl(digits=3) |>
+  kable_styling(full_width=FALSE)
+```
+
+
+Our null hypothesis $H_0$ is that the two samples are drawn from populations with the same mean mass, and the alternate hypothesis $H_1$ is that the populations from which they are drawn do not have the same mean mass:
+
+$$
+\begin{align*}
+\text{H}_0&:\quad\mu_\text{A}=\mu_\text{B}\quad\text{or}\quad\mu_\text{A}-\mu_\text{B}=0\\
+\text{H}_\text{1}&:\quad\mu_\text{A}\neq\mu_\text{B}\quad\text{or}\quad\mu_\text{A}-\mu_\text{B}\neq 0
+\end{align*}
+$$
+
+To find out whether or not we can reject the null hypothesis, we can use the fact that the difference between the means $\mu_A-\mu_B$ is itself a random variable that follows a *t*-distribution and which under the null hypothesis has a mean of zero. What we need to do is calculate the *t*-*statistic* in this case, which is the difference between the sample means divided by the standard error of that difference^*^. 
+
+*This turns out to be the square root of the sum of the squared standard errors of the individual means, a result that comes from the fact that the variance of the difference between two independent random variables is the sum of the variances of each of the variables, and a standard error is the square root of a variance. Handy to know, but you don't have to. In practice, most people will simply use the R function `t.test()` without worrying about the details, and so can you, if you want to.*
+
+With these data we find that the absolute difference between the sample means is $|-0.688 - -0.579| = 0.109$ and that the standard error of the difference between the means is 
+
+$$
+\text{SE} = \sqrt{\frac{0.245^2}{50} + \frac{0.325^2}{50}} = 0.0576
+$$
+Hence the test statistic $t$ in this case is $\frac{0.109}{0.0576} = 1.90$
+
+The number of degrees of freedom in this case is $n_\text{A}+n_\text{B}-2=50+50-2=98$. A *t*-distribution with 98 degrees of freedom is indistinguishable from a normal distribution and you may recall from above that the threshold $t$ (or $z$, it makes no difference with this many degrees of freedom) value  in a two-sided test for a *p*-value of 0.05 or less is 1.96. Our value here is less than that and hence we conclude that there is no evidence from the data at the 5% signficance level that males and females have different body masses.
+
+If we do this test in R, this is the output we get:
+
+```{r}
+males_log_mass<-squirrels |> filter(sex=="MALE") |> select(log_mass) |> pull()
+females_log_mass<-squirrels |> filter(sex=="FEMALE") |> select(log_mass) |> pull()
+t.test(males_log_mass,females_log_mass,var.equal=TRUE)
+```
+
+Note that in this output from R we are given the *t*-statistic, the number of degrees of freedom and the *p*-value, on the basis of which we decide whether or not to reject the null hypothesis which is that the samples are drawn from populations with the same mean value. Note too that we are given a 95% confidence interval. This is the range of values that would capture the true value of the difference between the means of our samples 95% of the time, if we repeated the trial many times over. If this range encompasses zero, then we have no grounds, at the 95% confidence level, to think that the difference between the means among the populations is anything other than zero. Whenever this confidence interval *does* encompass zero, as it does here, the *p*-value *will* also be greater than 0.05, as it is here.
+
+#### Erroneous use of a *t*-test
+
+As a word of caution about using a *t*-test on data that does not meet the criteria required, look what we get if we did the *t*-test on the untransformed masses, which we have seen above to have skewed, non-normal distributions:
+
+```{r}
+males_mass<-squirrels |> filter(sex=="MALE") |> select(mass) |> pull()
+females_mass<-squirrels |> filter(sex=="FEMALE") |> select(mass) |> pull()
+t.test(males_mass,females_mass,var.equal=TRUE)
+```
+This gives a *t*-statistic of 2.17 and *p*-value of 0.03, on the basis of which we would erroneously reject the null hypothesis that males and female squirrels on average have the same body mass. We would be wrong to think that this output gave us grounds to do that, since the data do not meet the criteria required for a *t*-test, and hence we should not believe the output if we use one. 
+
+### Alternatives to the *t*-test
+
+In fact, in this situation, while you should not use a *t*-test on the untransformed data these do not meet the criteria of constant variance, normally distributed residuals etc, using it on the *transformed* data is just one of the alternatives you could reasonably use. 
+
+One other is to use an appropriate *non-parametric* test on the data. Such tests, while less powerful than *parametric tests* like the *t*-test do not require that the data follow any particular distribution. They do not use the actual values of individual data points but instead use their ranks: 1 for the smallest, 2 for the second smallest and so on.
+
+An example of such a test that we could use here is the Wilcoxon rank sum / Mann-Whitney test, implemented in R using the funcion `wilcox.test()`
+
+```{r}
+wilcox.test(males_mass,females_mass)
+```
+The outcome of this test, which it would be perfectly valid to use here, is that there is no evidence from the data that the weights of male and female squirrels are different.
+
+
+A second alternative is to use one of a powerful set of tests known as **Generalised Linear Models**. We will not delve into those here.
+
+```{r}
+### Why we do it
+
+### How we do it
+
+### Why would we want a scheme where we try to reject or hold on to a null hypothesis if we never believed this in the first place?
+```
+
+
+
+## Size effects vs hypothesis testing.
+
+```{block, type='warning-box'}
+**Red boxes**
+
+These contain a __warning__ or flag a common __gotcha__ that may trip you up. They highlight potential pitfalls and show you how to avoid them. You will avoid future mistakes if you pay close attention to these.
+```

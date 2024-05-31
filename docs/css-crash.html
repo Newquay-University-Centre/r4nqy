@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
@@ -396,10 +396,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">A</span> CSS Crash Course<a href="css-crash.html#css-crash" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Every element of a website that you see, from links to pictures to paragraphs, has a category label. These labels can be tags (for example, all links on websites have <code>a</code> tags, all big headers have <code>h1</code> tags), or they can be IDs or classes (described later). If you know the label for something on a website, then you can style its appearance by using a <code>.css</code> file. In a CSS file, you write style rules that will apply to all elements of the same category. This is a very useful thing to be able to do because it allows you to break free from the limitations of built-in templates and themes that come with R Markdown.</p>
 <p>Below is a quick example of some CSS that would change all link colors to the color “orchid” and all link text from being uppercase:</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="css-crash.html#cb149-1" tabindex="-1"></a>a {</span>
-<span id="cb149-2"><a href="css-crash.html#cb149-2" tabindex="-1"></a>  color<span class="sc">:</span> orchid;</span>
-<span id="cb149-3"><a href="css-crash.html#cb149-3" tabindex="-1"></a>  text<span class="sc">-</span>transform<span class="sc">:</span> uppercase;</span>
-<span id="cb149-4"><a href="css-crash.html#cb149-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="css-crash.html#cb1-1" tabindex="-1"></a>a {</span>
+<span id="cb1-2"><a href="css-crash.html#cb1-2" tabindex="-1"></a>  color<span class="sc">:</span> orchid;</span>
+<span id="cb1-3"><a href="css-crash.html#cb1-3" tabindex="-1"></a>  text<span class="sc">-</span>transform<span class="sc">:</span> uppercase;</span>
+<span id="cb1-4"><a href="css-crash.html#cb1-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>You begin with the element’s “label” (technically called a <em>selector</em>). Within curly braces, <code>{ }</code>, you can include as many different style properties as you’d like for that element. Each new property must end with a <code>;</code>. What are your options for properties to style? <a href="https://www.w3schools.com/cssref/">There are many</a>, but don’t feel overwhelmed– just pick one or two things to change as you start out.</p>
 <div id="whats-in-a-name" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">A.1</span> What’s in a name?<a href="css-crash.html#whats-in-a-name" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -450,10 +450,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Now we need to immortalize your color choice by putting your selector and your color choice in a CSS file.</p></li>
 <li><p>Make a CSS file (file &gt; new file &gt; text file &gt; save as style.css) and paste something like this into it.</p></li>
 </ol>
-<div class="sourceCode" id="cb151"><pre class="sourceCode style.css"><code class="sourceCode css"><span id="cb151-1"><a href="css-crash.html#cb151-1" tabindex="-1"></a></span>
-<span id="cb151-2"><a href="css-crash.html#cb151-2" tabindex="-1"></a><span class="fu">.navbar</span> {</span>
-<span id="cb151-3"><a href="css-crash.html#cb151-3" tabindex="-1"></a>  <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#fcfcfc</span><span class="op">;</span></span>
-<span id="cb151-4"><a href="css-crash.html#cb151-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode style.css"><code class="sourceCode css"><span id="cb3-1"><a href="css-crash.html#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="css-crash.html#cb3-2" tabindex="-1"></a><span class="fu">.navbar</span> {</span>
+<span id="cb3-3"><a href="css-crash.html#cb3-3" tabindex="-1"></a>  <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#fcfcfc</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="css-crash.html#cb3-4" tabindex="-1"></a>}</span></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>Link your CSS file to your R Markdown site/blog/tool…see the specific cookbook for how to do this for your particular tool.</p></li>
 <li><p>Build your site–do you see your CSS style taking effect?</p></li>
@@ -520,20 +520,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A A primer in statistics | Data analysis for Newquay University Centre</title>
+  <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A A primer in statistics | Data analysis for Newquay University Centre" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A A primer in statistics | Data analysis for Newquay University Centre" />
+  
+  <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Michael Hunt" />
+
+
+<meta name="date" content="2024-05-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simple-linear-regression.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Newquay University Centre</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plot-your-data.html"><a href="plot-your-data.html"><i class="fa fa-check"></i><b>2</b> Plot your data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="plot-your-data.html"><a href="plot-your-data.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="plot-your-data.html"><a href="plot-your-data.html#get-the-template-script"><i class="fa fa-check"></i><b>2.2</b> Get the template script</a></li>
+<li class="chapter" data-level="2.3" data-path="plot-your-data.html"><a href="plot-your-data.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>2.3</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="2.4" data-path="plot-your-data.html"><a href="plot-your-data.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>2.4</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="2.5" data-path="plot-your-data.html"><a href="plot-your-data.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>2.5</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="2.6" data-path="plot-your-data.html"><a href="plot-your-data.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>2.6</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="2.7" data-path="plot-your-data.html"><a href="plot-your-data.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>2.7</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="2.8" data-path="plot-your-data.html"><a href="plot-your-data.html#scatter-plots"><i class="fa fa-check"></i><b>2.8</b> Scatter plots</a></li>
+<li class="chapter" data-level="2.9" data-path="plot-your-data.html"><a href="plot-your-data.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>2.9</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="2.10" data-path="plot-your-data.html"><a href="plot-your-data.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>2.10</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="2.11" data-path="plot-your-data.html"><a href="plot-your-data.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>2.11</b> Distribution of penguin flipper lengths</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="plot-your-data.html"><a href="plot-your-data.html#histogram"><i class="fa fa-check"></i><b>2.11.1</b> Histogram</a></li>
+<li class="chapter" data-level="2.11.2" data-path="plot-your-data.html"><a href="plot-your-data.html#density-plot"><i class="fa fa-check"></i><b>2.11.2</b> Density plot</a></li>
+<li class="chapter" data-level="2.11.3" data-path="plot-your-data.html"><a href="plot-your-data.html#box-plots"><i class="fa fa-check"></i><b>2.11.3</b> Box plots</a></li>
+<li class="chapter" data-level="2.11.4" data-path="plot-your-data.html"><a href="plot-your-data.html#violin-plot-using-geom_violin"><i class="fa fa-check"></i><b>2.11.4</b> Violin Plot using <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="2.11.5" data-path="plot-your-data.html"><a href="plot-your-data.html#ridge-plot"><i class="fa fa-check"></i><b>2.11.5</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="plot-your-data.html"><a href="plot-your-data.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.12</b> Bar chart with error bar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html"><i class="fa fa-check"></i><b>3</b> Chi-square analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#chi-square-goodness-of-fit-test"><i class="fa fa-check"></i><b>3.1</b> Chi-square goodness of fit test</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#example"><i class="fa fa-check"></i><b>3.1.1</b> Example</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#doing-the-chi-square-test-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Doing the chi-square test in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#reporting-the-result-in-english"><i class="fa fa-check"></i><b>3.1.3</b> Reporting the result in English</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#exercise-1."><i class="fa fa-check"></i><b>3.2</b> Exercise 1.</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#solution.-1"><i class="fa fa-check"></i><b>3.2.1</b> Solution. 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#way-chi-square-analysis-test-of-independence"><i class="fa fa-check"></i><b>3.3</b> 2-way chi square analysis: test of independence</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#hypotheses"><i class="fa fa-check"></i><b>3.3.1</b> Hypotheses</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#summarise-the-data."><i class="fa fa-check"></i><b>3.3.2</b> Summarise the data.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#plot-the-data."><i class="fa fa-check"></i><b>3.3.3</b> Plot the data.</a></li>
+<li class="chapter" data-level="3.3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#interpret-the-graph-before-we-do-any-stats"><i class="fa fa-check"></i><b>3.3.4</b> Interpret the graph before we do any ‘stats’</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test"><i class="fa fa-check"></i><b>3.3.5</b> The Chi-square test</a></li>
+<li class="chapter" data-level="3.3.6" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#yates-continuity-correction"><i class="fa fa-check"></i><b>3.3.6</b> Yates continuity correction</a></li>
+<li class="chapter" data-level="3.3.7" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#conclusion"><i class="fa fa-check"></i><b>3.3.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test-explained-advanced"><i class="fa fa-check"></i><b>3.4</b> The Chi-Square Test explained (advanced)</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#why-does-the-test-statistic-have-this-distribution"><i class="fa fa-check"></i><b>3.4.1</b> Why does the test statistic have this distribution?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html"><i class="fa fa-check"></i><b>4</b> Fisher’s exact test</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#the-hypergeometric-function"><i class="fa fa-check"></i><b>4.1</b> The Hypergeometric Function</a></li>
+<li class="chapter" data-level="4.2" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#hypergeometric-distribution-in-r"><i class="fa fa-check"></i><b>4.2</b> Hypergeometric Distribution in R</a></li>
+<li class="chapter" data-level="4.3" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#back-to-fishers-exact-test"><i class="fa fa-check"></i><b>4.3</b> Back to Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="4.4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#example-1"><i class="fa fa-check"></i><b>4.4</b> Example</a></li>
+<li class="chapter" data-level="4.5" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#fishers-exact-test-in-r"><i class="fa fa-check"></i><b>4.5</b> Fisher’s Exact Test in R</a></li>
+<li class="chapter" data-level="4.6" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#what-if-we-just-use-a-chi-square-test"><i class="fa fa-check"></i><b>4.6</b> What if we just use a chi-square test?</a></li>
+<li class="chapter" data-level="4.7" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><i class="fa fa-check"></i><b>4.7</b> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
+<li class="chapter" data-level="4.8" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#another-cautionary-note"><i class="fa fa-check"></i><b>4.8</b> Another Cautionary Note</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>5.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>5.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="5.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>5.3</b> Using R to find the correlation coefficient.</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>5.3.1</b> Correlations for real data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>5.4</b> The correlation coefficient measures the degree of linear association.</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>5.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>5.5</b> Association is not causation</a></li>
+<li class="chapter" data-level="5.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>5.6</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>5.6.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="5.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>5.6.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>5.7.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="5.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>5.7.2</b> Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>6</b> t-test for difference</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>6.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="6.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>6.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="6.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.3</b> The two-sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>6.3.1</b> Pros of the <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.3.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>6.3.2</b> Cons of the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>6.4</b> The workflow</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#open-your-project"><i class="fa fa-check"></i><b>6.4.1</b> Open your project</a></li>
+<li class="chapter" data-level="6.4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#create-a-new-script"><i class="fa fa-check"></i><b>6.4.2</b> Create a new script</a></li>
+<li class="chapter" data-level="6.4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#load-packages-1"><i class="fa fa-check"></i><b>6.4.3</b> Load packages</a></li>
+<li class="chapter" data-level="6.4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>6.4.4</b> Read in and inspect the data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>6.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="6.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>6.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="6.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>6.7</b> Step Three: Carry out statistical analysis</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>6.7.1</b> Are the data normally distributed?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>6.7.2</b> Normality test - analytical method</a></li>
+<li class="chapter" data-level="6.7.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>6.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
+<li class="chapter" data-level="6.7.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>6.7.4</b> The ‘thinking about the data’ normality test</a></li>
+<li class="chapter" data-level="6.7.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>6.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.7.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>6.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>6.8</b> The complete script</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>7</b> Paired tests for difference</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-paired-t-test"><i class="fa fa-check"></i><b>7.1.1</b> The paired t-test</a></li>
+<li class="chapter" data-level="7.1.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1.2</b> The Wilcoxon Signed Rank test</a></li>
+<li class="chapter" data-level="7.1.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#null-hypotheses"><i class="fa fa-check"></i><b>7.1.3</b> Null Hypotheses</a></li>
+<li class="chapter" data-level="7.1.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#test-output"><i class="fa fa-check"></i><b>7.1.4</b> Test output</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example-2"><i class="fa fa-check"></i><b>7.2</b> Example</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-2"><i class="fa fa-check"></i><b>7.2.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-data"><i class="fa fa-check"></i><b>7.2.2</b> Load data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data"><i class="fa fa-check"></i><b>7.2.3</b> Plot the data</a></li>
+<li class="chapter" data-level="7.2.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#tidy-the-data"><i class="fa fa-check"></i><b>7.2.4</b> Tidy the data</a></li>
+<li class="chapter" data-level="7.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>7.2.5</b> Check for normality of differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="7.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>7.4</b> Relation to one-sample paired test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html"><i class="fa fa-check"></i><b>8</b> ANOVA: Factorial experiments and model simplification’</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>8.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#files-needed"><i class="fa fa-check"></i><b>8.2</b> Files needed</a></li>
+<li class="chapter" data-level="8.3" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1"><i class="fa fa-check"></i><b>8.3</b> Open your Project</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3"><i class="fa fa-check"></i><b>8.4</b> Load packages</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data"><i class="fa fa-check"></i><b>8.5</b> Read in the data</a></li>
+<li class="chapter" data-level="8.6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>8.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="8.7" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data"><i class="fa fa-check"></i><b>8.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="8.8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1"><i class="fa fa-check"></i><b>8.8</b> Plot the data</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#questions"><i class="fa fa-check"></i><b>8.8.1</b> Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#anova"><i class="fa fa-check"></i><b>8.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model"><i class="fa fa-check"></i><b>8.9.1</b> Construct the model</a></li>
+<li class="chapter" data-level="8.9.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>8.9.2</b> Do we reject the null hypothesis?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#model-simplification"><i class="fa fa-check"></i><b>8.10</b> Model Simplification</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>8.10.1</b> Check the validity of the linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results"><i class="fa fa-check"></i><b>8.11</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>9</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>9.1</b> Load packages</a></li>
+<li class="chapter" data-level="9.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>9.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="9.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>9.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="9.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>9.4</b> Plot the data</a></li>
+<li class="chapter" data-level="9.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>9.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>9.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="9.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>9.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="9.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>9.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="9.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>9.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="9.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>9.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="9.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>9.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="9.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>9.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>9.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>10.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="10.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>10.2</b> Load packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>10.3</b> Get the data</a></li>
+<li class="chapter" data-level="10.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>10.4</b> Plot the data</a></li>
+<li class="chapter" data-level="10.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>10.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="10.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>10.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="10.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>10.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="10.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>10.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="10.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>10.9</b> Conclusion</a></li>
+<li class="chapter" data-level="10.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>10.10</b> Sample script</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html"><i class="fa fa-check"></i><b>A</b> A primer in statistics</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#populations-and-samples"><i class="fa fa-check"></i><b>A.1</b> Populations and samples</a></li>
+<li class="chapter" data-level="A.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#three-types-of-variability-of-the-sample-of-the-population-and-of-the-estimate."><i class="fa fa-check"></i><b>A.2</b> Three types of variability: of the sample, of the population and of the estimate.</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-sample"><i class="fa fa-check"></i><b>A.2.1</b> Variability of the sample</a></li>
+<li class="chapter" data-level="A.2.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-population"><i class="fa fa-check"></i><b>A.2.2</b> Variability of the population</a></li>
+<li class="chapter" data-level="A.2.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-estimate"><i class="fa fa-check"></i><b>A.2.3</b> Variability of the estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#confidence-intervals-a-way-of-precisely-representing-uncertainty"><i class="fa fa-check"></i><b>A.3</b> Confidence intervals: a way of precisely representing uncertainty</a></li>
+<li class="chapter" data-level="A.4" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#the-t-distribution"><i class="fa fa-check"></i><b>A.4</b> The <span class="math inline">\(t\)</span>-distribution</a></li>
+<li class="chapter" data-level="A.5" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>A.5</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#general-procedure-for-a-hypothesis-test"><i class="fa fa-check"></i><b>A.5.1</b> General procedure for a hypothesis test</a></li>
+<li class="chapter" data-level="A.5.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#comparing-one-mean-with-a-threshold---one-sample-t-test"><i class="fa fa-check"></i><b>A.5.2</b> Comparing one mean with a threshold - one sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="A.5.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#comparing-two-means---two-sample-test"><i class="fa fa-check"></i><b>A.5.3</b> Comparing two means - two-sample test</a></li>
+<li class="chapter" data-level="A.5.4" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#alternatives-to-the-t-test"><i class="fa fa-check"></i><b>A.5.4</b> Alternatives to the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="A.6" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#size-effects-vs-hypothesis-testing."><i class="fa fa-check"></i><b>A.6</b> Size effects vs hypothesis testing.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis for Newquay University Centre</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-primer-in-statistics" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">A</span> A primer in statistics<a href="a-primer-in-statistics.html#a-primer-in-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Based on the very helpful revision chapter in <a href="https://global.oup.com/ukhe/product/modern-statistics-for-the-life-sciences-9780199252312?cc=gb&amp;lang=en&amp;">Modern Statistics for the Life Sciences, Alen Grafen and Rosie Hails, OUP</a>.</p>
+<div id="populations-and-samples" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">A.1</span> Populations and samples<a href="a-primer-in-statistics.html#populations-and-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is rarely possible to get an exact answer to a question. Normally we have to make do with an estimate, and this may vary from a rough estimate to a more precise one.</p>
+<p>One of the first tasks of statistics is to state this in more precise terms.</p>
+<p>Suppose, for example, we wanted to know the average height of adult women between the ages of 25 and 35 in the United Kingdom. It is quite impossible to measure the height of every single woman of that age. Instead we must content ourselves with taking a sample, finding the average height of women within that and hoping that it is representative of the whole population.</p>
+<p>A <strong>sample</strong> is a <strong>random</strong> selection from within a <strong>population of interest</strong>. For this to be the case the population of interest needs to be precisely defined, since our sampling strategy will depend on this. In the case above, our population of interest is not people, or women, or adult women, or adult women between the ages of 25 and 35, but adult women between the ages of 25 and 35 in the United Kingdom. We would thus choose our sample randomly from among just these women, and ignore all other people on the planet.</p>
+<p>Having taken our sample we can compute the sample mean <span class="math inline">\(\bar{y}\)</span> (pronounced y-bar) by summing over the <span class="math inline">\(y_i\)</span> and dividing by the number of values:</p>
+<p><span class="math display">\[
+\bar{y}=\frac{y_1+y_2+\dots + y_n}{n}=\frac{\Sigma y_i}{n}
+\]</span></p>
+<p>In this equation, we suppose that we have a sample of size <span class="math inline">\(n\)</span> women, with each individual woman denoted by <span class="math inline">\(y_1, y_2\dots y_n\)</span> or in general for any individual by <span class="math inline">\(y_i\)</span> where the subscript <span class="math inline">\(i\)</span> runs from <span class="math inline">\(1\)</span> to <span class="math inline">\(n\)</span>. To find the mean value we first sum the <span class="math inline">\(y_i\)</span> from <span class="math inline">\(i=1\)</span> to <span class="math inline">\(i=n\)</span> and then divide the result by <span class="math inline">\(n\)</span>. A compact way to denote the sum is to use the summation sign <span class="math inline">\(\Sigma\)</span> (sigma), as we do in the righ<em>t</em>-hand term of the equation</p>
+<p>This is our estimate of the true population mean, <span class="math inline">\(\mu\)</span>. It is similar when we do an experiment. Measurements in an experiment inevitably involve error, and so we can think of the data readings we actually take as being a sample from the population of all the readings that could have occurred. The mean value that we get at the end from our data is thus an estimate of the true mean <span class="math inline">\(\mu_\text{A}\)</span>, which we would only have obtained if there was no error involved in the experiment.</p>
+</div>
+<div id="three-types-of-variability-of-the-sample-of-the-population-and-of-the-estimate." class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">A.2</span> Three types of variability: of the sample, of the population and of the estimate.<a href="a-primer-in-statistics.html#three-types-of-variability-of-the-sample-of-the-population-and-of-the-estimate." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="variability-of-the-sample" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">A.2.1</span> Variability of the sample<a href="a-primer-in-statistics.html#variability-of-the-sample" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As well as its mean, we would like to know how variable our sample is. This gives us an idea as to how variable the population is and as to what the variability of the next sample will be. The sample variability will fluctuate from one sample to the next drawn from the same population, but will not systematically increase or decrease as the sample size changes. The size of the fluctuations will however reduce as the sample size increases, so that the sample variability more and more closely resembles the variability of the population.</p>
+<p>Two samples can have the same mean but very different variability. For example if the results for a class of <em>n</em> = 30 students for a test in maths ranged from 40 to 70 while those for a test in English ranged from 50 to 60, then both might have a mean of 55, but, clearly, results in maths would be more variable than those in English, as we see in Figure <a href="a-primer-in-statistics.html#fig:test-scores">A.1</a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:test-scores"></span>
+<img src="appendix_files/figure-html/test-scores-1.png" alt="Scores in Maths and English tests. Both sets of scores have the same mean value of 55, but the maths scores have greater variance than the English scores" width="80%" />
+<p class="caption">
+Figure A.1: Scores in Maths and English tests. Both sets of scores have the same mean value of 55, but the maths scores have greater variance than the English scores
+</p>
+</div>
+<p>For any individual score in either test, we can calculate its <strong>deviation</strong> from the mean of the score for that test, where</p>
+<p><span class="math display">\[
+\text{deviation} = \text{datapoint} - \text{mean}
+\]</span></p>
+<p>If we sum the deviations of the scores from each test from their respective means, we would find that the absolute value of these deviations tend to be bigger for the maths test than for the English test. For both tests, however, the sum of the deviations would be zero, because of the definition of the mean as the central point, but if the deviations are squared and summed, we then get a measure of the variability of each data set around its mean.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Scores
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Mean
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sum of deviations
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sum of squared deviations
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Variance
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Standard deviation
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(\bar{y}\)</span>
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(s^2\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(s=\sqrt{s^2}\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+English scores
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\frac{1}{n}\Sigma y_i=55\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma \left(y_i-\bar{y}\right)=0\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma (y_i-\bar{y})^2=638\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\frac{1}{n-1}\Sigma (y_i-\bar{y})^2=\frac{638}{29}=22.0\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\sqrt{22.0}=4.7\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+maths scores
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\frac{1}{n}\Sigma y_i=55\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma \left(y_i-\bar{y}\right)=0\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\Sigma (y_i-\bar{y})^2=2219\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\frac{1}{n-1}\Sigma (y_i-\bar{y})^2=\frac{2219}{29}=76.5\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\sqrt{76.5}=8.75\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, a comparison of the sums of squares is valid, since the two data sets have the same size. In general though, a larger data set will have a larger sum of squares, so for a valid comparison between unequally sized data sets, a measure that is independent of the size of the data set is required.</p>
+<p>To get this, all we need to do is take account of the sample size. We used <em>n</em> data points to define the mean, then the same <em>n</em> data points, plus the mean itself, to define the variability around the mean. But from the way in which the mean is calculated, the deviations must sum to zero. This means that we have only <em>n</em>-1 independent pieces of information about how the sample varies around the mean. Hence, our final measure of the variability of a data set, which we call the <strong>variance</strong> and denote as <span class="math inline">\(s^2\)</span>, is found by dividing the sum of squared deviations by <em>n</em>-1, not by <em>n</em>.</p>
+<p><span class="math display">\[
+s^2=\frac{\Sigma{\left(y_i-\bar{y}\right)^2}}{n-1}
+\]</span></p>
+<p>The number of independent pieces of information that contribute to the calculation of a statistic is called the <strong>degrees of freedom</strong>. Often, we would like a measure of variability that has the same units as the data itself. The variance does not, but we remedy that by taking its square root to find the <strong>standard deviation</strong> <span class="math inline">\(s\)</span> of the data set.</p>
+</div>
+<div id="variability-of-the-population" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">A.2.2</span> Variability of the population<a href="a-primer-in-statistics.html#variability-of-the-population" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Just as we cannot know the true mean <span class="math inline">\(\mu\)</span> of a population, but can only estimate it from the mean <span class="math inline">\(\bar{y}\)</span> of a sample that we draw from that population, so we cannot know the true variance of a population. Nevertheless, it is useful to define it, and it is frequently referred to as <span class="math inline">\(\sigma^2\)</span> (“sigma squared”). Our best estimate of it is our sample variance <span class="math inline">\(s^2\)</span>.</p>
+<p>A definition of it is that it is the expected squared deviation around the true mean for all individuals in the population.</p>
+<p>In general, the variance of a sample will be approximately equal to that of the population, which is why we can use it as an estimate of the population variance. If we took sample after sample we would find that we got a different sample variance each time, all of them dotting randomly around the true value for the population. What we would <em>not</em> find is that the sample variance would systematically change if the sample size changed. In particular, it would not get systematically smaller as the sample size increased.</p>
+</div>
+<div id="variability-of-the-estimate" class="section level3 hasAnchor" number="11.2.3">
+<h3><span class="header-section-number">A.2.3</span> Variability of the estimate<a href="a-primer-in-statistics.html#variability-of-the-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Having obtained our estimate <span class="math inline">\(\bar{y}\)</span> of the true mean <span class="math inline">\(\mu\)</span> of a population, we would like to know how accurate it is. To answer this we will briefly discuss <strong>Normal distributions</strong>.</p>
+<div id="the-standard-normal-distribution" class="section level4 hasAnchor" number="11.2.3.1">
+<h4><span class="header-section-number">A.2.3.1</span> The Standard Normal Distribution<a href="a-primer-in-statistics.html#the-standard-normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Many continuous attributes (eg weight, height, width) of a population are scattered around a mean value in such way that, if you plotted a histogram of the values, it would have a shape that is approximately bell-shaped and symmetric and well described by a ‘normal’ distribution (the reasons for this are interesting, but beyond the scope of this document). Such a distribution is described by two parameters - its mean (middle value) and its variance (spread). A <strong>standard normal</strong> distribution is simply a normal distribution with a mean of 0 and a variance (and therefore a standard deviation, which is the square root of the variance) of 1. Such a distribution is sometimes referred to as a <span class="math inline">\(Z\)</span> distribution.</p>
+<p>Any normal distribution can be converted to a standard normal distribution by doing two things, as illustrated in the following example:</p>
+<p>Suppose a variable <span class="math inline">\(Y\)</span> follows a normal distribution, with mean 5 and standard deviation 2. First we subtract the mean from every value. This will have the effect of moving the whole distribution leftwards on the <em>x</em>-axis by 5 units, the mean value of <em>Y</em>, so that it is centred on 0. Then, we divide each value by 2, the standard deviation of <em>Y</em>. This will have the effect of squishing the distribution inwards, giving it a new standard deviation of 1. The result will be a standard normal, centred at 0, with standard deviation 1. The process of carrying out these two operations is known as <strong>standardising</strong>, and is illustrated in Figure <a href="a-primer-in-statistics.html#fig:standardising">A.2</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:standardising"></span>
+<img src="appendix_files/figure-html/standardising-1.png" alt="Standardising a normal distribution" width="864" />
+<p class="caption">
+Figure A.2: Standardising a normal distribution
+</p>
+</div>
+<p>In summary, in order to convert a variable <em>Y</em> that is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, to a standard normal <em>z</em>, we subtract the mean then divide by the standard deviation:</p>
+<p><span class="math display">\[
+z=\frac{Y-\mu}{\sigma}
+\]</span></p>
+<p>Why would we want to do this? The answer is that the standard normal is an example of a <strong>probability density function</strong> (or <em>pdf</em> for short). Such functions have particular properties that are useful to us as scientists. In particular, it is straightforward to calculate what proportion of any set of observations described by a pdf fall within or beyond a certain number of standard deviations from the mean.</p>
+<p>The main thing to understand is that the area under a pdf between any two values of the <em>x</em>-axis tells us the probability that the random variable falls between those values.</p>
+<p>In particular, the total area under a standard normal, as for any pdf, is 1, since it is a certainty that the random variable it describes takes some value or other.</p>
+<p>The area under it to the right of zero and the area under it to the left of zero are both 0.5, since the distribution is symmetric about zero. This tells you that if you had a random variable that was described by a standard normal, then there would be a 50% chance that it was positive, and a 50% chance that it was negative. In general, if you take a random individual from a population and measure the value of some attribute (such as its height) that is well described by a normal distribution, then there would be a 50% chance that the value for this individual is less than the population mean, and a 50% chance that it is greater.</p>
+<p>The area under the distribution beyond a distance roughly two standard deviations (actually, 1.96) either side of the mean totals 0.05, or 5% of the total area under the curve. This means that if, again, we have a population for which some attribute is well described by a normal distribution, then roughly 95% of individuals will have a value of that attribute that falls within two standard deviations of the mean, and roughly 5% of them will fall beyond that. Or, put another way, if you took a random individual from the population, there is a 95% chance that its value for this attribute would be within about 2 standard deviations of the mean, and a 5% chance that it would be more than about 2 standard deviations greater or less than the mean. This is illustrated in Figure <a href="a-primer-in-statistics.html#fig:standard-normals">A.3</a></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:standard-normals"></span>
+<img src="appendix_files/figure-html/standard-normals-1.png" alt="Aspects of a standard normal" width="960" />
+<p class="caption">
+Figure A.3: Aspects of a standard normal
+</p>
+</div>
+<p>Of particular practical importance, if a data set is normally distributed, then about 68% of the observations fall with one standard deviation of the mean, 95% fall within 1.96 standard deviations, about 96% fall with two standard deviations, and about 99.7% (ie practically all of them) fall within three standard deviations. Figure <a href="a-primer-in-statistics.html#fig:n-standard-deviations">A.4</a> illustrates this.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:n-standard-deviations"></span>
+<img src="appendix_files/figure-html/n-standard-deviations-1.png" alt="Proportion of normally distributed observations within one,
+two or three standard deviations of the mean" width="960" />
+<p class="caption">
+Figure A.4: Proportion of normally distributed observations within one,
+two or three standard deviations of the mean
+</p>
+</div>
+<p>So much for an ideal normal distribution. A real data set drawn from a population that is approximately normally distributed would have some scatter, the more so the smaller the size of the sample. For such a sample we would find that <em>approximately</em> two thirds of the data set is within one standard deviation of the mean, <em>approximately</em> 95% of it is within two standard deviations and pretty much all of it is within three standard deviations.</p>
+</div>
+<div id="accuracy-of-the-estimate" class="section level4 hasAnchor" number="11.2.3.2">
+<h4><span class="header-section-number">A.2.3.2</span> Accuracy of the estimate<a href="a-primer-in-statistics.html#accuracy-of-the-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We are interested in the population. We want to know its true mean <span class="math inline">\(\mu\)</span>, but what we have as our best estimate of this is the mean <span class="math inline">\(\bar{y}\)</span> of a sample of size <em>n</em> that we drew from the population. If we took another sample from the population of the same size, we would get a different sample mean, and so on again and again, if we had the time and resources to repeatedly take sample after sample. So our sample mean is itself a random variable <span class="math inline">\(\bar{Y}\)</span>, drawn from a population of all possible sample means. If we drew samples of the same size <em>n</em> many times from our population of interest, the means <span class="math inline">\(\bar{y}\)</span> of these samples would themselves form a distribution, the so-called <strong>sampling distribution</strong>, and the mean of <em>this</em> we would hope, would be the true mean <span class="math inline">\(\mu\)</span> of the population.</p>
+<p>The bigger the variance <span class="math inline">\(\sigma^2\)</span> of the population, the more we would expect our estimate to differ from the true mean, and the less variable the population was, the closer we would expect our estimate to be to the true mean. Similarly, if we took a large sample then our estimate is likely to be closer to the true mean than if we took a small sample.</p>
+<p>If we take these observations together, what we find is that the variance of the distribution of our estimates is <span class="math inline">\(\sigma^2/n\)</span>, and so the standard deviation of our estimate is the square root of this ie <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>. This is sometimes called the <strong>standard error of the mean</strong>. This gives us an idea of how precise our sample mean is as an estimate of the true mean.</p>
+<p>In most figures that you come across in published papers where error bars are used, these error bars will be ± one standard error of the mean. You may also come across error bars that are ± one standard deviation of the sample and yet others that show the (typically) 95% confidence interval for an estimate.</p>
+<p>Whether you show ± one standard deviation or ± one standard error of the mean depends on the story you are trying to tell. If you want to be descriptive and give the reader an idea as to the variability of a population, you would use error bars that are ± one standard deviation, but if you want the reader to be able to infer how close one population is to another then you are more likely to want to use error bars that are ± one standard error of the mean.</p>
+</div>
+<div id="example-3" class="section level4 hasAnchor" number="11.2.3.3">
+<h4><span class="header-section-number">A.2.3.3</span> Example<a href="a-primer-in-statistics.html#example-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose the population of grey seals around the coast of south west England includes 10,000 adult females, whose weights are normally distributed and in the range 100 - 190 kg. Let this be our ‘population of interest’. The weights of individuals in this population are approximately normally distributed with a mean value of 145 kg, and a standard deviation of 15 kg.</p>
+<p><em>Note that in reality we would not know the mean or standard deviation of this population, or how many seals there were in total or whether the weights of adult females within it were normally distributed (or distributed any other way).</em></p>
+<p>A histogram of the weights of the entire population would look something like Figure <a href="a-primer-in-statistics.html#fig:pop-distribution">A.5</a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pop-distribution"></span>
+<img src="appendix_files/figure-html/pop-distribution-1.png" alt="Histogram of the weights of the entire population of adult grey seals in South West England. #| In reality, we would never be able to measure this, but if we could, it would very likely closely
+approximate a normal distribution, as shown here." width="50%" />
+<p class="caption">
+Figure A.5: Histogram of the weights of the entire population of adult grey seals in South West England. #| In reality, we would never be able to measure this, but if we could, it would very likely closely
+approximate a normal distribution, as shown here.
+</p>
+</div>
+<p>Suppose we wanted to know the mean and standard deviation of the weights of adult female grey seals in this population. Clearly, we could not find the true value since that would require weighing every seal in the population, which is impossible, but we could estimate the values by weighing all seals in a manageable sample that we hope is representative of the whole population. Suppose our sample were 100 randomly chosen adult female seals.</p>
+<p>In reality, that would probably be the only sample we could get, and so our estimates <span class="math inline">\(\bar{y}\)</span> and <em>s</em> of the true mean <span class="math inline">\(\mu\)</span> and true standard deviation <span class="math inline">\(\sigma\)</span> respectively would be based entirely on that one sample.</p>
+<p>To get an idea of how accurate our estimate is, imagine we could measure such samples of 100 seals randomly selected from the population many, many times over. Each sample would have a slightly different mean. In Figure <a href="a-primer-in-statistics.html#fig:selected-samples">A.6</a> below, let us plot the distribution of some of those samples and superpose on top of them the ‘normal distribution’ curve that we know is a good representation of the weights of adult females in the whole population. (We know this because this is a simulation. In truth, we wouldn’t.) For each sample, we display its mean <span class="math inline">\(\bar{y}\)</span> and standard deviation <em>s</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:selected-samples"></span>
+<img src="appendix_files/figure-html/selected-samples-1.png" alt="Histograms of a selection of samples of 100 seals, each drawn from the same population. Superposed on each one is a normal distribution" width="960" />
+<p class="caption">
+Figure A.6: Histograms of a selection of samples of 100 seals, each drawn from the same population. Superposed on each one is a normal distribution
+</p>
+</div>
+<p>Notice how all these sample distributions have <em>roughly</em> the form of a normal distribution but that each one is in detail different from the others. This is the reality of sampling from a population - every sample will be different - but not, usually, <em>unrecognisably</em> different. All those shown have roughly the same mean, shown by the dashed line, roughly the same standard deviation and roughly the same shape.</p>
+<p>Note too that these samples are drawn from a population (we happen to know, because we created it!) whose mean value <span class="math inline">\(\mu\)</span> is 145 and for which the standard devation <span class="math inline">\(\sigma\)</span> is 15. In an actual study, we would have taken, most likely, just one sample, which could have been any of those you see above. The mean <span class="math inline">\(\bar{y}\)</span> and standard deviation <span class="math inline">\(s\)</span> of that sample would have been our best estimate of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
+<p>Below in Figure <a href="a-primer-in-statistics.html#fig:pop-sampling">A.7</a> we contrast histograms of the population, a single sample of size 100 drawn from the population, and the so-called sampling distribution. That is, the distribution of the means of many samples of size 100 drawn from the population. Of these, the middle one, that of a single sample, is the only one we could get in practice.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pop-sampling"></span>
+<img src="appendix_files/figure-html/pop-sampling-1.png" alt="The distribution of seal weights across the whole population, a sample drawn from that
+ population, and the sampling distribution of sample means." width="864" />
+<p class="caption">
+Figure A.7: The distribution of seal weights across the whole population, a sample drawn from that
+population, and the sampling distribution of sample means.
+</p>
+</div>
+<p>In this case, the weights of the population are very close to being normally distributed. The mean is 145 kg and the standard deviation is 15 kg. You can see that the whole population has a weight within two or three standard deviations of the mean. In practice, we do not usually know either that the parameter of interest, in this case weight, definitely is normally distributed, or the mean and standard deviation of that distribution.</p>
+<p>The weights of one sample of size 100 drawn from the population are also approximately normally distributed with a mean and standard deviation approximately equal to the that of the population. In practice, we might often only have only this one sample, so these would be our best estimates of the population mean and standard deviation and our judgement as to whether the population was normally distributed would be based on this one sample distribution alone. With small samples, it can often be hard to tell, just by looking at this histogram, whether the data have been drawn from a population that is normally distributed.</p>
+<p>(In practice, we might also use other considerations - such as whether the data were a simple random sample and whether there were no outliers, and so on.)</p>
+<p>The <strong>sampling distribution</strong> is in practice a hypothetical distribution, since we cannot normally take many samples, each here of size 100, find the mean of each and plot the distribution of these. But if we could, this is what we would get. The mean of the one sample that we actually got is somewhere within this distribution and the true mean of the population is at the centre of it. A very interesting and useful thing about this distribution is that it will very likely be normally distributed, even if the population distribution was not, provided the sample size is large enough, and it is narrower than the population distribution. The larger the sample size, the narrower it is. These are handy facts, since they together mean that its width gives us an idea of the precision of our sample mean as an estimate of the the true mean.</p>
+<p>Some facts of interest about the sampling distribution are:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>it is normally distributed (and, if the sample sizes are large enough and the samples independent of each other, it probably would be normally distributed even if the underlying distribution of the population were not a normal distribution.) This is a remarkable fact.</p></li>
+<li><p>its mean is the true mean <span class="math inline">\(\mu\)</span> of the population.</p></li>
+<li><p>its standard deviation is narrower than that of the population as a whole or of one sample. If the standard deviation of the population is <span class="math inline">\(\sigma\)</span>, where <span class="math inline">\(\sigma = 15\)</span>kg in this case, and the samples each had size <em>n</em>, where <em>n</em>=100 in this case, then the standard deviation of this sampling distribution is <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>. So in this case, the standard deviation of this distribution is 1/10th that of the underlying population.</p></li>
+<li><p>if our sample size had been bigger, the sampling distribution would have been even narrower and so our estimate of the true mean would have been more precise. That is the benefit of having a bigger sample size.</p></li>
+</ol>
+<p>Now, here is the really interesting thing about this distribution. It tells us about the precision of our estimate <span class="math inline">\(\bar{y}\)</span> that we got from our one sample of 100 seals of the true population mean <span class="math inline">\(\mu\)</span>. Look at that sampling distribution. The true mean is somewhere in there, as is our sample mean. So whatever this value <span class="math inline">\(\bar{y}\)</span> is that we got from our sample, we know it is within the width of this distribution of the true mean. And how wide is this distribution? Well, since it reliably has the shape of a normal distribution, we know the answer to that. Roughly 95% of the values on this distribution are within two of its standard errors of the middle value <span class="math inline">\(\mu\)</span>. This standard error, remember, is <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, where <span class="math inline">\(\sigma\)</span> is the population standard deviation, our best estimate of which is the standard deviation <span class="math inline">\(s\)</span> of our sample. Our sample mean <span class="math inline">\(\bar{y}\)</span> is our best estimate of this middle value, so we end up being able to say something like the following:</p>
+<p><span class="math display">\[
+\text{...the true mean = }\bar{y}{\text{ (our sample mean)}}\pm 2\times \frac{s{\text{ (our sample standard deviation)}}}{\sqrt{n}}
+\]</span></p>
+<p>We would call this range the <strong>95% confidence interval</strong> for the thing we wanted to measure - in this case, the mean weight of adult female grey seals in the population of them around the south west of England.</p>
+<p>What we mean by this is that if we repeatedly took a sample of 100 seals from the population and constructed the confidence interval for the mean in this way, then the true value would be within the interval 95% of the time.</p>
+<p>Let us explore confidence intervals in more detail…</p>
+</div>
+</div>
+</div>
+<div id="confidence-intervals-a-way-of-precisely-representing-uncertainty" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">A.3</span> Confidence intervals: a way of precisely representing uncertainty<a href="a-primer-in-statistics.html#confidence-intervals-a-way-of-precisely-representing-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We know that our estimate <span class="math inline">\(\bar{y}\)</span> of the population mean <span class="math inline">\(\mu\)</span> comes from the distribution of all possible <span class="math inline">\(\bar{y}\)</span> that are distributed around <span class="math inline">\(\mu\)</span> with a variance of <span class="math inline">\(\frac{\sigma^2}{n}\)</span>, and thus a standard deviation of <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>. Let us now find the <strong>confidence interval</strong> from our data. This is the range of possible values for the true population mean (which we don’t know, remember) that cannot be rejected at the 5% significance level.</p>
+<p>Parameters that have been estimated with great precision will have a narrow confidence interval associated with them, while parameters about which we have less information will have a wide confidence interval.</p>
+<p>From the properties of the standard normal distribution, we know that 95% of all such <span class="math inline">\(\bar{y}\)</span> will lie within 1.96 standard deviations of <span class="math inline">\(\mu\)</span>, where the relevant standard deviation is that of the sampling distribution - the distribution of <span class="math inline">\(\bar{y}\)</span>. That means that 5% will not!</p>
+<p>This is illustrated below in Figure <a href="a-primer-in-statistics.html#fig:conf-int">A.8</a>, where, for example, we show the true mean weight <span class="math inline">\(\mu\)</span> of adult female grey seals in south west England as a dotted line and either side of that, estimates of that obtained as the means from 20 samples, each of 100 seals, with their corresponding 95% confidence intervals. Note how nearly all of these confidence intervals do capture the true mean, but that one (in this case) does not.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:conf-int"></span>
+<img src="appendix_files/figure-html/conf-int-1.png" alt="If many samples were taken from the same population, and a 95% confidence interval for the mean calculated from each one, about 95% of these would capture the true mean" width="70%" />
+<p class="caption">
+Figure A.8: If many samples were taken from the same population, and a 95% confidence interval for the mean calculated from each one, about 95% of these would capture the true mean
+</p>
+</div>
+<p>Hence we can say that, for 96% of the time:</p>
+<p><span class="math display">\[
+\mu-2\frac{\sigma}{\sqrt{n}} \lt \bar{y} \lt \mu+2\frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>In practice, by convention, we are interested in a confidence level of 95% rather than 96%. This changes the 2 in the above formula to 1.96 - the confidence level is slightly lower, so the confidence interval is slightly less wide. Further, we would rather instead state a confidence interval for <span class="math inline">\(\mu\)</span> in terms of <span class="math inline">\(\bar{y}\)</span>, rather than as above, so we rejig the last equation to give:</p>
+<p><span class="math display">\[
+\bar{y}-1.96\frac{\sigma}{\sqrt{n}} \lt \mu \lt \bar{y}+1.96\frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>This is now our 95% confidence interval for data drawn from a normally distributed population: the range of values that the true mean <span class="math inline">\(\mu\)</span> could take and be consistent with the data at the 95% level.</p>
+<p>But there is a hitch…</p>
+</div>
+<div id="the-t-distribution" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">A.4</span> The <span class="math inline">\(t\)</span>-distribution<a href="a-primer-in-statistics.html#the-t-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The trouble with the final expression in the previous section, as a way of stating the confidence interval for a parameter such as the mean of some measure of a population, is that it requires that we know <span class="math inline">\(\sigma\)</span>, the true standard deviation of of the population, and we don’t know it exactly. All we have is an estimate of it, ie <span class="math inline">\(s\)</span>, the standard deviation of the sample. So there is some uncertainty in our knowledge of <span class="math inline">\(\sigma\)</span>, just as there is in our knowledge of <span class="math inline">\(\mu\)</span> and this results in our 95% confidence interval for <span class="math inline">\(\mu\)</span> being somewhat wider than the value given above.</p>
+<p>The way this extra uncertainty can be accommodated is by modelling our data not by a normal distribution, but by a <strong><em>t</em></strong>-<strong>distribution</strong>. This is similar to a normal distribution in that it is symmetrical, but it is lower and wider, with heavier tails on either side - which means that extreme values are more likely than for a normal. It is characterised by a centre, a scale and a <em>degrees of freedom</em> parameter <em>df</em> that can range from 1 to <span class="math inline">\(\infty\)</span> and which is one less than the number of data points in the sample: <em>df</em> =<em>n</em>-1. The precise shape of the <em>t</em>-distribution depends on <em>df</em>. For small <em>df</em> <em>t</em> distributions have very heavy tails, but as the sample size increases and <em>df</em> rises, so the <em>t</em>-distribution becomes taller and narrower and more and more like a normal distribution, until, for <em>df</em> greater than 30 or so, the two are more or less indistinguishable. This reflects the fact that, the more data points we have, the more precise our estimate <em>s</em> becomes of the population standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>This is illustrated below in Figure <a href="a-primer-in-statistics.html#fig:t-dists">A.9</a>, where we see drawn in red <em>t</em>-distributions for <em>df</em> = 1, 3, 10 and 30 (ie sample sizes of 2, 4, 11 and 31) against a standard normal distribution drawn in dark blue.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:t-dists"></span>
+<img src="appendix_files/figure-html/t-dists-1.png" alt="For low sample sizes (and therefore low degrees of freedom) the _t_ distribution has fatter tails than a normal distribution, but as the sample size increases, it increasingly resembles the normal. For _df_ greater than 30 or so, they are indistinguishable." width="864" />
+<p class="caption">
+Figure A.9: For low sample sizes (and therefore low degrees of freedom) the <em>t</em> distribution has fatter tails than a normal distribution, but as the sample size increases, it increasingly resembles the normal. For <em>df</em> greater than 30 or so, they are indistinguishable.
+</p>
+</div>
+<p>To calculate the 95% confidence interval now we need to know how many standard deviations of the <em>t</em>-distribution we need to go either side of the mean in order to encompass 95% of the population. We call this the <strong>critical <em>t</em>-value</strong> <span class="math inline">\(t_\text{crit}\)</span>. For a normal distribution, remember, we had to go 1.96 standard deviations either side in order to do this. For a <em>t</em>-distribution, how far we need to go will depend on the degrees of freedom <em>df</em>. For a low value of <em>df</em> the distribution has fatter tails so we need to go further out, but we need go less far as <em>df</em> increases and the <em>t</em>-distribution becomes narrower until, when <em>df</em> = 30 or so, we need only go as far as we would for a normal distribution, ie 1.96 standard deviations.</p>
+<p>This is the effect of having a small sample: for such a sample our estimate of the true mean is less precise than if we had a larger sample, so the confidence interval, the range of values in which we are (say) 95% confident that the true value lies, is correspondingly wider.</p>
+<p>For <em>df</em> = 10, we find that <span class="math inline">\(t_\text{crit}\)</span> = 2.228</p>
+<p>So, now, for small samples, we would write our confidence interval as</p>
+<p><span class="math display">\[
+\bar{y}-t_\text{crit}\frac{s}{\sqrt{n}} \lt \mu \lt \bar{y}+t_\text{crit}\frac{s}{\sqrt{n}}
+\]</span></p>
+<p>or, put another way,</p>
+<p><span class="math display">\[
+\mu= \text{estimate}\pm t_\text{crit}\times\text{standard error of the estimate}
+\]</span></p>
+<p>where the estimate is the mean of our sample, <em>s</em> is the standard deviation of the sample, <em>n</em> is the sample size and, for a 95% confidence interval and <em>df</em> = 10, <span class="math inline">\(t_\text{crit}\)</span> = 2.228. For other confidence levels or other values of <em>df</em>, <span class="math inline">\(t_\text{crit}\)</span> would have a different value.</p>
+<div id="pros-and-cons-of-using-the-t-distribution." class="section level4 hasAnchor" number="11.4.0.1">
+<h4><span class="header-section-number">A.4.0.1</span> Pros and cons of using the <em>t</em>-distribution.<a href="a-primer-in-statistics.html#pros-and-cons-of-using-the-t-distribution." class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The <em>t</em>-distribution is widely used as a way of calculating confidence intervals for population parameters from sample estimates. It can be used when the sample size is small, whereas the normal distribution cannot, but it can also be used when the sample size is large, which is really handy. However, it is only valid to use it when the sample comprises independent observations that have been drawn from a population that is normally distributed, and this is not always easy to tell for small samples, just when we would really like to use it.</p>
+<p>For example the panels in Figure <a href="a-primer-in-statistics.html#fig:small-sample-hists">A.10</a> below show histograms of four samples, each of size 10, all drawn from the same normally distributed population. Would you be able to tell, from looking at these histograms, that this was the case?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:small-sample-hists"></span>
+<img src="appendix_files/figure-html/small-sample-hists-1.png" alt="Histograms of small samples, drawn from a normally distributed population" width="864" />
+<p class="caption">
+Figure A.10: Histograms of small samples, drawn from a normally distributed population
+</p>
+</div>
+<p>For such small samples, quantile-quantile plots, or qq-plots as they are often called, are a better visual way to assess normality. In Figure <a href="a-primer-in-statistics.html#fig:qq-plots">A.11</a> we show qq-plots for the same four samples.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:qq-plots"></span>
+<img src="appendix_files/figure-html/qq-plots-1.png" alt="qq plots of the same small samples. Note that it is easier to tell whether these are close to being straght lines than it is to tell whether the histograms approximate the shape of a normal distribution" width="864" />
+<p class="caption">
+Figure A.11: qq plots of the same small samples. Note that it is easier to tell whether these are close to being straght lines than it is to tell whether the histograms approximate the shape of a normal distribution
+</p>
+</div>
+<p>If the samples are drawn from a normally distributed population, then we expect the data to lie more or less along a straight line in a qq-plot and in each case shown above, they do.</p>
+<p>Classic cases of samples that are not drawn from a normally distributed population are where the populaton distribution is lef<em>t</em>- or righ<em>t</em>-skewed, under-dispersed or over-dispersed. Histograms of these, box-plots and the qq-plots that you getare shown in Figure <a href="a-primer-in-statistics.html#fig:distribution-examples">A.12</a> below:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:distribution-examples"></span>
+<img src="appendix_files/figure-html/distribution-examples-1.png" alt="Examples of histograms, box plots and qq plots for samples drawn from populations that are a) Normally distributed, b) lef*t*-skewed, c) righ*t*-skewed, d) under-dispresed and e) over dispersed." width="864" />
+<p class="caption">
+Figure A.12: Examples of histograms, box plots and qq plots for samples drawn from populations that are a) Normally distributed, b) lef<em>t</em>-skewed, c) righ<em>t</em>-skewed, d) under-dispresed and e) over dispersed.
+</p>
+</div>
+</div>
+</div>
+<div id="hypothesis-testing" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">A.5</span> Hypothesis testing<a href="a-primer-in-statistics.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here we lay out the concept of a null hypothesis and the method of testing such a hypothesis. We suppose that a sample mean and variance have been calculated, and that this information has been used to calculate a confidence interval. We can use this same information to test a hypothesis.</p>
+<p>Suppose our sample was a set of 30 differences between two groups, for example the difference in test scores of a group before and after taking a statistics course. If there was no improvement over the duration of the course, then the mean difference should be zero. If the difference is defined as <em>score after</em> - <em>score before</em> then it is to be hoped that the mean difference is positive. However if the course actually confused the students then the difference could be negative.</p>
+<p>To start with, we construct a <strong>null hypothesis</strong>. This usually expresses the conservative, ‘nothing going on’ scenario and states that no effect is expected, but it would be equally valid to state that the true mean takes some non-zero value.</p>
+<p>In this case:</p>
+<p><span class="math display">\[
+\text{H}_0\text{: There is no difference between the scores, }\mu=0
+\]</span></p>
+<p>The alternative is that there is a difference. Normally, we would not state the direction of this difference, so the alternative hypothesis is phrased as:</p>
+<p><span class="math display">\[
+\text{H}_\text{A}\text{: }\mu\neq0
+\]</span></p>
+<p>The main principle of a hypothesis test is that we assume the null hypothesis is true and do not reject it unless there is convincing evidence that it is not true. In that sense it is like a classic court process, in which a defendant is assumed innocent and will be acquitted unless we compile a portfolio of evidence that we would be very unlikely to have if that were true.</p>
+<p>Note that both the null and alternate hypotheses are phrased in terms of population parameters, since it is the population that we want to know about. The sample that we have drawn from it is just our window onto that. The sample mean <span class="math inline">\(\bar{y}\)</span> will almost certainly not be zero, and even if it were it would not mean that the true mean <span class="math inline">\(\mu\)</span>, the mean of the population, is zero.</p>
+<p>So what we do is assume that the null hypothesis is true and calculate the probability that we would have got the data we got, or more extreme data, if that were true. By convention, if this probability falls below 0.05 we reject our assumption of <span class="math inline">\(\text{H}_0\)</span> being correct. This means that if the null hypothesis is true, there is a probability of 0.05 that we will reject it when we should not. We call this a <strong>Type 1</strong> error.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hypothesis-testing"></span>
+<img src="appendix_files/figure-html/hypothesis-testing-1.png" alt="Key values for hypothesis testing, showing the rejection regions for the null hypothesis in blue." width="864" />
+<p class="caption">
+Figure A.13: Key values for hypothesis testing, showing the rejection regions for the null hypothesis in blue.
+</p>
+</div>
+<p>Figure <a href="a-primer-in-statistics.html#fig:hypothesis-testing">A.13</a> above shows the distribution of our random variable (the mean difference between individual students’ scores before and after a course of study) under the null hypothesis. It is centred at zero, in this case. Our value of <span class="math inline">\(\bar{y}\)</span>, we suppose, is one data point from this distribution. In a hypothesis test we ask how likely it is that this could really be the case.</p>
+<p>The answer depends on how far from the centre of the distribution our value of <span class="math inline">\(\bar{y}\)</span> lies. If it is close to 0 then it may well have come from this distribution, but if it is far from it, then we conclude that it is unlikely to have done so.</p>
+<p>When measuring the distance from 0, it is not the absolute distance that matters, but the number of standard errors of the sampling distribution, which we find by dividing the absolute distance by this standard error. In terms of this unit, this distance is known as the <strong><em>t</em>-statistic</strong>:</p>
+<p><span class="math display">\[
+t_\text{s}=\frac{\bar{y}-0}{\frac{s}{\sqrt{n}}}
+\]</span></p>
+<p>Let us remember that the area between two values under a probability distribution curve is the probability that the random variable described by that pdf takes a value in that range. The probability that the mean of our sample could have been as far or further from 0 than it actually is is equal to the area under the distribution curve beyond that distance from 0, including both sides. We compare this with a critical probability, called the <strong>significance level</strong> of the test, <em>which we choose</em> but which is conventionally set at 0.05 ie 5% of the total area under the curve. The number of standard errors from 0 at which this happens is a critical value of the <em>t</em>-statistic known as <span class="math inline">\(t_\text{crit}\)</span>. Its value depends on the significance level we choose and on the degrees of freedom ie the sample size.</p>
+<p>In the end, if our <em>t</em>-statistic is greater than the critical <em>t</em>-value then the probability that we could have got such a value of <span class="math inline">\(\bar{y}\)</span> from a distribution centered on 0 is less than 0.05. We call this probability a <strong><em>p</em>-value</strong>, and so, if <span class="math inline">\(p&lt;0.05\)</span> we decide that the strength of the evidence is such as to allow us to <em>reject the null hypothesis</em>.</p>
+<p>In summary, the <em>p</em>-value is the probability of obtaining the the data you got, or more extreme data, and thus the <em>t</em>-statistic you got, or an even bigger <em>t</em>-statistic, if the null hypothesis were true.</p>
+<div id="general-procedure-for-a-hypothesis-test" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">A.5.1</span> General procedure for a hypothesis test<a href="a-primer-in-statistics.html#general-procedure-for-a-hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The procedure outlined above can be generalised to include a population mean of any value, not just zero, and to testing other parameters estimated from samples against hypothesised values of those parameters for the population.</p>
+<p>The procedure can be broken down into these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Define the null and alternate hypotheses in terms of population parameters.</li>
+<li>Plot the data, most likely using a box plot or a histogram.</li>
+<li>Calculate the sample estimate <span class="math inline">\(\bar{y}\)</span> of the population parameter.</li>
+<li>Calculate the standard error <span class="math inline">\(s/\sqrt{n}\)</span> of this estimate.</li>
+<li>Determine whether it is appropriate to use a <em>t</em>-test</li>
+<li>Calculate the <em>t</em>-statistic</li>
+<li>Calculate the <em>p</em>-value for this <em>t</em>-statistic.</li>
+<li>Based on the <em>p</em>-value, reject or fail to reject the null hypothesis.</li>
+</ol>
+</div>
+<div id="comparing-one-mean-with-a-threshold---one-sample-t-test" class="section level3 hasAnchor" number="11.5.2">
+<h3><span class="header-section-number">A.5.2</span> Comparing one mean with a threshold - one sample <em>t</em>-test<a href="a-primer-in-statistics.html#comparing-one-mean-with-a-threshold---one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us return to our class of students. Figure <a href="a-primer-in-statistics.html#fig:test-score-change">A.14</a> shows a histogram of the changes in their test scores following their course of study. We shall call this change DIFF:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:test-score-change"></span>
+<img src="appendix_files/figure-html/test-score-change-1.png" alt="Changes in exam scores following a course of study. Do these provide evidence that the course has improved scores, or not?" width="50%" />
+<p class="caption">
+Figure A.14: Changes in exam scores following a course of study. Do these provide evidence that the course has improved scores, or not?
+</p>
+</div>
+<p>We see that some students <em>did</em> score worse in the test following the course than in the test preceding it, but a majority have improved their score. It seems from this chart that the course of study has helped the students, on the whole, but to check that this improvement is significant we carry out a test.</p>
+<p>The test we will use is called a “one sample” t-test. One sample, because we have just one sample of data, in this case the differences in the students scores, and we compare these with a null, or reference value, which in this case is zero. In other words, the test will tell us whether there is evidence from the data to reject the null value, which is that the course made no difference to the students’ scores.</p>
+<p>The mean value <span class="math inline">\(\bar{y}\)</span> of DIFF is 0.862 and the standard deviation <em>s</em> of DIFF is 0.838. The number of students is <em>n</em> is 30, so the degrees of freedom <em>df</em> is 29. The standard error in the mean is <span class="math inline">\(\frac{s}{\sqrt{n}} = 0.153\)</span>. Hence the <em>t</em>-statistic, the number of standard errors of the mean from the null prediction of 0 (in this case) is 0.862 / 0.153 = 5.64.</p>
+<p>Look at the plot of a <em>t</em>-distribution for 30 degrees of the freedom (that for 29 degrees of freedom will be very similar to that) in Figure <a href="a-primer-in-statistics.html#fig:t-dists">A.9</a> above. What proportion of the area under the curve, do you think, is more than 5.64 standard errors away from 0? Most of it, some of it, or practically none of it?</p>
+<p>You can see that this distance is so far away from zero that the area under the curve that is that far or further from zero is effectively zero. We interpret this as meaning there is almost zero probability that we would have got this data if the null hypothesis were true. This probability is what we call a <em>p</em>-value. In particular, the <em>p</em>-value for this one sample <em>t</em>-test is well below 0.05, in fact <em>p</em> &lt; 0.001 so we can confidently reject the null hypothesis and conclude that in general, students’ score did improve following their course of study. (We infer the direction of change from the fact that the mean difference is positive, and also from the range of values contained within the confidence interval.)</p>
+<p>If we were to do this test in R, this is the output we would get:</p>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  df$DIFF
+## t = 5.6364, df = 29, p-value = 4.337e-06
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  0.5493389 1.1750558
+## sample estimates:
+## mean of x 
+## 0.8621973</code></pre>
+</div>
+<div id="comparing-two-means---two-sample-test" class="section level3 hasAnchor" number="11.5.3">
+<h3><span class="header-section-number">A.5.3</span> Comparing two means - two-sample test<a href="a-primer-in-statistics.html#comparing-two-means---two-sample-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a-two-sample-test-for-a-difference" class="section level4 hasAnchor" number="11.5.3.1">
+<h4><span class="header-section-number">A.5.3.1</span> A two-sample test for a difference<a href="a-primer-in-statistics.html#a-two-sample-test-for-a-difference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Suppose we hypothesise that male and female squirrels differ in body mass. 50 squirrels of each sex are measured, and the body masses of each are recorded.</p>
+<p>Histograms and qq-plots of the data are shown in Figure <a href="a-primer-in-statistics.html#fig:untransformed-data">A.15</a> below:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:untransformed-data"></span>
+<img src="appendix_files/figure-html/untransformed-data-1.png" alt="Histograms and qq-plots for small data sets that are not normally distributed, but are in fact skewed to the right, with a tail of points going out to high values. Note the characteristic curvature in the qq-plots for data that does this." width="576" />
+<p class="caption">
+Figure A.15: Histograms and qq-plots for small data sets that are not normally distributed, but are in fact skewed to the right, with a tail of points going out to high values. Note the characteristic curvature in the qq-plots for data that does this.
+</p>
+</div>
+<p>These histograms, especially for males, do not look very symmetrical. Both distributions are skewed to the right. The effect of this is that the few squirrels with particularly large body masses will greatly increase the means of the samples and in doing so suggest that the whole body mass distribution is greater than it is in reality. This is reflected in the qqplots for both sexes, which are distinctly curved. The data are clearly not normally distributed.</p>
+<p>As it stands, we should not use a <em>t</em>-test to decide whether the data are drawn from the same distribution. We could instead either use a <em>non-parametric</em> test for a difference, such as a Wilcoxon-Mann-Whitney test that does not demand that the data follow a particular distribution, or we could attempt one of a number of possible <em>transformations</em> of the data, such as taking the natural log of the body mass, in the hope that this would rein in the long tail towards high values and achieve a more symmetric distribution.</p>
+<p>(We could also attempt some version of a generalised linear model, but that is a topic we will not explore here.)</p>
+<p>We show the result of doing this in Figure <a href="a-primer-in-statistics.html#fig:transformed-data">A.16</a> below</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:transformed-data"></span>
+<img src="appendix_files/figure-html/transformed-data-1.png" alt="Histograms and qq-plots for the same data, but after it has been log transformed." width="576" />
+<p class="caption">
+Figure A.16: Histograms and qq-plots for the same data, but after it has been log transformed.
+</p>
+</div>
+<p>That’s much better.</p>
+<p>Here is a summary of the log(mass) values for each sample:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+sex
+</th>
+<th style="text-align:right;">
+Mean log (mass)
+</th>
+<th style="text-align:right;">
+SD log (mass)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+FEMALE
+</td>
+<td style="text-align:right;">
+-0.688
+</td>
+<td style="text-align:right;">
+0.245
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MALE
+</td>
+<td style="text-align:right;">
+-0.579
+</td>
+<td style="text-align:right;">
+0.325
+</td>
+</tr>
+</tbody>
+</table>
+<p>Our null hypothesis <span class="math inline">\(H_0\)</span> is that the two samples are drawn from populations with the same mean mass, and the alternate hypothesis <span class="math inline">\(H_1\)</span> is that the populations from which they are drawn do not have the same mean mass:</p>
+<p><span class="math display">\[
+\begin{align*}
+\text{H}_0&amp;:\quad\mu_\text{A}=\mu_\text{B}\quad\text{or}\quad\mu_\text{A}-\mu_\text{B}=0\\
+\text{H}_\text{1}&amp;:\quad\mu_\text{A}\neq\mu_\text{B}\quad\text{or}\quad\mu_\text{A}-\mu_\text{B}\neq 0
+\end{align*}
+\]</span></p>
+<p>To find out whether or not we can reject the null hypothesis, we can use the fact that the difference between the means <span class="math inline">\(\mu_A-\mu_B\)</span> is itself a random variable that follows a <em>t</em>-distribution and which under the null hypothesis has a mean of zero. What we need to do is calculate the <em>t</em>-<em>statistic</em> in this case, which is the difference between the sample means divided by the standard error of that difference^*^.</p>
+<p><em>This turns out to be the square root of the sum of the squared standard errors of the individual means, a result that comes from the fact that the variance of the difference between two independent random variables is the sum of the variances of each of the variables, and a standard error is the square root of a variance. Handy to know, but you don’t have to. In practice, most people will simply use the R function <code>t.test()</code> without worrying about the details, and so can you, if you want to.</em></p>
+<p>With these data we find that the absolute difference between the sample means is <span class="math inline">\(|-0.688 - -0.579| = 0.109\)</span> and that the standard error of the difference between the means is</p>
+<p><span class="math display">\[
+\text{SE} = \sqrt{\frac{0.245^2}{50} + \frac{0.325^2}{50}} = 0.0576
+\]</span>
+Hence the test statistic <span class="math inline">\(t\)</span> in this case is <span class="math inline">\(\frac{0.109}{0.0576} = 1.90\)</span></p>
+<p>The number of degrees of freedom in this case is <span class="math inline">\(n_\text{A}+n_\text{B}-2=50+50-2=98\)</span>. A <em>t</em>-distribution with 98 degrees of freedom is indistinguishable from a normal distribution and you may recall from above that the threshold <span class="math inline">\(t\)</span> (or <span class="math inline">\(z\)</span>, it makes no difference with this many degrees of freedom) value in a two-sided test for a <em>p</em>-value of 0.05 or less is 1.96. Our value here is less than that and hence we conclude that there is no evidence from the data at the 5% signficance level that males and females have different body masses.</p>
+<p>If we do this test in R, this is the output we get:</p>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  males_log_mass and females_log_mass
+## t = 1.8976, df = 98, p-value = 0.0607
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.005001637  0.223448674
+## sample estimates:
+##  mean of x  mean of y 
+## -0.5785825 -0.6878061</code></pre>
+<p>Note that in this output from R we are given the <em>t</em>-statistic, the number of degrees of freedom and the <em>p</em>-value, on the basis of which we decide whether or not to reject the null hypothesis which is that the samples are drawn from populations with the same mean value. Note too that we are given a 95% confidence interval. This is the range of values that would capture the true value of the difference between the means of our samples 95% of the time, if we repeated the trial many times over. If this range encompasses zero, then we have no grounds, at the 95% confidence level, to think that the difference between the means among the populations is anything other than zero. Whenever this confidence interval <em>does</em> encompass zero, as it does here, the <em>p</em>-value <em>will</em> also be greater than 0.05, as it is here.</p>
+</div>
+<div id="erroneous-use-of-a-t-test" class="section level4 hasAnchor" number="11.5.3.2">
+<h4><span class="header-section-number">A.5.3.2</span> Erroneous use of a <em>t</em>-test<a href="a-primer-in-statistics.html#erroneous-use-of-a-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>As a word of caution about using a <em>t</em>-test on data that does not meet the criteria required, look what we get if we did the <em>t</em>-test on the untransformed masses, which we have seen above to have skewed, non-normal distributions:</p>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  males_mass and females_mass
+## t = 2.1662, df = 98, p-value = 0.03272
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  0.006107238 0.139492762
+## sample estimates:
+## mean of x mean of y 
+##    0.5908    0.5180</code></pre>
+<p>This gives a <em>t</em>-statistic of 2.17 and <em>p</em>-value of 0.03, on the basis of which we would erroneously reject the null hypothesis that males and female squirrels on average have the same body mass. We would be wrong to think that this output gave us grounds to do that, since the data do not meet the criteria required for a <em>t</em>-test, and hence we should not believe the output if we use one.</p>
+</div>
+</div>
+<div id="alternatives-to-the-t-test" class="section level3 hasAnchor" number="11.5.4">
+<h3><span class="header-section-number">A.5.4</span> Alternatives to the <em>t</em>-test<a href="a-primer-in-statistics.html#alternatives-to-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In fact, in this situation, while you should not use a <em>t</em>-test on the untransformed data these do not meet the criteria of constant variance, normally distributed residuals etc, using it on the <em>transformed</em> data is just one of the alternatives you could reasonably use.</p>
+<p>One other is to use an appropriate <em>non-parametric</em> test on the data. Such tests, while less powerful than <em>parametric tests</em> like the <em>t</em>-test do not require that the data follow any particular distribution. They do not use the actual values of individual data points but instead use their ranks: 1 for the smallest, 2 for the second smallest and so on.</p>
+<p>An example of such a test that we could use here is the Wilcoxon rank sum / Mann-Whitney test, implemented in R using the funcion <code>wilcox.test()</code></p>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  males_mass and females_mass
+## W = 1488, p-value = 0.1014
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>The outcome of this test, which it would be perfectly valid to use here, is that there is no evidence from the data that the weights of male and female squirrels are different.</p>
+<p>A second alternative is to use one of a powerful set of tests known as <strong>Generalised Linear Models</strong>. We will not delve into those here.</p>
+</div>
+</div>
+<div id="size-effects-vs-hypothesis-testing." class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">A.6</span> Size effects vs hypothesis testing.<a href="a-primer-in-statistics.html#size-effects-vs-hypothesis-testing." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simple-linear-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/appendix.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["fake-book.pdf", "fake-book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
