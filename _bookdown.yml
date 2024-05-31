@@ -10,7 +10,7 @@ rmd_files: [
   "index.Rmd",
   "plot_ggplot_examples.Rmd",
   "chi-square.Rmd",
-  "fishers_exact_test",
+  "fishers_exact_test.Rmd",
   "correlation.Rmd",
   "test_for_difference.Rmd",
   "paired_data.Rmd",

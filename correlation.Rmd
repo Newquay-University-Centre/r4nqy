@@ -630,7 +630,7 @@ Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Clim
 :::
 
 ```{r}
-myimages<-here("figures","lichen_abundance.png")
+myimages<-here("images","lichen_abundance.png")
 knitr::include_graphics(myimages)
 ```
 
@@ -643,7 +643,7 @@ Lauber, C. L., Hamady, M., Knight, R., & Fierer, N. (2009). Pyrosequencing-based
 :::
 
 ```{r}
-myimages<-here("figures","soil_bacteria.png")
+myimages<-here("images","soil_bacteria.png")
 knitr::include_graphics(myimages)
 ```
 
