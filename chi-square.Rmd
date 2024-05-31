@@ -1,4 +1,4 @@
-# CHi-square analysis
+# Chi-square analysis
 
 ```{r, include = FALSE}
 source("common.R")

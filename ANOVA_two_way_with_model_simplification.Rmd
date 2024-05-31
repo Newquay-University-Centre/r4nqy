@@ -1,5 +1,10 @@
 # ANOVA: Factorial experiments and model simplification'
 
+```{r, include = FALSE}
+source("common.R")
+knitr::opts_chunk$set(fig.align="center")
+```
+
 ```{r set-up, include = FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE)
 ```
