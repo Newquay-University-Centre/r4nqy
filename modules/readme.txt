@@ -1,1 +1,0 @@
-Here is where I would park common "how to" sections to reuse as child documents in the cookbooks.
