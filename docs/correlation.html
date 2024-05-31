@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Correlation | Data analysis for Newquay University Centre</title>
+  <meta name="description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Correlation | Data analysis for Newquay University Centre" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Correlation | Data analysis for Newquay University Centre" />
+  
+  <meta name="twitter:description" content="<p>This covers aspects of data analysis for undergraduate and postgraduate students at Newquay University Centre.
+The HTML output format for this example is bookdown::gitbook, set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Michael Hunt" />
+
+
+<meta name="date" content="2024-05-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fishers-exact-test.html"/>
+<link rel="next" href="t-test-for-difference.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Newquay University Centre</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plot-your-data.html"><a href="plot-your-data.html"><i class="fa fa-check"></i><b>2</b> Plot your data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="plot-your-data.html"><a href="plot-your-data.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="plot-your-data.html"><a href="plot-your-data.html#get-the-template-script"><i class="fa fa-check"></i><b>2.2</b> Get the template script</a></li>
+<li class="chapter" data-level="2.3" data-path="plot-your-data.html"><a href="plot-your-data.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>2.3</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="2.4" data-path="plot-your-data.html"><a href="plot-your-data.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>2.4</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="2.5" data-path="plot-your-data.html"><a href="plot-your-data.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>2.5</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="2.6" data-path="plot-your-data.html"><a href="plot-your-data.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>2.6</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="2.7" data-path="plot-your-data.html"><a href="plot-your-data.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>2.7</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="2.8" data-path="plot-your-data.html"><a href="plot-your-data.html#scatter-plots"><i class="fa fa-check"></i><b>2.8</b> Scatter plots</a></li>
+<li class="chapter" data-level="2.9" data-path="plot-your-data.html"><a href="plot-your-data.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>2.9</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="2.10" data-path="plot-your-data.html"><a href="plot-your-data.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>2.10</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="2.11" data-path="plot-your-data.html"><a href="plot-your-data.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>2.11</b> Distribution of penguin flipper lengths</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="plot-your-data.html"><a href="plot-your-data.html#histogram"><i class="fa fa-check"></i><b>2.11.1</b> Histogram</a></li>
+<li class="chapter" data-level="2.11.2" data-path="plot-your-data.html"><a href="plot-your-data.html#density-plot"><i class="fa fa-check"></i><b>2.11.2</b> Density plot</a></li>
+<li class="chapter" data-level="2.11.3" data-path="plot-your-data.html"><a href="plot-your-data.html#box-plots"><i class="fa fa-check"></i><b>2.11.3</b> Box plots</a></li>
+<li class="chapter" data-level="2.11.4" data-path="plot-your-data.html"><a href="plot-your-data.html#violin-plot-using-geom_violin"><i class="fa fa-check"></i><b>2.11.4</b> Violin Plot using <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="2.11.5" data-path="plot-your-data.html"><a href="plot-your-data.html#ridge-plot"><i class="fa fa-check"></i><b>2.11.5</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="plot-your-data.html"><a href="plot-your-data.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.12</b> Bar chart with error bar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html"><i class="fa fa-check"></i><b>3</b> Chi-square analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#chi-square-goodness-of-fit-test"><i class="fa fa-check"></i><b>3.1</b> Chi-square goodness of fit test</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#example"><i class="fa fa-check"></i><b>3.1.1</b> Example</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#doing-the-chi-square-test-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Doing the chi-square test in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#reporting-the-result-in-english"><i class="fa fa-check"></i><b>3.1.3</b> Reporting the result in English</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#exercise-1."><i class="fa fa-check"></i><b>3.2</b> Exercise 1.</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#solution.-1"><i class="fa fa-check"></i><b>3.2.1</b> Solution. 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#way-chi-square-analysis-test-of-independence"><i class="fa fa-check"></i><b>3.3</b> 2-way chi square analysis: test of independence</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#hypotheses"><i class="fa fa-check"></i><b>3.3.1</b> Hypotheses</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#summarise-the-data."><i class="fa fa-check"></i><b>3.3.2</b> Summarise the data.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#plot-the-data."><i class="fa fa-check"></i><b>3.3.3</b> Plot the data.</a></li>
+<li class="chapter" data-level="3.3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#interpret-the-graph-before-we-do-any-stats"><i class="fa fa-check"></i><b>3.3.4</b> Interpret the graph before we do any ‘stats’</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test"><i class="fa fa-check"></i><b>3.3.5</b> The Chi-square test</a></li>
+<li class="chapter" data-level="3.3.6" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#yates-continuity-correction"><i class="fa fa-check"></i><b>3.3.6</b> Yates continuity correction</a></li>
+<li class="chapter" data-level="3.3.7" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#conclusion"><i class="fa fa-check"></i><b>3.3.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#the-chi-square-test-explained-advanced"><i class="fa fa-check"></i><b>3.4</b> The Chi-Square Test explained (advanced)</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chi-square-analysis.html"><a href="chi-square-analysis.html#why-does-the-test-statistic-have-this-distribution"><i class="fa fa-check"></i><b>3.4.1</b> Why does the test statistic have this distribution?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html"><i class="fa fa-check"></i><b>4</b> Fisher’s exact test</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#the-hypergeometric-function"><i class="fa fa-check"></i><b>4.1</b> The Hypergeometric Function</a></li>
+<li class="chapter" data-level="4.2" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#hypergeometric-distribution-in-r"><i class="fa fa-check"></i><b>4.2</b> Hypergeometric Distribution in R</a></li>
+<li class="chapter" data-level="4.3" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#back-to-fishers-exact-test"><i class="fa fa-check"></i><b>4.3</b> Back to Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="4.4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#example-1"><i class="fa fa-check"></i><b>4.4</b> Example</a></li>
+<li class="chapter" data-level="4.5" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#fishers-exact-test-in-r"><i class="fa fa-check"></i><b>4.5</b> Fisher’s Exact Test in R</a></li>
+<li class="chapter" data-level="4.6" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#what-if-we-just-use-a-chi-square-test"><i class="fa fa-check"></i><b>4.6</b> What if we just use a chi-square test?</a></li>
+<li class="chapter" data-level="4.7" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><i class="fa fa-check"></i><b>4.7</b> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
+<li class="chapter" data-level="4.8" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#another-cautionary-note"><i class="fa fa-check"></i><b>4.8</b> Another Cautionary Note</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>5.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>5.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="5.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>5.3</b> Using R to find the correlation coefficient.</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>5.3.1</b> Correlations for real data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>5.4</b> The correlation coefficient measures the degree of linear association.</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>5.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>5.5</b> Association is not causation</a></li>
+<li class="chapter" data-level="5.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>5.6</b> Examples</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>5.6.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="5.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>5.6.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>5.7</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>5.7.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="5.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>5.7.2</b> Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html"><i class="fa fa-check"></i><b>6</b> t-test for difference</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#preliminaries"><i class="fa fa-check"></i><b>6.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="6.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#motivation-and-example"><i class="fa fa-check"></i><b>6.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="6.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>6.3</b> The two-sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>6.3.1</b> Pros of the <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.3.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>6.3.2</b> Cons of the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-workflow"><i class="fa fa-check"></i><b>6.4</b> The workflow</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#open-your-project"><i class="fa fa-check"></i><b>6.4.1</b> Open your project</a></li>
+<li class="chapter" data-level="6.4.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#create-a-new-script"><i class="fa fa-check"></i><b>6.4.2</b> Create a new script</a></li>
+<li class="chapter" data-level="6.4.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#load-packages-1"><i class="fa fa-check"></i><b>6.4.3</b> Load packages</a></li>
+<li class="chapter" data-level="6.4.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>6.4.4</b> Read in and inspect the data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>6.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="6.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>6.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="6.7" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>6.7</b> Step Three: Carry out statistical analysis</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>6.7.1</b> Are the data normally distributed?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>6.7.2</b> Normality test - analytical method</a></li>
+<li class="chapter" data-level="6.7.3" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>6.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
+<li class="chapter" data-level="6.7.4" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>6.7.4</b> The ‘thinking about the data’ normality test</a></li>
+<li class="chapter" data-level="6.7.5" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>6.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="6.7.6" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>6.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="t-test-for-difference.html"><a href="t-test-for-difference.html#the-complete-script"><i class="fa fa-check"></i><b>6.8</b> The complete script</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>7</b> Paired tests for difference</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-paired-t-test"><i class="fa fa-check"></i><b>7.1.1</b> The paired t-test</a></li>
+<li class="chapter" data-level="7.1.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.1.2</b> The Wilcoxon Signed Rank test</a></li>
+<li class="chapter" data-level="7.1.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#null-hypotheses"><i class="fa fa-check"></i><b>7.1.3</b> Null Hypotheses</a></li>
+<li class="chapter" data-level="7.1.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#test-output"><i class="fa fa-check"></i><b>7.1.4</b> Test output</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example-2"><i class="fa fa-check"></i><b>7.2</b> Example</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-2"><i class="fa fa-check"></i><b>7.2.1</b> Load packages</a></li>
+<li class="chapter" data-level="7.2.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-data"><i class="fa fa-check"></i><b>7.2.2</b> Load data</a></li>
+<li class="chapter" data-level="7.2.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data"><i class="fa fa-check"></i><b>7.2.3</b> Plot the data</a></li>
+<li class="chapter" data-level="7.2.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#tidy-the-data"><i class="fa fa-check"></i><b>7.2.4</b> Tidy the data</a></li>
+<li class="chapter" data-level="7.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>7.2.5</b> Check for normality of differences</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="7.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>7.4</b> Relation to one-sample paired test</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html"><i class="fa fa-check"></i><b>8</b> ANOVA: Factorial experiments and model simplification’</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>8.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#files-needed"><i class="fa fa-check"></i><b>8.2</b> Files needed</a></li>
+<li class="chapter" data-level="8.3" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#open-your-project-1"><i class="fa fa-check"></i><b>8.3</b> Open your Project</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#load-packages-3"><i class="fa fa-check"></i><b>8.4</b> Load packages</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#read-in-the-data"><i class="fa fa-check"></i><b>8.5</b> Read in the data</a></li>
+<li class="chapter" data-level="8.6" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>8.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="8.7" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#summarise-the-data"><i class="fa fa-check"></i><b>8.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="8.8" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#plot-the-data-1"><i class="fa fa-check"></i><b>8.8</b> Plot the data</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#questions"><i class="fa fa-check"></i><b>8.8.1</b> Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#anova"><i class="fa fa-check"></i><b>8.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#construct-the-model"><i class="fa fa-check"></i><b>8.9.1</b> Construct the model</a></li>
+<li class="chapter" data-level="8.9.2" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>8.9.2</b> Do we reject the null hypothesis?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#model-simplification"><i class="fa fa-check"></i><b>8.10</b> Model Simplification</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>8.10.1</b> Check the validity of the linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="anova-factorial-experiments-and-model-simplification.html"><a href="anova-factorial-experiments-and-model-simplification.html#reporting-the-results"><i class="fa fa-check"></i><b>8.11</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="one-way-anova.html"><a href="one-way-anova.html"><i class="fa fa-check"></i><b>9</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="one-way-anova.html"><a href="one-way-anova.html#load-packages-4"><i class="fa fa-check"></i><b>9.1</b> Load packages</a></li>
+<li class="chapter" data-level="9.2" data-path="one-way-anova.html"><a href="one-way-anova.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>9.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="9.3" data-path="one-way-anova.html"><a href="one-way-anova.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>9.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="9.4" data-path="one-way-anova.html"><a href="one-way-anova.html#plot-the-data-2"><i class="fa fa-check"></i><b>9.4</b> Plot the data</a></li>
+<li class="chapter" data-level="9.5" data-path="one-way-anova.html"><a href="one-way-anova.html#one-way-anova-1"><i class="fa fa-check"></i><b>9.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="one-way-anova.html"><a href="one-way-anova.html#null-hypothesis"><i class="fa fa-check"></i><b>9.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="9.5.2" data-path="one-way-anova.html"><a href="one-way-anova.html#the-actual-anova"><i class="fa fa-check"></i><b>9.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="9.5.3" data-path="one-way-anova.html"><a href="one-way-anova.html#construct-the-model-1"><i class="fa fa-check"></i><b>9.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="9.5.4" data-path="one-way-anova.html"><a href="one-way-anova.html#is-the-model-valid"><i class="fa fa-check"></i><b>9.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="9.5.5" data-path="one-way-anova.html"><a href="one-way-anova.html#the-overall-picture"><i class="fa fa-check"></i><b>9.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="9.5.6" data-path="one-way-anova.html"><a href="one-way-anova.html#the-detailed-picture"><i class="fa fa-check"></i><b>9.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="9.5.7" data-path="one-way-anova.html"><a href="one-way-anova.html#post-hoc-tsts."><i class="fa fa-check"></i><b>9.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="one-way-anova.html"><a href="one-way-anova.html#reporting-the-result."><i class="fa fa-check"></i><b>9.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>10.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="10.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>10.2</b> Load packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>10.3</b> Get the data</a></li>
+<li class="chapter" data-level="10.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>10.4</b> Plot the data</a></li>
+<li class="chapter" data-level="10.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>10.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="10.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>10.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="10.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>10.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="10.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>10.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="10.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>10.9</b> Conclusion</a></li>
+<li class="chapter" data-level="10.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>10.10</b> Sample script</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis for Newquay University Centre</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="correlation" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Correlation<a href="correlation.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This guide to correlation is heavily based on the very helpful chapter in Statistics, by David Freedman, Robert Pisani, Roger Purves and Ani Adhikari, 2nd ed., Norton.</p>
+<p>The notable statistician Karl Pearson (1857 - 1936) carried out a study to investigate the resemblance between children and their parents. As part of the study, Pearson measured the heights of 1078 parents and of their children at maturity. The heights of the children are plotted against the heights of the parents in the plots below, where we distinguish between father-son and mother-daughter pairs.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The taller a father, the taller his sons tend to be. It is the same with mothers and daughters.</p>
+<p>There is a positive association between a father’s height and the height of his sons.</p>
+<p>But there is a lot variation - the association is weak.</p>
+<p>If you know the height of a father, how much does that tell you about the height of his sons?</p>
+<p>Consider fathers who are about about 67 inches tall, and look at the wide variation in the heights of their sons - - all the points between the two vertical dotted lines. The same is true for the daughters of mother who are about 63 inches tall.</p>
+<p>If there is a strong association between two variables, then knowing one helps a lot in predicting the other. But when there is a weak association, information about one variable does not help much in guessing the other. When there is no association, it does not help at all.</p>
+<div id="the-correlation-coefficient" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> The correlation coefficient<a href="correlation.html#the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we are looking at the relationship between two variables and have already plotted the scatter plot. The graph looks like a cloud of points.</p>
+<p>How can we summarise it numerically?</p>
+<p>The first thing we can do is to mark a point that shows the average of the <em>x</em>-values and the average of the <em>y</em>-values. This is the <em>point of averages</em>. It marks the centre of the cloud.</p>
+<p>The next step is to measure the width of the cloud from side to side, in both the <em>x</em> and the <em>y</em> directions. This can be done using the standard deviations (SD) of the <em>x</em> and <em>y</em> values. Remember that if both <em>x</em> and <em>y</em> are normally distributed, then 95% of the data will lie within about 2 (1.96 if we want to be pernickety) standard deviations of the mean, in each direction.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-11-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>So far, our summary statistics are:</p>
+<ul>
+<li>mean of the <em>x</em> values, SD of the <em>x</em> values.</li>
+<li>mean of the <em>y</em> values, SD of the <em>y</em> values.</li>
+</ul>
+<p>These statistics tell us where the centre of the cloud is and how far spread out it is both vertically and horizontally, but they do not tell the whole story.</p>
+<p>Consider the following two sets of data plotted below. Both have the same centre and the same spread.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p>However the points in the first cloud are tightly clustered around a line - there is a strong linear association between the two variables. In the second cloud, the clustering is much looser. The strength of the association is different in the two diagrams. To measure the association, one more summary statistic is needed - the <em>correlation coefficient</em>.</p>
+<p>This coefficient is usually abbreviated as <em>r</em>, for no good reason.</p>
+<hr />
+<p>The correlation coefficient is a measure of linear association or clustering around a line. The relationship between two variables can be summarized by:</p>
+<ul>
+<li>the average of the <em>x</em>-values, the SD of the <em>x</em>-values.</li>
+<li>the average of the <em>y</em>-values, the SD of the <em>y</em>-values.</li>
+<li>the correlation coefficient <em>r</em></li>
+</ul>
+<hr />
+</div>
+<div id="different-values-of-r." class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Different values of <em>r</em>.<a href="correlation.html#different-values-of-r." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us see how this looks graphically. In the Figure below we show six scatter plots for hypothetical data. In all six pictures the average is 3 and the standard deviation is 1 for both <em>x</em> and <em>y</em>. The correlation coefficient is printed in each case.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-15-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>The one top left shows a correlation of 0 and the cloud is completely formless. As <em>x</em> increases, <em>y</em> shows no tendency to increase or decrease. It just straggles around.</p>
+<p>The next diagram has <em>r</em> = 0.4 and a linear pattern is just starting to emerge. The next has <em>r</em> = 0.6 with a stronger linear pattern, and so on. The closer <em>r</em> is to 1 the stronger is the linear association and the more tightly clustered are the points around a line.</p>
+<p>A correlation of 1, which does not appear in the Figure is often referred to as a <em>perfect correlation</em>. It means that all the points lie exactly on a line so there is a perfect linear correlation between the two variables. Correlation coefficients are always between -1 and 1.</p>
+<p>The correlation between the heights of identical twins is around 0.95. A scatter diagram for the heights of twins would thus look like the bottom right diagram in the Figure. We see that even with a coefficient this big there is a still a fair degree of scatter. The heights of identical twins are far from being equal all the time.</p>
+<p>Real data in the life sciences never shows perfect correlation and rarely does it even show strong correlation. It is more common for it to look like Pearson’s father-son data, with weak associations and <em>r</em> values in the range 0.3 to 0.7. This is even more true for data from the social sciences which concern human behaviour.</p>
+<p>We can also have negative associations between variables. For example women with more education tend to have fewer children. Animals with higher body weight tend to have lower metabolic rates. As one variable increases, the other decreases. When there is negative association, the correlation coefficient has a negative sign.</p>
+<p>Below we show six examples of negative correlation. As in the previous figure, all the data sets have a mean of 3 and a standard deviation of 1.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-18-1.png" width="864" style="display: block; margin: auto;" /></p>
+<hr />
+<p>Correlations are always between -1 and 1, but can take any value in between. A positive correlation means that the cloud slopes up: as one variable increases, so does the other. A negative correlation means that the cloud slopes down. As one variable increases, the other decreases.</p>
+<hr />
+</div>
+<div id="using-r-to-find-the-correlation-coefficient." class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Using R to find the correlation coefficient.<a href="correlation.html#using-r-to-find-the-correlation-coefficient." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, let us try to find the correlation between two sets of data where we know what the correlation coefficient is, because we created the data ourselves. We will take the <em>x</em> and <em>y</em> data used above for which the correlation coefficient was fixed to be 0.8</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="correlation.html#cb61-1" tabindex="-1"></a><span class="fu">cor.test</span>(x,y,<span class="at">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  x and y
+## t = 9.1066, df = 48, p-value = 4.946e-12
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.6647753 0.8793973
+## sample estimates:
+##       cor 
+## 0.7958584</code></pre>
+<p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
+<p>It is important to be able to interpret and report the output.</p>
+<p>First, understand that R is carrying out a test, the null hypothesis of which is that there is no correlation between the values of <em>x</em> and the values of <em>y</em> among the populations from which the <em>x</em> and <em>y</em> data were drawn, so that the correlation coefficient between <em>x</em> and <em>y</em> within those populations is zero. It then reports a <em>p</em>-value: how likely it is that you would have got the data you got for this sample of data if that null hypothesis were true. As with most tests, to do this it uses the data to calculate a so-called <em>test-statistic</em>. How it does this need not concern us here. The details will differ from test to test, and the name given will differ. Here it is called <em>t</em>. It also reports the number of independent pieces of information used to calculate that statistic. This is called the <em>degrees of freedom</em>, here denoted <em>df</em>. This usually (but not necessarily) has a value that is 1,2 or 3 less than the number of data points.</p>
+<p>Then it reports the <em>p</em>-value. A tiny (close to zero) value here means that it thinks it very unlikely that the samples would be as they are if the <em>x</em> and <em>y</em> variables were not correlated in the populations from which the samples were drawn. A high (by which we usually mean greater than 0.05) value means that there is a reasonable chance that the actual non-zero correlation coefficient could have been found between <em>x</em> and <em>y</em> in the samples, even though those values were not correlated in the wider populations from which the samples were drawn. In that case we would have found no evidence that the <em>x</em> and <em>y</em> data within the population were correlated. This doesn’t mean that they aren’t, just that we have insufficient evidence to reject the null hypothesis that they are not.</p>
+<p>The <em>p</em>-value reported here is 4.3e-12. That is R’s way of saying what in standard form would be written 4.3 x 10<sup>-12</sup>. This is a really tiny value. It is 0.0000000000043, which is a very inconvenient way to write such a small number. Hence R’s way of doing it or the standard form way of doing it. In the context of a statistical test and when <em>p</em> is is that small we don’t care about its exact value, we simply note that it is very, very small. We thus can confidently reject the null hypothesis and assert that the data provide evidence that <em>x</em> and <em>y</em> are correlated, in this case positively.</p>
+<p>Further, it reports the actual correlation coefficient. Here it finds <em>r</em>=0.797, which we happen to know to be correct because we created this data set ourselves, and a 95% confidence interval for the coefficient. The precise meaning of the confidence interval is subtle, but it is a kind of error bar for the correlation coefficient <em>r</em>. It means that if we drew sample after sample from the population and calculated the confidence interval for <em>r</em> for each sample, then 95% of the time that interval would capture the true value of <em>r</em>.</p>
+<p>If the <em>p</em>-value is small enough that we reject the null-hypothesis, then this confidence interval should not encompass zero. If the <em>p</em>-value is large enough that we do not reject the null hypothesis then this confidence interval <em>will</em> encompass zero.</p>
+<p>Here, the confidence interval is from 0.67 to 0.88. This does not encompass zero. In fact it is far from zero, so is consistent with our finding a really small <em>p</em>-value.</p>
+<p>To report the result of this test we would say something like:</p>
+<blockquote>
+<p>We find evidence for a strong positive correlation between <em>x</em> and <em>y</em> (Pearson <em>r</em> =0.80, <em>t</em>=9.1, <em>df</em>=48, <em>p</em>&lt;0.001)</p>
+</blockquote>
+<p>Note that when the <em>p</em>-value is much less than 0.05 as it is here we do not normally report its exact value, but simply write <em>p</em>&lt;0.01, or <em>p</em>&lt;0.001, and so on. The point is that these ways of reporting it tell the reader that <em>p</em> is <em>way</em> less than 0.05. This is all they need to know to see that we can confidently reject the null hypothesis.</p>
+<div id="correlations-for-real-data" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Correlations for real data<a href="correlation.html#correlations-for-real-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let us look at the Iris data set that is built into R. It contains values for the Sepal Width, Sepal Length, Petal Width and Petal Length for samples of 50 plants from each of three species of Iris, <em>setosa</em>, <em>versicolor</em> and <em>virginica</em>. Here are the first few rows:</p>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>We will look to see if the data allow us to reject the idea that petal width and petal length are not correlated within the wider populations of each of these species:</p>
+<p>First, let’s plot the data</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="correlation.html#cb64-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb64-2"><a href="correlation.html#cb64-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Petal.Width,<span class="at">y=</span>Petal.Length,<span class="at">colour=</span>Species)) <span class="sc">+</span></span>
+<span id="cb64-3"><a href="correlation.html#cb64-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb64-4"><a href="correlation.html#cb64-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Petal Width (mm)&quot;</span>,</span>
+<span id="cb64-5"><a href="correlation.html#cb64-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Petal Length (mm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-6"><a href="correlation.html#cb64-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species,<span class="at">nrow=</span><span class="dv">1</span>,<span class="at">scales=</span><span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-7"><a href="correlation.html#cb64-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb64-8"><a href="correlation.html#cb64-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb64-9"><a href="correlation.html#cb64-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="correlation_files/figure-html/unnamed-chunk-22-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>Having seen the plots, do you think that petal width and length are correlated in these samples, and roughly what value for <em>r</em> do you expect in each case?</p>
+<p>Looking at each graph, it appears that there is a positive correlation for each species, but that this is weaker for <em>setosa</em> and <em>virginica</em> than it is for <em>versicolor</em>. Knowing the petal width for that species gives you a much better idea of the petal length, and vice-versa, than is true for the other two species.</p>
+<p>Let us find out:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="correlation.html#cb65-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb65-2"><a href="correlation.html#cb65-2" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb65-3"><a href="correlation.html#cb65-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">r=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>estimate,</span>
+<span id="cb65-4"><a href="correlation.html#cb65-4" tabindex="-1"></a>            <span class="at">lower.boundb=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">1</span>],</span>
+<span id="cb65-5"><a href="correlation.html#cb65-5" tabindex="-1"></a>            <span class="at">upper.bound=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>conf.int[<span class="dv">2</span>],</span>
+<span id="cb65-6"><a href="correlation.html#cb65-6" tabindex="-1"></a>            <span class="st">&quot;p value&quot;</span><span class="ot">=</span><span class="fu">cor.test</span>(Petal.Width,Petal.Length)<span class="sc">$</span>p.value) <span class="sc">|&gt;</span></span>
+<span id="cb65-7"><a href="correlation.html#cb65-7" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">digits=</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb65-8"><a href="correlation.html#cb65-8" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="fl">0.7</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:right;">
+r
+</th>
+<th style="text-align:right;">
+lower.boundb
+</th>
+<th style="text-align:right;">
+upper.bound
+</th>
+<th style="text-align:right;">
+p value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+setosa
+</td>
+<td style="text-align:right;">
+0.332
+</td>
+<td style="text-align:right;">
+0.059
+</td>
+<td style="text-align:right;">
+0.558
+</td>
+<td style="text-align:right;">
+0.019
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+versicolor
+</td>
+<td style="text-align:right;">
+0.787
+</td>
+<td style="text-align:right;">
+0.651
+</td>
+<td style="text-align:right;">
+0.874
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+virginica
+</td>
+<td style="text-align:right;">
+0.322
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.551
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+</tr>
+</tbody>
+</table>
+<p>The table gives the estimated value for the Pearson correlation coefficient in each case, the lower and upper bound of the confidence interval for that coefficient and the <em>p</em>-value.</p>
+<p>Do these output provide evidence for a correlation between petal length and petal width in each case?</p>
+</div>
+</div>
+<div id="the-correlation-coefficient-measures-the-degree-of-linear-association." class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> The correlation coefficient measures the degree of linear association.<a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
+<p>Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by ‘strong’ that knowing the value of one variable gives you a very good idea of the value of the other.</p>
+<p><img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at -0.136, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
+<div id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> When is it appropriate to calculate a correlation coefficient?<a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So, we note that the correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.</p>
+</div>
+</div>
+<div id="association-is-not-causation" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Association is not causation<a href="correlation.html#association-is-not-causation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A very important and often-repeated point to note is that correlation measures association. But association is not the same as causation.</p>
+<p>See <a href="https://www.tylervigen.com/spurious-correlations">Spurious Correlations</a> for some amusing examples.</p>
+</div>
+<div id="examples" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Examples<a href="correlation.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lichen-abundance" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Lichen abundance<a href="correlation.html#lichen-abundance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="csl-entry">
+Jovan, S. (2008). <i>Lichen Bioindication of Biodiversity, Air Quality, and Climate: Baseline Results From Monitoring in Washington, Oregon, and California</i>. <a href="http://gis.nacse.org/lichenair/doc/Jovan2008.pdf" class="uri">http://gis.nacse.org/lichenair/doc/Jovan2008.pdf</a>
+</div>
+<p><img src="images/lichen_abundance.png" width="629" style="display: block; margin: auto;" /></p>
+<p>There is a strong negative correlation (<em>r</em>=-0.78) between air quality score and proportion of nitrophyte lichen. This suggests that this proportion can be used as a bioindicator of air quality.</p>
+</div>
+<div id="soil-bacteria" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Soil bacteria<a href="correlation.html#soil-bacteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="csl-entry">
+Lauber, C. L., Hamady, M., Knight, R., &amp; Fierer, N. (2009). Pyrosequencing-based assessment of soil pH as a predictor of soil bacterial community structure at the continental scale. <i>Applied and Environmental Microbiology</i>, <i>75</i>(15), 5111–5120. <a href="https://doi.org/10.1128/AEM.00335-09" class="uri">https://doi.org/10.1128/AEM.00335-09</a>
+</div>
+<p><img src="images/soil_bacteria.png" width="648" style="display: block; margin: auto;" /></p>
+<p>In the Figure above, note that the <em>r</em>-values for <strong>C</strong> and <strong>E</strong> are close to zero, and the <em>p</em>-values are greater than 0.1, meaning that at this significance level there is no evidence from these data that there is <em>any</em> linear association between soil pH and the relative abundances of <em>Alphaproteobacteria</em> or <em>Beta/Gammaproteobacteria</em>. From the plots, it looks in <strong>C</strong> as if there no assocation at all, whereas in <strong>E</strong> it looks as though there might be, but if so then not a linear association, for which the correlation coefficient r would be a poor measure.</p>
+</div>
+</div>
+<div id="exercises" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Exercises<a href="correlation.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Exercise 1<a href="correlation.html#exercise-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="correlation_files/figure-html/unnamed-chunk-28-1.png" width="864" style="display: block; margin: auto;" />
+Plots A to F above show scatter plots of different data sets <em>Y</em> against <em>X</em>.</p>
+<ul>
+<li>Which of them show linear behaviour?</li>
+<li>Which of them show monotonic behaviour?</li>
+<li>For which of them might it be appropriate to calculate the following correlation coefficients between <em>X</em> and <em>Y</em>?
+<ul>
+<li>Pearson <em>r</em></li>
+<li>Spearman rank <em>r</em><sub>sp</sub></li>
+</ul></li>
+</ul>
+</div>
+<div id="exercise-2" class="section level3 hasAnchor" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Exercise 2<a href="correlation.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Open a new R notebook</p>
+<p>In the usual way, include to start with code chunks to</p>
+<ol style="list-style-type: decimal">
+<li>Load the packages needed <code>tidyverse</code> and <code>here</code>.</li>
+<li>Read the data set <code>iris.csv</code> (which should be in your data folder already) into an object called <code>iris</code></li>
+</ol>
+<p>You can do this with this code chunk:</p>
+<pre><code>```{r}     
+filepath&lt;-here(&quot;data&quot;,&quot;iris.csv&quot;)
+iris&lt;-read_csv(filepath)
+glimpse(iris)
+```</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create a faceted plot of sepal length against sepal width for each species.</p></li>
+<li><p>Calculate the Pearson correlation coefficient between sepal length and sepal width for each species, and display this, plus the lower and upper bounds of the confidence interval and the <em>p</em>-value for each species in a table.</p></li>
+</ol>
+<p>For (4) and (5) you can adapt code used on the previous tab.</p>
+<p>Now:</p>
+<ul>
+<li>Does it appear that the sepal length and sepal width are correlated for each species?<br />
+</li>
+<li>Is the correlation positive or negative?<br />
+</li>
+<li>For which species is the correlation strongest?<br />
+</li>
+<li>Do the correlation coefficients make sense, given the plots?</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fishers-exact-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="t-test-for-difference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/correlation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["fake-book.pdf", "fake-book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
