@@ -1,5 +1,5 @@
 --- 
-title: "Data nalaysis for Newquay University Centre"
+title: "Data analysis for Newquay University Centre"
 author: "Michael Hunt"
 date: "2024-05-29"
 site: bookdown::bookdown_site

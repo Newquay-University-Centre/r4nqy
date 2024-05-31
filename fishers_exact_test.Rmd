@@ -1,5 +1,10 @@
 # Fisher's exact test
 
+```{r, include = FALSE}
+source("common.R")
+knitr::opts_chunk$set(fig.align="center")
+```
+
 ```{r include=FALSE}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE,echo=FALSE)
 ```
@@ -118,7 +123,7 @@ To do this, we notice that if the column and row totals have been fixed in advan
 
 Let's see how this works.
 
-### The Hypergeometric Function
+## The Hypergeometric Function
 
 Imagine an urn with *N* balls, *K* of them white, the rest, *N*-*K* of them, black. 
 
@@ -175,7 +180,7 @@ And finally, and more precisely, if we want to calculate the probability of our 
 
 In case you are worried, *we* will not normally use the hypergeometric function directly, nor de we even need to know it is being used. We can use the R runction `fisher.test()`: see below.
 
-### Hypergeometric Distribution in R
+## Hypergeometric Distribution in R
 
 However if you are interested in the hypergeometric function, it is catered for in R like many other distributions by a family of four functions: 
 
@@ -199,7 +204,7 @@ In our example, to calculate the probability of a given table of results,
 
 dhyper(r1c1, col1, nn-col1, row1)
 
-### Back to Fisher's Exact Test
+## Back to Fisher's Exact Test
 
 First we will go through all the steps manually just so you can see what is going on under the hood of a Fisher's Exact Test, then we will do the test in R.
 
@@ -222,7 +227,7 @@ and then
 * The resulting sum is the *p*-value of the observed table, given the marginal totals.  
 * If this *p*-value is less than a predetermined threshold value (the value chosen is usually 0.05) then we reject the null hypothesis and regard the data as providing evidence for an association between the factors. That is we reject the idea that they are independent of each other. In the case presented above, that means we reject the idea
 
-### Example
+## Example
 
 In the figure below we show all possible tables, along with their respective *p*-values, calculate using the hypergeometric function. The table of the actual results obtained is picked out in colour. We see that tables 
 
@@ -248,7 +253,7 @@ We see that tables a), b), c), h) (the actual results), i) and j) all have *p*-v
 
 This *p*-value is bigger than 0.05 so we would normally fail to reject the null hypothesis that there is no association between the two factors. There is no evidence from these data that the app does any better than guessing  whether a plant is species A or species B!
 
-### Fisher's Exact Test in R
+## Fisher's Exact Test in R
 
 If we already know the four counts for our $2 \times 2$ table we can create a $2 \times 2$ matrix of them like this:
 
@@ -266,7 +271,7 @@ fisher.test(app.mat)
 ```
 That's it! It's a one liner, just like many statistical tests in R. You will see that this gives the same *p*-value that we have calculated manually.
 
-### What if we just use a chi-square test?
+## What if we just use a chi-square test?
 
 If we use a chi-square test on this same data, R gives us a warning, because of the low values in the table:
 
@@ -277,11 +282,11 @@ chisq.test(app.mat)
 This is a cautionary tale: you can use R to run this or that test on data even when the data are unsuitable for the test, and you will get an output, but the output may not be reliable. Here, at least, we are given a warning that alerts us to this possibility, and in fact our conclusion would be the same as it was when using the Fisher's Exact Test, but that is not always the case. You need to think carefully as to whether a given test is the right one *before* you use it.
 
 
-### Why not always use Fisher's Exact Test instead of a chi-square test?
+## Why not always use Fisher's Exact Test instead of a chi-square test?
 
 Fisher's Exact Test becomes computationally expensive when the number of tables for which a *p*-value has to be calculated becomes very large. This happens very quickly when each of the two factors has more than two levels, so that the contingency table is no longer $2 \times 2$ but $3 \times 4$ or $4\times 6$ and so on. However for $2 \times 2$ tables it works well and quickly for table cell values into the 1000s and is a perfectly valid alternative to the chi-squared test. But then, in that case, why not just use a chi-squared test? For large cell values this works well and anyone reading your work is more likely to be familiar with it than with the Fisher's Exact Test.
 
-### Another Cautionary Note
+## Another Cautionary Note
 
 This leads us to think that the Fisher's Exact Test is only really a better alternative to the chi-squared test when sample sizes are very small and the chi-squared approximation becomes invalid. However, think about it. If you have a small sample then it is likely that it is not very representative of the population from which it has been drawn, and that you will fail to detect any association that there may be between the two factors. The solution therefore, when you have a small sample, is likely not to say Hallelujah! and grasp the Fisher's Test with glee, but, if you can, to get a bigger sample. However, if that is not possible and you are stuck with a small sample size, then a Fisher's Exact Test of independence is more reliable than a chi-squared test.
 

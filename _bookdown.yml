@@ -9,6 +9,8 @@ new_session: true
 rmd_files: [
   "index.Rmd",
   "plot_ggplot_examples.Rmd",
+  "chi-square.Rmd",
+  "fishers_exact_test"
   "correlation.Rmd",
   "test_for_difference.Rmd",
   "paired_data.Rmd",
