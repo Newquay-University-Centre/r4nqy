@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Newquay University Centre</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a>
@@ -405,21 +405,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">A.1</span> What’s in a name?<a href="css-crash.html#whats-in-a-name" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>How could you have known that the selector for links was an <code>a</code>? The answer is by opening up your existing website, and right-clicking anywhere on the page and clicking on <em>Inspect</em> (in Chrome browsers) or <em>Inspect Element</em> (in Firefox).</p>
 <center>
-<img src="images/inspect.png" width="300" />
+<img src="images/r4edu/inspect.png" width="300" />
 </center>
 <p>Clicking on this will open a small set of windows inside of your browser called the Developer Tools (a.k.a “devtools”) or the inspector. These give you an inside peek into all the CSS styles that are being applied to every element in the site. (The examples that follow use the Chrome developer tools.)</p>
 <p>In the lower left pane of the subwindow, click on the icon of a rectangle with an arrow. Now as you hover and then click on anything in your website, you will see the contents of the developer tools change. The pane on the right shows the CSS styles that are applied.</p>
 <p><br></p>
-<p><img src="images/inspect2.png" />
+<p><img src="images/r4edu/inspect2.png" />
 <br></p>
 <p>Taking a closer look at the CSS pane on the right, we can see that the link we are hovering over does indeed have an <code>a</code> as its selector.</p>
 <p><br></p>
-<p><img src="images/closer.png" /></p>
+<p><img src="images/r4edu/closer.png" /></p>
 <p><br></p>
 <p>One neat thing about the developer tools is that you can click and temporarily edit the CSS properties in this very window and simlutaneously see the changes take effect on the page. These edits only happen in your browser, so nothing in your R Markdown document will change (in fact, your edits will be lost as soon as you refresh the page in your browser), but editing here is a fast way to test out any CSS ideas.</p>
 <p>[ALSO ADD TEXTTRANSFORM IN SCREENSHOT TO MATCH ABOVE EXAMPLE]</p>
 <p><br></p>
-<p><img src="images/orchid.png" />
+<p><img src="images/r4edu/orchid.png" />
 <br></p>
 <p>There’s a lot more we could say about CSS here. But it’s faster and more rewarding to learn via real examples. Let’s start tinkering!</p>
 <p>[OTHER TOPICS TO MENTION:]
@@ -434,14 +434,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>When we click on the navigation bar, we see that it highlights a certain line of HTML in the left pane of the developer tools. Look for anything that says <code>class =</code>. The values that follow <code>class</code> are the CSS selectors that are currently styling our navigation bar.</li>
 </ol>
 <p>In this case, our navbar has three classes <code>navbar</code>, <code>navbar-default</code>, and <code>navbar-fixed-top</code>.</p>
-<pre><code>![](images/navbar.png)</code></pre>
+<pre><code>![](images/r4edu/navbar.png)</code></pre>
 <p>In the righthand pane of the developer tools. we see these classes being used in the CSS (notice that a class needs to have a <code>.</code> before it in when it’s a selector–but a tag, like the link example above, does not).</p>
 <p>[SAY SOMETHING ABOUT THE ORDER EACH ARE LISTED?]</p>
 <ol style="list-style-type: decimal">
 <li><p>Let’s choose the first CSS selector <code>.navbar</code> and play around with it in this pane to decide what color we’d like.</p></li>
 <li><p>Type <code>background-color:</code> followed by any <a href="https://www.google.com/search?q=color+picker">HEX code or rgb code</a> and press <code>Enter</code>. You can also click on the small color square to use sliders to set the color and transparency of your navigation bar. I’m selecting _________ color.</p>
 <center>
-<p><img src="images/color_picker.png" width="200" /></p>
+<p><img src="images/r4edu/color_picker.png" width="200" /></p>
 </center></li>
 </ol>
 <p><br></p>

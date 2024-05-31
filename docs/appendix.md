@@ -23,7 +23,7 @@ You begin with the element's "label" (technically called a *selector*). Within c
 
 How could you have known that the selector for links was an `a`? The answer is by opening up your existing website, and right-clicking anywhere on the page and clicking on *Inspect* (in Chrome browsers) or *Inspect Element* (in Firefox).
 
-<center> ![](images/inspect.png){width=300px} </center>
+<center> ![](images/r4edu/inspect.png){width=300px} </center>
 
 Clicking on this will open a small set of windows inside of your browser called the Developer Tools (a.k.a "devtools") or the inspector. These give you an inside peek into all the CSS styles that are being applied to every element in the site. (The examples that follow use the Chrome developer tools.)
 
@@ -31,14 +31,14 @@ In the lower left pane of the subwindow, click on the icon of a rectangle with a
 
 <br>
 
-![](images/inspect2.png)
+![](images/r4edu/inspect2.png)
 <br>
 
 Taking a closer look at the CSS pane on the right, we can see that the link we are hovering over does indeed have an `a` as its selector. 
 
 <br>
 
-![](images/closer.png)
+![](images/r4edu/closer.png)
 
 <br>
 
@@ -49,7 +49,7 @@ One neat thing about the developer tools is that you can click and temporarily e
 
 <br>
 
-![](images/orchid.png)
+![](images/r4edu/orchid.png)
 <br>
 
 There's a lot more we could say about CSS here. But it's faster and more rewarding to learn via real examples. Let's start tinkering!
@@ -67,7 +67,7 @@ I'm going to model how I would go about changing the color of the navbar of an R
 
 In this case, our navbar has three classes `navbar`, `navbar-default`, and `navbar-fixed-top`. 
 
-    ![](images/navbar.png)
+    ![](images/r4edu/navbar.png)
 
 
 
@@ -80,7 +80,7 @@ In the righthand pane of the developer tools. we see these classes being used in
 1. Let's choose the first CSS selector `.navbar` and play around with it in this pane to decide what color we'd like.
 1. Type `background-color:` followed by any [HEX code or rgb code](https://www.google.com/search?q=color+picker) and press `Enter`. You can also click on the small color square to use sliders to set the color and transparency of your navigation bar. I'm selecting _________ color.  
 
-    <center>![](images/color_picker.png){width=200px}</center>
+    <center>![](images/r4edu/color_picker.png){width=200px}</center>
 
 <br>
 
@@ -179,70 +179,70 @@ Theme options include the following. Click through the tabs to see what they eac
 
 ### `default` 
 
-![](images/rmd_custom/themes/default.png){width=100%}
+![](images/r4edu/rmd_custom/themes/default.png){width=100%}
 
 ### `cerulean`
 
-![](images/rmd_custom/themes/cerulean.png){width=100%}
+![](images/r4edu/rmd_custom/themes/cerulean.png){width=100%}
 
 ### `journal`
 
-![](images/rmd_custom/themes/journal.png){width=100%}
+![](images/r4edu/rmd_custom/themes/journal.png){width=100%}
 
 
 ### `flatly`
 
-![](images/rmd_custom/themes/yeti.png){width=100%}
+![](images/r4edu/rmd_custom/themes/yeti.png){width=100%}
 
 ### `darkly`
 
-![](images/rmd_custom/themes/darkly.png){width=100%}
+![](images/r4edu/rmd_custom/themes/darkly.png){width=100%}
 
 
 ### `readable`
 
-![](images/rmd_custom/themes/readable.png){width=100%}
+![](images/r4edu/rmd_custom/themes/readable.png){width=100%}
 
 
 ### `spacelab`
 
-![](images/rmd_custom/themes/spacelab.png){width=100%}
+![](images/r4edu/rmd_custom/themes/spacelab.png){width=100%}
 
 
 ### `united`
 
-![](images/rmd_custom/themes/united.png){width=100%}
+![](images/r4edu/rmd_custom/themes/united.png){width=100%}
 
 
 ### `cosmo`
 
-![](images/rmd_custom/themes/cosmo.png){width=100%}
+![](images/r4edu/rmd_custom/themes/cosmo.png){width=100%}
 
 
 ### `lumen`
 
-![](images/rmd_custom/themes/lumen.png){width=100%}
+![](images/r4edu/rmd_custom/themes/lumen.png){width=100%}
 
 
 ### `paper`
 
-![](images/rmd_custom/themes/paper.png){width=100%}
+![](images/r4edu/rmd_custom/themes/paper.png){width=100%}
 
 
 ### `sandstone`
 
-![](images/rmd_custom/themes/sandstone.png){width=100%}
+![](images/r4edu/rmd_custom/themes/sandstone.png){width=100%}
 
 
 ### `simplex`
 
-![](images/rmd_custom/themes/simplex.png){width=100%}
+![](images/r4edu/rmd_custom/themes/simplex.png){width=100%}
 
 
 
 ### `yeti`
 
-![](images/rmd_custom/themes/yeti.png){width=100%}
+![](images/r4edu/rmd_custom/themes/yeti.png){width=100%}
 
 
 # What should I make {#teach-offer}
@@ -276,7 +276,7 @@ I'm not sure whether this should happen here or in the preface, but one way we c
 
 Needless to say, right now the example below is yucky, too small, and incomplete. And it's also just kind of acting as funny eye-candy. But if we make it nicer (and perhaps summarize it more efficiently with a table beneath it), would this be the spot for it? (Could alternatively place this in the introductory section for the Cookbooks Section--and only include tools that we have cookbooks for (ie. leave out stuff like Connect)).
 
-![](images/flowchart.jpg)
+![](images/r4edu/flowchart.jpg)
 
 # Teaching learners {#teach-learners}
 
