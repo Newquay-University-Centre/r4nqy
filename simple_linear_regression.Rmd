@@ -1,4 +1,4 @@
-# Simple linear regression
+# Simple linear regression {#linear regression}
 
 ```{r, include = FALSE}
 source("common.R")

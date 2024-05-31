@@ -1,4 +1,4 @@
-# t-test for difference
+# t-test for difference {#difference}
 
 ```{r, include = FALSE}
 source("common.R")

@@ -1,4 +1,4 @@
-# ANOVA: Factorial experiments and model simplification'
+# ANOVA: Two-way factorial experiments and model simplification {#anova-two-way}
 
 ```{r, include = FALSE}
 source("common.R")

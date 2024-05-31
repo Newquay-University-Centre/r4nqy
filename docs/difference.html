@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 t-test for difference | Data analysis for Newquay University Centre</title>
+  <meta name="description" content="A work in progress" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 t-test for difference | Data analysis for Newquay University Centre" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://newquay-university-centre.github.io/r4nqy//images/logo/newquay_uc.png" />
+  <meta property="og:description" content="A work in progress" />
+  <meta name="github-repo" content="Newquay-University-Centre/r4nqy" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 t-test for difference | Data analysis for Newquay University Centre" />
+  
+  <meta name="twitter:description" content="A work in progress" />
+  <meta name="twitter:image" content="https://newquay-university-centre.github.io/r4nqy//images/logo/newquay_uc.png" />
+
+<meta name="author" content="Michael Hunt" />
+
+
+<meta name="date" content="2024-05-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fishers-exact-test.html"/>
+<link rel="next" href="paired-tests-for-difference.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Newquay University Centre</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> bibliography: [book.bib, packages.bib]</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i><b>1.1</b> Usage</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i><b>1.2</b> Render book</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i><b>1.3</b> Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html"><i class="fa fa-check"></i><b>2</b> Plot your data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#load-packages"><i class="fa fa-check"></i><b>2.1</b> Load packages</a></li>
+<li class="chapter" data-level="2.2" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#get-the-template-script"><i class="fa fa-check"></i><b>2.2</b> Get the template script</a></li>
+<li class="chapter" data-level="2.3" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#load-the-palmer-penguin-data"><i class="fa fa-check"></i><b>2.3</b> Load the Palmer penguin data</a></li>
+<li class="chapter" data-level="2.4" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#summary-stats-on-all-the-numeric-columns"><i class="fa fa-check"></i><b>2.4</b> Summary stats on all the numeric columns</a></li>
+<li class="chapter" data-level="2.5" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#remove-the-rows-with-nas"><i class="fa fa-check"></i><b>2.5</b> Remove the rows with NAs</a></li>
+<li class="chapter" data-level="2.6" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#how-many-observations-are-there-for-each-species"><i class="fa fa-check"></i><b>2.6</b> How many observations are there for each species?</a></li>
+<li class="chapter" data-level="2.7" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#mean-value-for-each-numerical-variable-for-each-species"><i class="fa fa-check"></i><b>2.7</b> Mean value for each numerical variable, for each species</a></li>
+<li class="chapter" data-level="2.8" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#scatter-plots"><i class="fa fa-check"></i><b>2.8</b> Scatter plots</a></li>
+<li class="chapter" data-level="2.9" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#repeat-for-bill-length-and-flipper-length"><i class="fa fa-check"></i><b>2.9</b> Repeat for bill length and flipper length</a></li>
+<li class="chapter" data-level="2.10" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#add-yet-more-informtion-to-the-plot"><i class="fa fa-check"></i><b>2.10</b> Add yet more informtion to the plot</a></li>
+<li class="chapter" data-level="2.11" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#distribution-of-penguin-flipper-lengths"><i class="fa fa-check"></i><b>2.11</b> Distribution of penguin flipper lengths</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#histogram"><i class="fa fa-check"></i><b>2.11.1</b> Histogram</a></li>
+<li class="chapter" data-level="2.11.2" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#density-plot"><i class="fa fa-check"></i><b>2.11.2</b> Density plot</a></li>
+<li class="chapter" data-level="2.11.3" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#box-plots"><i class="fa fa-check"></i><b>2.11.3</b> Box plots</a></li>
+<li class="chapter" data-level="2.11.4" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#violin-plot-using-geom_violin"><i class="fa fa-check"></i><b>2.11.4</b> Violin Plot using <code>geom_violin()</code></a></li>
+<li class="chapter" data-level="2.11.5" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#ridge-plot"><i class="fa fa-check"></i><b>2.11.5</b> Ridge plot</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="plot-with-ggplot.html"><a href="plot-with-ggplot.html#bar-chart-with-error-bar"><i class="fa fa-check"></i><b>2.12</b> Bar chart with error bar</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chi-square.html"><a href="chi-square.html"><i class="fa fa-check"></i><b>3</b> Chi-square analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chi-square.html"><a href="chi-square.html#chi-square-goodness-of-fit-test"><i class="fa fa-check"></i><b>3.1</b> Chi-square goodness of fit test</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="chi-square.html"><a href="chi-square.html#example"><i class="fa fa-check"></i><b>3.1.1</b> Example</a></li>
+<li class="chapter" data-level="3.1.2" data-path="chi-square.html"><a href="chi-square.html#doing-the-chi-square-test-in-r"><i class="fa fa-check"></i><b>3.1.2</b> Doing the chi-square test in R</a></li>
+<li class="chapter" data-level="3.1.3" data-path="chi-square.html"><a href="chi-square.html#reporting-the-result-in-english"><i class="fa fa-check"></i><b>3.1.3</b> Reporting the result in English</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="chi-square.html"><a href="chi-square.html#exercise-1."><i class="fa fa-check"></i><b>3.2</b> Exercise 1.</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="chi-square.html"><a href="chi-square.html#solution.-1"><i class="fa fa-check"></i><b>3.2.1</b> Solution. 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="chi-square.html"><a href="chi-square.html#way-chi-square-analysis-test-of-independence"><i class="fa fa-check"></i><b>3.3</b> 2-way chi square analysis: test of independence</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="chi-square.html"><a href="chi-square.html#hypotheses"><i class="fa fa-check"></i><b>3.3.1</b> Hypotheses</a></li>
+<li class="chapter" data-level="3.3.2" data-path="chi-square.html"><a href="chi-square.html#summarise-the-data."><i class="fa fa-check"></i><b>3.3.2</b> Summarise the data.</a></li>
+<li class="chapter" data-level="3.3.3" data-path="chi-square.html"><a href="chi-square.html#plot-the-data."><i class="fa fa-check"></i><b>3.3.3</b> Plot the data.</a></li>
+<li class="chapter" data-level="3.3.4" data-path="chi-square.html"><a href="chi-square.html#interpret-the-graph-before-we-do-any-stats"><i class="fa fa-check"></i><b>3.3.4</b> Interpret the graph before we do any ‘stats’</a></li>
+<li class="chapter" data-level="3.3.5" data-path="chi-square.html"><a href="chi-square.html#the-chi-square-test"><i class="fa fa-check"></i><b>3.3.5</b> The Chi-square test</a></li>
+<li class="chapter" data-level="3.3.6" data-path="chi-square.html"><a href="chi-square.html#yates-continuity-correction"><i class="fa fa-check"></i><b>3.3.6</b> Yates continuity correction</a></li>
+<li class="chapter" data-level="3.3.7" data-path="chi-square.html"><a href="chi-square.html#conclusion"><i class="fa fa-check"></i><b>3.3.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="chi-square.html"><a href="chi-square.html#the-chi-square-test-explained-advanced"><i class="fa fa-check"></i><b>3.4</b> The Chi-Square Test explained (advanced)</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chi-square.html"><a href="chi-square.html#why-does-the-test-statistic-have-this-distribution"><i class="fa fa-check"></i><b>3.4.1</b> Why does the test statistic have this distribution?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html"><i class="fa fa-check"></i><b>4</b> Fisher’s exact test</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#the-hypergeometric-function"><i class="fa fa-check"></i><b>4.1</b> The Hypergeometric Function</a></li>
+<li class="chapter" data-level="4.2" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#hypergeometric-distribution-in-r"><i class="fa fa-check"></i><b>4.2</b> Hypergeometric Distribution in R</a></li>
+<li class="chapter" data-level="4.3" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#back-to-fishers-exact-test"><i class="fa fa-check"></i><b>4.3</b> Back to Fisher’s Exact Test</a></li>
+<li class="chapter" data-level="4.4" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#example-1"><i class="fa fa-check"></i><b>4.4</b> Example</a></li>
+<li class="chapter" data-level="4.5" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#fishers-exact-test-in-r"><i class="fa fa-check"></i><b>4.5</b> Fisher’s Exact Test in R</a></li>
+<li class="chapter" data-level="4.6" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#what-if-we-just-use-a-chi-square-test"><i class="fa fa-check"></i><b>4.6</b> What if we just use a chi-square test?</a></li>
+<li class="chapter" data-level="4.7" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#why-not-always-use-fishers-exact-test-instead-of-a-chi-square-test"><i class="fa fa-check"></i><b>4.7</b> Why not always use Fisher’s Exact Test instead of a chi-square test?</a></li>
+<li class="chapter" data-level="4.8" data-path="fishers-exact-test.html"><a href="fishers-exact-test.html#another-cautionary-note"><i class="fa fa-check"></i><b>4.8</b> Another Cautionary Note</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="difference.html"><a href="difference.html"><i class="fa fa-check"></i><b>5</b> t-test for difference</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="difference.html"><a href="difference.html#preliminaries"><i class="fa fa-check"></i><b>5.1</b> Preliminaries</a></li>
+<li class="chapter" data-level="5.2" data-path="difference.html"><a href="difference.html#motivation-and-example"><i class="fa fa-check"></i><b>5.2</b> Motivation and example</a></li>
+<li class="chapter" data-level="5.3" data-path="difference.html"><a href="difference.html#the-two-sample-t-test"><i class="fa fa-check"></i><b>5.3</b> The two-sample <em>t</em>-test</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="difference.html"><a href="difference.html#pros-of-the-t-test"><i class="fa fa-check"></i><b>5.3.1</b> Pros of the <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.3.2" data-path="difference.html"><a href="difference.html#cons-of-the-t-test"><i class="fa fa-check"></i><b>5.3.2</b> Cons of the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="difference.html"><a href="difference.html#the-workflow"><i class="fa fa-check"></i><b>5.4</b> The workflow</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="difference.html"><a href="difference.html#open-your-project"><i class="fa fa-check"></i><b>5.4.1</b> Open your project</a></li>
+<li class="chapter" data-level="5.4.2" data-path="difference.html"><a href="difference.html#create-a-new-script"><i class="fa fa-check"></i><b>5.4.2</b> Create a new script</a></li>
+<li class="chapter" data-level="5.4.3" data-path="difference.html"><a href="difference.html#load-packages-1"><i class="fa fa-check"></i><b>5.4.3</b> Load packages</a></li>
+<li class="chapter" data-level="5.4.4" data-path="difference.html"><a href="difference.html#read-in-and-inspect-the-data"><i class="fa fa-check"></i><b>5.4.4</b> Read in and inspect the data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="difference.html"><a href="difference.html#step-one-summarise-the-data"><i class="fa fa-check"></i><b>5.5</b> Step One: Summarise the data</a></li>
+<li class="chapter" data-level="5.6" data-path="difference.html"><a href="difference.html#step-two-plot-the-data"><i class="fa fa-check"></i><b>5.6</b> Step Two: Plot the data</a></li>
+<li class="chapter" data-level="5.7" data-path="difference.html"><a href="difference.html#step-three-carry-out-statistical-analysis"><i class="fa fa-check"></i><b>5.7</b> Step Three: Carry out statistical analysis</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="difference.html"><a href="difference.html#are-the-data-normally-distributed"><i class="fa fa-check"></i><b>5.7.1</b> Are the data normally distributed?</a></li>
+<li class="chapter" data-level="5.7.2" data-path="difference.html"><a href="difference.html#normality-test---analytical-method"><i class="fa fa-check"></i><b>5.7.2</b> Normality test - analytical method</a></li>
+<li class="chapter" data-level="5.7.3" data-path="difference.html"><a href="difference.html#graphical-methods---the-quantile-quantile-or-qq-plot."><i class="fa fa-check"></i><b>5.7.3</b> Graphical methods - the quantile-quantile or QQ plot.</a></li>
+<li class="chapter" data-level="5.7.4" data-path="difference.html"><a href="difference.html#the-thinking-about-the-data-normality-test"><i class="fa fa-check"></i><b>5.7.4</b> The ‘thinking about the data’ normality test</a></li>
+<li class="chapter" data-level="5.7.5" data-path="difference.html"><a href="difference.html#now-for-the-actual-two-sample-t-test"><i class="fa fa-check"></i><b>5.7.5</b> Now for the actual two-sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="5.7.6" data-path="difference.html"><a href="difference.html#interpret-the-output-of-the-t-test."><i class="fa fa-check"></i><b>5.7.6</b> Interpret the output of the <em>t</em>-test.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="difference.html"><a href="difference.html#the-complete-script"><i class="fa fa-check"></i><b>5.8</b> The complete script</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html"><i class="fa fa-check"></i><b>6</b> Paired tests for difference</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#which-test-paired-t-test-or-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.1</b> Which test: paired t-test or Wilcoxon signed rank test?</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-paired-t-test"><i class="fa fa-check"></i><b>6.1.1</b> The paired t-test</a></li>
+<li class="chapter" data-level="6.1.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.1.2</b> The Wilcoxon Signed Rank test</a></li>
+<li class="chapter" data-level="6.1.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#null-hypotheses"><i class="fa fa-check"></i><b>6.1.3</b> Null Hypotheses</a></li>
+<li class="chapter" data-level="6.1.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#test-output"><i class="fa fa-check"></i><b>6.1.4</b> Test output</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#example-2"><i class="fa fa-check"></i><b>6.2</b> Example</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-packages-2"><i class="fa fa-check"></i><b>6.2.1</b> Load packages</a></li>
+<li class="chapter" data-level="6.2.2" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#load-data"><i class="fa fa-check"></i><b>6.2.2</b> Load data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#plot-the-data"><i class="fa fa-check"></i><b>6.2.3</b> Plot the data</a></li>
+<li class="chapter" data-level="6.2.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#tidy-the-data"><i class="fa fa-check"></i><b>6.2.4</b> Tidy the data</a></li>
+<li class="chapter" data-level="6.2.5" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#check-for-normality-of-differences"><i class="fa fa-check"></i><b>6.2.5</b> Check for normality of differences</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#the-non-parametric-alternative-the-wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>6.3</b> The non-parametric alternative: The Wilcoxon signed rank test</a></li>
+<li class="chapter" data-level="6.4" data-path="paired-tests-for-difference.html"><a href="paired-tests-for-difference.html#relation-to-one-sample-paired-test"><i class="fa fa-check"></i><b>6.4</b> Relation to one-sample paired test</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="anova-two-way.html"><a href="anova-two-way.html"><i class="fa fa-check"></i><b>7</b> ANOVA: Two-way factorial experiments and model simplification</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="anova-two-way.html"><a href="anova-two-way.html#factorial-experiments-and-model-simplification"><i class="fa fa-check"></i><b>7.1</b> Factorial experiments and model simplification</a></li>
+<li class="chapter" data-level="7.2" data-path="anova-two-way.html"><a href="anova-two-way.html#files-needed"><i class="fa fa-check"></i><b>7.2</b> Files needed</a></li>
+<li class="chapter" data-level="7.3" data-path="anova-two-way.html"><a href="anova-two-way.html#open-your-project-1"><i class="fa fa-check"></i><b>7.3</b> Open your Project</a></li>
+<li class="chapter" data-level="7.4" data-path="anova-two-way.html"><a href="anova-two-way.html#load-packages-3"><i class="fa fa-check"></i><b>7.4</b> Load packages</a></li>
+<li class="chapter" data-level="7.5" data-path="anova-two-way.html"><a href="anova-two-way.html#read-in-the-data"><i class="fa fa-check"></i><b>7.5</b> Read in the data</a></li>
+<li class="chapter" data-level="7.6" data-path="anova-two-way.html"><a href="anova-two-way.html#make-r-recognise-the-categorical-variables-as-factors-and-order-the-levels."><i class="fa fa-check"></i><b>7.6</b> Make R recognise the categorical variables as factors, and order the levels.</a></li>
+<li class="chapter" data-level="7.7" data-path="anova-two-way.html"><a href="anova-two-way.html#summarise-the-data"><i class="fa fa-check"></i><b>7.7</b> Summarise the data</a></li>
+<li class="chapter" data-level="7.8" data-path="anova-two-way.html"><a href="anova-two-way.html#plot-the-data-1"><i class="fa fa-check"></i><b>7.8</b> Plot the data</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="anova-two-way.html"><a href="anova-two-way.html#questions"><i class="fa fa-check"></i><b>7.8.1</b> Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="anova-two-way.html"><a href="anova-two-way.html#anova"><i class="fa fa-check"></i><b>7.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.9.1" data-path="anova-two-way.html"><a href="anova-two-way.html#construct-the-model"><i class="fa fa-check"></i><b>7.9.1</b> Construct the model</a></li>
+<li class="chapter" data-level="7.9.2" data-path="anova-two-way.html"><a href="anova-two-way.html#do-we-reject-the-null-hypothesis"><i class="fa fa-check"></i><b>7.9.2</b> Do we reject the null hypothesis?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="anova-two-way.html"><a href="anova-two-way.html#model-simplification"><i class="fa fa-check"></i><b>7.10</b> Model Simplification</a>
+<ul>
+<li class="chapter" data-level="7.10.1" data-path="anova-two-way.html"><a href="anova-two-way.html#check-the-validity-of-the-linear-model"><i class="fa fa-check"></i><b>7.10.1</b> Check the validity of the linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="anova-two-way.html"><a href="anova-two-way.html#reporting-the-results"><i class="fa fa-check"></i><b>7.11</b> Reporting the results</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="anova-one-way.html"><a href="anova-one-way.html"><i class="fa fa-check"></i><b>8</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="anova-one-way.html"><a href="anova-one-way.html#load-packages-4"><i class="fa fa-check"></i><b>8.1</b> Load packages</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-one-way.html"><a href="anova-one-way.html#remove-observations-with-missing-values"><i class="fa fa-check"></i><b>8.2</b> Remove observations with missing values</a></li>
+<li class="chapter" data-level="8.3" data-path="anova-one-way.html"><a href="anova-one-way.html#summary---group-by-species-and-sex"><i class="fa fa-check"></i><b>8.3</b> Summary - group by species and sex</a></li>
+<li class="chapter" data-level="8.4" data-path="anova-one-way.html"><a href="anova-one-way.html#plot-the-data-2"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
+<li class="chapter" data-level="8.5" data-path="anova-one-way.html"><a href="anova-one-way.html#one-way-anova"><i class="fa fa-check"></i><b>8.5</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="anova-one-way.html"><a href="anova-one-way.html#null-hypothesis"><i class="fa fa-check"></i><b>8.5.1</b> Null hypothesis</a></li>
+<li class="chapter" data-level="8.5.2" data-path="anova-one-way.html"><a href="anova-one-way.html#the-actual-anova"><i class="fa fa-check"></i><b>8.5.2</b> The actual ANOVA</a></li>
+<li class="chapter" data-level="8.5.3" data-path="anova-one-way.html"><a href="anova-one-way.html#construct-the-model-1"><i class="fa fa-check"></i><b>8.5.3</b> Construct the model</a></li>
+<li class="chapter" data-level="8.5.4" data-path="anova-one-way.html"><a href="anova-one-way.html#is-the-model-valid"><i class="fa fa-check"></i><b>8.5.4</b> Is the model valid?</a></li>
+<li class="chapter" data-level="8.5.5" data-path="anova-one-way.html"><a href="anova-one-way.html#the-overall-picture"><i class="fa fa-check"></i><b>8.5.5</b> The overall picture</a></li>
+<li class="chapter" data-level="8.5.6" data-path="anova-one-way.html"><a href="anova-one-way.html#the-detailed-picture"><i class="fa fa-check"></i><b>8.5.6</b> The detailed picture</a></li>
+<li class="chapter" data-level="8.5.7" data-path="anova-one-way.html"><a href="anova-one-way.html#post-hoc-tsts."><i class="fa fa-check"></i><b>8.5.7</b> Post hoc tsts.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="anova-one-way.html"><a href="anova-one-way.html#reporting-the-result."><i class="fa fa-check"></i><b>8.6</b> Reporting the Result.</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>9</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>9.1</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="9.2" data-path="correlation.html"><a href="correlation.html#different-values-of-r."><i class="fa fa-check"></i><b>9.2</b> Different values of <em>r</em>.</a></li>
+<li class="chapter" data-level="9.3" data-path="correlation.html"><a href="correlation.html#using-r-to-find-the-correlation-coefficient."><i class="fa fa-check"></i><b>9.3</b> Using R to find the correlation coefficient.</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="correlation.html"><a href="correlation.html#correlations-for-real-data"><i class="fa fa-check"></i><b>9.3.1</b> Correlations for real data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="correlation.html"><a href="correlation.html#the-correlation-coefficient-measures-the-degree-of-linear-association."><i class="fa fa-check"></i><b>9.4</b> The correlation coefficient measures the degree of linear association.</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="correlation.html"><a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient"><i class="fa fa-check"></i><b>9.4.1</b> When is it appropriate to calculate a correlation coefficient?</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="correlation.html"><a href="correlation.html#association-is-not-causation"><i class="fa fa-check"></i><b>9.5</b> Association is not causation</a></li>
+<li class="chapter" data-level="9.6" data-path="correlation.html"><a href="correlation.html#examples"><i class="fa fa-check"></i><b>9.6</b> Examples</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="correlation.html"><a href="correlation.html#lichen-abundance"><i class="fa fa-check"></i><b>9.6.1</b> Lichen abundance</a></li>
+<li class="chapter" data-level="9.6.2" data-path="correlation.html"><a href="correlation.html#soil-bacteria"><i class="fa fa-check"></i><b>9.6.2</b> Soil bacteria</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="correlation.html"><a href="correlation.html#exercises"><i class="fa fa-check"></i><b>9.7</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="correlation.html"><a href="correlation.html#exercise-1"><i class="fa fa-check"></i><b>9.7.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.7.2" data-path="correlation.html"><a href="correlation.html#exercise-2"><i class="fa fa-check"></i><b>9.7.2</b> Exercise 2</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>10</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#simple-linear-regression-1"><i class="fa fa-check"></i><b>10.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="10.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>10.2</b> Load packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>10.3</b> Get the data</a></li>
+<li class="chapter" data-level="10.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>10.4</b> Plot the data</a></li>
+<li class="chapter" data-level="10.5" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>10.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="10.6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>10.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="10.7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>10.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="10.8" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>10.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="10.9" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>10.9</b> Conclusion</a></li>
+<li class="chapter" data-level="10.10" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>10.10</b> Sample script</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html"><i class="fa fa-check"></i><b>A</b> A primer in statistics</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#populations-and-samples"><i class="fa fa-check"></i><b>A.1</b> Populations and samples</a></li>
+<li class="chapter" data-level="A.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#three-types-of-variability-of-the-sample-of-the-population-and-of-the-estimate."><i class="fa fa-check"></i><b>A.2</b> Three types of variability: of the sample, of the population and of the estimate.</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-sample"><i class="fa fa-check"></i><b>A.2.1</b> Variability of the sample</a></li>
+<li class="chapter" data-level="A.2.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-population"><i class="fa fa-check"></i><b>A.2.2</b> Variability of the population</a></li>
+<li class="chapter" data-level="A.2.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#variability-of-the-estimate"><i class="fa fa-check"></i><b>A.2.3</b> Variability of the estimate</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#confidence-intervals-a-way-of-precisely-representing-uncertainty"><i class="fa fa-check"></i><b>A.3</b> Confidence intervals: a way of precisely representing uncertainty</a></li>
+<li class="chapter" data-level="A.4" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#the-t-distribution"><i class="fa fa-check"></i><b>A.4</b> The <span class="math inline">\(t\)</span>-distribution</a></li>
+<li class="chapter" data-level="A.5" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#hypothesis-testing"><i class="fa fa-check"></i><b>A.5</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#general-procedure-for-a-hypothesis-test"><i class="fa fa-check"></i><b>A.5.1</b> General procedure for a hypothesis test</a></li>
+<li class="chapter" data-level="A.5.2" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#comparing-one-mean-with-a-threshold---one-sample-t-test"><i class="fa fa-check"></i><b>A.5.2</b> Comparing one mean with a threshold - one sample <em>t</em>-test</a></li>
+<li class="chapter" data-level="A.5.3" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#comparing-two-means---two-sample-test"><i class="fa fa-check"></i><b>A.5.3</b> Comparing two means - two-sample test</a></li>
+<li class="chapter" data-level="A.5.4" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#alternatives-to-the-t-test"><i class="fa fa-check"></i><b>A.5.4</b> Alternatives to the <em>t</em>-test</a></li>
+</ul></li>
+<li class="chapter" data-level="A.6" data-path="a-primer-in-statistics.html"><a href="a-primer-in-statistics.html#size-effects-vs-hypothesis-testing."><i class="fa fa-check"></i><b>A.6</b> Size effects vs hypothesis testing.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data analysis for Newquay University Centre</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="difference" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> t-test for difference<a href="difference.html#difference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preliminaries" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Preliminaries<a href="difference.html#preliminaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this exercise we find out how to use R to run a two-sample <em>t</em>-test, to determine whether there is evidence to reject the hypothesis that two samples are drawn from the same population.</p>
+<p>The exercise is based on Chapter 5: <a href="https://www.amazon.co.uk/Getting-Started-Andrew-P-Beckerman/dp/0198787847/ref=asc_df_0198787847/?tag=googshopuk-21&amp;linkCode=df0&amp;hvadid=310872601819&amp;hvpos=&amp;hvnetw=g&amp;hvrand=10507669566166636114&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1006537&amp;hvtargid=pla-420690501286&amp;psc=1&amp;th=1&amp;psc=1">Beckerman, Childs and Petchey: Getting Started with R</a>.</p>
+<p>You should have a</p>
+</div>
+<div id="motivation-and-example" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Motivation and example<a href="difference.html#motivation-and-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our example we will consider concentrations of airborne ozone (O<sub>3</sub>) at ground level, as measured in gardens around a city. This is of interest because ozone levels can affect how well crops grow, and can impact on human health.</p>
+<p>We have measurements of airborne ozone levels in ppb taken at two samples of locations in the city: some randomly selected from among gardens in the eastern residential sector and some randomly selected from among gardens in the western sector, close to a zone of heavy industry.</p>
+<p>Our question is:</p>
+<p><em>Is there evidence for a difference between airborne ozone concentrations in the east and the west of the city?</em></p>
+<p>From which our null hypothesis is:</p>
+<p><em>There is no difference between airborne ozone concentrations in the east and the west of the city.</em></p>
+<p>and our alternate, two-sided hypothesis is:</p>
+<p><em>There is a difference between airborne ozone concentrations in the east and the west of the city.</em></p>
+</div>
+<div id="the-two-sample-t-test" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> The two-sample <em>t</em>-test<a href="difference.html#the-two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This can be used when we have two independent sets of numerical data, and our question is whether the data provide evidence that the sets are drawn from different populations.</p>
+<div id="pros-of-the-t-test" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Pros of the <em>t</em>-test<a href="difference.html#pros-of-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>It can be used when the data set is small.</li>
+<li>It can still be used when the data set is large. So…if in doubt, just use the <em>t</em>-test, (Kind of, the data do need to fulfil some criteria, but being few in number is fine. See below).</li>
+</ul>
+</div>
+<div id="cons-of-the-t-test" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Cons of the <em>t</em>-test<a href="difference.html#cons-of-the-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>It assumes that the data are drawn from a normally distributed population. There are various ways to test if this is true, and you should try at least one of them, but with small samples, just where the <em>t</em>-test is most useful, it can be difficult to tell. In the end we can also appeal to reason: is there good reason to suppose that the data would or would not be normally distributed?</li>
+<li>When comparing the means of two samples both samples should normally have the same variance, which is a measure of the spread of the data. You need to check that this is the case, or at least have reason to suppose that it should be. (Note: in an actual <em>t</em>-test, it is possible to ignore this requirement - see below).</li>
+<li>When we have more than two samples and we use the <em>t</em>-test to look for a difference between any two of them, it becomes increasingly likely, the more pairs of samples we compare, that we will decide that we have found a difference because we got a <em>p</em>-value that was less than some pre-determined threshold (which could be anything, but is most often chosen to be 0.05) even if in reality there is none. This is the problem of high false positive rates arising from multiple pairwise testing and is where ANOVA comes in. <em>t</em>-tests are only used to detect evidence for a difference between two groups, not more. ANOVAs (or their non-parametric equivalent) are used when we are looking for differences between more than two groups.</li>
+</ul>
+</div>
+</div>
+<div id="the-workflow" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> The workflow<a href="difference.html#the-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="open-your-project" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Open your project<a href="difference.html#open-your-project" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Open your RStuff (or whatever you have called it) project using File/Open Project, navigating to the project folder, then clicking on the <code>... .Rproj</code> file you will find there.</p>
+<p>If your Rstuff folder is not already a Project, then make it one using File/New Project/Existing Directory - then navigate to your Rstuff folder.</p>
+</div>
+<div id="create-a-new-script" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Create a new script<a href="difference.html#create-a-new-script" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a nw notebook script using File/New File/R Notebook
+Delete everything from below the yaml section at the top. This is the bit between the pair of lines with three dashes. In the yaml, amend the title and add lines <code>author: "&lt;your name&gt;"</code> and <code>date: "&lt;the date&gt;"</code>. Inside the quotes, add your name and the date.</p>
+<p>Now add code chunks to carry out the steps listed below. In between the chunks, add as much explanatory text as you want so that next time you come back, you understand what each code chunk is doing. You can format this text using the simple markdown rules to be found in Help/markdown Quick Reference</p>
+</div>
+<div id="load-packages-1" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Load packages<a href="difference.html#load-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We typically include a chunk at or near the top of a script that loads any packages we are going to use. If we load all of them in this one chunk it is easy to see at a glance which ones have been loaded.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="difference.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="difference.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="difference.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb1-4"><a href="difference.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb1-5"><a href="difference.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(mbhR)</span>
+<span id="cb1-6"><a href="difference.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb1-7"><a href="difference.html#cb1-7" tabindex="-1"></a><span class="co"># if that last line doesn&#39;t work, uncomment the next line by deleting the # and run it to install the mbhR package. </span></span>
+<span id="cb1-8"><a href="difference.html#cb1-8" tabindex="-1"></a><span class="co"># remotes::install_github(“mbh038/mbhR”)</span></span></code></pre></div>
+</div>
+<div id="read-in-and-inspect-the-data" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Read in and inspect the data<a href="difference.html#read-in-and-inspect-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="difference.html#cb2-1" tabindex="-1"></a><span class="co"># there should be an &#39;ozone.csv&#39; file in your data folder</span></span>
+<span id="cb2-2"><a href="difference.html#cb2-2" tabindex="-1"></a><span class="co"># if not, you should be able to get it from the data folder on Teams or Moodle</span></span>
+<span id="cb2-3"><a href="difference.html#cb2-3" tabindex="-1"></a>filepath<span class="ot">&lt;-</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>)</span>
+<span id="cb2-4"><a href="difference.html#cb2-4" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(filepath)</span>
+<span id="cb2-5"><a href="difference.html#cb2-5" tabindex="-1"></a><span class="co">#glimpse(ozone)</span></span></code></pre></div>
+<p>What kind of data have we got?</p>
+<p>You might also wish to inspect the data using <code>summary()</code>. If so, include a code chunk to do this.</p>
+</div>
+</div>
+<div id="step-one-summarise-the-data" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Step One: Summarise the data<a href="difference.html#step-one-summarise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With numerical data spread across more than one level of a categorical variable, we often want summary information such as mean values and standard erros of the mean for each level. We can do this by using the <code>group_by()</code> and then <code>summarise()</code> combination. This first group the data however you want to, then calculates whatever summary you have requested for each group.</p>
+<p>Here we will calculate the number of replicates, the mean and the standard error of the mean for both levels of <code>garden.location</code> ie east and west, then store the result in a data frame calle <code>ozone.summary</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="difference.html#cb3-1" tabindex="-1"></a>ozone.summary<span class="ot">&lt;-</span>ozone <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="difference.html#cb3-2" tabindex="-1"></a><span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="difference.html#cb3-3" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a href="difference.html#cb3-4" tabindex="-1"></a>          <span class="at">mean.ozone =</span> <span class="fu">mean</span>(ozone),</span>
+<span id="cb3-5"><a href="difference.html#cb3-5" tabindex="-1"></a>          <span class="at">se.ozone =</span> <span class="fu">sd</span>(ozone)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">n</span>()))</span>
+<span id="cb3-6"><a href="difference.html#cb3-6" tabindex="-1"></a>ozone.summary</span>
+<span id="cb3-7"><a href="difference.html#cb3-7" tabindex="-1"></a><span class="do">## # A tibble: 2 × 4</span></span>
+<span id="cb3-8"><a href="difference.html#cb3-8" tabindex="-1"></a><span class="do">##   garden.location     n mean.ozone se.ozone</span></span>
+<span id="cb3-9"><a href="difference.html#cb3-9" tabindex="-1"></a><span class="do">##   &lt;chr&gt;           &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb3-10"><a href="difference.html#cb3-10" tabindex="-1"></a><span class="do">## 1 East               10       77.3     2.49</span></span>
+<span id="cb3-11"><a href="difference.html#cb3-11" tabindex="-1"></a><span class="do">## 2 West               10       61.3     2.87</span></span></code></pre></div>
+<p>From these data, does it look as though there is evidence for a difference between ozone levels in the East and the West? Clearly, the ten gardens in the east had a higher mean ozone concentration than the ten in the west. But is this a fluke? How precisely do we think these sample means reflect the truth about the east and the west of the city? That is what the standard error column tells us. You can think of the standard error as being an estimate of how far from the true ozone concentrations for the whole of the east and the whole of the west our sample means, drawn from just ten locations in each part of the city, are likely to be.</p>
+<p>Bottom line: the difference between the sample means is about six times the size of the standard errors of each. It really does look as thought east of the city has a higher ozone concentration than the west.</p>
+</div>
+<div id="step-two-plot-the-data" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Step Two: Plot the data<a href="difference.html#step-two-plot-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Remember, before we do any statistical analysis, it is almost always a good idea to plot the data in some way. We can often get a very good idea as to the answer to our research question just from the plots we do.</p>
+<p>Here, we will</p>
+<ul>
+<li>use <code>ggplot()</code> to plot a histogram of ozone levels</li>
+<li>use the <code>facet_wrap()</code> function to give two copies of the histogram, one for east and one for west, and to stack the histograms one above the other.</li>
+<li>make the histogram bins 10 ppm wide.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="difference.html#cb4-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="difference.html#cb4-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="difference.html#cb4-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb4-4"><a href="difference.html#cb4-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="difference.html#cb4-5" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="test_for_difference_files/figure-html/histogram-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Instead of histograms, we could have drawn box plots:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="difference.html#cb5-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="difference.html#cb5-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>ozone))<span class="sc">+</span></span>
+<span id="cb5-3"><a href="difference.html#cb5-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb5-4"><a href="difference.html#cb5-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
+<span id="cb5-5"><a href="difference.html#cb5-5" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="difference.html#cb5-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="test_for_difference_files/figure-html/box%20plot-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>or as a dot plot with standard errors of the mean included:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="difference.html#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="difference.html#cb6-2" tabindex="-1"></a><span class="co"># for this chart we will use the summary table that we created above.</span></span>
+<span id="cb6-3"><a href="difference.html#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="difference.html#cb6-4" tabindex="-1"></a>ozone.summary <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="difference.html#cb6-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>garden.location,<span class="at">y=</span>mean.ozone))<span class="sc">+</span></span>
+<span id="cb6-6"><a href="difference.html#cb6-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="difference.html#cb6-7" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>mean.ozone<span class="sc">-</span>se.ozone,<span class="at">ymax=</span>mean.ozone<span class="sc">+</span>se.ozone),<span class="at">width=</span><span class="fl">0.1</span>)<span class="sc">+</span></span>
+<span id="cb6-8"><a href="difference.html#cb6-8" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>) <span class="sc">+</span> <span class="co"># try leaving this line out. What happens? Which is better?</span></span>
+<span id="cb6-9"><a href="difference.html#cb6-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Garden Location&quot;</span>,</span>
+<span id="cb6-10"><a href="difference.html#cb6-10" tabindex="-1"></a>       <span class="at">y=</span><span class="st">&quot;Ozone concentration (ppb)&quot;</span>,</span>
+<span id="cb6-11"><a href="difference.html#cb6-11" tabindex="-1"></a>       <span class="at">caption=</span><span class="st">&quot;The data points show mean values, the error bars show plus or minus one standard error of the mean &quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="difference.html#cb6-12" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="test_for_difference_files/figure-html/bar%20chart-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Do the data look as though they support the null hypothesis or not?</p>
+<p>In addition, do the data look as though each group is drawn from a normally distributed population? One of the types of graphs gives you no indication of that while the other two do. Which is the odd one out? Even when looking at the other two figures, when there are so few data it’s kind of hard to tell, no?</p>
+<p>Let’s now do some stats.</p>
+</div>
+<div id="step-three-carry-out-statistical-analysis" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Step Three: Carry out statistical analysis<a href="difference.html#step-three-carry-out-statistical-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="are-the-data-normally-distributed" class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Are the data normally distributed?<a href="difference.html#are-the-data-normally-distributed" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can go about establishing this in three ways: using an analytical test of normality, using a graphical method and by thinking about what kind of data we have. Let’s consider these in turn.</p>
+</div>
+<div id="normality-test---analytical-method" class="section level3 hasAnchor" number="5.7.2">
+<h3><span class="header-section-number">5.7.2</span> Normality test - analytical method<a href="difference.html#normality-test---analytical-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are several analytical tests one can run on a set of data to determine if it is normally distributed. One is the Shapiro-Wilk test.</p>
+<p>For more information on the Shapiro-Wilk test, type <code>?shapiro.test</code> into the console window. For kicks, try it out on the examples that appear in the help window (which is the bottom right pane, Help tab). One example is testing a sample of data that explicitly <em>is</em> drawn from a normal distribution, the other tests a sample of data that definitely <em>is not</em>. What <em>p</em>-value do you get in each case? How closely do the histograms of each sample resemble a normal distribution?</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="difference.html#cb7-1" tabindex="-1"></a><span class="co">#first we create a data frame containing the two example data sets</span></span>
+<span id="cb7-2"><a href="difference.html#cb7-2" tabindex="-1"></a>example1<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">3</span>) <span class="co"># first example from the help pane</span></span>
+<span id="cb7-3"><a href="difference.html#cb7-3" tabindex="-1"></a>example2<span class="ot">&lt;-</span><span class="fu">runif</span>(<span class="dv">100</span>, <span class="at">min =</span> <span class="dv">2</span>, <span class="at">max =</span> <span class="dv">4</span>) <span class="co"># second example from the help pane</span></span>
+<span id="cb7-4"><a href="difference.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="difference.html#cb7-5" tabindex="-1"></a>df<span class="ot">&lt;-</span><span class="fu">tibble</span>(<span class="at">data=</span><span class="fu">c</span>(example1,example2), <span class="at">distribution=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;normal&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;not at all normal&quot;</span>,<span class="dv">100</span>)))</span>
+<span id="cb7-6"><a href="difference.html#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="difference.html#cb7-7" tabindex="-1"></a><span class="co"># then we plot a histogram of each data set</span></span>
+<span id="cb7-8"><a href="difference.html#cb7-8" tabindex="-1"></a><span class="fu">ggplot</span>(df,<span class="fu">aes</span>(<span class="at">x=</span>data)) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="difference.html#cb7-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="difference.html#cb7-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>distribution) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="difference.html#cb7-11" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="test_for_difference_files/figure-html/unnamed-chunk-5-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="difference.html#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="difference.html#cb8-2" tabindex="-1"></a><span class="co"># and finally we run a Shapiro-Wilk normality test on each data set</span></span>
+<span id="cb8-3"><a href="difference.html#cb8-3" tabindex="-1"></a><span class="fu">shapiro.test</span>(example1) <span class="co"># 100 samples drawn from a normally distributed population</span></span>
+<span id="cb8-4"><a href="difference.html#cb8-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-5"><a href="difference.html#cb8-5" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
+<span id="cb8-6"><a href="difference.html#cb8-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-7"><a href="difference.html#cb8-7" tabindex="-1"></a><span class="do">## data:  example1</span></span>
+<span id="cb8-8"><a href="difference.html#cb8-8" tabindex="-1"></a><span class="do">## W = 0.99155, p-value = 0.7876</span></span>
+<span id="cb8-9"><a href="difference.html#cb8-9" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span>
+<span id="cb8-10"><a href="difference.html#cb8-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-11"><a href="difference.html#cb8-11" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
+<span id="cb8-12"><a href="difference.html#cb8-12" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb8-13"><a href="difference.html#cb8-13" tabindex="-1"></a><span class="do">## data:  example2</span></span>
+<span id="cb8-14"><a href="difference.html#cb8-14" tabindex="-1"></a><span class="do">## W = 0.95261, p-value = 0.001238</span></span></code></pre></div>
+<p>For the examples above, we see that Shapiro-Wilk test gave a hig <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, an a very low <em>p</em>-value for the data that we knew were not.</p>
+<p>The Shapiro-Wilk test tests your data against the null hypothesis that it is drawn from a normally distributed population. It gives a <em>p</em>-value. If the <em>p</em>-value is less than 0.05 then we reject the null hypothesis and cannot suppose our data is normally distributed. In that case we would have to ditch the <em>t</em>-test for a difference, and choose another difference test in its place that could cope with data that was not normally distributed.</p>
+<p>Why don’t we do that in the first place, I hear you ask? Why bother with this finicky <em>t</em>-test that requires that we go through the faff of testing the data for normality before we can use it? The answer is that it is more powerful than other, so-called non-parametric tests that <em>can</em> cope with non-normal data. It is more likely than they are to spot a difference if there really is a difference. So if we can use it, that is what we would rather do.</p>
+<p>So, onwards, let’s do the Shapiro-Wilk test on our data</p>
+<p>We want to test each garden group for normality, so we group the data by location as before and and then summarise, this time asking for the <em>p</em>-value returned by the Shapiro-Wilk test of normality.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="difference.html#cb9-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="difference.html#cb9-2" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="difference.html#cb9-3" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">&#39;Shapiro-Wilk p-value&#39;</span><span class="ot">=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
+<span id="cb9-4"><a href="difference.html#cb9-4" tabindex="-1"></a><span class="do">## # A tibble: 2 × 2</span></span>
+<span id="cb9-5"><a href="difference.html#cb9-5" tabindex="-1"></a><span class="do">##   garden.location `Shapiro-Wilk p-value`</span></span>
+<span id="cb9-6"><a href="difference.html#cb9-6" tabindex="-1"></a><span class="do">##   &lt;chr&gt;                            &lt;dbl&gt;</span></span>
+<span id="cb9-7"><a href="difference.html#cb9-7" tabindex="-1"></a><span class="do">## 1 East                            0.0953</span></span>
+<span id="cb9-8"><a href="difference.html#cb9-8" tabindex="-1"></a><span class="do">## 2 West                            0.599</span></span></code></pre></div>
+<p>For both groups the <em>p</em>-value is more than 0.05, so at the 5% significance level we cannot reject the null hypothesis that the data are normally distributed, so we can go on and use the <em>t</em>-test. Yay!</p>
+</div>
+<div id="graphical-methods---the-quantile-quantile-or-qq-plot." class="section level3 hasAnchor" number="5.7.3">
+<h3><span class="header-section-number">5.7.3</span> Graphical methods - the quantile-quantile or QQ plot.<a href="difference.html#graphical-methods---the-quantile-quantile-or-qq-plot." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Confession: I don’t normally bother with numerical tests for normality such as Shapiro-Wilk. I usually use a graphical method instead.</p>
+<p>For an overview of how normally distributed and non-normally distributed data looks when plotted in histograms, box plots and quantile-quntile plots, see <a href="https://rpubs.com/mbh038/725314">this review</a></p>
+<p>We have already seen two ways of plotting the data that might help suggest whether it is plausible that the data are drawn from normally distributed populations. Histograms and box plots both indicate how data is distributed, and for normally distributed data both would be symmetrical. Well, they would be, more or less, if the data set was large enough but for small data sets it can be quite hard to tell from either type of plot whether the data are drawn from a normally distributed population.</p>
+<p>A better type of plot for making this judgement call is the quantile-quantile or ‘QQ’ plot which basically compares the distribution of your data to that of a normal distribution. If your data are approximately normally distributed then a qq plot will give a straight(-ish) line. Even with small data sets, this is usually easy to spot.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="difference.html#cb10-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="difference.html#cb10-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="difference.html#cb10-3" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="difference.html#cb10-4" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="difference.html#cb10-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="difference.html#cb10-6" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>()</span></code></pre></div>
+<p><img src="test_for_difference_files/figure-html/unnamed-chunk-7-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>Nothing outrageously non-linear there, so that also suggests we can safely use the <em>t</em>-test.</p>
+</div>
+<div id="the-thinking-about-the-data-normality-test" class="section level3 hasAnchor" number="5.7.4">
+<h3><span class="header-section-number">5.7.4</span> The ‘thinking about the data’ normality test<a href="difference.html#the-thinking-about-the-data-normality-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you might have guessed, this isn’t a test as such, but a suggestion that you think about what kind of data you have: is it likely to be normally distributed within its subgroups or not? If the data are numerical values of some physical quantity that is the result of many independent processes, and if the data are not bounded on either side (say by 0 and 100 as for exam scores) then it is quite likely that that they are. If they are count data, or ordinal data, then it is quite likely that they are not.</p>
+<p>This way of thinking may be all you can do when data sets are very small and any of the more robust tests for normality presented here leave you not much the wiser.</p>
+</div>
+<div id="now-for-the-actual-two-sample-t-test" class="section level3 hasAnchor" number="5.7.5">
+<h3><span class="header-section-number">5.7.5</span> Now for the actual two-sample <em>t</em>-test<a href="difference.html#now-for-the-actual-two-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So, it looks as though it is plausible that the data are drawn from normal distributions. That means we can go on to use a parametric test such as a <em>t</em>-test and have confidence in its output.</p>
+<p>We can use the <code>t.test()</code> function for this. This needs to be given a formula and a data set as arguments. Look up <code>t.test()</code> in R’s help documentation, and see if you can get the <em>t</em>-test to tell you whether there is a significant difference between ozone levels in the east and in the west of the city.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="difference.html#cb11-1" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span>
+<span id="cb11-2"><a href="difference.html#cb11-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-3"><a href="difference.html#cb11-3" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
+<span id="cb11-4"><a href="difference.html#cb11-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb11-5"><a href="difference.html#cb11-5" tabindex="-1"></a><span class="do">## data:  ozone by garden.location</span></span>
+<span id="cb11-6"><a href="difference.html#cb11-6" tabindex="-1"></a><span class="do">## t = 4.2363, df = 17.656, p-value = 0.0005159</span></span>
+<span id="cb11-7"><a href="difference.html#cb11-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group East and group West is not equal to 0</span></span>
+<span id="cb11-8"><a href="difference.html#cb11-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb11-9"><a href="difference.html#cb11-9" tabindex="-1"></a><span class="do">##   8.094171 24.065829</span></span>
+<span id="cb11-10"><a href="difference.html#cb11-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb11-11"><a href="difference.html#cb11-11" tabindex="-1"></a><span class="do">## mean in group East mean in group West </span></span>
+<span id="cb11-12"><a href="difference.html#cb11-12" tabindex="-1"></a><span class="do">##              77.34              61.26</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="difference.html#cb12-1" tabindex="-1"></a>ozone <span class="sc">|&gt;</span> <span class="fu">t_test</span>(ozone<span class="sc">~</span>garden.location)</span>
+<span id="cb12-2"><a href="difference.html#cb12-2" tabindex="-1"></a><span class="do">## # A tibble: 1 × 8</span></span>
+<span id="cb12-3"><a href="difference.html#cb12-3" tabindex="-1"></a><span class="do">##   .y.   group1 group2    n1    n2 statistic    df        p</span></span>
+<span id="cb12-4"><a href="difference.html#cb12-4" tabindex="-1"></a><span class="do">## * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb12-5"><a href="difference.html#cb12-5" tabindex="-1"></a><span class="do">## 1 ozone East   West      10    10      4.24  17.7 0.000516</span></span></code></pre></div>
+<p>Note the <code>~</code> tilda symbol. This means ‘is a function of’. So this line means: do a <em>t</em>-test to see if there is a significant difference between the ozone levels in the two garden locations.</p>
+</div>
+<div id="interpret-the-output-of-the-t-test." class="section level3 hasAnchor" number="5.7.6">
+<h3><span class="header-section-number">5.7.6</span> Interpret the output of the <em>t</em>-test.<a href="difference.html#interpret-the-output-of-the-t-test." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Study the output of the <em>t</em>-test.</p>
+<ul>
+<li>What kind of test was carried out?</li>
+<li>What data was used for the test?</li>
+<li>What is the test statistic of the data?</li>
+<li>How many degrees of freedom were there? Does the number make sense? In a <em>t</em>-test the ’degrees of freedom is one less than the number of data points.</li>
+<li>What is the p-value?</li>
+<li>What does the p value mean?</li>
+<li>What is the confidence interval for the difference between ozone levels in east and west? Does it encompass zero?</li>
+<li>Is there sufficient evidence to reject the null hypothesis?</li>
+<li>What does the word ‘Welch’ tell you - look it up in the help for <code>t.test()</code>.</li>
+</ul>
+</div>
+</div>
+<div id="the-complete-script" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> The complete script<a href="difference.html#the-complete-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here is a minimal script you could use to run a <em>t</em>-test on the ozone data:</p>
+<p>Capy this and save it as a <filename>.R file</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="difference.html#cb13-1" tabindex="-1"></a><span class="co"># my name</span></span>
+<span id="cb13-2"><a href="difference.html#cb13-2" tabindex="-1"></a><span class="co"># the date</span></span>
+<span id="cb13-3"><a href="difference.html#cb13-3" tabindex="-1"></a><span class="co"># Brief description of what the script is for</span></span>
+<span id="cb13-4"><a href="difference.html#cb13-4" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="difference.html#cb13-5" tabindex="-1"></a><span class="co"># load the packages we need</span></span>
+<span id="cb13-6"><a href="difference.html#cb13-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-7"><a href="difference.html#cb13-7" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb13-8"><a href="difference.html#cb13-8" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb13-9"><a href="difference.html#cb13-9" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="difference.html#cb13-10" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb13-11"><a href="difference.html#cb13-11" tabindex="-1"></a>ozone<span class="ot">&lt;-</span><span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>,<span class="st">&quot;ozone.csv&quot;</span>))</span>
+<span id="cb13-12"><a href="difference.html#cb13-12" tabindex="-1"></a><span class="fu">glimpse</span>(ozone)</span>
+<span id="cb13-13"><a href="difference.html#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="difference.html#cb13-14" tabindex="-1"></a><span class="co"># plot histograms for each location</span></span>
+<span id="cb13-15"><a href="difference.html#cb13-15" tabindex="-1"></a><span class="fu">ggplot</span>(ozone,(<span class="fu">aes</span>(<span class="at">x=</span>ozone)))<span class="sc">+</span></span>
+<span id="cb13-16"><a href="difference.html#cb13-16" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth=</span><span class="dv">10</span>,<span class="at">fill=</span><span class="st">&quot;darkred&quot;</span>)<span class="sc">+</span></span>
+<span id="cb13-17"><a href="difference.html#cb13-17" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location,<span class="at">ncol=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="difference.html#cb13-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb13-19"><a href="difference.html#cb13-19" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="difference.html#cb13-20" tabindex="-1"></a><span class="co"># what are the means and standard deviations of ozone levels for each location?</span></span>
+<span id="cb13-21"><a href="difference.html#cb13-21" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-22"><a href="difference.html#cb13-22" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb13-23"><a href="difference.html#cb13-23" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(ozone),<span class="at">st_dev=</span><span class="fu">sd</span>(ozone))</span>
+<span id="cb13-24"><a href="difference.html#cb13-24" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="difference.html#cb13-25" tabindex="-1"></a><span class="co"># are the ozone levels in each location normally distributed?</span></span>
+<span id="cb13-26"><a href="difference.html#cb13-26" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-27"><a href="difference.html#cb13-27" tabindex="-1"></a>  <span class="fu">group_by</span>(garden.location) <span class="sc">|&gt;</span></span>
+<span id="cb13-28"><a href="difference.html#cb13-28" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">sw=</span><span class="fu">shapiro.test</span>(ozone)<span class="sc">$</span>p.value)</span>
+<span id="cb13-29"><a href="difference.html#cb13-29" tabindex="-1"></a></span>
+<span id="cb13-30"><a href="difference.html#cb13-30" tabindex="-1"></a><span class="co"># graphical check for normality:</span></span>
+<span id="cb13-31"><a href="difference.html#cb13-31" tabindex="-1"></a><span class="co"># quantile-quantile plots for ozone levels in each location</span></span>
+<span id="cb13-32"><a href="difference.html#cb13-32" tabindex="-1"></a>ozone <span class="sc">|&gt;</span></span>
+<span id="cb13-33"><a href="difference.html#cb13-33" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">sample=</span>ozone)) <span class="sc">+</span></span>
+<span id="cb13-34"><a href="difference.html#cb13-34" tabindex="-1"></a>  <span class="fu">stat_qq</span>(<span class="at">colour=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-35"><a href="difference.html#cb13-35" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
+<span id="cb13-36"><a href="difference.html#cb13-36" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>garden.location) <span class="sc">+</span></span>
+<span id="cb13-37"><a href="difference.html#cb13-37" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb13-38"><a href="difference.html#cb13-38" tabindex="-1"></a></span>
+<span id="cb13-39"><a href="difference.html#cb13-39" tabindex="-1"></a><span class="co"># and finally, the actual _t_-test</span></span>
+<span id="cb13-40"><a href="difference.html#cb13-40" tabindex="-1"></a><span class="fu">t.test</span>(ozone<span class="sc">~</span>garden.location,<span class="at">data=</span>ozone)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fishers-exact-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="paired-tests-for-difference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Newquay-University-Centre/r4nqy/edit/main/test_for_difference.Rmd",
+"text": "Suggest an edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/Newquay-University-Centre/r4nqy/raw/main/test_for_difference.Rmd"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

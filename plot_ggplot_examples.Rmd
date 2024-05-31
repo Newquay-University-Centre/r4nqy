@@ -1,4 +1,4 @@
-# Plot your data
+# Plot your data {#plot-with-ggplot}
 
 ```{r, include = FALSE}
 source("common.R")

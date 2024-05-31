@@ -1,4 +1,4 @@
-# One-way ANOVA
+# One-way ANOVA {#anova-one-way}
 
 
 

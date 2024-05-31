@@ -16,7 +16,7 @@ url: 'https\://newquay-university-centre.github.io/r4nqy/'
 
 
 
-# Welcome
+# Welcome {-}
 
 This book is intended to help anyone who wants to analyse their data in a scientific context. It is aimed in particular at those studying CORN276 Research Methods and GIS for Zoology, CORN4004 Action Reserch Project and CORN328 Honours Project at Newquay University Centre, but we hope it will be of interest and use to anyone with similar needs.
 

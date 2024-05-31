@@ -1,4 +1,4 @@
-# Correlation
+# Correlation {#correlation}
 
 ```{r, include = FALSE}
 source("common.R")

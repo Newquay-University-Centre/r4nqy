@@ -1,4 +1,4 @@
-# Chi-square analysis
+# Chi-square analysis {#chi-square}
 
 
 
