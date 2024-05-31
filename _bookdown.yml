@@ -16,5 +16,5 @@ rmd_files: [
   "ANOVA_one_way.Rmd",
   "correlation.Rmd",
   "simple_linear_regression.Rmd",
-  "appendix"
+  "appendix.Rmd"
 ]
