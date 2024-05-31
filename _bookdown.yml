@@ -10,11 +10,11 @@ rmd_files: [
   "plot_ggplot_examples.Rmd",
   "chi-square.Rmd",
   "fishers_exact_test.Rmd",
-  "correlation.Rmd",
   "test_for_difference.Rmd",
   "paired_data.Rmd",
   "ANOVA_two_way_with_model_simplification.Rmd",
   "ANOVA_one_way.Rmd",
   "correlation.Rmd",
-  "simple_linear_regression.Rmd"
+  "simple_linear_regression.Rmd",
+  "appendix"
 ]
