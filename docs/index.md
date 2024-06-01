@@ -1,7 +1,7 @@
 --- 
 title: "Data analysis for Newquay University Centre"
 author: "Michael Hunt"
-date: "2024-05-31"
+date: "2024-06-01"
 site: bookdown::bookdown_site
 documentclass: book
 cover-image: "images/logo/newquay_uc.png"
@@ -11,7 +11,7 @@ cover-image: "images/logo/newquay_uc.png"
 description: "A work in progress"
 link-citations: yes
 github-repo: Newquay-University-Centre/r4nqy
-url: 'https\://newquay-university-centre.github.io/r4nqy/'
+url: 'https://newquay-university-centre.github.io/r4nqy'
 ---
 
 
