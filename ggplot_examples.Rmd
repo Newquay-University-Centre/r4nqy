@@ -144,7 +144,7 @@ penguins |>
        caption = "Alternative place to put the information in the subtitle")
 ```
 
-It can be useful to include some combination of titles, subtitles and captions if the figure is to be used as part of a presentation or poster, but if it is to go in a report, you would normally only include a caption, and let the word-processing software do it, and if just for exploratory analysis, not even that. I normally do include axis labels, however.
+It can be useful to include some combination of titles, subtitles and captions if the figure is to be used as part of a presentation or poster, but if it is to go in a report, you would normally only include axis labels, and let the word-processing software write a caption.
 
 
 Now we use a `theme` to alter the overall look of the figure.  There are several built-in themes you can choose from, and others from packages that you can use. I usually use `theme_cowplot()` from the `cowplot` package. Try typing `?theme` at the command prompt in the console window to see what is available. Here, we use the built-in `theme_bw()`:
@@ -161,7 +161,7 @@ penguins |>
   theme_bw()
 ```
 
-Now we reposition the legend. We don't have to, but we might not like the default position of the legend. If not, we can move or even remove it using another `theme()` line. The position argument of this can be "none" if you want to remove it, top", "bottom", "left", "right" or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.
+Now we reposition the legend. We don't have to, but we might not like the default position of the legend. If not, we can move or even remove it using another `theme()` line. The position argument of this can be "none" if you want to remove it, "top", "bottom", "left", "right" or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.
 
 ```{r place the legend}
 penguins |>

@@ -225,13 +225,13 @@ shapiro.test(example1) # 100 samples drawn from a normally distributed populatio
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example1
-## W = 0.98473, p-value = 0.3034
+## W = 0.9922, p-value = 0.8352
 shapiro.test(example2) # 100 samples drawn from a uniformly (ie NOT normally) distributed population
 ## 
 ## 	Shapiro-Wilk normality test
 ## 
 ## data:  example2
-## W = 0.93142, p-value = 5.997e-05
+## W = 0.95096, p-value = 0.0009607
 ```
 
 For the examples above, we see that Shapiro-Wilk test gave a hig *p*-value for the data that we knew *were* drawn from a normal distribution, an a very low *p*-value for the data that we knew were not.
