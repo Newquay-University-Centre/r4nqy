@@ -33,9 +33,9 @@ This next chunk will download the template file that you need to fill in as you 
 
 
 ```{r}
-file_url <- "https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd"
-file_dest <- here("scripts","my_ggplot_examples.rmd")
-download.file(file_url,file_dest)
+# file_url <- "https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd"
+# file_dest <- here("scripts","my_ggplot_examples.rmd")
+# download.file(file_url,file_dest)
 ```
 
 ## Load the Palmer penguin data
@@ -46,7 +46,6 @@ The `palmerpenguin` package contains two built-in data sets. One is called `peng
 
 Here we load the data into this R session (you will now see it in the Environment pane) and we inspect it using the function `glimpse()`.
 ```{r}
-data(penguins)
 glimpse(penguins)
 ```
 How many rows are there and how many columns? 
