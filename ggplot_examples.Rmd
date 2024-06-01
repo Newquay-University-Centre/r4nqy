@@ -52,7 +52,7 @@ How many rows are there and how many columns?
 
 For more detailed meta-information on the data we just type the name of the data set with a question mark before it:
 ```{r}
-?penguins
+#?penguins
 ```
 
 
