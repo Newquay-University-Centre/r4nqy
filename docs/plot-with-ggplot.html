@@ -394,17 +394,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="get-the-template-script" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Get the template script<a href="plot-with-ggplot.html#get-the-template-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This next chunk will download the template file that you need to fill in as you work through this worksheet, and put it in the scripts subfolder within your project folder. For it to work, you need to be ‘working in your Project’ - in which case the name of the project will appear in the top right of the main RStudio window, and if you have a subfolder within the project folder called ‘scripts’. If any of that is not true, it needs to be sorted now!</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plot-with-ggplot.html#cb4-1" tabindex="-1"></a>file_url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd&quot;</span></span>
-<span id="cb4-2"><a href="plot-with-ggplot.html#cb4-2" tabindex="-1"></a>file_dest <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;scripts&quot;</span>,<span class="st">&quot;my_ggplot_examples.rmd&quot;</span>)</span>
-<span id="cb4-3"><a href="plot-with-ggplot.html#cb4-3" tabindex="-1"></a><span class="fu">download.file</span>(file_url,file_dest)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="plot-with-ggplot.html#cb4-1" tabindex="-1"></a><span class="co"># file_url &lt;- &quot;https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd&quot;</span></span>
+<span id="cb4-2"><a href="plot-with-ggplot.html#cb4-2" tabindex="-1"></a><span class="co"># file_dest &lt;- here(&quot;scripts&quot;,&quot;my_ggplot_examples.rmd&quot;)</span></span>
+<span id="cb4-3"><a href="plot-with-ggplot.html#cb4-3" tabindex="-1"></a><span class="co"># download.file(file_url,file_dest)</span></span></code></pre></div>
 </div>
 <div id="load-the-palmer-penguin-data" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Load the Palmer penguin data<a href="plot-with-ggplot.html#load-the-palmer-penguin-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this exercise we use the Palmer penguins data set which comes with the package palmerpenguins</p>
 <p>The <code>palmerpenguin</code> package contains two built-in data sets. One is called <code>penguins</code>:</p>
 <p>Here we load the data into this R session (you will now see it in the Environment pane) and we inspect it using the function <code>glimpse()</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plot-with-ggplot.html#cb5-1" tabindex="-1"></a><span class="fu">data</span>(penguins)</span>
-<span id="cb5-2"><a href="plot-with-ggplot.html#cb5-2" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="plot-with-ggplot.html#cb5-1" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div>
 <pre><code>## Rows: 344
 ## Columns: 8
 ## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
@@ -481,18 +480,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>First we feed the penguin data to the function <code>ggplot()</code>, and use its <code>aes()</code> argument to tell it which variables are to be ‘mapped’ to which aesthetic (which means, roughly speaking, ‘visible’) features of the plot, such as the x-axis, the y-axis, point and line colours, fill colours, symbol types and size etc:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="plot-with-ggplot.html#cb15-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="plot-with-ggplot.html#cb15-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g))</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/which%20variables-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/which%20variables-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This produces the first layer of the eventual finished plot, an empty plot, ready to display data. Before it can do this, <code>ggplot()</code> needs to be told <em>how</em> you want to do so - what type of plot do you want? For that, we add a <code>geom.....()</code> line, to specify the type of plot.</p>
 <p>There are lots of geom types, but for a scatter plot we use <code>geom_point()</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="plot-with-ggplot.html#cb16-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="plot-with-ggplot.html#cb16-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g)) <span class="sc">+</span></span>
 <span id="cb16-3"><a href="plot-with-ggplot.html#cb16-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/scatter%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/scatter%20plot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This gives us a recognisable scatter plot, but it is deficient in a number of ways. For starters, we know that there are three species of penguin. It would be better if each were plotted using symbols of a different colour, shape or size. We can do this by adding in an extra argument to the aesthetic in the first line. Here we include <code>colour = species</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="plot-with-ggplot.html#cb17-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="plot-with-ggplot.html#cb17-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,<span class="at">y =</span> body_mass_g, <span class="at">colour =</span> species)) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="plot-with-ggplot.html#cb17-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/scatter%20plot%20by%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/scatter%20plot%20by%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Can you guess what you should have do if you wanted not the symbol colour, but its shape or size to depend on species? Clue: change one word!</p>
 <p>Now we add labels, titles and so on, using the line <code>labs(...)</code>. Note how we can actually write the arguments of this over several lines on the page, for clarity.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="plot-with-ggplot.html#cb18-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -504,7 +503,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-7"><a href="plot-with-ggplot.html#cb18-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
 <span id="cb18-8"><a href="plot-with-ggplot.html#cb18-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>,</span>
 <span id="cb18-9"><a href="plot-with-ggplot.html#cb18-9" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Alternative place to put the information in the subtitle&quot;</span>)</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/add%20labels%20and%20titles-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/add%20labels%20and%20titles-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>It can be useful to include some combination of titles, subtitles and captions if the figure is to be used as part of a presentation or poster, but if it is to go in a report, you would normally only include a caption, and let the word-processing software do it, and if just for exploratory analysis, not even that. I normally do include axis labels, however.</p>
 <p>Now we use a <code>theme</code> to alter the overall look of the figure. There are several built-in themes you can choose from, and others from packages that you can use. I usually use <code>theme_cowplot()</code> from the <code>cowplot</code> package. Try typing <code>?theme</code> at the command prompt in the console window to see what is available. Here, we use the built-in <code>theme_bw()</code>:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="plot-with-ggplot.html#cb19-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -516,7 +515,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-7"><a href="plot-with-ggplot.html#cb19-7" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin size, Palmer Station LTER&quot;</span>,</span>
 <span id="cb19-8"><a href="plot-with-ggplot.html#cb19-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
 <span id="cb19-9"><a href="plot-with-ggplot.html#cb19-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/add%20theme-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/add%20theme-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now we reposition the legend. We don’t have to, but we might not like the default position of the legend. If not, we can move or even remove it using another <code>theme()</code> line. The position argument of this can be “none” if you want to remove it, top”, “bottom”, “left”, “right” or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="plot-with-ggplot.html#cb20-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="plot-with-ggplot.html#cb20-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
@@ -528,7 +527,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-8"><a href="plot-with-ggplot.html#cb20-8" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Flipper length and body mass for Adelie, Chinstrap, and Gentoo Penguins&quot;</span>) <span class="sc">+</span></span>
 <span id="cb20-9"><a href="plot-with-ggplot.html#cb20-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb20-10"><a href="plot-with-ggplot.html#cb20-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># try &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/place%20the%20legend-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/place%20the%20legend-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Nicer colours. If you don’t like the default colours offered by R, there are several other palettes available, for example the <code>Brewer</code> palettes, borrowed from the world of maps. See <a href="https://colorbrewer2.org" class="uri">https://colorbrewer2.org</a> ,and for a list of the available palettes, type &gt;<code>?scale_colour_brewer</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the palettes section. Note that we dont <em>have</em> to alter the colours. But doing so can make your plots not only look nicer, but serve some other purpose, such as to be colour-blind friendly, or have colours that are appropriate for the variables being plotted (eg red points for red things, blue points for blue things). For an assignment or dissertation report, it is a good idea to pick a palette that you like and that works, and stick with it, so that all your plots have the same general look. Here we choose the qualitative palette <code>"Set2"</code> and use it by by adding the line <code>scale_colour_brewer(palette="Set2")</code>. Try a few other palettes.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="plot-with-ggplot.html#cb21-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="plot-with-ggplot.html#cb21-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
@@ -541,7 +540,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-9"><a href="plot-with-ggplot.html#cb21-9" tabindex="-1"></a>  <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> <span class="co"># try other palettes eg &quot;Set3&quot;</span></span>
 <span id="cb21-10"><a href="plot-with-ggplot.html#cb21-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb21-11"><a href="plot-with-ggplot.html#cb21-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># try &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/nicer%20colours-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/nicer%20colours-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If we like, we can add best fit lines to each subset of the data, using <code>geom_smooth()</code>. To produce straight line fits, <code>geom_smooth()</code> needs to be told to use a linear model, using the <code>method = "lm"</code> argument. By default, you will get lines with a grey 95% confidence band around them. This can be useful, but if you don’t want it, add the argument <code>se = FALSE</code>, as we have done below. We have also altered the linewidth.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="plot-with-ggplot.html#cb22-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="plot-with-ggplot.html#cb22-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">y=</span>body_mass_g,<span class="at">colour=</span>species)) <span class="sc">+</span></span>
@@ -555,7 +554,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-10"><a href="plot-with-ggplot.html#cb22-10" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb22-11"><a href="plot-with-ggplot.html#cb22-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb22-12"><a href="plot-with-ggplot.html#cb22-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.8</span>)) <span class="co"># also try legend.position = &quot;top&quot;, &quot;left&quot; etc</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/add%20best%20fit%20lines-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/add%20best%20fit%20lines-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="repeat-for-bill-length-and-flipper-length" class="section level2 hasAnchor" number="1.9">
 <h2><span class="header-section-number">1.9</span> Repeat for bill length and flipper length<a href="plot-with-ggplot.html#repeat-for-bill-length-and-flipper-length" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -572,7 +571,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-10"><a href="plot-with-ggplot.html#cb23-10" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb23-11"><a href="plot-with-ggplot.html#cb23-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb23-12"><a href="plot-with-ggplot.html#cb23-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="fl">0.2</span>)) <span class="co"># play with the values to get it where you want it</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/bill%20length%20vs%20flipper%20length-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/bill%20length%20vs%20flipper%20length-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Do you see how straightforwrd it is to adapt the code that produces one plot to get the code you need for another, similar plot?</p>
 </div>
 <div id="add-yet-more-informtion-to-the-plot" class="section level2 hasAnchor" number="1.10">
@@ -591,7 +590,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-11"><a href="plot-with-ggplot.html#cb24-11" tabindex="-1"></a>   <span class="fu">scale_colour_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb24-12"><a href="plot-with-ggplot.html#cb24-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb24-13"><a href="plot-with-ggplot.html#cb24-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="co"># play with the position to get it where you want it. Try &quot;top&quot; etc.</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/islands%20and%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/islands%20and%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="distribution-of-penguin-flipper-lengths" class="section level2 hasAnchor" number="1.11">
 <h2><span class="header-section-number">1.11</span> Distribution of penguin flipper lengths<a href="plot-with-ggplot.html#distribution-of-penguin-flipper-lengths" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -602,7 +601,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="plot-with-ggplot.html#cb25-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="plot-with-ggplot.html#cb25-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span>  <span class="co"># why is y not specified?</span></span>
 <span id="cb25-3"><a href="plot-with-ggplot.html#cb25-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/awful%20histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/awful%20histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>But this isn’t useful. The histograms for the three species overlap each other, so we need to give each one a different colour, and we need to reduce the opacity of the bars so that the histograms behind are not obscured by the ones in front, where they overlap. Further, we need to stop <code>ggplot</code> from stacking the different histogram bars on top of each other where those for different species are in the same bin. Annoyingly, that is what it does by default, which makes seeing the individual distributions clearly much more difficult.</p>
 <p>Another thing with histograms, something that can make them a fiddle to use, is that their usefulness in revealing a distrivution is affect by how wide the bins are. By default, ggplot chooses the bin width such that you get 30 bins altogether. This may not be optimal. Here, let’s try specifying the bin width to 4 mm (but see what happens when you try other values, especially very large and very small values).</p>
 <p>This we can achieve by:</p>
@@ -615,7 +614,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plot-with-ggplot.html#cb26-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href="plot-with-ggplot.html#cb26-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm, <span class="at">fill =</span> species)) <span class="sc">+</span>  <span class="co"># why is y not specified?</span></span>
 <span id="cb26-3"><a href="plot-with-ggplot.html#cb26-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">binwidth =</span> <span class="dv">4</span>)</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/better%20histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/better%20histogram-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>So, a lot going on, but still only three lines of code!</p>
 <p>Now add good axis labels, an overall theme, and choose a colour scheme you like, and the legend position, just as you have done before:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plot-with-ggplot.html#cb27-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -628,7 +627,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-8"><a href="plot-with-ggplot.html#cb27-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb27-9"><a href="plot-with-ggplot.html#cb27-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb27-10"><a href="plot-with-ggplot.html#cb27-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.9</span>,<span class="fl">0.8</span>)) <span class="co"># play with the position to get it where you want it</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/hist%20for%20each%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/hist%20for%20each%20species-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the scatter plot and the histogram, we have used colour to distinguish the different species. We can do this because our data set is tidy: there is just one column that species the species, and the same for every other variable. That same feature of the data enables to use another way to represent the different species: <code>facet_wrap(~species)</code>. This gives us three separate plots, side by side or one above the other. See it used here:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plot-with-ggplot.html#cb28-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb28-2"><a href="plot-with-ggplot.html#cb28-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
@@ -641,7 +640,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb28-9"><a href="plot-with-ggplot.html#cb28-9" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> <span class="co"># try other palettes, eg &quot;Set1&quot;.</span></span>
 <span id="cb28-10"><a href="plot-with-ggplot.html#cb28-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb28-11"><a href="plot-with-ggplot.html#cb28-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20different%20colours-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20different%20colours-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Just a thought, but do the colours here serve any useful purpose? What extra information do they convey? If you ever think that a feature of a graph conveys no additional information, consider omitting it. Here is the figue before without colours, but going for white brs with grey outlines:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="plot-with-ggplot.html#cb29-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb29-2"><a href="plot-with-ggplot.html#cb29-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span></span>
@@ -653,7 +652,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-8"><a href="plot-with-ggplot.html#cb29-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
 <span id="cb29-9"><a href="plot-with-ggplot.html#cb29-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb29-10"><a href="plot-with-ggplot.html#cb29-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20no%20colour-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20no%20colour-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Arguably, this is a better plot than the previous one because it excludes the potentially confusing redundancy of using different colours each species, when we already know which species is the subject of each plot.</p>
 <p>If you don’t like white as the fill colour, try another one, for exampe this one that I found on Cynthia Brewer’s very useful map colour site: <a href="https://colorbrewer2.org" class="uri">https://colorbrewer2.org</a></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="plot-with-ggplot.html#cb30-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -666,7 +665,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-8"><a href="plot-with-ggplot.html#cb30-8" tabindex="-1"></a>  <span class="fu">facet_grid</span>(island<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
 <span id="cb30-9"><a href="plot-with-ggplot.html#cb30-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb30-10"><a href="plot-with-ggplot.html#cb30-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20one%20colour-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/hist%20with%20facet%20wrap%20and%20one%20colour-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Different fill colours <em>would</em> be useful if the different penguin species had distinctive dominant colours, but that isn’t the case!</p>
 </div>
 <div id="density-plot" class="section level3 hasAnchor" number="1.11.2">
@@ -683,7 +682,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb31-8"><a href="plot-with-ggplot.html#cb31-8" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb31-9"><a href="plot-with-ggplot.html#cb31-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb31-10"><a href="plot-with-ggplot.html#cb31-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="co"># play with the position to get it where you want it</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/density-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/density-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can also adapt this and do what was done for the histograms and do a set of three, one for each species, using <code>facet_wrap()</code>:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="plot-with-ggplot.html#cb32-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb32-2"><a href="plot-with-ggplot.html#cb32-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>flipper_length_mm)) <span class="sc">+</span></span>
@@ -695,7 +694,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-8"><a href="plot-with-ggplot.html#cb32-8" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species) <span class="sc">+</span> <span class="co">#try adding the argument ncol = 1.</span></span>
 <span id="cb32-9"><a href="plot-with-ggplot.html#cb32-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb32-10"><a href="plot-with-ggplot.html#cb32-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="co"># we don&#39;t need a legend!</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/density%20with%20facet%20wrap-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/density%20with%20facet%20wrap-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Which is more useful in this case: the overlapping plots on one chart, or the separate charts done using <code>facet_wrap()</code>? Whatever you think here, the answer in other cases will sometimes be one, sometimes the other. Now you have the tools to enable you to try both and make the best choice.</p>
 </div>
 <div id="box-plots" class="section level3 hasAnchor" number="1.11.3">
@@ -705,7 +704,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="plot-with-ggplot.html#cb33-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb33-2"><a href="plot-with-ggplot.html#cb33-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
 <span id="cb33-3"><a href="plot-with-ggplot.html#cb33-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/box%20plot%20basic-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/box%20plot%20basic-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now let’s use what we have done before to add code lines that</p>
 <ul>
 <li>include suitable axis labels and a title</li>
@@ -722,7 +721,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb34-7"><a href="plot-with-ggplot.html#cb34-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb34-8"><a href="plot-with-ggplot.html#cb34-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb34-9"><a href="plot-with-ggplot.html#cb34-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># no legend needed</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/box%20plot%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/box%20plot%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="violin-plot-using-geom_violin" class="section level3 hasAnchor" number="1.11.4">
 <h3><span class="header-section-number">1.11.4</span> Violin Plot using <code>geom_violin()</code><a href="plot-with-ggplot.html#violin-plot-using-geom_violin" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -730,7 +729,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="plot-with-ggplot.html#cb35-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb35-2"><a href="plot-with-ggplot.html#cb35-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
 <span id="cb35-3"><a href="plot-with-ggplot.html#cb35-3" tabindex="-1"></a>  <span class="fu">geom_violin</span>() </span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/violin%20basic-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/violin%20basic-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now we write code to improve this, just as you did the box plot. The final code is the same as for that apart from one line!</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plot-with-ggplot.html#cb36-1" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a href="plot-with-ggplot.html#cb36-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>species,<span class="at">y=</span>flipper_length_mm,<span class="at">fill=</span>species)) <span class="sc">+</span></span>
@@ -741,7 +740,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-7"><a href="plot-with-ggplot.html#cb36-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb36-8"><a href="plot-with-ggplot.html#cb36-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb36-9"><a href="plot-with-ggplot.html#cb36-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># no legend needed</span></span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/violin%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/violin%20improved-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="ridge-plot" class="section level3 hasAnchor" number="1.11.5">
 <h3><span class="header-section-number">1.11.5</span> Ridge plot<a href="plot-with-ggplot.html#ridge-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -760,7 +759,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb37-11"><a href="plot-with-ggplot.html#cb37-11" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Penguin flipper lengths&quot;</span>) <span class="sc">+</span></span>
 <span id="cb37-12"><a href="plot-with-ggplot.html#cb37-12" tabindex="-1"></a>  <span class="fu">theme_ridges</span>() <span class="sc">+</span> </span>
 <span id="cb37-13"><a href="plot-with-ggplot.html#cb37-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now try producing graphs like the ones above, but for body mass rather than flipper length.</p>
 </div>
 </div>
@@ -790,7 +789,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb40-5"><a href="plot-with-ggplot.html#cb40-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Species&quot;</span>,</span>
 <span id="cb40-6"><a href="plot-with-ggplot.html#cb40-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb40-7"><a href="plot-with-ggplot.html#cb40-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now let’s alter this code so that each bar has a different fill colour, and remove the legend that then appears, since it is unnecessary?</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="plot-with-ggplot.html#cb41-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
 <span id="cb41-2"><a href="plot-with-ggplot.html#cb41-2" tabindex="-1"></a>  <span class="co"># we add an argument to colour each bar according to species</span></span>
@@ -802,7 +801,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-8"><a href="plot-with-ggplot.html#cb41-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb41-9"><a href="plot-with-ggplot.html#cb41-9" tabindex="-1"></a>  <span class="co"># include an arument to remove the legend</span></span>
 <span id="cb41-10"><a href="plot-with-ggplot.html#cb41-10" tabindex="-1"></a>  <span class="fu">theme</span>()</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now let us replace this colour scheme with nicer ones (not just nice, but also colour-blind friendly, perhaps) offered by the Brewer palettes.</p>
 <p>To do this we can add the line <code>scale_fill_brewer(palette = "Set2")</code>. Note: we use <code>scale_colour_brewer()</code> to alter the colours of points, like we did above, or the outline colour of bars, and use <code>scale_fill_brewer()</code> to alter the fill colour of bars. This is what we want to do here.</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plot-with-ggplot.html#cb42-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
@@ -814,7 +813,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-7"><a href="plot-with-ggplot.html#cb42-7" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette=</span><span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
 <span id="cb42-8"><a href="plot-with-ggplot.html#cb42-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb42-9"><a href="plot-with-ggplot.html#cb42-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If you don’t like the colours of the palette “Set2” you can try another one. To find out what palettes are available, remember, you can type <code>?scale_fill_brewer()</code> into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the Palettes section.</p>
 <p>If you agree that having different fill colours for the bars is actually confusing and brings no information to the plot that we do not already know, you can modify the previous plot in the manner that you did for the separate histograms:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="plot-with-ggplot.html#cb43-1" tabindex="-1"></a>flipper_summary <span class="sc">|&gt;</span></span>
@@ -826,7 +825,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-7"><a href="plot-with-ggplot.html#cb43-7" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Flipper length (mm)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb43-8"><a href="plot-with-ggplot.html#cb43-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb43-9"><a href="plot-with-ggplot.html#cb43-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="plot_ggplot_examples_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="ggplot_examples_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -867,7 +866,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/Newquay-University-Centre/r4nqy/edit/main/plot_ggplot_examples.Rmd",
+"link": "https://github.com/Newquay-University-Centre/r4nqy/edit/main/ggplot_examples.Rmd",
 "text": "Suggest an edit"
 },
 "history": {
@@ -878,7 +877,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/Newquay-University-Centre/r4nqy/raw/main/plot_ggplot_examples.Rmd"],
+"download": ["https://github.com/Newquay-University-Centre/r4nqy/raw/main/ggplot_examples.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null

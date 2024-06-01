@@ -1,11 +1,6 @@
----
-title: "Use of ggplot for plotting"
-author: "Michael Hunt"
-date: "10-01-2024"
-output:
-  html_document:
-    df_print: paged
----
+# Plot your data {#plot-with-ggplot}
+
+
 
 In this exercise we are going to produce and improve a variety of useful and widely used plots using the package `ggplot` which is part of the larger `tidyverse` package. 
 
@@ -18,11 +13,7 @@ As you complete each code chunk, try it out by pressing the green arrow at the t
 Remember that the template is a markdown document, so you can add extra text between the code chunks to explain to yourself what is going on. You can format this test, if you wish, according to the very basic markdown rules for doing this. See Help/Markdown Quick Reference. This formatting is only useful if you 'knit' the script, by pressing the knit button at the top of the script pane. Try this! I suggest you knit to html. This is how the worksheet you are working from was produced.
 
 
-
-
-
-
-### Load packages
+## Load packages
 
 ```r
 # install.packages("name of package") # run this line once, if you need to, for any of the packages that need to be installed
@@ -32,19 +23,19 @@ library(palmerpenguins)
 library(devtools)
 ```
 
-### Get the template script
+## Get the template script
 
 This next chunk will download the template file that you need to fill in as you work through this worksheet, and put it in the scripts subfolder within your project folder. For it to work, you need to be 'working in your Project' - in which case the name of the project will appear in the top right of the main RStudio window, and if you have a subfolder within the project folder called 'scripts'. If any of that is not true, it needs to be sorted now!
 
 
 
 ```r
-file_url <- "https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd"
-file_dest <- here("scripts","my_ggplot_examples.rmd")
-download.file(file_url,file_dest)
+# file_url <- "https://raw.githubusercontent.com/mbh038/r-workshop/gh-pages/scripts/ggplot_examples_template.Rmd"
+# file_dest <- here("scripts","my_ggplot_examples.rmd")
+# download.file(file_url,file_dest)
 ```
 
-### Load the Palmer penguin data
+## Load the Palmer penguin data
 
 For this exercise we use the Palmer penguins data set which comes with the package palmerpenguins
 
@@ -53,7 +44,6 @@ The `palmerpenguin` package contains two built-in data sets. One is called `peng
 Here we load the data into this R session (you will now see it in the Environment pane) and we inspect it using the function `glimpse()`.
 
 ```r
-data(penguins)
 glimpse(penguins)
 ```
 
@@ -79,7 +69,7 @@ For more detailed meta-information on the data we just type the name of the data
 
 
 
-### Summary stats on all the numeric columns
+## Summary stats on all the numeric columns
 
 This is in general useful to get, at least for the columns that contain numerical data, since it shows which columns contains NAs,which is R-speak for missing data. They are how R represents what would be empty cells in an Excel spreadsheet.
 
@@ -110,7 +100,7 @@ We see that there are some rows with NAs in for a few of the columns. We need to
 
 Here, we will remove those rows:
 
-### Remove the rows with NAs
+## Remove the rows with NAs
 
 ```r
 penguins <- penguins |>
@@ -118,7 +108,7 @@ penguins <- penguins |>
 ```
 
 
-### How many observations are there for each species?
+## How many observations are there for each species?
 
 Note the use of the pipe operator `|>`, here and throughout. Think of it as meaning `and then`. It feeds the output of one line into the function of the next line, where it is used as that function's first argument.
 
@@ -137,7 +127,7 @@ penguins |>
 ## 3 Gentoo      119
 ```
 
-### Mean value for each numerical variable, for each species
+## Mean value for each numerical variable, for each species
 
 Here is an example of the use of the `group_by()` then `summarise()` combination, whereby data is first grouped, here by species, then summary statistics (of your choice) are calculated for each group.
 
@@ -160,7 +150,7 @@ penguins |>
 ## 3 Gentoo              47.6          15.0              217.       5092. 2008.
 ```
 
-### Scatter plots
+## Scatter plots
 
 Is flipper length correlated with body mass?
 
@@ -174,7 +164,7 @@ penguins |>
   ggplot(aes(x=flipper_length_mm,y=body_mass_g))
 ```
 
-<img src="ggplot_examples_files/figure-html/which variables-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/which variables-1.png" width="672" style="display: block; margin: auto;" />
 
 This produces the first layer of the eventual finished plot, an empty plot, ready to display data. Before it can do this, `ggplot()` needs to be told *how* you want to do so - what type of plot do you want? For that, we add a `geom.....()` line, to specify the type of plot.
 
@@ -187,7 +177,7 @@ penguins |>
   geom_point()
 ```
 
-<img src="ggplot_examples_files/figure-html/scatter plot-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/scatter plot-1.png" width="672" style="display: block; margin: auto;" />
 
 This gives us a recognisable scatter plot, but it is deficient in a number of ways. For starters, we know that there are three species of penguin. It would be better if each were plotted using symbols of a different colour, shape or size. We can do this by adding in an extra argument to the aesthetic in the first line. Here we include `colour = species`.
 
@@ -198,7 +188,7 @@ penguins |>
   geom_point()
 ```
 
-<img src="ggplot_examples_files/figure-html/scatter plot by species-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/scatter plot by species-1.png" width="672" style="display: block; margin: auto;" />
 
 Can you guess what you should have do if you wanted not the symbol colour, but its shape or size to depend on species? Clue: change one word!
 
@@ -217,7 +207,7 @@ penguins |>
        caption = "Alternative place to put the information in the subtitle")
 ```
 
-<img src="ggplot_examples_files/figure-html/add labels and titles-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/add labels and titles-1.png" width="672" style="display: block; margin: auto;" />
 
 It can be useful to include some combination of titles, subtitles and captions if the figure is to be used as part of a presentation or poster, but if it is to go in a report, you would normally only include a caption, and let the word-processing software do it, and if just for exploratory analysis, not even that. I normally do include axis labels, however.
 
@@ -237,7 +227,7 @@ penguins |>
   theme_bw()
 ```
 
-<img src="ggplot_examples_files/figure-html/add theme-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/add theme-1.png" width="672" style="display: block; margin: auto;" />
 
 Now we reposition the legend. We don't have to, but we might not like the default position of the legend. If not, we can move or even remove it using another `theme()` line. The position argument of this can be "none" if you want to remove it, top", "bottom", "left", "right" or a numerical vector in relative coordinates, where c(0,0) means bottom left within the plot, and c(1,1) means top-right. This is what we use here. Play around with different values.
 
@@ -255,7 +245,7 @@ penguins |>
   theme(legend.position = c(0.2,0.8)) # try "top", "left" etc
 ```
 
-<img src="ggplot_examples_files/figure-html/place the legend-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/place the legend-1.png" width="672" style="display: block; margin: auto;" />
 
 Nicer colours. If you don't like the default colours offered by R, there are several other palettes available, for example the `Brewer` palettes, borrowed from the world of maps. See https://colorbrewer2.org ,and for a list of the available palettes, type >`?scale_colour_brewer` into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the palettes section. Note that we dont *have* to alter the colours. But doing so can make your plots not only look nicer, but serve some other purpose, such as to be colour-blind friendly, or have colours that are appropriate for the variables being plotted (eg red points for red things, blue points for blue things). For an assignment or dissertation report, it is a good idea to pick a palette that you like and that works, and stick with it, so that all your plots have the same general look. Here we choose the qualitative palette `"Set2"` and use it by by adding the line `scale_colour_brewer(palette="Set2")`. Try a few other palettes.
 
@@ -274,7 +264,7 @@ penguins |>
   theme(legend.position = c(0.2,0.8)) # try "top", "left" etc
 ```
 
-<img src="ggplot_examples_files/figure-html/nicer colours-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/nicer colours-1.png" width="672" style="display: block; margin: auto;" />
 
 
 If we like, we can add best fit lines to each subset of the data, using `geom_smooth()`. To produce straight line fits, `geom_smooth()` needs to be told to use a linear model, using the `method = "lm"` argument. By default, you will get lines with a grey 95% confidence band around them. This can be useful, but if you don't want it, add the argument `se = FALSE`, as we have done below. We have also altered the linewidth.
@@ -295,9 +285,9 @@ penguins |>
   theme(legend.position = c(0.2,0.8)) # also try legend.position = "top", "left" etc
 ```
 
-<img src="ggplot_examples_files/figure-html/add best fit lines-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/add best fit lines-1.png" width="672" style="display: block; margin: auto;" />
 
-### Repeat for bill length and flipper length
+## Repeat for bill length and flipper length
 
 Modify the code of the previous plot so that you now plot bill length vs flipper length. Adjust any labels and titles as necessary. This time, put the legend in the bottom right of the plot.
 
@@ -317,11 +307,11 @@ penguins |>
   theme(legend.position = c(0.9,0.2)) # play with the values to get it where you want it
 ```
 
-<img src="ggplot_examples_files/figure-html/bill length vs flipper length-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/bill length vs flipper length-1.png" width="672" style="display: block; margin: auto;" />
 
 Do you see how straightforwrd it is to adapt the code that produces one plot to get the code you need for another, similar plot?
 
-### Add yet more informtion to the plot
+## Add yet more informtion to the plot
 
 Let us include the information of which island the penguins come from by making the shape of the plotted points be dependent on that:
 
@@ -342,13 +332,13 @@ penguins |>
   theme(legend.position = "right") # play with the position to get it where you want it. Try "top" etc.
 ```
 
-<img src="ggplot_examples_files/figure-html/islands and species-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/islands and species-1.png" width="672" style="display: block; margin: auto;" />
 
-### Distribution of penguin flipper lengths
+## Distribution of penguin flipper lengths
 
 The distribution of a data set is often a useful thing to know. Around which value are the data grouped, how widely spread are they and are the values symmetrically or asymmetrically distributed around the central value? A number of plot types can show this for us. Here we illustrate histograms, density plots, box plots, violin plots and ridge plots.
 
-#### Histogram
+### Histogram
 
 First, let's do a basic histogram. For this we use `geom_histogram()`. In the `ggplot` line, in the `aes()` argument, we need only specify the variable that maps to x, since the software will count how many observations lie within specific narrow ranges of the variable, called bins. Those bin counts will be the y variable of the histogram. To find the distribution of flipper length, we use `flipper_length_mmm` as the x variable. So we could try
 
@@ -359,7 +349,7 @@ penguins |>
   geom_histogram()
 ```
 
-<img src="ggplot_examples_files/figure-html/awful histogram-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/awful histogram-1.png" width="672" style="display: block; margin: auto;" />
 
 But this isn't useful. The histograms for the three species overlap each other, so we need to give each one a different colour, and we need to reduce the opacity of the bars so that the histograms behind are not obscured by the ones in front, where they overlap. Further, we need to stop `ggplot` from stacking the different histogram bars on top of each other where those for different species are in the same bin. Annoyingly, that is what it does by default, which makes seeing the individual distributions clearly much more difficult.
 
@@ -380,7 +370,7 @@ penguins |>
   geom_histogram(position = "identity", alpha = 0.4, binwidth = 4)
 ```
 
-<img src="ggplot_examples_files/figure-html/better histogram-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/better histogram-1.png" width="672" style="display: block; margin: auto;" />
 
 So, a lot going on, but still only three lines of code!
 
@@ -400,7 +390,7 @@ penguins |>
   theme(legend.position = c(0.9,0.8)) # play with the position to get it where you want it
 ```
 
-<img src="ggplot_examples_files/figure-html/hist for each species-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/hist for each species-1.png" width="672" style="display: block; margin: auto;" />
 
 In the scatter plot and the histogram, we have used colour to distinguish the different species. We can do this because our data set is tidy: there is just one column that species the species, and the same for every other variable. That same feature of the data enables to use another way to represent the different species: `facet_wrap(~species)`. This gives us three separate plots, side by side or one above the other. See it used here:
 
@@ -419,7 +409,7 @@ penguins |>
   theme(legend.position="none") # we don't need a legend!
 ```
 
-<img src="ggplot_examples_files/figure-html/hist with facet wrap different colours-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/hist with facet wrap different colours-1.png" width="672" style="display: block; margin: auto;" />
 
 Just a thought, but do the colours here serve any useful purpose? What extra information do they convey? If you ever think that a feature of a graph conveys no additional information, consider omitting it. Here is the figue before without colours, but going for white brs with grey outlines:
 
@@ -437,7 +427,7 @@ penguins |>
   theme(legend.position="none") # we don't need a legend!
 ```
 
-<img src="ggplot_examples_files/figure-html/hist with facet wrap and no colour-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/hist with facet wrap and no colour-1.png" width="672" style="display: block; margin: auto;" />
 
 Arguably, this is a better plot than the previous one because it excludes the potentially confusing redundancy of using different colours each species, when we already know which species is the subject of each plot.
 
@@ -457,11 +447,11 @@ penguins |>
   theme(legend.position="none") # we don't need a legend!
 ```
 
-<img src="ggplot_examples_files/figure-html/hist with facet wrap and one colour-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/hist with facet wrap and one colour-1.png" width="672" style="display: block; margin: auto;" />
 
 Different fill colours *would* be useful if the different penguin species had distinctive dominant colours, but that isn't the case!
 
-#### Density plot
+### Density plot
 
 An alternative to a histogram, the density plot, gives us a smoothed version of the histogram. The vertical axis on these is not a count, but a measure of the concentration of the data.
 
@@ -481,7 +471,7 @@ penguins |>
   theme(legend.position = "right") # play with the position to get it where you want it
 ```
 
-<img src="ggplot_examples_files/figure-html/density-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/density-1.png" width="672" style="display: block; margin: auto;" />
 
 We can also adapt this and do what was done for the histograms and do a set of three, one for each species, using `facet_wrap()`:
 
@@ -499,12 +489,12 @@ penguins |>
   theme(legend.position="none") # we don't need a legend!
 ```
 
-<img src="ggplot_examples_files/figure-html/density with facet wrap-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/density with facet wrap-1.png" width="672" style="display: block; margin: auto;" />
 
 Which is more useful in this case: the overlapping plots on one chart, or the separate charts done using `facet_wrap()`? Whatever you think here, the answer in other cases will sometimes be one, sometimes the other. Now you have the tools to enable you to try both and make the best choice.
 
 
-#### Box plots
+### Box plots
 
 Box plots are a really useful way to summarize the distribution of numerical response data such as `flipper_length_mm`  across different categorical variables, such as `species`. We use `geom_boxplot()` to produce them.
 
@@ -519,7 +509,7 @@ penguins |>
   geom_boxplot()
 ```
 
-<img src="ggplot_examples_files/figure-html/box plot basic-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/box plot basic-1.png" width="672" style="display: block; margin: auto;" />
 
 Now let's use what we have done before to add code lines that 
 
@@ -541,10 +531,10 @@ penguins |>
   theme(legend.position = "none") # no legend needed
 ```
 
-<img src="ggplot_examples_files/figure-html/box plot improved-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/box plot improved-1.png" width="672" style="display: block; margin: auto;" />
 
 
-#### Violin Plot using `geom_violin()`
+### Violin Plot using `geom_violin()`
 
 This is a variant on the box plot. Each 'violin' is a sideways density plot of the distribution of the data for each species, with its own mirror image to make it look a bit like a violin. The code for these is exactly as for box plots except we use `geom_violin()`.
 
@@ -555,7 +545,7 @@ penguins |>
   geom_violin() 
 ```
 
-<img src="ggplot_examples_files/figure-html/violin basic-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/violin basic-1.png" width="672" style="display: block; margin: auto;" />
 
 Now we write code to improve this, just as you did the box plot. The final code is the same as for that apart from one line!
 
@@ -572,9 +562,9 @@ penguins |>
   theme(legend.position = "none") # no legend needed
 ```
 
-<img src="ggplot_examples_files/figure-html/violin improved-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/violin improved-1.png" width="672" style="display: block; margin: auto;" />
 
-#### Ridge plot
+### Ridge plot
 
 This is a variant on the density plot, that is most useful when you have lots of categorical variables. We have only three here, the three penguin species, but let's try it anyway.
 
@@ -597,11 +587,11 @@ ggplot(aes(x = flipper_length_mm, y = species, fill = species)) +
   theme(legend.position = "none")
 ```
 
-<img src="ggplot_examples_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
 
 Now try producing graphs like the ones above, but for body mass rather than flipper length.
 
-### Bar chart with error bar
+## Bar chart with error bar
 
 There are different ways to produce this commonly used way to summarise data. For example we might use one to compare the mean flipper lengths of the different penguin species. For a bar chart of these to be of any use at all, it needs to include error bars that show standard errors of the means, or standard deviations or confidence intervals (Why?). Which you use depends on the story you are trying to tell, but we won't go into that here.
 
@@ -644,7 +634,7 @@ flipper_summary |>
   theme_bw() 
 ```
 
-<img src="ggplot_examples_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 
 Now let's alter this code so that each bar has a different fill colour, and  remove the legend that then appears, since it is unnecessary?
 
@@ -662,7 +652,7 @@ flipper_summary |>
   theme()
 ```
 
-<img src="ggplot_examples_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 Now let us replace this colour scheme with nicer ones (not just nice, but also colour-blind friendly, perhaps) offered by the Brewer palettes. 
 
@@ -681,7 +671,7 @@ flipper_summary |>
   theme(legend.position = "none")
 ```
 
-<img src="ggplot_examples_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" />
 
 
 If you don't like the colours of the palette "Set2" you can try another one. To find out what palettes are available, remember, you can type `?scale_fill_brewer()` into the console pane then look at the help that appears in the Help pane (bottom right), and scroll down to the Palettes section.
@@ -701,4 +691,4 @@ flipper_summary |>
   theme(legend.position = "none")
 ```
 
-<img src="ggplot_examples_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="ggplot_examples_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
