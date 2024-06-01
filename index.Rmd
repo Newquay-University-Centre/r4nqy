@@ -11,7 +11,7 @@ cover-image: "images/logo/newquay_uc.png"
 description: "A work in progress"
 link-citations: yes
 github-repo: Newquay-University-Centre/r4nqy
-url: 'https\://newquay-university-centre.github.io/r4nqy/'
+url: 'https://newquay-university-centre.github.io/r4nqy'
 ---
 
 ```{r, include = FALSE}
