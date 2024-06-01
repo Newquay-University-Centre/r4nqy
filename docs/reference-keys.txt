@@ -1,19 +1,4 @@
-fig:test-scores
-fig:standardising
-fig:standard-normals
-fig:n-standard-deviations
-fig:pop-distribution
-fig:selected-samples
-fig:pop-sampling
-fig:conf-int
-fig:t-dists
-fig:small-sample-hists
-fig:qq-plots
-fig:distribution-examples
-fig:hypothesis-testing
-fig:test-score-change
-fig:untransformed-data
-fig:transformed-data
+bibliography-book.bib-packages.bib
 usage
 render-book
 preview-book
@@ -171,4 +156,3 @@ a-two-sample-test-for-a-difference
 erroneous-use-of-a-t-test
 alternatives-to-the-t-test
 size-effects-vs-hypothesis-testing.
-bibliography-book.bib-packages.bib
