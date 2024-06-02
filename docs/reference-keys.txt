@@ -171,4 +171,3 @@ a-two-sample-test-for-a-difference
 erroneous-use-of-a-t-test
 alternatives-to-the-t-test
 size-effects-vs-hypothesis-testing.
-bibliography-book.bib-packages.bib
