@@ -23,7 +23,7 @@
 <meta name="author" content="Michael Hunt" />
 
 
-<meta name="date" content="2024-06-03" />
+<meta name="date" content="2024-06-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -437,13 +437,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  x and y
-## t = 9.1585, df = 48, p-value = 4.151e-12
+## t = 9.3853, df = 48, p-value = 1.938e-12
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.6672958 0.8804200
+##  0.6780219 0.8847501
 ## sample estimates:
 ##       cor 
-## 0.7975132</code></pre>
+## 0.8045334</code></pre>
 <p>There are different ways to calculate the correlation coefficient. Which of them is appropriate depends mainly on the type of data, and if they are numeric, whether they are normally distributed. If they are, then we use the Pearson method. If they are not, for example because they are ordinal data, then we use the Spearman’s Rank method and write <em>method=“spearman”</em> instead. In this case we can relax the requirement that there is a linear association between the data sets, but there does still need to be a monotonic relationship.</p>
 <p>It is important to be able to interpret and report the output.</p>
 <p>First, understand that R is carrying out a test, the null hypothesis of which is that there is no correlation between the values of <em>x</em> and the values of <em>y</em> among the populations from which the <em>x</em> and <em>y</em> data were drawn, so that the correlation coefficient between <em>x</em> and <em>y</em> within those populations is zero. It then reports a <em>p</em>-value: how likely it is that you would have got the data you got for this sample of data if that null hypothesis were true. As with most tests, to do this it uses the data to calculate a so-called <em>test-statistic</em>. How it does this need not concern us here. The details will differ from test to test, and the name given will differ. Here it is called <em>t</em>. It also reports the number of independent pieces of information used to calculate that statistic. This is called the <em>degrees of freedom</em>, here denoted <em>df</em>. This usually (but not necessarily) has a value that is 1,2 or 3 less than the number of data points.</p>
@@ -573,7 +573,7 @@ virginica
 <p>Sometimes the Pearson correlation coefficient <em>r</em> is a poor measure of the degree of association within a data set. Outliers and non-linearity are two problem cases.</p>
 <p>Consider first a data set where there is a very strong association between variables, but where the data sset contains an outlier, and then a data set where there is a strong but non-linear association between variables. Here we mean by ‘strong’ that knowing the value of one variable gives you a very good idea of the value of the other.</p>
 <p><img src="correlation_files/figure-html/unnamed-chunk-24-1.png" width="864" style="display: block; margin: auto;" /></p>
-<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.173, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
+<p>The outlier in the left-hand figure above brings the correlation coefficient down to 0.08, which is close to zero. The correlation coefficient in the right-hand figure is similarly small at 0.138, despite that there is a strong association between the <em>x</em> and <em>y</em> data. The reason is that the association is non linear.</p>
 <div id="when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> When is it appropriate to calculate a correlation coefficient?<a href="correlation.html#when-is-it-appropriate-to-calculate-a-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So, we note that the correlation coefficient is a measure of <em>linear</em> association, not of association in general. At least, this is true if you are calculating the Pearson correlation coefficient. If your data are not suitable for that and you decide to calculate the Spearman’s Rank correlation coefficient, then the condition is relaxed somewhat: there might be but there no longer <em>needs</em> to be a linear relationship between the two variables, but there must be a <em>monotonic</em> one. That means that, as one variable increases, the other should either increase or remain constant, or decrease or remain constant - that is, there should be no peaks or troughs in the data.</p>
