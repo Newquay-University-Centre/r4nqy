@@ -1,7 +1,7 @@
 --- 
 title: "Data analysis for Newquay University Centre"
 author: "Michael Hunt"
-date: "2024-06-06"
+date: "2024-06-26"
 site: bookdown::bookdown_site
 documentclass: book
 cover-image: "images/logo/newquay_uc.png"
