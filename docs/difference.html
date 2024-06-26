@@ -298,18 +298,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="anova-one-way.html"><a href="anova-one-way.html#reporting-the-result."><i class="fa fa-check"></i><b>7.6</b> Reporting the Result.</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression {#linear regression}</a>
+<li class="chapter" data-level="8" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>8</b> Simple linear regression</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>8.1</b> Simple Linear Regression</a></li>
-<li class="chapter" data-level="8.2" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.2</b> Load packages</a></li>
-<li class="chapter" data-level="8.3" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.3</b> Get the data</a></li>
-<li class="chapter" data-level="8.4" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
-<li class="chapter" data-level="8.5" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.5</b> Make a simple model using linear regression</a></li>
-<li class="chapter" data-level="8.6" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.6</b> Check assumptions</a></li>
-<li class="chapter" data-level="8.7" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.7</b> Interpretation of the model</a></li>
-<li class="chapter" data-level="8.8" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.8</b> Back to the figure</a></li>
-<li class="chapter" data-level="8.9" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>8.9</b> Conclusion</a></li>
-<li class="chapter" data-level="8.10" data-path="simple-linear-regression-linear-regression.html"><a href="simple-linear-regression-linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.10</b> Sample script</a></li>
+<li class="chapter" data-level="8.1" data-path="linear-regression.html"><a href="linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>8.1</b> Simple Linear Regression</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-regression.html"><a href="linear-regression.html#load-packages-5"><i class="fa fa-check"></i><b>8.2</b> Load packages</a></li>
+<li class="chapter" data-level="8.3" data-path="linear-regression.html"><a href="linear-regression.html#get-the-data"><i class="fa fa-check"></i><b>8.3</b> Get the data</a></li>
+<li class="chapter" data-level="8.4" data-path="linear-regression.html"><a href="linear-regression.html#plot-the-data-3"><i class="fa fa-check"></i><b>8.4</b> Plot the data</a></li>
+<li class="chapter" data-level="8.5" data-path="linear-regression.html"><a href="linear-regression.html#make-a-simple-model-using-linear-regression"><i class="fa fa-check"></i><b>8.5</b> Make a simple model using linear regression</a></li>
+<li class="chapter" data-level="8.6" data-path="linear-regression.html"><a href="linear-regression.html#check-assumptions"><i class="fa fa-check"></i><b>8.6</b> Check assumptions</a></li>
+<li class="chapter" data-level="8.7" data-path="linear-regression.html"><a href="linear-regression.html#interpretation-of-the-model"><i class="fa fa-check"></i><b>8.7</b> Interpretation of the model</a></li>
+<li class="chapter" data-level="8.8" data-path="linear-regression.html"><a href="linear-regression.html#back-to-the-figure"><i class="fa fa-check"></i><b>8.8</b> Back to the figure</a></li>
+<li class="chapter" data-level="8.9" data-path="linear-regression.html"><a href="linear-regression.html#conclusion-1"><i class="fa fa-check"></i><b>8.9</b> Conclusion</a></li>
+<li class="chapter" data-level="8.10" data-path="linear-regression.html"><a href="linear-regression.html#sample-script"><i class="fa fa-check"></i><b>8.10</b> Sample script</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -493,13 +493,13 @@ Delete everything from below the yaml section at the top. This is the bit betwee
 <span id="cb85-5"><a href="difference.html#cb85-5" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
 <span id="cb85-6"><a href="difference.html#cb85-6" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb85-7"><a href="difference.html#cb85-7" tabindex="-1"></a><span class="do">## data:  example1</span></span>
-<span id="cb85-8"><a href="difference.html#cb85-8" tabindex="-1"></a><span class="do">## W = 0.98532, p-value = 0.3346</span></span>
+<span id="cb85-8"><a href="difference.html#cb85-8" tabindex="-1"></a><span class="do">## W = 0.98495, p-value = 0.315</span></span>
 <span id="cb85-9"><a href="difference.html#cb85-9" tabindex="-1"></a><span class="fu">shapiro.test</span>(example2) <span class="co"># 100 samples drawn from a uniformly (ie NOT normally) distributed population</span></span>
 <span id="cb85-10"><a href="difference.html#cb85-10" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb85-11"><a href="difference.html#cb85-11" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
 <span id="cb85-12"><a href="difference.html#cb85-12" tabindex="-1"></a><span class="do">## </span></span>
 <span id="cb85-13"><a href="difference.html#cb85-13" tabindex="-1"></a><span class="do">## data:  example2</span></span>
-<span id="cb85-14"><a href="difference.html#cb85-14" tabindex="-1"></a><span class="do">## W = 0.92466, p-value = 2.507e-05</span></span></code></pre></div>
+<span id="cb85-14"><a href="difference.html#cb85-14" tabindex="-1"></a><span class="do">## W = 0.96342, p-value = 0.007104</span></span></code></pre></div>
 <p>For the examples above, we see that Shapiro-Wilk test gave a hig <em>p</em>-value for the data that we knew <em>were</em> drawn from a normal distribution, an a very low <em>p</em>-value for the data that we knew were not.</p>
 <p>The Shapiro-Wilk test tests your data against the null hypothesis that it is drawn from a normally distributed population. It gives a <em>p</em>-value. If the <em>p</em>-value is less than 0.05 then we reject the null hypothesis and cannot suppose our data is normally distributed. In that case we would have to ditch the <em>t</em>-test for a difference, and choose another difference test in its place that could cope with data that was not normally distributed.</p>
 <p>Why don’t we do that in the first place, I hear you ask? Why bother with this finicky <em>t</em>-test that requires that we go through the faff of testing the data for normality before we can use it? The answer is that it is more powerful than other, so-called non-parametric tests that <em>can</em> cope with non-normal data. It is more likely than they are to spot a difference if there really is a difference. So if we can use it, that is what we would rather do.</p>

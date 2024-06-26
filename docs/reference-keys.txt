@@ -110,7 +110,7 @@ the-overall-picture
 the-detailed-picture
 post-hoc-tsts.
 reporting-the-result.
-simple-linear-regression-linear-regression
+linear-regression
 simple-linear-regression
 load-packages-5
 get-the-data
